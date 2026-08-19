@@ -3,747 +3,556 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
 
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1,viewport-fit=cover"
-  >
+<title>缘分 · 相遇</title>
 
-  <title>缘分 · 相遇</title>
+<meta
+  name="description"
+  content="寻找适合你的缘分"
+>
 
-  <meta
-    name="description"
-    content="寻找适合你的缘分"
-  >
+<style>
 
-  <style>
+/* =========================
+   基础
+========================= */
 
-    /* ==================================================
-       基础
-    ================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    Arial,
+    sans-serif;
+
+  background: #faf9f7;
+  color: #2b2927;
+  line-height: 1.6;
+}
+
+button,
+select {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* =========================
+   顶部
+========================= */
+
+.site-header {
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: rgba(255,255,255,.97);
+
+  border-bottom: 1px solid #eee;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.brand span {
+  color: #b58b63;
+  margin: 0 3px;
+}
+
+.admin-link {
+  padding: 8px 16px;
+
+  border: 1px solid #ddd;
+  border-radius: 20px;
+
+  font-size: 14px;
+  color: #666;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+.admin-link:hover {
+  background: #2b2927;
+  color: #fff;
+}
 
 
-    body {
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "PingFang SC",
-        "Microsoft YaHei",
-        Arial,
-        sans-serif;
+/* =========================
+   Hero
+========================= */
 
-      background: #faf9f7;
+.hero {
+  min-height: 420px;
 
-      color: #2b2927;
+  display: flex;
+  align-items: center;
 
-      line-height: 1.6;
-    }
+  padding: 70px 8%;
 
+  background:
+    linear-gradient(
+      90deg,
+      #faf9f7 0%,
+      rgba(250,249,247,.94) 55%,
+      rgba(250,249,247,.65) 100%
+    );
+}
 
-    button,
-    select {
-      font-family: inherit;
-    }
+.hero > div {
+  max-width: 700px;
+}
 
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #b58b63;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+.hero h1 {
+  font-size: clamp(38px,6vw,70px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
 
+.hero p:not(.eyebrow) {
+  color: #777;
+  font-size: 17px;
+  max-width: 520px;
+}
 
 
-    /* ==================================================
-       顶部导航
-    ================================================== */
+/* =========================
+   工具栏
+========================= */
 
-    .site-header {
+.toolbar {
+  width: 88%;
+  max-width: 1400px;
 
-      height: 72px;
+  margin: 40px auto 25px;
 
-      display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-      align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
 
-      justify-content: space-between;
+.toolbar strong {
+  font-size: 22px;
+  margin-right: 12px;
+}
 
-      padding: 0 6%;
+#count {
+  color: #999;
+  font-size: 14px;
+}
 
-      background: rgba(255,255,255,0.96);
+.filters {
+  display: flex;
+  gap: 10px;
+}
 
-      border-bottom: 1px solid #eee;
+.filters select {
+  appearance: none;
 
-      position: sticky;
+  border: 1px solid #ddd;
 
-      top: 0;
+  background: #fff;
 
-      z-index: 100;
-    }
+  padding: 11px 36px 11px 14px;
 
+  border-radius: 8px;
 
-    .brand {
+  color: #444;
 
-      font-size: 22px;
+  cursor: pointer;
 
-      font-weight: 700;
+  outline: none;
+}
 
-      letter-spacing: 1px;
-    }
 
+/* =========================
+   女士列表
+========================= */
 
-    .brand span {
-      color: #b58b63;
-      margin: 0 3px;
-    }
+.women-grid {
+  width: 88%;
+  max-width: 1400px;
 
+  margin: 0 auto 70px;
 
-    .admin-link {
+  display: grid;
 
-      padding: 8px 16px;
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
 
-      border: 1px solid #ddd;
+  gap: 24px;
+}
 
-      border-radius: 20px;
 
-      font-size: 14px;
+/* =========================
+   女士卡片
+========================= */
 
-      color: #666;
+.woman-card {
+  background: #fff;
 
-      transition: 0.2s;
-    }
+  border-radius: 14px;
 
+  overflow: hidden;
 
-    .admin-link:hover {
+  border: 1px solid #eee;
 
-      background: #2b2927;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
 
-      color: white;
+.woman-card:hover {
+  transform: translateY(-5px);
 
-      border-color: #2b2927;
-    }
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+}
 
 
+/* =========================
+   图片
+========================= */
 
-    /* ==================================================
-       Hero
-    ================================================== */
+.woman-image {
+  width: 100%;
 
-    .hero {
+  aspect-ratio: 3 / 4;
 
-      min-height: 420px;
+  background: #eee;
 
-      display: flex;
+  overflow: hidden;
+}
 
-      align-items: center;
+.woman-image img {
+  width: 100%;
+  height: 100%;
 
-      padding: 70px 8%;
+  object-fit: cover;
 
-      background:
+  display: block;
 
-        linear-gradient(
-          90deg,
-          rgba(250,249,247,1) 0%,
-          rgba(250,249,247,.93) 50%,
-          rgba(250,249,247,.55) 100%
-        );
-    }
+  transition: transform .5s ease;
+}
 
+.woman-card:hover
+.woman-image img {
+  transform: scale(1.03);
+}
 
-    .hero > div {
 
-      max-width: 700px;
-    }
+/* =========================
+   信息
+========================= */
 
+.woman-info {
+  padding: 20px;
+}
 
-    .eyebrow {
+.woman-info h2 {
+  font-size: 21px;
 
-      font-size: 13px;
+  font-weight: 600;
 
-      letter-spacing: 4px;
+  margin-bottom: 5px;
+}
 
-      color: #b58b63;
+.city {
+  color: #b58b63;
 
-      margin-bottom: 18px;
+  font-size: 14px;
 
-      font-weight: 600;
-    }
+  margin-bottom: 8px;
+}
 
+.woman-info > p {
+  color: #777;
 
-    .hero h1 {
+  font-size: 14px;
 
-      font-size: clamp(
-        38px,
-        6vw,
-        70px
-      );
+  margin-bottom: 6px;
+}
 
-      line-height: 1.2;
+.description {
+  margin-top: 12px;
 
-      font-weight: 600;
+  line-height: 1.7;
 
-      letter-spacing: 1px;
+  display: -webkit-box;
 
-      margin-bottom: 24px;
-    }
+  -webkit-line-clamp: 3;
 
+  -webkit-box-orient: vertical;
 
-    .hero p:not(.eyebrow) {
+  overflow: hidden;
+}
 
-      color: #777;
 
-      font-size: 17px;
+/* =========================
+   联系按钮
+========================= */
 
-      max-width: 520px;
-    }
+.contact-buttons {
+  display: flex;
 
+  gap: 8px;
 
+  margin-top: 18px;
+}
 
-    /* ==================================================
-       工具栏
-    ================================================== */
+.contact-btn {
+  flex: 1;
 
-    .toolbar {
+  border: 0;
 
-      width: 88%;
+  padding: 11px 8px;
 
-      max-width: 1400px;
+  border-radius: 8px;
 
-      margin: 40px auto 25px;
+  cursor: pointer;
 
-      display: flex;
+  font-size: 14px;
 
-      align-items: center;
+  font-weight: 600;
 
-      justify-content: space-between;
+  transition: .2s;
+}
 
-      gap: 20px;
+.whatsapp-btn {
+  background: #e8f7ed;
+  color: #168a43;
+}
 
-      flex-wrap: wrap;
-    }
+.whatsapp-btn:hover {
+  background: #168a43;
+  color: #fff;
+}
 
+.telegram-btn {
+  background: #e8f2fb;
+  color: #2481c7;
+}
 
-    .toolbar strong {
+.telegram-btn:hover {
+  background: #2481c7;
+  color: #fff;
+}
 
-      font-size: 22px;
 
-      margin-right: 12px;
-    }
+/* =========================
+   加载
+========================= */
 
+.loading {
+  grid-column: 1 / -1;
 
-    #count {
+  text-align: center;
 
-      color: #999;
+  padding: 80px 20px;
 
-      font-size: 14px;
-    }
+  color: #888;
+}
 
+.loading h3 {
+  font-size: 22px;
 
-    .filters {
+  color: #444;
 
-      display: flex;
+  margin-bottom: 10px;
+}
 
-      gap: 10px;
-    }
+.loading p {
+  color: #999;
 
+  font-size: 14px;
+}
 
-    .filters select {
 
-      appearance: none;
+/* =========================
+   Footer
+========================= */
 
-      border: 1px solid #ddd;
+footer {
+  text-align: center;
 
-      background: white;
+  padding: 35px 20px;
 
-      padding: 11px 36px 11px 14px;
+  border-top: 1px solid #eee;
 
-      border-radius: 8px;
+  color: #aaa;
 
-      color: #444;
+  font-size: 13px;
 
-      cursor: pointer;
+  background: #fff;
+}
 
-      outline: none;
-    }
 
+/* =========================
+   平板
+========================= */
 
+@media (max-width:1000px) {
 
-    /* ==================================================
-       女士列表
-    ================================================== */
+  .women-grid {
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+  }
 
-    .women-grid {
+}
 
-      width: 88%;
 
-      max-width: 1400px;
+/* =========================
+   手机
+========================= */
 
-      margin: 0 auto 70px;
+@media (max-width:700px) {
 
-      display: grid;
+  .site-header {
+    height: 62px;
+    padding: 0 20px;
+  }
 
-      grid-template-columns:
-        repeat(
-          4,
-          minmax(0, 1fr)
-        );
+  .brand {
+    font-size: 19px;
+  }
 
-      gap: 24px;
-    }
+  .admin-link {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
 
+  .hero {
+    min-height: 360px;
+    padding: 55px 25px;
+  }
 
+  .hero h1 {
+    font-size: 39px;
+  }
 
-    /* ==================================================
-       女士卡片
-    ================================================== */
+  .hero p:not(.eyebrow) {
+    font-size: 15px;
+  }
 
-    .woman-card {
+  .toolbar {
+    width: calc(100% - 40px);
+    margin-top: 30px;
+    align-items: flex-start;
+  }
 
-      background: white;
+  .toolbar strong {
+    font-size: 20px;
+  }
 
-      border-radius: 14px;
+  .filters {
+    width: 100%;
+  }
 
-      overflow: hidden;
+  .filters select {
+    flex: 1;
+    width: 50%;
+  }
 
-      border: 1px solid #eee;
+  .women-grid {
+    width: calc(100% - 30px);
 
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
 
-      cursor: default;
-    }
+    gap: 12px;
 
+    margin-bottom: 50px;
+  }
 
-    .woman-card:hover {
+  .woman-info {
+    padding: 14px;
+  }
 
-      transform: translateY(-5px);
+  .woman-info h2 {
+    font-size: 17px;
+  }
 
-      box-shadow:
-        0 15px 40px
-        rgba(0,0,0,.08);
-    }
+  .woman-info > p {
+    font-size: 12px;
+  }
 
+  .description {
+    font-size: 12px !important;
+  }
 
+  .contact-buttons {
+    flex-direction: column;
+    gap: 6px;
+  }
 
-    /* ==================================================
-       图片
-    ================================================== */
+  .contact-btn {
+    width: 100%;
+    padding: 9px;
+  }
 
-    .woman-image {
+}
 
-      width: 100%;
 
-      aspect-ratio: 3 / 4;
+/* =========================
+   小手机
+========================= */
 
-      background: #eee;
+@media (max-width:400px) {
 
-      overflow: hidden;
-    }
+  .women-grid {
+    grid-template-columns: 1fr;
+  }
 
+  .woman-image {
+    aspect-ratio: 4 / 5;
+  }
 
-    .woman-image img {
+}
 
-      width: 100%;
-
-      height: 100%;
-
-      object-fit: cover;
-
-      display: block;
-
-      transition:
-        transform .5s ease;
-    }
-
-
-    .woman-card:hover
-    .woman-image img {
-
-      transform: scale(1.03);
-    }
-
-
-
-    /* ==================================================
-       信息
-    ================================================== */
-
-    .woman-info {
-
-      padding: 20px;
-    }
-
-
-    .woman-info h2 {
-
-      font-size: 21px;
-
-      font-weight: 600;
-
-      margin-bottom: 5px;
-    }
-
-
-    .city {
-
-      color: #b58b63;
-
-      font-size: 14px;
-
-      margin-bottom: 8px;
-    }
-
-
-    .woman-info > p {
-
-      color: #777;
-
-      font-size: 14px;
-
-      margin-bottom: 6px;
-    }
-
-
-    .description {
-
-      margin-top: 12px;
-
-      line-height: 1.7;
-
-      display: -webkit-box;
-
-      -webkit-line-clamp: 3;
-
-      -webkit-box-orient: vertical;
-
-      overflow: hidden;
-    }
-
-
-
-    /* ==================================================
-       联系按钮
-    ================================================== */
-
-    .contact-buttons {
-
-      display: flex;
-
-      gap: 8px;
-
-      margin-top: 18px;
-    }
-
-
-    .contact-btn {
-
-      flex: 1;
-
-      border: 0;
-
-      padding: 11px 8px;
-
-      border-radius: 8px;
-
-      cursor: pointer;
-
-      font-size: 14px;
-
-      font-weight: 600;
-
-      transition: .2s;
-    }
-
-
-    .whatsapp-btn {
-
-      background: #e8f7ed;
-
-      color: #168a43;
-    }
-
-
-    .whatsapp-btn:hover {
-
-      background: #168a43;
-
-      color: white;
-    }
-
-
-    .telegram-btn {
-
-      background: #e8f2fb;
-
-      color: #2481c7;
-    }
-
-
-    .telegram-btn:hover {
-
-      background: #2481c7;
-
-      color: white;
-    }
-
-
-
-    /* ==================================================
-       加载 / 空状态
-    ================================================== */
-
-    .loading {
-
-      grid-column: 1 / -1;
-
-      text-align: center;
-
-      padding: 80px 20px;
-
-      color: #888;
-    }
-
-
-    .loading h3 {
-
-      font-size: 22px;
-
-      color: #444;
-
-      margin-bottom: 10px;
-    }
-
-
-    .loading p {
-
-      color: #999;
-
-      font-size: 14px;
-    }
-
-
-
-    /* ==================================================
-       页脚
-    ================================================== */
-
-    footer {
-
-      text-align: center;
-
-      padding: 35px 20px;
-
-      border-top: 1px solid #eee;
-
-      color: #aaa;
-
-      font-size: 13px;
-
-      background: white;
-    }
-
-
-
-    /* ==================================================
-       平板
-    ================================================== */
-
-    @media (
-      max-width: 1000px
-    ) {
-
-      .women-grid {
-
-        grid-template-columns:
-          repeat(
-            3,
-            minmax(0,1fr)
-          );
-
-      }
-
-    }
-
-
-
-    /* ==================================================
-       手机
-    ================================================== */
-
-    @media (
-      max-width: 700px
-    ) {
-
-      .site-header {
-
-        height: 62px;
-
-        padding:
-          0 20px;
-      }
-
-
-      .brand {
-
-        font-size: 19px;
-      }
-
-
-      .admin-link {
-
-        font-size: 12px;
-
-        padding:
-          6px 12px;
-      }
-
-
-      .hero {
-
-        min-height: 360px;
-
-        padding:
-          55px 25px;
-      }
-
-
-      .hero h1 {
-
-        font-size: 39px;
-      }
-
-
-      .hero p:not(.eyebrow) {
-
-        font-size: 15px;
-      }
-
-
-      .toolbar {
-
-        width: calc(
-          100% - 40px
-        );
-
-        margin-top: 30px;
-
-        align-items:
-          flex-start;
-      }
-
-
-      .toolbar strong {
-
-        font-size: 20px;
-      }
-
-
-      .filters {
-
-        width: 100%;
-      }
-
-
-      .filters select {
-
-        flex: 1;
-
-        width: 50%;
-      }
-
-
-      .women-grid {
-
-        width: calc(
-          100% - 30px
-        );
-
-        grid-template-columns:
-          repeat(
-            2,
-            minmax(0,1fr)
-          );
-
-        gap: 12px;
-
-        margin-bottom: 50px;
-      }
-
-
-      .woman-info {
-
-        padding: 14px;
-      }
-
-
-      .woman-info h2 {
-
-        font-size: 17px;
-      }
-
-
-      .woman-info > p {
-
-        font-size: 12px;
-      }
-
-
-      .description {
-
-        font-size: 12px !important;
-      }
-
-
-      .contact-buttons {
-
-        flex-direction: column;
-
-        gap: 6px;
-      }
-
-
-      .contact-btn {
-
-        width: 100%;
-
-        padding: 9px;
-      }
-
-    }
-
-
-
-    /* ==================================================
-       小手机
-    ================================================== */
-
-    @media (
-      max-width: 400px
-    ) {
-
-      .women-grid {
-
-        grid-template-columns:
-          1fr;
-      }
-
-
-      .woman-image {
-
-        aspect-ratio: 4 / 5;
-      }
-
-    }
-
-  </style>
+</style>
 
 </head>
 
@@ -751,9 +560,9 @@
 <body>
 
 
-<!-- ==================================================
+<!-- =========================
      HEADER
-================================================== -->
+========================= -->
 
 <header class="site-header">
 
@@ -763,7 +572,6 @@
   >
     缘分<span>·</span>相遇
   </a>
-
 
   <a
     class="admin-link"
@@ -775,122 +583,116 @@
 </header>
 
 
-
-<!-- ==================================================
+<!-- =========================
      HERO
-================================================== -->
+========================= -->
 
 <main>
 
-  <section class="hero">
+<section class="hero">
 
-    <div>
+  <div>
 
-      <p class="eyebrow">
-        MEET SOMEONE SPECIAL
-      </p>
+    <p class="eyebrow">
+      MEET SOMEONE SPECIAL
+    </p>
 
+    <h1>
+      认真认识一个人，<br>
+      从一次相遇开始。
+    </h1>
 
-      <h1>
-        认真认识一个人，<br>
-        从一次相遇开始。
-      </h1>
+    <p>
+      浏览真实资料，了解彼此，再决定是否联系。
+    </p>
 
+  </div>
 
-      <p>
-        浏览真实资料，了解彼此，再决定是否联系。
-      </p>
-
-    </div>
-
-  </section>
+</section>
 
 
-
-<!-- ==================================================
+<!-- =========================
      TOOLBAR
-================================================== -->
+========================= -->
 
-  <section class="toolbar">
+<section class="toolbar">
 
-    <div>
+  <div>
 
-      <strong>
-        女士资料
-      </strong>
+    <strong>
+      女士资料
+    </strong>
 
-      <span id="count">
-        加载中…
-      </span>
+    <span id="count">
+      加载中…
+    </span>
 
-    </div>
-
-
-    <div class="filters">
-
-      <select id="cityFilter">
-
-        <option value="">
-          全部城市
-        </option>
-
-      </select>
+  </div>
 
 
-      <select id="ageFilter">
+  <div class="filters">
 
-        <option value="">
-          全部年龄
-        </option>
+    <select id="cityFilter">
 
-        <option value="18-25">
-          18–25
-        </option>
+      <option value="">
+        全部城市
+      </option>
 
-        <option value="26-35">
-          26–35
-        </option>
-
-        <option value="36-45">
-          36–45
-        </option>
-
-        <option value="46+">
-          46+
-        </option>
-
-      </select>
-
-    </div>
-
-  </section>
+    </select>
 
 
+    <select id="ageFilter">
 
-<!-- ==================================================
-     WOMEN GRID
-================================================== -->
+      <option value="">
+        全部年龄
+      </option>
 
-  <section
-    id="womenGrid"
-    class="women-grid"
-  >
+      <option value="18-25">
+        18–25
+      </option>
 
-    <div class="loading">
+      <option value="26-35">
+        26–35
+      </option>
 
-      正在加载资料…
+      <option value="36-45">
+        36–45
+      </option>
 
-    </div>
+      <option value="46+">
+        46+
+      </option>
 
-  </section>
+    </select>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     WOMEN
+========================= -->
+
+<section
+  id="womenGrid"
+  class="women-grid"
+>
+
+  <div class="loading">
+
+    正在加载资料…
+
+  </div>
+
+</section>
 
 </main>
 
 
-
-<!-- ==================================================
+<!-- =========================
      FOOTER
-================================================== -->
+========================= -->
 
 <footer>
 
@@ -901,14 +703,15 @@
 </footer>
 
 
-<!-- ==================================================
-     SUPABASE DATA
-================================================== -->
+<!-- =========================
+     SUPABASE
+========================= -->
 
 <script>
 
 const SUPABASE_URL =
 "https://yutraouosffjteivvlfx.supabase.co";
+
 
 const SUPABASE_KEY =
 "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
@@ -917,25 +720,41 @@ const SUPABASE_KEY =
 let women = [];
 
 
-/* 年份 */
-document.getElementById("year").textContent =
-new Date().getFullYear();
+/* =========================
+   年份
+========================= */
+
+document
+  .getElementById("year")
+  .textContent =
+  new Date().getFullYear();
 
 
-/* HTML 安全处理 */
+/* =========================
+   HTML 安全处理
+========================= */
+
 function escapeHtml(value) {
 
   return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* 获取照片 */
+/* =========================
+   获取照片
+========================= */
+
 function getPhotoUrl(woman) {
 
   if (
@@ -943,21 +762,30 @@ function getPhotoUrl(woman) {
     !Array.isArray(woman.photos) ||
     woman.photos.length === 0
   ) {
+
     return "";
+
   }
 
-  const photo = woman.photos[0];
+
+  const photo =
+    woman.photos[0];
+
 
   if (!photo) {
     return "";
   }
 
+
   if (
     photo.startsWith("http://") ||
     photo.startsWith("https://")
   ) {
+
     return photo;
+
   }
+
 
   return (
     SUPABASE_URL +
@@ -968,49 +796,76 @@ function getPhotoUrl(woman) {
 }
 
 
-/* 加载女士 */
+/* =========================
+   加载数据库
+========================= */
+
 async function loadWomen() {
 
   const grid =
-    document.getElementById("womenGrid");
+    document.getElementById(
+      "womenGrid"
+    );
+
 
   const count =
-    document.getElementById("count");
+    document.getElementById(
+      "count"
+    );
 
-  grid.innerHTML = `
-    <div class="loading">
-      正在连接数据库……
-    </div>
-  `;
 
   try {
+
+    grid.innerHTML = `
+
+      <div class="loading">
+
+        正在连接数据库……
+
+      </div>
+
+    `;
+
+
+    /*
+      注意：
+
+      这里已经删除 sort_order。
+
+      只按照 created_at 排序。
+    */
 
     const url =
       SUPABASE_URL +
       "/rest/v1/women" +
       "?select=*" +
       "&is_published=eq.true" +
-      "&order=sort_order.asc,created_at.desc";
+      "&order=created_at.desc";
 
 
     const response =
-      await fetch(url, {
+      await fetch(
+        url,
+        {
 
-        method: "GET",
+          method:"GET",
 
-        headers: {
+          headers: {
 
-          "apikey": SUPABASE_KEY,
+            "apikey":
+              SUPABASE_KEY,
 
-          "Authorization":
-            "Bearer " + SUPABASE_KEY,
+            "Authorization":
+              "Bearer " +
+              SUPABASE_KEY,
 
-          "Content-Type":
-            "application/json"
+            "Content-Type":
+              "application/json"
+
+          }
 
         }
-
-      });
+      );
 
 
     const text =
@@ -1033,7 +888,8 @@ async function loadWomen() {
 
     try {
 
-      data = JSON.parse(text);
+      data =
+        JSON.parse(text);
 
     } catch {
 
@@ -1045,7 +901,8 @@ async function loadWomen() {
     }
 
 
-    women = data || [];
+    women =
+      data || [];
 
 
     count.textContent =
@@ -1055,13 +912,18 @@ async function loadWomen() {
     createCityFilter();
 
 
-    renderWomen(women);
+    renderWomen(
+      women
+    );
 
   }
 
+
   catch(error) {
 
-    console.error(error);
+    console.error(
+      error
+    );
 
 
     count.textContent =
@@ -1073,7 +935,7 @@ async function loadWomen() {
       <div class="loading">
 
         <h3>
-          暂时无法加载资料
+          女士资料无法加载
         </h3>
 
         <p style="
@@ -1082,7 +944,9 @@ async function loadWomen() {
           white-space:pre-wrap;
           word-break:break-word;
         ">
-          ${escapeHtml(error.message)}
+          ${escapeHtml(
+            error.message
+          )}
         </p>
 
       </div>
@@ -1094,55 +958,132 @@ async function loadWomen() {
 }
 
 
-/* 城市筛选 */
+/* =========================
+   城市筛选
+========================= */
+
 function createCityFilter() {
 
   const select =
-    document.getElementById("cityFilter");
+    document.getElementById(
+      "cityFilter"
+    );
 
 
   const cities = [
+
     ...new Set(
 
       women
-        .map(woman => woman.city)
-        .filter(city => city)
+
+        .map(
+          woman =>
+            woman.city
+        )
+
+        .filter(
+          city =>
+            city &&
+            String(city).trim()
+        )
 
     )
+
   ];
 
 
   select.innerHTML = `
+
     <option value="">
       全部城市
     </option>
+
   `;
 
 
-  cities.forEach(city => {
+  cities.forEach(
+    city => {
 
-    const option =
-      document.createElement("option");
+      const option =
+        document.createElement(
+          "option"
+        );
 
-    option.value = city;
 
-    option.textContent = city;
+      option.value =
+        city;
 
-    select.appendChild(option);
 
-  });
+      option.textContent =
+        city;
+
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
 
 }
 
 
-/* 显示女士 */
+/* =========================
+   默认图片
+========================= */
+
+function getDefaultImage() {
+
+  return (
+    "data:image/svg+xml;charset=UTF-8," +
+    encodeURIComponent(`
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="600"
+        height="800"
+      >
+
+        <rect
+          width="600"
+          height="800"
+          fill="#eeeeee"
+        />
+
+        <text
+          x="300"
+          y="400"
+          text-anchor="middle"
+          font-size="28"
+          fill="#999999"
+        >
+          暂无照片
+        </text>
+
+      </svg>
+
+    `)
+  );
+
+}
+
+
+/* =========================
+   显示女士
+========================= */
+
 function renderWomen(list) {
 
   const grid =
-    document.getElementById("womenGrid");
+    document.getElementById(
+      "womenGrid"
+    );
 
 
-  if (!list.length) {
+  if (
+    !list ||
+    list.length === 0
+  ) {
 
     grid.innerHTML = `
 
@@ -1168,204 +1109,315 @@ function renderWomen(list) {
   grid.innerHTML = "";
 
 
-  list.forEach(woman => {
+  list.forEach(
+    woman => {
 
-    const card =
-      document.createElement("article");
-
-
-    card.className =
-      "woman-card";
-
-
-    const photo =
-      getPhotoUrl(woman);
+      const card =
+        document.createElement(
+          "article"
+        );
 
 
-    const image =
-      photo ||
-      "data:image/svg+xml;charset=UTF-8," +
-      encodeURIComponent(`
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="600"
-          height="800"
-        >
-          <rect
-            width="600"
-            height="800"
-            fill="#eeeeee"
-          />
+      card.className =
+        "woman-card";
 
-          <text
-            x="300"
-            y="400"
-            text-anchor="middle"
-            font-size="28"
-            fill="#999"
+
+      const photo =
+        getPhotoUrl(
+          woman
+        );
+
+
+      const image =
+        photo ||
+        getDefaultImage();
+
+
+      card.innerHTML = `
+
+        <div class="woman-image">
+
+          <img
+            src="${escapeHtml(image)}"
+            alt="${escapeHtml(
+              woman.name ||
+              "女士"
+            )}"
+            loading="lazy"
           >
-            暂无照片
-          </text>
-        </svg>
-      `);
+
+        </div>
 
 
-    card.innerHTML = `
+        <div class="woman-info">
 
-      <div class="woman-image">
+          <h2>
 
-        <img
-          src="${escapeHtml(image)}"
-          alt="${escapeHtml(woman.name || "女士")}"
-          loading="lazy"
-        >
+            ${escapeHtml(
+              woman.name ||
+              "未填写姓名"
+            )}
 
-      </div>
-
-
-      <div class="woman-info">
-
-        <h2>
-          ${escapeHtml(woman.name || "未填写姓名")}
-          ${
-            woman.age
-              ? "，" + escapeHtml(woman.age) + "岁"
+            ${
+              woman.age
+              ? "，" +
+                escapeHtml(
+                  woman.age
+                ) +
+                "岁"
               : ""
-          }
-        </h2>
+            }
+
+          </h2>
 
 
-        ${
-          woman.city
+          ${
+            woman.city
             ? `
+
               <p class="city">
-                ${escapeHtml(woman.city)}
-              </p>
-            `
-            : ""
-        }
 
-
-        ${
-          woman.occupation
-            ? `
-              <p>
-                ${escapeHtml(woman.occupation)}
-              </p>
-            `
-            : ""
-        }
-
-
-        ${
-          woman.height_cm
-            ? `
-              <p>
-                身高：${escapeHtml(woman.height_cm)} cm
-              </p>
-            `
-            : ""
-        }
-
-
-        ${
-          woman.marital_status
-            ? `
-              <p>
-                婚姻状况：
-                ${escapeHtml(woman.marital_status)}
-              </p>
-            `
-            : ""
-        }
-
-
-        ${
-          woman.short_intro || woman.bio
-            ? `
-              <p class="description">
                 ${escapeHtml(
-                  woman.short_intro || woman.bio
+                  woman.city
                 )}
+
               </p>
+
             `
             : ""
-        }
-
-
-        ${
-          woman.hobbies
-            ? `
-              <p class="description">
-                兴趣：
-                ${escapeHtml(woman.hobbies)}
-              </p>
-            `
-            : ""
-        }
-
-
-        <div class="contact-buttons">
-
-          ${
-            woman.whatsapp
-              ? `
-                <button
-                  class="contact-btn whatsapp-btn"
-                  type="button"
-                  onclick="openWhatsApp('${escapeHtml(
-                    woman.whatsapp
-                  )}')"
-                >
-                  WhatsApp
-                </button>
-              `
-              : ""
           }
 
 
           ${
+            woman.occupation
+            ? `
+
+              <p>
+
+                ${escapeHtml(
+                  woman.occupation
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.height_cm
+            ? `
+
+              <p>
+
+                身高：
+                ${escapeHtml(
+                  woman.height_cm
+                )}
+                cm
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.marital_status
+            ? `
+
+              <p>
+
+                婚姻状况：
+                ${escapeHtml(
+                  woman.marital_status
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.short_intro ||
+            woman.bio
+            ? `
+
+              <p class="description">
+
+                ${escapeHtml(
+                  woman.short_intro ||
+                  woman.bio
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.hobbies
+            ? `
+
+              <p class="description">
+
+                兴趣：
+                ${escapeHtml(
+                  woman.hobbies
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.whatsapp ||
             woman.telegram
-              ? `
-                <button
-                  class="contact-btn telegram-btn"
-                  type="button"
-                  onclick="openTelegram('${escapeHtml(
-                    woman.telegram
-                  )}')"
-                >
-                  Telegram
-                </button>
-              `
-              : ""
+            ? `
+
+              <div class="contact-buttons">
+
+                ${
+                  woman.whatsapp
+                  ? `
+
+                    <button
+                      class="contact-btn whatsapp-btn"
+                      type="button"
+                      data-whatsapp="${escapeHtml(
+                        woman.whatsapp
+                      )}"
+                    >
+                      WhatsApp
+                    </button>
+
+                  `
+                  : ""
+                }
+
+
+                ${
+                  woman.telegram
+                  ? `
+
+                    <button
+                      class="contact-btn telegram-btn"
+                      type="button"
+                      data-telegram="${escapeHtml(
+                        woman.telegram
+                      )}"
+                    >
+                      Telegram
+                    </button>
+
+                  `
+                  : ""
+                }
+
+              </div>
+
+            `
+            : ""
           }
 
         </div>
 
-      </div>
-
-    `;
+      `;
 
 
-    grid.appendChild(card);
+      grid.appendChild(
+        card
+      );
 
-  });
+
+      /* WhatsApp */
+
+      const whatsappButton =
+        card.querySelector(
+          "[data-whatsapp]"
+        );
+
+
+      if (whatsappButton) {
+
+        whatsappButton
+          .addEventListener(
+            "click",
+            function() {
+
+              openWhatsApp(
+                this.dataset.whatsapp
+              );
+
+            }
+          );
+
+      }
+
+
+      /* Telegram */
+
+      const telegramButton =
+        card.querySelector(
+          "[data-telegram]"
+        );
+
+
+      if (telegramButton) {
+
+        telegramButton
+          .addEventListener(
+            "click",
+            function() {
+
+              openTelegram(
+                this.dataset.telegram
+              );
+
+            }
+          );
+
+      }
+
+    }
+  );
 
 }
 
 
-/* WhatsApp */
-function openWhatsApp(phone) {
+/* =========================
+   WhatsApp
+========================= */
+
+function openWhatsApp(
+  phone
+) {
 
   let number =
-    String(phone)
-      .trim()
-      .replace(/[^\d]/g, "");
+    String(
+      phone || ""
+    )
+    .trim()
+    .replace(
+      /[^\d]/g,
+      ""
+    );
 
 
   if (!number) {
 
-    alert("WhatsApp 联系方式无效");
+    alert(
+      "WhatsApp 联系方式无效"
+    );
 
     return;
 
@@ -1373,24 +1425,38 @@ function openWhatsApp(phone) {
 
 
   window.location.href =
-    "https://wa.me/" + number;
+    "https://wa.me/" +
+    number;
 
 }
 
 
-/* Telegram */
-function openTelegram(username) {
+/* =========================
+   Telegram
+========================= */
+
+function openTelegram(
+  username
+) {
 
   let value =
-    String(username).trim();
+    String(
+      username || ""
+    )
+    .trim();
 
 
   if (
-    value.startsWith("http://") ||
-    value.startsWith("https://")
+    value.startsWith(
+      "https://t.me/"
+    ) ||
+    value.startsWith(
+      "http://t.me/"
+    )
   ) {
 
-    window.location.href = value;
+    window.location.href =
+      value;
 
     return;
 
@@ -1398,12 +1464,17 @@ function openTelegram(username) {
 
 
   value =
-    value.replace(/^@/, "");
+    value.replace(
+      /^@/,
+      ""
+    );
 
 
   if (!value) {
 
-    alert("Telegram 联系方式无效");
+    alert(
+      "Telegram 联系方式无效"
+    );
 
     return;
 
@@ -1411,86 +1482,122 @@ function openTelegram(username) {
 
 
   window.location.href =
-    "https://t.me/" + value;
+    "https://t.me/" +
+    value;
 
 }
 
 
-/* 年龄 + 城市筛选 */
+/* =========================
+   筛选
+========================= */
+
 function filterWomen() {
 
   const city =
-    document.getElementById("cityFilter").value;
+    document.getElementById(
+      "cityFilter"
+    ).value;
+
 
   const age =
-    document.getElementById("ageFilter").value;
+    document.getElementById(
+      "ageFilter"
+    ).value;
 
 
-  let filtered =
-    women.filter(woman => {
+  const filtered =
+    women.filter(
+      woman => {
 
-      if (
-        city &&
-        woman.city !== city
-      ) {
-        return false;
+        /* 城市 */
+
+        if (
+          city &&
+          woman.city !== city
+        ) {
+
+          return false;
+
+        }
+
+
+        /* 年龄 */
+
+        const womanAge =
+          Number(
+            woman.age
+          );
+
+
+        if (
+          age === "18-25"
+        ) {
+
+          return (
+            womanAge >= 18 &&
+            womanAge <= 25
+          );
+
+        }
+
+
+        if (
+          age === "26-35"
+        ) {
+
+          return (
+            womanAge >= 26 &&
+            womanAge <= 35
+          );
+
+        }
+
+
+        if (
+          age === "36-45"
+        ) {
+
+          return (
+            womanAge >= 36 &&
+            womanAge <= 45
+          );
+
+        }
+
+
+        if (
+          age === "46+"
+        ) {
+
+          return (
+            womanAge >= 46
+          );
+
+        }
+
+
+        return true;
+
       }
+    );
 
 
-      const womanAge =
-        Number(woman.age);
-
-
-      if (age === "18-25") {
-
-        return (
-          womanAge >= 18 &&
-          womanAge <= 25
-        );
-
-      }
-
-
-      if (age === "26-35") {
-
-        return (
-          womanAge >= 26 &&
-          womanAge <= 35
-        );
-
-      }
-
-
-      if (age === "36-45") {
-
-        return (
-          womanAge >= 36 &&
-          womanAge <= 45
-        );
-
-      }
-
-
-      if (age === "46+") {
-
-        return womanAge >= 46;
-
-      }
-
-
-      return true;
-
-    });
-
-
-  renderWomen(filtered);
+  renderWomen(
+    filtered
+  );
 
 }
 
 
-/* 筛选事件 */
+/* =========================
+   筛选事件
+========================= */
+
 document
-  .getElementById("cityFilter")
+  .getElementById(
+    "cityFilter"
+  )
   .addEventListener(
     "change",
     filterWomen
@@ -1498,17 +1605,23 @@ document
 
 
 document
-  .getElementById("ageFilter")
+  .getElementById(
+    "ageFilter"
+  )
   .addEventListener(
     "change",
     filterWomen
   );
 
 
-/* 开始 */
+/* =========================
+   开始加载
+========================= */
+
 loadWomen();
 
 </script>
+
 
 </body>
 
