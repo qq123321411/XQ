@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>缘分 · 相遇</title>
+  <meta name="description" content="寻找适合你的缘分">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="index.html">缘分<span>·</span>相遇</a>
+  <a class="admin-link" href="admin/">管理</a>
+</header>
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">MEET SOMEONE SPECIAL</p>
+      <h1>认真认识一个人，<br>从一次相遇开始。</h1>
+      <p>浏览真实资料，了解彼此，再决定是否联系。</p>
+    </div>
+  </section>
+  <section class="toolbar">
+    <div><strong>女士资料</strong><span id="count">加载中…</span></div>
+    <div class="filters">
+      <select id="cityFilter"><option value="">全部城市</option></select>
+      <select id="ageFilter"><option value="">全部年龄</option><option value="18-25">18–25</option><option value="26-35">26–35</option><option value="36-45">36–45</option><option value="46+">46+</option></select>
+    </div>
+  </section>
+  <section id="womenGrid" class="women-grid"><div class="loading">正在加载资料…</div></section>
+</main>
+<footer>© <span id="year"></span> 缘分·相遇</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
