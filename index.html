@@ -1,0 +1,1448 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
+
+  <title>缘分 · 相遇</title>
+
+  <meta
+    name="description"
+    content="寻找适合你的缘分"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     顶部
+========================================== -->
+
+<header class="site-header">
+
+  <a
+    class="brand"
+    href="index.html"
+  >
+    缘分<span>·</span>相遇
+  </a>
+
+
+  <a
+    class="admin-link"
+    href="admin/"
+  >
+    管理
+  </a>
+
+</header>
+
+
+
+<!-- ==========================================
+     主体
+========================================== -->
+
+<main>
+
+
+  <!-- ========================================
+       首屏
+  ========================================= -->
+
+  <section class="hero">
+
+    <div>
+
+      <p class="eyebrow">
+        MEET SOMEONE SPECIAL
+      </p>
+
+
+      <h1>
+        认真认识一个人，<br>
+        从一次相遇开始。
+      </h1>
+
+
+      <p>
+        浏览真实资料，了解彼此，再决定是否联系。
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================
+       工具栏
+  ========================================= -->
+
+  <section class="toolbar">
+
+
+    <div>
+
+      <strong>
+        女士资料
+      </strong>
+
+
+      <span id="count">
+        加载中…
+      </span>
+
+    </div>
+
+
+
+    <div class="filters">
+
+
+      <!-- 城市 -->
+
+      <select id="cityFilter">
+
+        <option value="">
+          全部城市
+        </option>
+
+      </select>
+
+
+
+      <!-- 年龄 -->
+
+      <select id="ageFilter">
+
+        <option value="">
+          全部年龄
+        </option>
+
+
+        <option value="18-25">
+          18–25
+        </option>
+
+
+        <option value="26-35">
+          26–35
+        </option>
+
+
+        <option value="36-45">
+          36–45
+        </option>
+
+
+        <option value="46+">
+          46+
+        </option>
+
+
+      </select>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================================
+       女士列表
+  ========================================= -->
+
+  <section
+    id="womenGrid"
+    class="women-grid"
+  >
+
+    <div class="loading">
+
+      正在加载资料…
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- ==========================================
+     页脚
+========================================== -->
+
+<footer>
+
+  ©
+  <span id="year"></span>
+  缘分·相遇
+
+</footer>
+
+
+
+<script>
+
+/* ==================================================
+   ① SUPABASE 配置
+================================================== */
+
+
+/*
+   把这里的 Project URL 改成你的。
+
+   你的 Project URL：
+
+   https://yutraouosffjteivvlfx.supabase.co
+*/
+
+
+const SUPABASE_URL =
+  "https://yutraouosffjteivvlfx.supabase.co";
+
+
+
+/*
+   把下面的内容替换成你的：
+
+   Publishable key
+
+   或者旧版：
+
+   anon public key
+*/
+
+
+const SUPABASE_KEY =
+  "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
+
+
+
+/* 创建 Supabase 客户端 */
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+
+/* ==================================================
+   ② 页面初始化
+================================================== */
+
+document
+  .getElementById("year")
+  .textContent =
+  new Date().getFullYear();
+
+
+
+/* ==================================================
+   ③ 数据
+================================================== */
+
+let women = [];
+
+
+
+/* ==================================================
+   ④ 加载女士资料
+================================================== */
+
+async function loadWomen() {
+
+
+  const grid =
+    document.getElementById(
+      "womenGrid"
+    );
+
+
+  const count =
+    document.getElementById(
+      "count"
+    );
+
+
+  try {
+
+
+    const result =
+      await supabaseClient
+
+        .from("women")
+
+        .select("*")
+
+        .eq(
+          "is_published",
+          true
+        )
+
+        .order(
+          "sort_order",
+          {
+            ascending: true
+          }
+        )
+
+        .order(
+          "created_at",
+          {
+            ascending: false
+          }
+        );
+
+
+
+    const data =
+      result.data;
+
+
+    const error =
+      result.error;
+
+
+
+    /* ==================================
+       Supabase 错误
+    ================================== */
+
+    if (error) {
+
+
+      console.error(
+        "Supabase Error:",
+        error
+      );
+
+
+      grid.innerHTML = `
+
+        <div class="loading">
+
+          <h3>
+            暂时无法加载资料
+          </h3>
+
+          <p>
+            ${escapeHtml(
+              error.message
+            )}
+          </p>
+
+        </div>
+
+      `;
+
+
+      count.textContent =
+        "加载失败";
+
+
+      return;
+
+    }
+
+
+
+    /* ==================================
+       保存数据
+    ================================== */
+
+    women =
+      data || [];
+
+
+
+    /* ==================================
+       数量
+    ================================== */
+
+    count.textContent =
+      `共 ${women.length} 位`;
+
+
+
+    /* ==================================
+       创建城市
+    ================================== */
+
+    createCityFilter();
+
+
+
+    /* ==================================
+       显示
+    ================================== */
+
+    renderWomen(
+      women
+    );
+
+
+  }
+
+
+  catch (error) {
+
+
+    console.error(
+      error
+    );
+
+
+    grid.innerHTML = `
+
+      <div class="loading">
+
+        <h3>
+          暂时无法加载资料
+        </h3>
+
+        <p>
+          请检查 Supabase 配置。
+        </p>
+
+      </div>
+
+    `;
+
+
+    count.textContent =
+      "加载失败";
+
+  }
+
+}
+
+
+
+/* ==================================================
+   ⑤ 创建城市筛选
+================================================== */
+
+function createCityFilter() {
+
+
+  const cityFilter =
+    document.getElementById(
+      "cityFilter"
+    );
+
+
+  const cities = [
+
+    ...new Set(
+
+      women
+
+        .map(
+          woman =>
+            woman.city
+        )
+
+        .filter(
+          city =>
+            city &&
+            city.trim()
+        )
+
+    )
+
+  ];
+
+
+
+  cityFilter.innerHTML = `
+
+    <option value="">
+      全部城市
+    </option>
+
+  `;
+
+
+
+  cities.forEach(
+    city => {
+
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        city;
+
+
+      option.textContent =
+        city;
+
+
+      cityFilter.appendChild(
+        option
+      );
+
+
+    }
+  );
+
+}
+
+
+
+/* ==================================================
+   ⑥ 获取照片地址
+================================================== */
+
+function getPhotoUrl(
+  woman
+) {
+
+
+  /*
+     你的数据库 photos
+     是 text[] 数组。
+
+     例如：
+
+     photos:
+     [
+       "maria.jpg",
+       "maria2.jpg"
+     ]
+  */
+
+
+  if (
+    !woman.photos ||
+    !Array.isArray(
+      woman.photos
+    ) ||
+    woman.photos.length === 0
+  ) {
+
+
+    return "";
+
+  }
+
+
+
+  const photo =
+    woman.photos[0];
+
+
+
+  /*
+     如果已经是完整网址
+  */
+
+  if (
+    photo.startsWith(
+      "http://"
+    ) ||
+
+    photo.startsWith(
+      "https://"
+    )
+  ) {
+
+
+    return photo;
+
+  }
+
+
+
+  /*
+     如果只是 Storage 文件名
+  */
+
+
+  const {
+    data
+  } =
+    supabaseClient
+      .storage
+      .from(
+        "women-photos"
+      )
+      .getPublicUrl(
+        photo
+      );
+
+
+  return data
+    ? data.publicUrl
+    : "";
+
+}
+
+
+
+/* ==================================================
+   ⑦ 显示女士资料
+================================================== */
+
+function renderWomen(
+  list
+) {
+
+
+  const grid =
+    document.getElementById(
+      "womenGrid"
+    );
+
+
+
+  /* 没有资料 */
+
+  if (
+    !list ||
+    list.length === 0
+  ) {
+
+
+    grid.innerHTML = `
+
+      <div class="loading">
+
+        暂时没有符合条件的资料。
+
+      </div>
+
+    `;
+
+
+    return;
+
+  }
+
+
+
+  /* 清空 */
+
+  grid.innerHTML = "";
+
+
+
+  /* ==================================
+     创建卡片
+  ================================== */
+
+  list.forEach(
+    woman => {
+
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+
+      card.className =
+        "woman-card";
+
+
+
+      /* =================================
+         图片
+      ================================= */
+
+      const imageUrl =
+        getPhotoUrl(
+          woman
+        );
+
+
+
+      const image =
+        imageUrl ||
+
+        "https://via.placeholder.com/600x800?text=Photo";
+
+
+
+      /* =================================
+         WhatsApp
+      ================================= */
+
+      let whatsappButton =
+        "";
+
+
+      if (
+        woman.whatsapp
+      ) {
+
+
+        whatsappButton = `
+
+          <button
+
+            class="contact-btn whatsapp-btn"
+
+            onclick="contactWhatsApp(
+              '${encodeURIComponent(
+                woman.whatsapp
+              )}'
+            )"
+
+          >
+
+            WhatsApp
+
+          </button>
+
+        `;
+
+      }
+
+
+
+      /* =================================
+         Telegram
+      ================================= */
+
+      let telegramButton =
+        "";
+
+
+      if (
+        woman.telegram
+      ) {
+
+
+        telegramButton = `
+
+          <button
+
+            class="contact-btn telegram-btn"
+
+            onclick="contactTelegram(
+              '${encodeURIComponent(
+                woman.telegram
+              )}'
+            )"
+
+          >
+
+            Telegram
+
+          </button>
+
+        `;
+
+      }
+
+
+
+      /* =================================
+         身高
+      ================================= */
+
+      const height =
+        woman.height_cm
+          ? `${woman.height_cm} cm`
+          : "";
+
+
+
+      /* =================================
+         婚姻状态
+      ================================= */
+
+      const marital =
+        woman.marital_status ||
+        "";
+
+
+
+      /* =================================
+         兴趣爱好
+      ================================= */
+
+      const hobbies =
+        woman.hobbies ||
+        "";
+
+
+
+      /* =================================
+         简介
+      ================================= */
+
+      const intro =
+        woman.short_intro ||
+        woman.bio ||
+        "";
+
+
+
+      /* =================================
+         HTML
+      ================================= */
+
+      card.innerHTML = `
+
+
+        <!-- 图片 -->
+
+        <div class="woman-image">
+
+          <img
+
+            src="${escapeHtml(
+              image
+            )}"
+
+            alt="${escapeHtml(
+              woman.name ||
+              "女士"
+            )}"
+
+            loading="lazy"
+
+          >
+
+        </div>
+
+
+
+        <!-- 信息 -->
+
+        <div class="woman-info">
+
+
+          <!-- 姓名年龄 -->
+
+          <h2>
+
+            ${escapeHtml(
+              woman.name ||
+              "未填写"
+            )}
+
+            ${
+              woman.age
+                ? `，${escapeHtml(
+                    woman.age
+                  )}岁`
+                : ""
+            }
+
+          </h2>
+
+
+
+          <!-- 城市 -->
+
+          ${
+            woman.city
+
+              ? `
+
+                <p class="city">
+
+                  ${escapeHtml(
+                    woman.city
+                  )}
+
+                </p>
+
+              `
+
+              : ""
+          }
+
+
+
+          <!-- 职业 -->
+
+          ${
+            woman.occupation
+
+              ? `
+
+                <p>
+
+                  ${escapeHtml(
+                    woman.occupation
+                  )}
+
+                </p>
+
+              `
+
+              : ""
+          }
+
+
+
+          <!-- 身高 -->
+
+          ${
+            height
+
+              ? `
+
+                <p>
+
+                  身高：
+                  ${escapeHtml(
+                    height
+                  )}
+
+                </p>
+
+              `
+
+              : ""
+          }
+
+
+
+          <!-- 婚姻状态 -->
+
+          ${
+            marital
+
+              ? `
+
+                <p>
+
+                  婚姻状况：
+                  ${escapeHtml(
+                    marital
+                  )}
+
+                </p>
+
+              `
+
+              : ""
+          }
+
+
+
+          <!-- 简介 -->
+
+          ${
+            intro
+
+              ? `
+
+                <p class="description">
+
+                  ${escapeHtml(
+                    intro.substring(
+                      0,
+                      120
+                    )
+                  )}
+
+                </p>
+
+              `
+
+              : ""
+          }
+
+
+
+          <!-- 兴趣 -->
+
+          ${
+            hobbies
+
+              ? `
+
+                <p class="description">
+
+                  兴趣：
+                  ${escapeHtml(
+                    hobbies
+                  )}
+
+                </p>
+
+              `
+
+              : ""
+          }
+
+
+
+          <!-- 联系按钮 -->
+
+          <div class="contact-buttons">
+
+            ${whatsappButton}
+
+            ${telegramButton}
+
+          </div>
+
+
+        </div>
+
+
+      `;
+
+
+
+      grid.appendChild(
+        card
+      );
+
+
+    }
+  );
+
+}
+
+
+
+/* ==================================================
+   ⑧ 城市 + 年龄筛选
+================================================== */
+
+function filterWomen() {
+
+
+  const city =
+    document.getElementById(
+      "cityFilter"
+    ).value;
+
+
+
+  const age =
+    document.getElementById(
+      "ageFilter"
+    ).value;
+
+
+
+  let filtered =
+    [...women];
+
+
+
+  /* ==================================
+     城市
+  ================================== */
+
+  if (city) {
+
+
+    filtered =
+      filtered.filter(
+        woman =>
+          woman.city === city
+      );
+
+  }
+
+
+
+  /* ==================================
+     年龄
+  ================================== */
+
+  if (age) {
+
+
+    filtered =
+      filtered.filter(
+        woman => {
+
+
+          const womanAge =
+            Number(
+              woman.age
+            );
+
+
+          if (
+            isNaN(
+              womanAge
+            )
+          ) {
+
+            return false;
+
+          }
+
+
+
+          if (
+            age ===
+            "18-25"
+          ) {
+
+
+            return (
+              womanAge >= 18 &&
+              womanAge <= 25
+            );
+
+          }
+
+
+
+          if (
+            age ===
+            "26-35"
+          ) {
+
+
+            return (
+              womanAge >= 26 &&
+              womanAge <= 35
+            );
+
+          }
+
+
+
+          if (
+            age ===
+            "36-45"
+          ) {
+
+
+            return (
+              womanAge >= 36 &&
+              womanAge <= 45
+            );
+
+          }
+
+
+
+          if (
+            age ===
+            "46+"
+          ) {
+
+
+            return (
+              womanAge >= 46
+            );
+
+          }
+
+
+
+          return true;
+
+        }
+      );
+
+  }
+
+
+
+  /* ==================================
+     显示筛选结果
+  ================================== */
+
+  renderWomen(
+    filtered
+  );
+
+}
+
+
+
+/* ==================================================
+   ⑨ WhatsApp
+================================================== */
+
+function contactWhatsApp(
+  phone
+) {
+
+
+  if (!phone) {
+
+
+    alert(
+      "暂时没有提供 WhatsApp 联系方式。"
+    );
+
+
+    return;
+
+  }
+
+
+
+  let cleanPhone =
+    decodeURIComponent(
+      phone
+    ).trim();
+
+
+
+  /*
+     删除：
+
+     空格
+     -
+     (
+     )
+  */
+
+
+  cleanPhone =
+    cleanPhone.replace(
+      /[^\d+]/g,
+      ""
+    );
+
+
+
+  if (
+    !cleanPhone
+  ) {
+
+
+    alert(
+      "WhatsApp 联系方式格式不正确。"
+    );
+
+
+    return;
+
+  }
+
+
+
+  /*
+     wa.me 不需要 +
+  */
+
+
+  cleanPhone =
+    cleanPhone.replace(
+      /^\+/,
+      ""
+    );
+
+
+
+  const url =
+    `https://wa.me/${cleanPhone}`;
+
+
+
+  window.location.href =
+    url;
+
+}
+
+
+
+/* ==================================================
+   ⑩ Telegram
+================================================== */
+
+function contactTelegram(
+  username
+) {
+
+
+  if (!username) {
+
+
+    alert(
+      "暂时没有提供 Telegram 联系方式。"
+    );
+
+
+    return;
+
+  }
+
+
+
+  let telegram =
+    decodeURIComponent(
+      username
+    ).trim();
+
+
+
+  /*
+     完整 Telegram URL
+
+     https://t.me/username
+  */
+
+
+  if (
+
+    telegram.startsWith(
+      "https://t.me/"
+    )
+
+    ||
+
+    telegram.startsWith(
+      "http://t.me/"
+    )
+
+  ) {
+
+
+    window.location.href =
+      telegram;
+
+
+    return;
+
+  }
+
+
+
+  /*
+     用户名
+
+     username
+
+     或
+
+     @username
+  */
+
+
+  telegram =
+    telegram.replace(
+      /^@/,
+      ""
+    );
+
+
+
+  window.location.href =
+    `https://t.me/${telegram}`;
+
+}
+
+
+
+/* ==================================================
+   ⑪ HTML 安全处理
+================================================== */
+
+function escapeHtml(
+  value
+) {
+
+
+  return String(
+    value
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+
+/* ==================================================
+   ⑫ 筛选事件
+================================================== */
+
+document
+
+  .getElementById(
+    "cityFilter"
+  )
+
+  .addEventListener(
+    "change",
+    filterWomen
+  );
+
+
+
+document
+
+  .getElementById(
+    "ageFilter"
+  )
+
+  .addEventListener(
+    "change",
+    filterWomen
+  );
+
+
+
+/* ==================================================
+   ⑬ 启动
+================================================== */
+
+loadWomen();
+
+
+</script>
+
+
+</body>
+
+</html>
