@@ -92,7 +92,6 @@ button{
       #faf9f7,
       #eee8e0
     );
-
 }
 
 .login-box{
@@ -109,7 +108,6 @@ button{
 
   box-shadow:
     0 20px 60px rgba(0,0,0,.10);
-
 }
 
 .login-box h1{
@@ -117,7 +115,6 @@ button{
   font-size:28px;
 
   margin-bottom:8px;
-
 }
 
 .login-box .subtitle{
@@ -127,13 +124,11 @@ button{
   font-size:14px;
 
   margin-bottom:30px;
-
 }
 
 .form-group{
 
   margin-bottom:18px;
-
 }
 
 .form-group label{
@@ -145,7 +140,6 @@ button{
   font-weight:600;
 
   margin-bottom:7px;
-
 }
 
 .form-group input,
@@ -165,7 +159,6 @@ button{
   background:#fff;
 
   font-size:14px;
-
 }
 
 .form-group input:focus,
@@ -176,7 +169,6 @@ button{
 
   box-shadow:
     0 0 0 3px rgba(181,139,99,.10);
-
 }
 
 .login-button{
@@ -196,7 +188,6 @@ button{
   font-size:15px;
 
   font-weight:600;
-
 }
 
 .login-button:hover{
@@ -222,6 +213,9 @@ button{
 
   font-size:13px;
 
+  white-space:pre-wrap;
+
+  word-break:break-word;
 }
 
 
@@ -235,7 +229,7 @@ button{
 
 
 /* ==================================================
-   Header
+   顶部
 ================================================== */
 
 .admin-header{
@@ -259,7 +253,6 @@ button{
   top:0;
 
   z-index:100;
-
 }
 
 .admin-brand{
@@ -267,7 +260,6 @@ button{
   font-size:20px;
 
   font-weight:700;
-
 }
 
 .admin-brand span{
@@ -281,7 +273,6 @@ button{
   align-items:center;
 
   gap:10px;
-
 }
 
 .user-email{
@@ -290,6 +281,13 @@ button{
 
   font-size:13px;
 
+  max-width:260px;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+  white-space:nowrap;
 }
 
 .logout-button{
@@ -303,7 +301,6 @@ button{
   border-radius:20px;
 
   font-size:13px;
-
 }
 
 .logout-button:hover{
@@ -311,7 +308,6 @@ button{
   background:#222;
 
   color:#fff;
-
 }
 
 
@@ -326,12 +322,11 @@ button{
   max-width:1400px;
 
   margin:30px auto 70px;
-
 }
 
 
 /* ==================================================
-   标题
+   页面标题
 ================================================== */
 
 .page-title{
@@ -345,13 +340,11 @@ button{
   gap:15px;
 
   margin-bottom:25px;
-
 }
 
 .page-title h1{
 
   font-size:28px;
-
 }
 
 .add-button{
@@ -367,7 +360,6 @@ button{
   color:#fff;
 
   font-weight:600;
-
 }
 
 .add-button:hover{
@@ -376,7 +368,7 @@ button{
 
 
 /* ==================================================
-   消息
+   提示
 ================================================== */
 
 .message{
@@ -389,6 +381,9 @@ button{
 
   font-size:14px;
 
+  white-space:pre-wrap;
+
+  word-break:break-word;
 }
 
 .message.success{
@@ -396,7 +391,6 @@ button{
   background:#edf9f1;
 
   color:#18733b;
-
 }
 
 .message.error{
@@ -404,7 +398,6 @@ button{
   background:#fff0f0;
 
   color:#c22;
-
 }
 
 .message.info{
@@ -412,7 +405,6 @@ button{
   background:#eef5ff;
 
   color:#2864a7;
-
 }
 
 
@@ -429,6 +421,7 @@ button{
 
   gap:20px;
 
+  align-items:start;
 }
 
 .woman-admin-card{
@@ -441,19 +434,10 @@ button{
 
   overflow:hidden;
 
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-
-}
-
-.woman-admin-card:hover{
-
-  transform:translateY(-2px);
+  min-width:0;
 
   box-shadow:
-    0 10px 30px rgba(0,0,0,.06);
-
+    0 4px 15px rgba(0,0,0,.03);
 }
 
 .card-photo{
@@ -465,7 +449,6 @@ button{
   background:#eee;
 
   overflow:hidden;
-
 }
 
 .card-photo img{
@@ -477,7 +460,6 @@ button{
   object-fit:cover;
 
   display:block;
-
 }
 
 .card-no-photo{
@@ -494,12 +476,12 @@ button{
 
   color:#999;
 
+  font-size:14px;
 }
 
 .card-content{
 
   padding:18px;
-
 }
 
 .card-content h2{
@@ -508,6 +490,9 @@ button{
 
   margin-bottom:5px;
 
+  line-height:1.4;
+
+  word-break:break-word;
 }
 
 .card-meta{
@@ -518,6 +503,7 @@ button{
 
   margin-bottom:10px;
 
+  word-break:break-word;
 }
 
 .card-description{
@@ -525,6 +511,10 @@ button{
   color:#777;
 
   font-size:13px;
+
+  line-height:1.6;
+
+  min-height:62px;
 
   display:-webkit-box;
 
@@ -534,6 +524,7 @@ button{
 
   overflow:hidden;
 
+  word-break:break-word;
 }
 
 .card-media-count{
@@ -543,7 +534,6 @@ button{
   font-size:13px;
 
   color:#888;
-
 }
 
 .card-status{
@@ -557,7 +547,6 @@ button{
   font-size:12px;
 
   margin-top:10px;
-
 }
 
 .status-on{
@@ -565,7 +554,6 @@ button{
   background:#e8f7ed;
 
   color:#168a43;
-
 }
 
 .status-off{
@@ -573,7 +561,6 @@ button{
   background:#eee;
 
   color:#888;
-
 }
 
 .card-actions{
@@ -583,7 +570,6 @@ button{
   gap:8px;
 
   margin-top:16px;
-
 }
 
 .card-actions button{
@@ -599,7 +585,6 @@ button{
   border-radius:8px;
 
   font-size:13px;
-
 }
 
 .card-actions .edit-btn:hover{
@@ -607,13 +592,11 @@ button{
   background:#222;
 
   color:#fff;
-
 }
 
 .card-actions .delete-btn{
 
   color:#c33;
-
 }
 
 .card-actions .delete-btn:hover{
@@ -621,7 +604,6 @@ button{
   background:#c33;
 
   color:#fff;
-
 }
 
 
@@ -648,7 +630,6 @@ button{
   overflow-y:auto;
 
   z-index:500;
-
 }
 
 .modal-box{
@@ -666,7 +647,6 @@ button{
   position:relative;
 
   margin-bottom:30px;
-
 }
 
 .modal-header{
@@ -678,13 +658,11 @@ button{
   justify-content:space-between;
 
   margin-bottom:25px;
-
 }
 
 .modal-header h2{
 
   font-size:23px;
-
 }
 
 .close-modal{
@@ -700,7 +678,10 @@ button{
   background:#eee;
 
   font-size:20px;
+}
 
+.close-modal:hover{
+  background:#ddd;
 }
 
 
@@ -716,7 +697,6 @@ button{
     repeat(2,minmax(0,1fr));
 
   gap:0 18px;
-
 }
 
 .form-full{
@@ -728,12 +708,11 @@ textarea{
   min-height:110px;
 
   resize:vertical;
-
 }
 
 
 /* ==================================================
-   上传
+   上传区域
 ================================================== */
 
 .upload-box{
@@ -745,13 +724,11 @@ textarea{
   padding:20px;
 
   background:#fafafa;
-
 }
 
 .upload-box:hover{
 
   border-color:#b58b63;
-
 }
 
 .upload-box label{
@@ -761,7 +738,6 @@ textarea{
   font-weight:600;
 
   margin-bottom:10px;
-
 }
 
 .file-input{
@@ -769,7 +745,6 @@ textarea{
   width:100%;
 
   font-size:14px;
-
 }
 
 .upload-help{
@@ -779,7 +754,6 @@ textarea{
   font-size:12px;
 
   margin-top:8px;
-
 }
 
 
@@ -790,7 +764,6 @@ textarea{
 .media-section{
 
   margin-top:25px;
-
 }
 
 .media-section h3{
@@ -798,7 +771,6 @@ textarea{
   font-size:16px;
 
   margin-bottom:12px;
-
 }
 
 .media-grid{
@@ -809,7 +781,6 @@ textarea{
     repeat(4,minmax(0,1fr));
 
   gap:10px;
-
 }
 
 .media-item{
@@ -824,6 +795,7 @@ textarea{
 
   background:#f5f5f5;
 
+  min-width:0;
 }
 
 .media-item img{
@@ -835,7 +807,6 @@ textarea{
   object-fit:cover;
 
   display:block;
-
 }
 
 .media-item video{
@@ -849,7 +820,6 @@ textarea{
   display:block;
 
   background:#000;
-
 }
 
 .remove-media{
@@ -874,12 +844,12 @@ textarea{
 
   font-size:16px;
 
+  z-index:2;
 }
 
 .remove-media:hover{
 
-  background:#c33;
-
+  background:#d22;
 }
 
 .empty-media{
@@ -888,11 +858,12 @@ textarea{
 
   font-size:13px;
 
+  padding:10px 0;
 }
 
 
 /* ==================================================
-   保存
+   底部
 ================================================== */
 
 .modal-footer{
@@ -908,7 +879,6 @@ textarea{
   padding-top:20px;
 
   border-top:1px solid #eee;
-
 }
 
 .cancel-button{
@@ -920,7 +890,10 @@ textarea{
   padding:11px 20px;
 
   border-radius:8px;
+}
 
+.cancel-button:hover{
+  background:#f5f5f5;
 }
 
 .save-button{
@@ -936,7 +909,10 @@ textarea{
   border-radius:8px;
 
   font-weight:600;
+}
 
+.save-button:hover{
+  opacity:.9;
 }
 
 .save-button:disabled{
@@ -944,7 +920,6 @@ textarea{
   opacity:.5;
 
   cursor:not-allowed;
-
 }
 
 
@@ -954,13 +929,27 @@ textarea{
 
 .loading-page{
 
-  grid-column:1 / -1;
-
   text-align:center;
 
   padding:80px 20px;
 
   color:#999;
+
+  grid-column:1 / -1;
+}
+
+
+/* ==================================================
+   平板
+================================================== */
+
+@media(max-width:1100px){
+
+  .women-list{
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
 
 }
 
@@ -969,36 +958,23 @@ textarea{
    手机
 ================================================== */
 
-@media(max-width:900px){
-
-  .women-list{
-
-    grid-template-columns:
-      repeat(2,minmax(0,1fr));
-
-  }
-
-}
-
-
 @media(max-width:650px){
 
   .admin-header{
 
-    padding:0 15px;
+    height:62px;
 
+    padding:0 15px;
   }
 
   .admin-brand{
 
-    font-size:17px;
-
+    font-size:18px;
   }
 
   .user-email{
 
     display:none;
-
   }
 
   .admin-container{
@@ -1006,19 +982,16 @@ textarea{
     width:calc(100% - 30px);
 
     margin-top:20px;
-
   }
 
   .page-title{
 
     align-items:flex-start;
-
   }
 
   .page-title h1{
 
     font-size:23px;
-
   }
 
   .add-button{
@@ -1026,7 +999,6 @@ textarea{
     padding:10px 13px;
 
     font-size:13px;
-
   }
 
   .women-list{
@@ -1038,7 +1010,6 @@ textarea{
   .modal{
 
     padding:10px;
-
   }
 
   .modal-box{
@@ -1046,26 +1017,22 @@ textarea{
     padding:20px;
 
     border-radius:12px;
-
   }
 
   .form-grid{
 
     grid-template-columns:1fr;
-
   }
 
   .form-full{
 
     grid-column:auto;
-
   }
 
   .media-grid{
 
     grid-template-columns:
       repeat(3,minmax(0,1fr));
-
   }
 
   .modal-footer{
@@ -1076,28 +1043,27 @@ textarea{
 
     background:#fff;
 
+    padding-bottom:5px;
   }
 
 }
 
 
 /* ==================================================
-   小屏
+   超小屏
 ================================================== */
 
-@media(max-width:400px){
-
-  .login-box{
-
-    padding:28px 20px;
-
-  }
+@media(max-width:380px){
 
   .media-grid{
 
     grid-template-columns:
       repeat(2,minmax(0,1fr));
+  }
 
+  .card-content{
+
+    padding:15px;
   }
 
 }
@@ -1494,8 +1460,8 @@ textarea{
 
             <p class="upload-help">
 
-              建议使用 MP4。
-              视频文件较大时上传时间会更长。
+              可以一次选择多个视频。
+              建议使用 MP4 格式。
 
             </p>
 
@@ -1566,7 +1532,7 @@ textarea{
 <script>
 
 /* ==================================================
-   Supabase
+   Supabase 配置
 ================================================== */
 
 const SUPABASE_URL =
@@ -1588,7 +1554,7 @@ const supabaseClient =
 ================================================== */
 
 const STORAGE_BUCKET =
-  "women-photos";
+"women-photos";
 
 
 /* ==================================================
@@ -1615,47 +1581,85 @@ let pendingVideos = [];
 ================================================== */
 
 const loginPage =
-  document.getElementById("loginPage");
+  document.getElementById(
+    "loginPage"
+  );
 
 const adminPage =
-  document.getElementById("adminPage");
+  document.getElementById(
+    "adminPage"
+  );
 
 const loginForm =
-  document.getElementById("loginForm");
+  document.getElementById(
+    "loginForm"
+  );
 
 const loginError =
-  document.getElementById("loginError");
+  document.getElementById(
+    "loginError"
+  );
+
+const loginButton =
+  document.getElementById(
+    "loginButton"
+  );
 
 const womenList =
-  document.getElementById("womenList");
+  document.getElementById(
+    "womenList"
+  );
 
 const messageBox =
-  document.getElementById("message");
+  document.getElementById(
+    "message"
+  );
 
 const modal =
-  document.getElementById("womanModal");
+  document.getElementById(
+    "womanModal"
+  );
 
 const womanForm =
-  document.getElementById("womanForm");
+  document.getElementById(
+    "womanForm"
+  );
 
 
 /* ==================================================
-   HTML 安全
+   HTML 安全处理
 ================================================== */
 
 function escapeHtml(value){
 
-  return String(value ?? "")
+  return String(
+    value ?? ""
+  )
 
-    .replace(/&/g,"&amp;")
+  .replace(
+    /&/g,
+    "&amp;"
+  )
 
-    .replace(/</g,"&lt;")
+  .replace(
+    /</g,
+    "&lt;"
+  )
 
-    .replace(/>/g,"&gt;")
+  .replace(
+    />/g,
+    "&gt;"
+  )
 
-    .replace(/"/g,"&quot;")
+  .replace(
+    /"/g,
+    "&quot;"
+  )
 
-    .replace(/'/g,"&#039;");
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
@@ -1684,24 +1688,18 @@ function getStorageUrl(path){
   }
 
   return (
-
     SUPABASE_URL +
-
     "/storage/v1/object/public/" +
-
     STORAGE_BUCKET +
-
     "/" +
-
     value.replace(/^\/+/,"")
-
   );
 
 }
 
 
 /* ==================================================
-   获取 Storage 路径
+   Storage Path 清理
 ================================================== */
 
 function getStoragePath(value){
@@ -1710,29 +1708,63 @@ function getStoragePath(value){
     return "";
   }
 
-  const text =
+  let path =
     String(value).trim();
 
-  if(
-    text.startsWith(
-      SUPABASE_URL +
-      "/storage/v1/object/public/" +
-      STORAGE_BUCKET +
-      "/"
-    )
-  ){
+  if(!path){
+    return "";
+  }
 
-    return text.replace(
-      SUPABASE_URL +
-      "/storage/v1/object/public/" +
-      STORAGE_BUCKET +
-      "/",
-      ""
+
+  /*
+    如果是完整 Storage URL，
+    提取 bucket 后面的路径
+  */
+
+  const marker =
+    "/storage/v1/object/public/" +
+    STORAGE_BUCKET +
+    "/";
+
+
+  const index =
+    path.indexOf(marker);
+
+
+  if(index !== -1){
+
+    return decodeURIComponent(
+      path.substring(
+        index + marker.length
+      )
     );
 
   }
 
-  return text.replace(/^\/+/,"");
+
+  /*
+    如果是其他完整 URL，
+    不处理
+  */
+
+  if(
+    path.startsWith("http://") ||
+    path.startsWith("https://")
+  ){
+
+    return "";
+
+  }
+
+
+  /*
+    普通数据库路径
+  */
+
+  return path.replace(
+    /^\/+/,
+    ""
+  );
 
 }
 
@@ -1747,31 +1779,37 @@ function normalizeArray(value){
     return [];
   }
 
+
   if(Array.isArray(value)){
 
     return value
       .flat(Infinity)
       .filter(Boolean)
       .map(
-        item => String(item).trim()
+        item =>
+          String(item).trim()
       )
       .filter(Boolean);
 
   }
+
 
   if(typeof value === "string"){
 
     const text =
       value.trim();
 
+
     if(!text){
       return [];
     }
+
 
     try{
 
       const parsed =
         JSON.parse(text);
+
 
       if(Array.isArray(parsed)){
 
@@ -1779,7 +1817,8 @@ function normalizeArray(value){
           .flat(Infinity)
           .filter(Boolean)
           .map(
-            item => String(item).trim()
+            item =>
+              String(item).trim()
           )
           .filter(Boolean);
 
@@ -1787,22 +1826,89 @@ function normalizeArray(value){
 
     }catch(error){}
 
+
     if(text.includes(",")){
 
       return text
         .split(",")
         .map(
-          item => item.trim()
+          item =>
+            item.trim()
         )
         .filter(Boolean);
 
     }
 
+
     return [text];
 
   }
 
+
   return [];
+
+}
+
+
+/* ==================================================
+   获取照片
+================================================== */
+
+function getWomanPhotos(woman){
+
+  let photos = [];
+
+
+  if(woman.image_url){
+
+    photos.push(
+      woman.image_url
+    );
+
+  }
+
+
+  photos = photos.concat(
+    normalizeArray(
+      woman.photos
+    )
+  );
+
+
+  return [
+    ...new Set(
+      photos
+        .filter(Boolean)
+        .map(
+          item =>
+            String(item).trim()
+        )
+        .filter(Boolean)
+    )
+  ];
+
+}
+
+
+/* ==================================================
+   获取视频
+================================================== */
+
+function getWomanVideos(woman){
+
+  return [
+    ...new Set(
+      normalizeArray(
+        woman.videos
+      )
+        .filter(Boolean)
+        .map(
+          item =>
+            String(item).trim()
+        )
+        .filter(Boolean)
+    )
+  ];
 
 }
 
@@ -1811,30 +1917,31 @@ function normalizeArray(value){
    显示消息
 ================================================== */
 
-let messageTimer = null;
-
 function showMessage(
   text,
   type="success"
 ){
 
-  clearTimeout(messageTimer);
-
   messageBox.textContent =
     text;
 
   messageBox.className =
-    "message " + type;
+    "message " +
+    type;
 
-  messageTimer =
-    setTimeout(
+  window.clearTimeout(
+    showMessage.timer
+  );
+
+  showMessage.timer =
+    window.setTimeout(
       () => {
 
         messageBox.className =
           "message hidden";
 
       },
-      5000
+      6000
     );
 
 }
@@ -1850,25 +1957,11 @@ loginForm.addEventListener(
 
     event.preventDefault();
 
+
     loginError.classList.add(
       "hidden"
     );
 
-    const loginButton =
-      document.getElementById(
-        "loginButton"
-      );
-
-    const email =
-      document
-        .getElementById("loginEmail")
-        .value
-        .trim();
-
-    const password =
-      document
-        .getElementById("loginPassword")
-        .value;
 
     loginButton.disabled =
       true;
@@ -1876,42 +1969,80 @@ loginForm.addEventListener(
     loginButton.textContent =
       "正在登录……";
 
+
+    const email =
+      document
+        .getElementById(
+          "loginEmail"
+        )
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById(
+          "loginPassword"
+        )
+        .value;
+
+
     try{
 
       const {
         data,
         error
       } =
-        await supabaseClient.auth.signInWithPassword({
+        await supabaseClient.auth
+          .signInWithPassword({
 
-          email,
-          password
+            email,
+            password
 
-        });
+          });
+
 
       if(error){
         throw error;
       }
 
+
+      if(
+        !data ||
+        !data.user
+      ){
+
+        throw new Error(
+          "登录成功，但没有获取到用户信息。"
+        );
+
+      }
+
+
       currentUser =
         data.user;
 
+
       showAdmin();
+
 
     }catch(error){
 
-      console.error(error);
+      console.error(
+        "登录失败：",
+        error
+      );
+
 
       loginError.textContent =
-        "登录失败：" +
-        (
-          error.message ||
-          "邮箱或密码错误"
-        );
+        "登录失败：\n" +
+        error.message;
+
 
       loginError.classList.remove(
         "hidden"
       );
+
 
     }finally{
 
@@ -1928,7 +2059,7 @@ loginForm.addEventListener(
 
 
 /* ==================================================
-   检查 Session
+   检查登录
 ================================================== */
 
 async function checkSession(){
@@ -1939,14 +2070,19 @@ async function checkSession(){
       data,
       error
     } =
-      await supabaseClient.auth.getSession();
+      await supabaseClient.auth
+        .getSession();
+
 
     if(error){
       throw error;
     }
 
+
     if(
-      data?.session?.user
+      data &&
+      data.session &&
+      data.session.user
     ){
 
       currentUser =
@@ -1962,7 +2098,10 @@ async function checkSession(){
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "检查登录状态失败：",
+      error
+    );
 
     showLogin();
 
@@ -1992,7 +2131,7 @@ function showLogin(){
    显示后台
 ================================================== */
 
-function showAdmin(){
+async function showAdmin(){
 
   loginPage.classList.add(
     "hidden"
@@ -2002,12 +2141,17 @@ function showAdmin(){
     "hidden"
   );
 
-  document
-    .getElementById("userEmail")
-    .textContent =
-    currentUser?.email || "";
 
-  loadWomen();
+  document
+    .getElementById(
+      "userEmail"
+    )
+    .textContent =
+    currentUser?.email ||
+    "";
+
+
+  await loadWomen();
 
 }
 
@@ -2017,17 +2161,31 @@ function showAdmin(){
 ================================================== */
 
 document
-  .getElementById("logoutButton")
+  .getElementById(
+    "logoutButton"
+  )
   .addEventListener(
     "click",
     async function(){
 
-      await supabaseClient
-        .auth
-        .signOut();
+      try{
+
+        await supabaseClient
+          .auth
+          .signOut();
+
+      }catch(error){
+
+        console.error(
+          error
+        );
+
+      }
+
 
       currentUser =
         null;
+
 
       showLogin();
 
@@ -2049,6 +2207,7 @@ async function loadWomen(){
 
   `;
 
+
   try{
 
     const {
@@ -2056,11 +2215,8 @@ async function loadWomen(){
       error
     } =
       await supabaseClient
-
         .from("women")
-
         .select("*")
-
         .order(
           "created_at",
           {
@@ -2068,28 +2224,46 @@ async function loadWomen(){
           }
         );
 
+
     if(error){
       throw error;
     }
 
+
     women =
       data || [];
 
+
     renderWomenList();
+
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "加载女士失败：",
+      error
+    );
+
 
     womenList.innerHTML = `
 
       <div class="loading-page">
 
-        加载失败：
+        <h3 style="
+          color:#444;
+          margin-bottom:10px;
+        ">
+          加载失败
+        </h3>
 
-        ${escapeHtml(
-          error.message
-        )}
+        <div style="
+          white-space:pre-wrap;
+          word-break:break-word;
+        ">
+          ${escapeHtml(
+            error.message
+          )}
+        </div>
 
       </div>
 
@@ -2101,12 +2275,15 @@ async function loadWomen(){
 
 
 /* ==================================================
-   渲染女士
+   渲染女士列表
 ================================================== */
 
 function renderWomenList(){
 
-  if(women.length === 0){
+  if(
+    !women ||
+    women.length === 0
+  ){
 
     womenList.innerHTML = `
 
@@ -2122,7 +2299,10 @@ function renderWomenList(){
 
   }
 
-  womenList.innerHTML = "";
+
+  womenList.innerHTML =
+    "";
+
 
   women.forEach(
     woman => {
@@ -2132,29 +2312,28 @@ function renderWomenList(){
           "article"
         );
 
+
       card.className =
         "woman-admin-card";
 
+
       const photos =
-        normalizeArray(
-          woman.photos
+        getWomanPhotos(
+          woman
         );
+
 
       const videos =
-        normalizeArray(
-          woman.videos
+        getWomanVideos(
+          woman
         );
 
-      let cover = "";
 
-      if(woman.image_url){
+      let cover =
+        "";
 
-        cover =
-          getStorageUrl(
-            woman.image_url
-          );
 
-      }else if(
+      if(
         photos.length > 0
       ){
 
@@ -2165,32 +2344,45 @@ function renderWomenList(){
 
       }
 
+
       card.innerHTML = `
 
         <div class="card-photo">
 
           ${
             cover
+
             ?
+
             `
+
               <img
-                src="${escapeHtml(cover)}"
+                src="${escapeHtml(
+                  cover
+                )}"
                 alt="${escapeHtml(
-                  woman.name || "女士"
+                  woman.name ||
+                  "女士"
                 )}"
                 loading="lazy"
-                onerror="this.parentElement.innerHTML='<div class=\\'card-no-photo\\'>图片加载失败</div>'"
+                onerror="this.style.display='none'"
               >
+
             `
+
             :
+
             `
+
               <div class="card-no-photo">
                 暂无照片
               </div>
+
             `
           }
 
         </div>
+
 
         <div class="card-content">
 
@@ -2214,6 +2406,7 @@ function renderWomenList(){
             }
 
           </h2>
+
 
           <div class="card-meta">
 
@@ -2240,6 +2433,7 @@ function renderWomenList(){
 
           </div>
 
+
           <div class="card-description">
 
             ${escapeHtml(
@@ -2248,6 +2442,7 @@ function renderWomenList(){
             )}
 
           </div>
+
 
           <div class="card-media-count">
 
@@ -2258,6 +2453,7 @@ function renderWomenList(){
             🎬 ${videos.length} 个视频
 
           </div>
+
 
           <span
             class="card-status ${
@@ -2278,6 +2474,7 @@ function renderWomenList(){
             }
 
           </span>
+
 
           <div class="card-actions">
 
@@ -2301,21 +2498,90 @@ function renderWomenList(){
 
       `;
 
-      card
-        .querySelector(".edit-btn")
-        .addEventListener(
-          "click",
-          () => openEditWoman(woman)
+
+      const image =
+        card.querySelector(
+          ".card-photo img"
         );
 
-      card
-        .querySelector(".delete-btn")
-        .addEventListener(
-          "click",
-          () => deleteWoman(woman)
+
+      if(image){
+
+        image.addEventListener(
+          "error",
+          function(){
+
+            this.style.display =
+              "none";
+
+            const parent =
+              this.parentElement;
+
+            if(
+              parent &&
+              !parent.querySelector(
+                ".card-no-photo"
+              )
+            ){
+
+              const noPhoto =
+                document.createElement(
+                  "div"
+                );
+
+              noPhoto.className =
+                "card-no-photo";
+
+              noPhoto.textContent =
+                "照片无法加载";
+
+              parent.appendChild(
+                noPhoto
+              );
+
+            }
+
+          }
         );
 
-      womenList.appendChild(card);
+      }
+
+
+      card
+        .querySelector(
+          ".edit-btn"
+        )
+        .addEventListener(
+          "click",
+          () => {
+
+            openEditWoman(
+              woman
+            );
+
+          }
+        );
+
+
+      card
+        .querySelector(
+          ".delete-btn"
+        )
+        .addEventListener(
+          "click",
+          () => {
+
+            deleteWoman(
+              woman
+            );
+
+          }
+        );
+
+
+      womenList.appendChild(
+        card
+      );
 
     }
   );
@@ -2324,14 +2590,20 @@ function renderWomenList(){
 
 
 /* ==================================================
-   添加
+   添加女士
 ================================================== */
 
 document
-  .getElementById("addWomanButton")
+  .getElementById(
+    "addWomanButton"
+  )
   .addEventListener(
     "click",
-    openAddWoman
+    function(){
+
+      openAddWoman();
+
+    }
   );
 
 
@@ -2352,31 +2624,36 @@ function openAddWoman(){
   pendingVideos =
     [];
 
-  womanForm.reset();
 
   document
-    .getElementById("modalTitle")
+    .getElementById(
+      "modalTitle"
+    )
     .textContent =
     "添加女士";
 
-  document
-    .getElementById("womanId")
-    .value = "";
+
+  womanForm.reset();
+
 
   document
-    .getElementById("womanPublished")
+    .getElementById(
+      "womanId"
+    )
+    .value =
+    "";
+
+
+  document
+    .getElementById(
+      "womanPublished"
+    )
     .value =
     "true";
 
-  document
-    .getElementById("photoInput")
-    .value = "";
-
-  document
-    .getElementById("videoInput")
-    .value = "";
 
   renderExistingMedia();
+
 
   modal.classList.remove(
     "hidden"
@@ -2386,43 +2663,34 @@ function openAddWoman(){
 
 
 /* ==================================================
-   编辑
+   编辑女士
 ================================================== */
 
-function openEditWoman(woman){
+function openEditWoman(
+  woman
+){
 
   editingWoman =
     woman;
 
+
   currentPhotos =
-    normalizeArray(
-      woman.photos
+    getWomanPhotos(
+      woman
     );
 
-  currentVideos =
-    normalizeArray(
-      woman.videos
-    );
 
   /*
-    兼容旧 image_url
-
-    如果旧数据只有 image_url，
-    自动加入照片数组。
+    image_url 已经包含在 currentPhotos，
+    保存时会保持兼容。
   */
 
-  if(
-    woman.image_url &&
-    !currentPhotos.includes(
-      woman.image_url
-    )
-  ){
 
-    currentPhotos.unshift(
-      woman.image_url
+  currentVideos =
+    getWomanVideos(
+      woman
     );
 
-  }
 
   pendingPhotos =
     [];
@@ -2430,67 +2698,107 @@ function openEditWoman(woman){
   pendingVideos =
     [];
 
+
   document
-    .getElementById("modalTitle")
+    .getElementById(
+      "modalTitle"
+    )
     .textContent =
     "编辑女士";
 
+
   document
-    .getElementById("womanId")
+    .getElementById(
+      "womanId"
+    )
     .value =
     woman.id || "";
 
+
   document
-    .getElementById("womanName")
+    .getElementById(
+      "womanName"
+    )
     .value =
     woman.name || "";
 
+
   document
-    .getElementById("womanAge")
+    .getElementById(
+      "womanAge"
+    )
     .value =
     woman.age || "";
 
+
   document
-    .getElementById("womanCity")
+    .getElementById(
+      "womanCity"
+    )
     .value =
     woman.city || "";
 
+
   document
-    .getElementById("womanOccupation")
+    .getElementById(
+      "womanOccupation"
+    )
     .value =
     woman.occupation || "";
 
+
   document
-    .getElementById("womanDescription")
+    .getElementById(
+      "womanDescription"
+    )
     .value =
     woman.description || "";
 
+
   document
-    .getElementById("womanWhatsapp")
+    .getElementById(
+      "womanWhatsapp"
+    )
     .value =
     woman.whatsapp || "";
 
+
   document
-    .getElementById("womanTelegram")
+    .getElementById(
+      "womanTelegram"
+    )
     .value =
     woman.telegram || "";
 
+
   document
-    .getElementById("womanPublished")
+    .getElementById(
+      "womanPublished"
+    )
     .value =
     woman.is_published
-    ? "true"
-    : "false";
+      ? "true"
+      : "false";
+
 
   document
-    .getElementById("photoInput")
-    .value = "";
+    .getElementById(
+      "photoInput"
+    )
+    .value =
+    "";
+
 
   document
-    .getElementById("videoInput")
-    .value = "";
+    .getElementById(
+      "videoInput"
+    )
+    .value =
+    "";
+
 
   renderExistingMedia();
+
 
   modal.classList.remove(
     "hidden"
@@ -2509,26 +2817,23 @@ function closeModal(){
     "hidden"
   );
 
-  editingWoman =
-    null;
-
-  pendingPhotos =
-    [];
-
-  pendingVideos =
-    [];
-
 }
 
+
 document
-  .getElementById("closeModalButton")
+  .getElementById(
+    "closeModalButton"
+  )
   .addEventListener(
     "click",
     closeModal
   );
 
+
 document
-  .getElementById("cancelButton")
+  .getElementById(
+    "cancelButton"
+  )
   .addEventListener(
     "click",
     closeModal
@@ -2536,7 +2841,7 @@ document
 
 
 /* ==================================================
-   点击背景关闭
+   点击黑色背景关闭
 ================================================== */
 
 modal.addEventListener(
@@ -2556,34 +2861,13 @@ modal.addEventListener(
 
 
 /* ==================================================
-   ESC 关闭
-================================================== */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(
-      event.key === "Escape" &&
-      !modal.classList.contains(
-        "hidden"
-      )
-    ){
-
-      closeModal();
-
-    }
-
-  }
-);
-
-
-/* ==================================================
    选择照片
 ================================================== */
 
 document
-  .getElementById("photoInput")
+  .getElementById(
+    "photoInput"
+  )
   .addEventListener(
     "change",
     function(){
@@ -2602,7 +2886,9 @@ document
 ================================================== */
 
 document
-  .getElementById("videoInput")
+  .getElementById(
+    "videoInput"
+  )
   .addEventListener(
     "change",
     function(){
@@ -2617,7 +2903,7 @@ document
 
 
 /* ==================================================
-   已有媒体
+   显示已有媒体
 ================================================== */
 
 function renderExistingMedia(){
@@ -2633,12 +2919,13 @@ function renderExistingMedia(){
     );
 
 
-  /* -------------------------
+  /* =================================================
      Photos
-  ------------------------- */
+  ================================================= */
 
   photoBox.innerHTML =
     "";
+
 
   if(
     currentPhotos.length === 0
@@ -2662,14 +2949,22 @@ function renderExistingMedia(){
             "div"
           );
 
+
         item.className =
           "media-item";
+
+
+        const imageUrl =
+          getStorageUrl(
+            path
+          );
+
 
         item.innerHTML = `
 
           <img
             src="${escapeHtml(
-              getStorageUrl(path)
+              imageUrl
             )}"
             alt="照片"
             loading="lazy"
@@ -2684,6 +2979,22 @@ function renderExistingMedia(){
           </button>
 
         `;
+
+
+        item
+          .querySelector(
+            "img"
+          )
+          .addEventListener(
+            "error",
+            function(){
+
+              this.style.opacity =
+                "0.3";
+
+            }
+          );
+
 
         item
           .querySelector(
@@ -2703,6 +3014,7 @@ function renderExistingMedia(){
             }
           );
 
+
         photoBox.appendChild(
           item
         );
@@ -2713,12 +3025,13 @@ function renderExistingMedia(){
   }
 
 
-  /* -------------------------
+  /* =================================================
      Videos
-  ------------------------- */
+  ================================================= */
 
   videoBox.innerHTML =
     "";
+
 
   if(
     currentVideos.length === 0
@@ -2742,24 +3055,35 @@ function renderExistingMedia(){
             "div"
           );
 
+
         item.className =
           "media-item";
+
+
+        const videoUrl =
+          getStorageUrl(
+            path
+          );
+
 
         item.innerHTML = `
 
           <video
             controls
-            preload="metadata"
             playsinline
+            preload="metadata"
           >
 
             <source
               src="${escapeHtml(
-                getStorageUrl(path)
+                videoUrl
               )}"
             >
 
+            您的浏览器不支持视频。
+
           </video>
+
 
           <button
             class="remove-media"
@@ -2770,6 +3094,7 @@ function renderExistingMedia(){
           </button>
 
         `;
+
 
         item
           .querySelector(
@@ -2788,6 +3113,7 @@ function renderExistingMedia(){
 
             }
           );
+
 
         videoBox.appendChild(
           item
@@ -2811,20 +3137,13 @@ async function uploadFile(
 ){
 
   if(!file){
-    throw new Error(
-      "没有选择文件"
-    );
-  }
-
-  if(
-    !file.name
-  ){
 
     throw new Error(
-      "文件名称无效"
+      "没有选择文件。"
     );
 
   }
+
 
   const extension =
     file.name.includes(".")
@@ -2837,6 +3156,7 @@ async function uploadFile(
     :
     "";
 
+
   const uniqueName =
     Date.now() +
     "_" +
@@ -2845,10 +3165,12 @@ async function uploadFile(
       .substring(2,10) +
     extension;
 
+
   const path =
     folder +
     "/" +
     uniqueName;
+
 
   const {
     data,
@@ -2856,22 +3178,36 @@ async function uploadFile(
   } =
     await supabaseClient
       .storage
-      .from(STORAGE_BUCKET)
+      .from(
+        STORAGE_BUCKET
+      )
       .upload(
         path,
         file,
         {
-          cacheControl:"3600",
+
+          cacheControl:
+            "3600",
+
           upsert:false,
+
           contentType:
             file.type ||
             undefined
+
         }
       );
 
+
   if(error){
-    throw error;
+
+    throw new Error(
+      "文件上传失败：" +
+      error.message
+    );
+
   }
+
 
   return data.path;
 
@@ -2884,13 +3220,31 @@ async function uploadFile(
 
 async function uploadPhotos(){
 
-  const uploaded = [];
+  const uploaded =
+    [];
 
-  for(
-    const file of pendingPhotos
+
+  if(
+    pendingPhotos.length === 0
   ){
 
+    return uploaded;
+
+  }
+
+
+  for(
+    let i = 0;
+    i < pendingPhotos.length;
+    i++
+  ){
+
+    const file =
+      pendingPhotos[i];
+
+
     if(
+      !file.type ||
       !file.type.startsWith(
         "image/"
       )
@@ -2903,15 +3257,38 @@ async function uploadPhotos(){
 
     }
 
+
+    /*
+      防止上传过大的文件
+    */
+
+    if(
+      file.size >
+      15 * 1024 * 1024
+    ){
+
+      throw new Error(
+        "图片过大：" +
+        file.name +
+        "\n单张图片建议不超过 15MB。"
+      );
+
+    }
+
+
     const path =
       await uploadFile(
         file,
         "photos"
       );
 
-    uploaded.push(path);
+
+    uploaded.push(
+      path
+    );
 
   }
+
 
   return uploaded;
 
@@ -2924,13 +3301,31 @@ async function uploadPhotos(){
 
 async function uploadVideos(){
 
-  const uploaded = [];
+  const uploaded =
+    [];
 
-  for(
-    const file of pendingVideos
+
+  if(
+    pendingVideos.length === 0
   ){
 
+    return uploaded;
+
+  }
+
+
+  for(
+    let i = 0;
+    i < pendingVideos.length;
+    i++
+  ){
+
+    const file =
+      pendingVideos[i];
+
+
     if(
+      !file.type ||
       !file.type.startsWith(
         "video/"
       )
@@ -2943,63 +3338,40 @@ async function uploadVideos(){
 
     }
 
+
+    /*
+      浏览器端建议控制视频大小
+    */
+
+    if(
+      file.size >
+      100 * 1024 * 1024
+    ){
+
+      throw new Error(
+        "视频过大：" +
+        file.name +
+        "\n单个视频建议不超过 100MB。"
+      );
+
+    }
+
+
     const path =
       await uploadFile(
         file,
         "videos"
       );
 
-    uploaded.push(path);
 
-  }
-
-  return uploaded;
-
-}
-
-
-/* ==================================================
-   删除 Storage 文件
-================================================== */
-
-async function removeStorageFiles(
-  paths
-){
-
-  const cleanPaths =
-    paths
-      .filter(Boolean)
-      .map(
-        getStoragePath
-      )
-      .filter(Boolean);
-
-  if(
-    cleanPaths.length === 0
-  ){
-
-    return;
-
-  }
-
-  const {
-    error
-  } =
-    await supabaseClient
-      .storage
-      .from(STORAGE_BUCKET)
-      .remove(
-        cleanPaths
-      );
-
-  if(error){
-
-    console.warn(
-      "Storage 删除失败：",
-      error
+    uploaded.push(
+      path
     );
 
   }
+
+
+  return uploaded;
 
 }
 
@@ -3014,10 +3386,12 @@ womanForm.addEventListener(
 
     event.preventDefault();
 
+
     const saveButton =
       document.getElementById(
         "saveButton"
       );
+
 
     saveButton.disabled =
       true;
@@ -3026,33 +3400,133 @@ womanForm.addEventListener(
       "正在保存……";
 
 
-    let uploadedFiles = [];
-
-
     try{
 
-      /* ----------------------
-         基础资料
-      ---------------------- */
+
+      /* =====================================
+         检查登录
+      ===================================== */
+
+      const {
+        data: userData,
+        error: userError
+      } =
+        await supabaseClient.auth
+          .getUser();
+
+
+      if(userError){
+        throw userError;
+      }
+
+
+      if(
+        !userData ||
+        !userData.user
+      ){
+
+        throw new Error(
+          "登录状态已失效，请重新登录。"
+        );
+
+      }
+
+
+      currentUser =
+        userData.user;
+
+
+      /* =====================================
+         上传照片
+      ===================================== */
+
+      const newPhotos =
+        await uploadPhotos();
+
+
+      /* =====================================
+         上传视频
+      ===================================== */
+
+      const newVideos =
+        await uploadVideos();
+
+
+      /* =====================================
+         合并媒体
+      ===================================== */
+
+      const finalPhotos = [
+        ...currentPhotos,
+        ...newPhotos
+      ];
+
+
+      const finalVideos = [
+        ...currentVideos,
+        ...newVideos
+      ];
+
+
+      /* =====================================
+         表单
+      ===================================== */
 
       const name =
         document
-          .getElementById("womanName")
+          .getElementById(
+            "womanName"
+          )
           .value
           .trim();
+
+
+      const ageValue =
+        document
+          .getElementById(
+            "womanAge"
+          )
+          .value;
+
 
       const age =
         Number(
-          document
-            .getElementById("womanAge")
-            .value
+          ageValue
         );
+
+
+      if(
+        !name
+      ){
+
+        throw new Error(
+          "请输入姓名。"
+        );
+
+      }
+
+
+      if(
+        !age ||
+        age < 18 ||
+        age > 100
+      ){
+
+        throw new Error(
+          "请输入正确的年龄（18-100）。"
+        );
+
+      }
+
 
       const city =
         document
-          .getElementById("womanCity")
+          .getElementById(
+            "womanCity"
+          )
           .value
           .trim();
+
 
       const occupation =
         document
@@ -3062,6 +3536,7 @@ womanForm.addEventListener(
           .value
           .trim();
 
+
       const description =
         document
           .getElementById(
@@ -3069,6 +3544,7 @@ womanForm.addEventListener(
           )
           .value
           .trim();
+
 
       const whatsapp =
         document
@@ -3078,6 +3554,7 @@ womanForm.addEventListener(
           .value
           .trim();
 
+
       const telegram =
         document
           .getElementById(
@@ -3085,6 +3562,7 @@ womanForm.addEventListener(
           )
           .value
           .trim();
+
 
       const isPublished =
         document
@@ -3095,74 +3573,9 @@ womanForm.addEventListener(
           "true";
 
 
-      if(!name){
-
-        throw new Error(
-          "请输入姓名"
-        );
-
-      }
-
-      if(
-        !age ||
-        age < 18 ||
-        age > 100
-      ){
-
-        throw new Error(
-          "年龄必须在 18–100 岁之间"
-        );
-
-      }
-
-
-      /* ----------------------
-         上传照片
-      ---------------------- */
-
-      const newPhotos =
-        await uploadPhotos();
-
-      uploadedFiles =
-        uploadedFiles.concat(
-          newPhotos
-        );
-
-
-      /* ----------------------
-         上传视频
-      ---------------------- */
-
-      const newVideos =
-        await uploadVideos();
-
-      uploadedFiles =
-        uploadedFiles.concat(
-          newVideos
-        );
-
-
-      /* ----------------------
-         最终媒体
-      ---------------------- */
-
-      const finalPhotos =
-        [
-          ...currentPhotos,
-          ...newPhotos
-        ];
-
-      const finalVideos =
-        [
-          ...currentVideos,
-          ...newVideos
-        ];
-
-
-      /*
-        第一张图片同时保存到
-        image_url，兼容主页。
-      */
+      /* =====================================
+         第一张照片
+      ===================================== */
 
       const firstPhoto =
         finalPhotos.length > 0
@@ -3171,6 +3584,10 @@ womanForm.addEventListener(
         :
         "";
 
+
+      /* =====================================
+         数据
+      ===================================== */
 
       const record = {
 
@@ -3203,26 +3620,48 @@ womanForm.addEventListener(
       };
 
 
-      /* =====================
-         新增
-      ===================== */
+      console.log(
+        "准备保存：",
+        record
+      );
 
-      if(!editingWoman){
+
+      /* =====================================
+         新增
+      ===================================== */
+
+      if(
+        !editingWoman
+      ){
 
         const {
+          data,
           error
         } =
           await supabaseClient
             .from("women")
             .insert(
               record
-            );
+            )
+            .select()
+            .single();
+
 
         if(error){
 
-          throw error;
+          throw new Error(
+            "新增数据库记录失败：\n" +
+            error.message
+          );
 
         }
+
+
+        console.log(
+          "新增成功：",
+          data
+        );
+
 
         showMessage(
           "女士资料添加成功。",
@@ -3232,13 +3671,14 @@ womanForm.addEventListener(
       }
 
 
-      /* =====================
+      /* =====================================
          修改
-      ===================== */
+      ===================================== */
 
       else{
 
         const {
+          data,
           error
         } =
           await supabaseClient
@@ -3249,13 +3689,26 @@ womanForm.addEventListener(
             .eq(
               "id",
               editingWoman.id
-            );
+            )
+            .select()
+            .single();
+
 
         if(error){
 
-          throw error;
+          throw new Error(
+            "修改数据库记录失败：\n" +
+            error.message
+          );
 
         }
+
+
+        console.log(
+          "修改成功：",
+          data
+        );
+
 
         showMessage(
           "女士资料修改成功。",
@@ -3265,9 +3718,11 @@ womanForm.addEventListener(
       }
 
 
-      closeModal();
+      /* =====================================
+         关闭
+      ===================================== */
 
-      await loadWomen();
+      closeModal();
 
 
       pendingPhotos =
@@ -3277,38 +3732,23 @@ womanForm.addEventListener(
         [];
 
 
+      await loadWomen();
+
+
     }catch(error){
 
       console.error(
+        "保存失败：",
         error
       );
 
 
-      /*
-        如果数据库保存失败，
-        尝试删除本次刚刚上传的文件，
-        防止产生孤儿文件。
-      */
-
-      if(
-        uploadedFiles.length > 0
-      ){
-
-        await removeStorageFiles(
-          uploadedFiles
-        );
-
-      }
-
-
       showMessage(
-        "保存失败：" +
-        (
-          error.message ||
-          "未知错误"
-        ),
+        "保存失败：\n" +
+        error.message,
         "error"
       );
+
 
     }finally{
 
@@ -3332,48 +3772,131 @@ async function deleteWoman(
   woman
 ){
 
+  const womanName =
+    woman.name ||
+    "这位女士";
+
+
   const confirmed =
     confirm(
       "确定要删除「" +
-      (
-        woman.name ||
-        "这位女士"
-      ) +
-      "」吗？\n\n数据库资料和相关照片/视频都会删除。"
+      womanName +
+      "」吗？\n\n" +
+      "此操作会删除：\n" +
+      "• 数据库资料\n" +
+      "• 已上传照片\n" +
+      "• 已上传视频\n\n" +
+      "删除后无法恢复。"
     );
 
+
   if(!confirmed){
+
     return;
+
   }
 
 
   try{
 
-    /*
-      收集所有媒体
-    */
+    showMessage(
+      "正在删除，请稍候……",
+      "info"
+    );
 
-    const mediaPaths = [
 
-      woman.image_url,
+    /* =====================================
+       1. 检查当前用户
+    ===================================== */
 
+    const {
+      data: userData,
+      error: userError
+    } =
+      await supabaseClient.auth
+        .getUser();
+
+
+    if(userError){
+
+      throw userError;
+
+    }
+
+
+    if(
+      !userData ||
+      !userData.user
+    ){
+
+      throw new Error(
+        "登录状态已失效，请重新登录后台。"
+      );
+
+    }
+
+
+    /* =====================================
+       2. 收集 Storage 文件
+    ===================================== */
+
+    let storagePaths = [];
+
+
+    if(
+      woman.image_url
+    ){
+
+      storagePaths.push(
+        woman.image_url
+      );
+
+    }
+
+
+    storagePaths = [
+      ...storagePaths,
       ...normalizeArray(
         woman.photos
-      ),
-
-      ...normalizeArray(
-        woman.videos
       )
-
     ];
 
 
-    /*
-      删除数据库
-    */
+    storagePaths = [
+      ...storagePaths,
+      ...normalizeArray(
+        woman.videos
+      )
+    ];
+
+
+    storagePaths =
+      [
+        ...new Set(
+          storagePaths
+            .filter(Boolean)
+            .map(
+              path =>
+                getStoragePath(path)
+            )
+            .filter(Boolean)
+        )
+      ];
+
+
+    console.log(
+      "准备删除 Storage：",
+      storagePaths
+    );
+
+
+    /* =====================================
+       3. 删除数据库
+    ===================================== */
 
     const {
-      error
+      data: deletedRows,
+      error: deleteDbError
     } =
       await supabaseClient
         .from("women")
@@ -3381,43 +3904,138 @@ async function deleteWoman(
         .eq(
           "id",
           woman.id
-        );
+        )
+        .select();
 
-    if(error){
-      throw error;
+
+    if(deleteDbError){
+
+      console.error(
+        "数据库删除失败：",
+        deleteDbError
+      );
+
+
+      throw new Error(
+        "数据库删除失败：\n" +
+        deleteDbError.message +
+        "\n\n如果提示 permission denied 或 RLS，" +
+        "请检查 Supabase 的 DELETE Policy。"
+      );
+
     }
 
 
     /*
-      删除 Storage
+      防止“点击删除但实际上没有删除”
     */
 
-    await removeStorageFiles(
-      mediaPaths
+    if(
+      !deletedRows ||
+      deletedRows.length === 0
+    ){
+
+      throw new Error(
+        "数据库没有删除任何记录。\n\n" +
+        "最常见原因是 women 表的 DELETE RLS Policy 没有允许当前管理员删除。"
+      );
+
+    }
+
+
+    console.log(
+      "数据库删除成功：",
+      deletedRows
     );
 
 
-    showMessage(
-      "删除成功。",
-      "success"
-    );
+    /* =====================================
+       4. 删除 Storage
+    ===================================== */
 
+    let storageDeleteError =
+      null;
+
+
+    if(
+      storagePaths.length > 0
+    ){
+
+      const {
+        data: removedFiles,
+        error
+      } =
+        await supabaseClient
+          .storage
+          .from(
+            STORAGE_BUCKET
+          )
+          .remove(
+            storagePaths
+          );
+
+
+      storageDeleteError =
+        error;
+
+
+      if(error){
+
+        console.error(
+          "Storage 删除失败：",
+          error
+        );
+
+      }else{
+
+        console.log(
+          "Storage 删除成功：",
+          removedFiles
+        );
+
+      }
+
+    }
+
+
+    /* =====================================
+       5. 刷新
+    ===================================== */
 
     await loadWomen();
+
+
+    if(storageDeleteError){
+
+      showMessage(
+        "数据库资料已经删除成功，但部分照片/视频删除失败。\n\n" +
+        "请检查 Storage DELETE Policy。",
+        "error"
+      );
+
+    }else{
+
+      showMessage(
+        "「" +
+        womanName +
+        "」已经成功删除。",
+        "success"
+      );
+
+    }
 
 
   }catch(error){
 
     console.error(
+      "删除失败：",
       error
     );
 
+
     showMessage(
-      "删除失败：" +
-      (
-        error.message ||
-        "未知错误"
-      ),
+      "删除失败：\n" +
+      error.message,
       "error"
     );
 
@@ -3435,29 +4053,15 @@ supabaseClient
   .onAuthStateChange(
     (event,session) => {
 
+      console.log(
+        "Auth 状态：",
+        event
+      );
+
+
       if(
-        session?.user
-      ){
-
-        currentUser =
-          session.user;
-
-        /*
-          避免重复加载
-        */
-
-        if(
-          adminPage.classList.contains(
-            "hidden"
-          )
-        ){
-
-          showAdmin();
-
-        }
-
-      }else if(
-        event === "SIGNED_OUT"
+        event ===
+        "SIGNED_OUT"
       ){
 
         currentUser =
@@ -3467,12 +4071,48 @@ supabaseClient
 
       }
 
+
+      if(
+        event ===
+        "SIGNED_IN" &&
+        session &&
+        session.user
+      ){
+
+        currentUser =
+          session.user;
+
+      }
+
     }
   );
 
 
 /* ==================================================
-   启动
+   ESC 关闭窗口
+================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key === "Escape" &&
+      !modal.classList.contains(
+        "hidden"
+      )
+    ){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* ==================================================
+   开始
 ================================================== */
 
 checkSession();
