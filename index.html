@@ -265,6 +265,8 @@ a {
   background: #eee;
 
   overflow: hidden;
+
+  position: relative;
 }
 
 .woman-image img {
@@ -281,6 +283,41 @@ a {
 .woman-card:hover
 .woman-image img {
   transform: scale(1.03);
+}
+
+
+/* 图片加载失败 */
+
+.image-error {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  background: #eeeeee;
+
+  color: #999;
+
+  text-align: center;
+
+  padding: 20px;
+
+  font-size: 14px;
+}
+
+.image-error strong {
+  color: #666;
+
+  font-size: 16px;
+
+  margin-bottom: 6px;
 }
 
 
@@ -323,7 +360,7 @@ a {
 
   display: -webkit-box;
 
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
 
   -webkit-box-orient: vertical;
 
@@ -408,6 +445,8 @@ a {
   color: #999;
 
   font-size: 14px;
+
+  margin-top: 8px;
 }
 
 
@@ -703,26 +742,29 @@ footer {
 </footer>
 
 
-<!-- =========================
-     SUPABASE
-========================= -->
-
 <script>
 
-const SUPABASE_URL =
-"https://yutraouosffjteivvlfx.supabase.co";
+/* =====================================================
+   Supabase 配置
+===================================================== */
 
+const SUPABASE_URL =
+  "https://yutraouosffjteivvlfx.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
+  "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
+
+/* =====================================================
+   全局数据
+===================================================== */
 
 let women = [];
 
 
-/* =========================
+/* =====================================================
    年份
-========================= */
+===================================================== */
 
 document
   .getElementById("year")
@@ -730,75 +772,193 @@ document
   new Date().getFullYear();
 
 
-/* =========================
+/* =====================================================
    HTML 安全处理
-========================= */
+===================================================== */
 
 function escapeHtml(value) {
 
   return String(value ?? "")
 
-    .replace(/&/g,"&amp;")
+    .replace(/&/g, "&amp;")
 
-    .replace(/</g,"&lt;")
+    .replace(/</g, "&lt;")
 
-    .replace(/>/g,"&gt;")
+    .replace(/>/g, "&gt;")
 
-    .replace(/"/g,"&quot;")
+    .replace(/"/g, "&quot;")
 
-    .replace(/'/g,"&#039;");
+    .replace(/'/g, "&#039;");
 
 }
 
 
-/* =========================
-   获取照片
-========================= */
+/* =====================================================
+   获取图片地址
+
+   数据库字段：
+   image_url
+
+   支持两种格式：
+
+   ① 完整 URL
+   https://xxxx.com/image.jpg
+
+   ② Storage 文件名
+   image_123.png
+===================================================== */
 
 function getPhotoUrl(woman) {
 
-  if (
-    !woman.photos ||
-    !Array.isArray(woman.photos) ||
-    woman.photos.length === 0
-  ) {
-
-    return "";
-
-  }
-
-
-  const photo =
-    woman.photos[0];
-
-
-  if (!photo) {
+  if (!woman) {
     return "";
   }
 
 
+  if (!woman.image_url) {
+    return "";
+  }
+
+
+  const imageUrl =
+    String(
+      woman.image_url
+    ).trim();
+
+
+  if (!imageUrl) {
+    return "";
+  }
+
+
+  /* 已经是完整网址 */
+
   if (
-    photo.startsWith("http://") ||
-    photo.startsWith("https://")
+    imageUrl.startsWith("http://") ||
+    imageUrl.startsWith("https://")
   ) {
 
-    return photo;
+    return imageUrl;
 
   }
 
+
+  /* Storage 文件名 */
 
   return (
     SUPABASE_URL +
-    "/storage/v1/object/public/women-photos/" +
-    photo
+    "/storage/v1/object/public/" +
+    "women-photos/" +
+    encodeURIComponent(imageUrl)
   );
 
 }
 
 
-/* =========================
-   加载数据库
-========================= */
+/* =====================================================
+   默认图片
+===================================================== */
+
+function getDefaultImage() {
+
+  return (
+    "data:image/svg+xml;charset=UTF-8," +
+
+    encodeURIComponent(`
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="600"
+        height="800"
+      >
+
+        <rect
+          width="600"
+          height="800"
+          fill="#eeeeee"
+        />
+
+        <text
+          x="300"
+          y="390"
+          text-anchor="middle"
+          font-size="28"
+          fill="#999999"
+        >
+          暂无照片
+        </text>
+
+        <text
+          x="300"
+          y="430"
+          text-anchor="middle"
+          font-size="18"
+          fill="#aaaaaa"
+        >
+          请添加 image_url
+        </text>
+
+      </svg>
+
+    `)
+  );
+
+}
+
+
+/* =====================================================
+   图片加载失败处理
+===================================================== */
+
+function handleImageError(
+  img,
+  woman
+) {
+
+  const container =
+    img.parentElement;
+
+
+  img.style.display =
+    "none";
+
+
+  const errorBox =
+    document.createElement(
+      "div"
+    );
+
+
+  errorBox.className =
+    "image-error";
+
+
+  errorBox.innerHTML = `
+
+    <strong>
+      图片无法加载
+    </strong>
+
+    <span>
+      ${escapeHtml(
+        woman.image_url ||
+        "image_url 为空"
+      )}
+    </span>
+
+  `;
+
+
+  container.appendChild(
+    errorBox
+  );
+
+}
+
+
+/* =====================================================
+   加载 Supabase 数据
+===================================================== */
 
 async function loadWomen() {
 
@@ -828,18 +988,27 @@ async function loadWomen() {
 
 
     /*
-      注意：
+      这里只读取你目前真正存在的字段。
 
-      这里已经删除 sort_order。
+      不再读取：
 
-      只按照 created_at 排序。
+      photos
+      sort_order
+      height_cm
+      marital_status
+      short_intro
+      bio
+      hobbies
     */
 
     const url =
       SUPABASE_URL +
       "/rest/v1/women" +
-      "?select=*" +
+
+      "?select=id,name,age,city,occupation,description,image_url,whatsapp,telegram,created_at,is_published" +
+
       "&is_published=eq.true" +
+
       "&order=created_at.desc";
 
 
@@ -848,7 +1017,7 @@ async function loadWomen() {
         url,
         {
 
-          method:"GET",
+          method: "GET",
 
           headers: {
 
@@ -886,12 +1055,15 @@ async function loadWomen() {
 
     let data;
 
+
     try {
 
       data =
         JSON.parse(text);
 
-    } catch {
+    }
+
+    catch {
 
       throw new Error(
         "Supabase 返回的数据不是 JSON：\n" +
@@ -902,7 +1074,9 @@ async function loadWomen() {
 
 
     women =
-      data || [];
+      Array.isArray(data)
+      ? data
+      : [];
 
 
     count.textContent =
@@ -938,12 +1112,7 @@ async function loadWomen() {
           女士资料无法加载
         </h3>
 
-        <p style="
-          max-width:700px;
-          margin:10px auto;
-          white-space:pre-wrap;
-          word-break:break-word;
-        ">
+        <p>
           ${escapeHtml(
             error.message
           )}
@@ -958,9 +1127,9 @@ async function loadWomen() {
 }
 
 
-/* =========================
+/* =====================================================
    城市筛选
-========================= */
+===================================================== */
 
 function createCityFilter() {
 
@@ -1028,51 +1197,13 @@ function createCityFilter() {
 }
 
 
-/* =========================
-   默认图片
-========================= */
-
-function getDefaultImage() {
-
-  return (
-    "data:image/svg+xml;charset=UTF-8," +
-    encodeURIComponent(`
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="600"
-        height="800"
-      >
-
-        <rect
-          width="600"
-          height="800"
-          fill="#eeeeee"
-        />
-
-        <text
-          x="300"
-          y="400"
-          text-anchor="middle"
-          font-size="28"
-          fill="#999999"
-        >
-          暂无照片
-        </text>
-
-      </svg>
-
-    `)
-  );
-
-}
-
-
-/* =========================
+/* =====================================================
    显示女士
-========================= */
+===================================================== */
 
-function renderWomen(list) {
+function renderWomen(
+  list
+) {
 
   const grid =
     document.getElementById(
@@ -1135,6 +1266,8 @@ function renderWomen(list) {
 
       card.innerHTML = `
 
+        <!-- 图片 -->
+
         <div class="woman-image">
 
           <img
@@ -1148,6 +1281,8 @@ function renderWomen(list) {
 
         </div>
 
+
+        <!-- 信息 -->
 
         <div class="woman-info">
 
@@ -1206,70 +1341,13 @@ function renderWomen(list) {
 
 
           ${
-            woman.height_cm
-            ? `
-
-              <p>
-
-                身高：
-                ${escapeHtml(
-                  woman.height_cm
-                )}
-                cm
-
-              </p>
-
-            `
-            : ""
-          }
-
-
-          ${
-            woman.marital_status
-            ? `
-
-              <p>
-
-                婚姻状况：
-                ${escapeHtml(
-                  woman.marital_status
-                )}
-
-              </p>
-
-            `
-            : ""
-          }
-
-
-          ${
-            woman.short_intro ||
-            woman.bio
+            woman.description
             ? `
 
               <p class="description">
 
                 ${escapeHtml(
-                  woman.short_intro ||
-                  woman.bio
-                )}
-
-              </p>
-
-            `
-            : ""
-          }
-
-
-          ${
-            woman.hobbies
-            ? `
-
-              <p class="description">
-
-                兴趣：
-                ${escapeHtml(
-                  woman.hobbies
+                  woman.description
                 )}
 
               </p>
@@ -1286,6 +1364,7 @@ function renderWomen(list) {
 
               <div class="contact-buttons">
 
+
                 ${
                   woman.whatsapp
                   ? `
@@ -1293,9 +1372,6 @@ function renderWomen(list) {
                     <button
                       class="contact-btn whatsapp-btn"
                       type="button"
-                      data-whatsapp="${escapeHtml(
-                        woman.whatsapp
-                      )}"
                     >
                       WhatsApp
                     </button>
@@ -1312,9 +1388,6 @@ function renderWomen(list) {
                     <button
                       class="contact-btn telegram-btn"
                       type="button"
-                      data-telegram="${escapeHtml(
-                        woman.telegram
-                      )}"
                     >
                       Telegram
                     </button>
@@ -1322,6 +1395,7 @@ function renderWomen(list) {
                   `
                   : ""
                 }
+
 
               </div>
 
@@ -1339,23 +1413,26 @@ function renderWomen(list) {
       );
 
 
-      /* WhatsApp */
+      /* =========================
+         图片错误
+      ========================= */
 
-      const whatsappButton =
+      const imageElement =
         card.querySelector(
-          "[data-whatsapp]"
+          ".woman-image img"
         );
 
 
-      if (whatsappButton) {
+      if (imageElement) {
 
-        whatsappButton
+        imageElement
           .addEventListener(
-            "click",
+            "error",
             function() {
 
-              openWhatsApp(
-                this.dataset.whatsapp
+              handleImageError(
+                this,
+                woman
               );
 
             }
@@ -1364,15 +1441,50 @@ function renderWomen(list) {
       }
 
 
-      /* Telegram */
+      /* =========================
+         WhatsApp
+      ========================= */
 
-      const telegramButton =
+      const whatsappButton =
         card.querySelector(
-          "[data-telegram]"
+          ".whatsapp-btn"
         );
 
 
-      if (telegramButton) {
+      if (
+        whatsappButton &&
+        woman.whatsapp
+      ) {
+
+        whatsappButton
+          .addEventListener(
+            "click",
+            function() {
+
+              openWhatsApp(
+                woman.whatsapp
+              );
+
+            }
+          );
+
+      }
+
+
+      /* =========================
+         Telegram
+      ========================= */
+
+      const telegramButton =
+        card.querySelector(
+          ".telegram-btn"
+        );
+
+
+      if (
+        telegramButton &&
+        woman.telegram
+      ) {
 
         telegramButton
           .addEventListener(
@@ -1380,7 +1492,7 @@ function renderWomen(list) {
             function() {
 
               openTelegram(
-                this.dataset.telegram
+                woman.telegram
               );
 
             }
@@ -1394,9 +1506,9 @@ function renderWomen(list) {
 }
 
 
-/* =========================
+/* =====================================================
    WhatsApp
-========================= */
+===================================================== */
 
 function openWhatsApp(
   phone
@@ -1431,9 +1543,9 @@ function openWhatsApp(
 }
 
 
-/* =========================
+/* =====================================================
    Telegram
-========================= */
+===================================================== */
 
 function openTelegram(
   username
@@ -1445,6 +1557,19 @@ function openTelegram(
     )
     .trim();
 
+
+  if (!value) {
+
+    alert(
+      "Telegram 联系方式无效"
+    );
+
+    return;
+
+  }
+
+
+  /* 已经是完整 Telegram 地址 */
 
   if (
     value.startsWith(
@@ -1463,22 +1588,13 @@ function openTelegram(
   }
 
 
+  /* 去掉 @ */
+
   value =
     value.replace(
       /^@/,
       ""
     );
-
-
-  if (!value) {
-
-    alert(
-      "Telegram 联系方式无效"
-    );
-
-    return;
-
-  }
 
 
   window.location.href =
@@ -1488,9 +1604,9 @@ function openTelegram(
 }
 
 
-/* =========================
+/* =====================================================
    筛选
-========================= */
+===================================================== */
 
 function filterWomen() {
 
@@ -1509,6 +1625,7 @@ function filterWomen() {
   const filtered =
     women.filter(
       woman => {
+
 
         /* 城市 */
 
@@ -1590,9 +1707,9 @@ function filterWomen() {
 }
 
 
-/* =========================
+/* =====================================================
    筛选事件
-========================= */
+===================================================== */
 
 document
   .getElementById(
@@ -1614,9 +1731,9 @@ document
   );
 
 
-/* =========================
-   开始加载
-========================= */
+/* =====================================================
+   开始
+===================================================== */
 
 loadWomen();
 
