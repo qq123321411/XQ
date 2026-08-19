@@ -12,6 +12,8 @@
 
 <title>缘分 · 相遇｜管理后台</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
 * {
@@ -30,14 +32,193 @@ body {
     sans-serif;
 
   background: #f6f6f4;
-
   color: #292725;
 }
 
 
 /* =========================
-   Header
+   登录页面
 ========================= */
+
+#loginPage {
+
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+}
+
+
+.login-box {
+
+  width: 100%;
+
+  max-width: 420px;
+
+  background: #fff;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 16px;
+
+  padding: 35px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.06);
+
+}
+
+
+.login-logo {
+
+  text-align: center;
+
+  font-size: 25px;
+
+  font-weight: 700;
+
+  margin-bottom: 8px;
+
+}
+
+
+.login-logo span {
+
+  color: #b58b63;
+
+  margin: 0 3px;
+
+}
+
+
+.login-subtitle {
+
+  text-align: center;
+
+  color: #999;
+
+  font-size: 14px;
+
+  margin-bottom: 30px;
+
+}
+
+
+.login-field {
+
+  margin-bottom: 18px;
+
+}
+
+
+.login-field label {
+
+  display: block;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  margin-bottom: 7px;
+
+}
+
+
+.login-field input {
+
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 8px;
+
+  font-size: 15px;
+
+  outline: none;
+
+}
+
+
+.login-field input:focus {
+
+  border-color: #999;
+
+}
+
+
+.login-button {
+
+  width: 100%;
+
+  border: 0;
+
+  background: #292725;
+
+  color: #fff;
+
+  padding: 13px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  margin-top: 5px;
+
+}
+
+
+.login-button:disabled {
+
+  opacity: .6;
+
+  cursor: wait;
+
+}
+
+
+.login-error {
+
+  display: none;
+
+  background: #fff1f0;
+
+  border: 1px solid #ffd7d3;
+
+  color: #b42318;
+
+  padding: 11px;
+
+  border-radius: 8px;
+
+  margin-bottom: 15px;
+
+  font-size: 13px;
+
+  white-space: pre-wrap;
+
+}
+
+
+/* =========================
+   后台
+========================= */
+
+#adminPage {
+
+  display: none;
+
+}
+
 
 .header {
 
@@ -63,6 +244,7 @@ body {
 
 }
 
+
 .logo {
 
   font-size: 21px;
@@ -70,6 +252,7 @@ body {
   font-weight: 700;
 
 }
+
 
 .logo span {
 
@@ -79,7 +262,29 @@ body {
 
 }
 
-.view-site {
+
+.header-right {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+}
+
+
+.user-email {
+
+  font-size: 13px;
+
+  color: #888;
+
+}
+
+
+.view-site,
+.logout {
 
   text-decoration: none;
 
@@ -87,11 +292,22 @@ body {
 
   border: 1px solid #ddd;
 
+  background: #fff;
+
   border-radius: 20px;
 
   padding: 8px 15px;
 
-  font-size: 14px;
+  font-size: 13px;
+
+  cursor: pointer;
+
+}
+
+
+.logout {
+
+  color: #b42318;
 
 }
 
@@ -127,11 +343,13 @@ body {
 
 }
 
+
 .top h1 {
 
   font-size: 28px;
 
 }
+
 
 .add-button {
 
@@ -160,10 +378,6 @@ body {
 
   display: none;
 
-  background: #fff;
-
-  border: 1px solid #ddd;
-
   padding: 15px 18px;
 
   border-radius: 10px;
@@ -174,6 +388,7 @@ body {
 
 }
 
+
 .notice.success {
 
   display: block;
@@ -183,6 +398,7 @@ body {
   background: #eefaf2;
 
 }
+
 
 .notice.error {
 
@@ -207,6 +423,7 @@ body {
 
 }
 
+
 .person {
 
   background: #fff;
@@ -225,6 +442,7 @@ body {
 
 }
 
+
 .person-photo {
 
   width: 90px;
@@ -241,6 +459,7 @@ body {
 
 }
 
+
 .person-photo img {
 
   width: 100%;
@@ -251,11 +470,13 @@ body {
 
 }
 
+
 .person-info {
 
   flex: 1;
 
 }
+
 
 .person-info h2 {
 
@@ -264,6 +485,7 @@ body {
   margin-bottom: 4px;
 
 }
+
 
 .person-info p {
 
@@ -274,6 +496,7 @@ body {
   margin-top: 3px;
 
 }
+
 
 .status {
 
@@ -289,6 +512,7 @@ body {
 
 }
 
+
 .status.on {
 
   color: #168a43;
@@ -296,6 +520,7 @@ body {
   background: #e8f7ed;
 
 }
+
 
 .status.off {
 
@@ -305,6 +530,7 @@ body {
 
 }
 
+
 .actions {
 
   display: flex;
@@ -312,6 +538,7 @@ body {
   gap: 8px;
 
 }
+
 
 .action {
 
@@ -326,6 +553,7 @@ body {
   cursor: pointer;
 
 }
+
 
 .action.delete {
 
@@ -354,11 +582,13 @@ body {
 
 }
 
+
 .form-box.active {
 
   display: block;
 
 }
+
 
 .form-title {
 
@@ -367,6 +597,7 @@ body {
   margin-bottom: 25px;
 
 }
+
 
 .form-grid {
 
@@ -379,6 +610,7 @@ body {
 
 }
 
+
 .field {
 
   display: flex;
@@ -389,11 +621,13 @@ body {
 
 }
 
+
 .field.full {
 
   grid-column: 1 / -1;
 
 }
+
 
 .field label {
 
@@ -403,8 +637,8 @@ body {
 
 }
 
-.field input,
 
+.field input,
 .field textarea {
 
   width: 100%;
@@ -421,19 +655,12 @@ body {
 
 }
 
+
 .field textarea {
 
   min-height: 110px;
 
   resize: vertical;
-
-}
-
-.field input:focus,
-
-.field textarea:focus {
-
-  border-color: #999;
 
 }
 
@@ -454,6 +681,7 @@ body {
 
 }
 
+
 .upload-box input {
 
   border: 0;
@@ -461,6 +689,7 @@ body {
   padding: 0;
 
 }
+
 
 .preview-grid {
 
@@ -474,6 +703,7 @@ body {
   margin-top: 15px;
 
 }
+
 
 .preview {
 
@@ -489,8 +719,8 @@ body {
 
 }
 
-.preview img,
 
+.preview img,
 .preview video {
 
   width: 100%;
@@ -500,6 +730,7 @@ body {
   object-fit: cover;
 
 }
+
 
 .preview button {
 
@@ -542,6 +773,7 @@ body {
 
 }
 
+
 .publish input {
 
   width: 18px;
@@ -565,6 +797,7 @@ body {
 
 }
 
+
 .save {
 
   background: #292725;
@@ -580,6 +813,7 @@ body {
   cursor: pointer;
 
 }
+
 
 .cancel {
 
@@ -621,9 +855,28 @@ body {
 
   .header {
 
-    padding: 0 15px;
+    height: auto;
+
+    min-height: 65px;
+
+    padding: 10px 15px;
 
   }
+
+
+  .header-right {
+
+    gap: 5px;
+
+  }
+
+
+  .user-email {
+
+    display: none;
+
+  }
+
 
   .container {
 
@@ -633,11 +886,13 @@ body {
 
   }
 
+
   .top {
 
     align-items: flex-start;
 
   }
+
 
   .top h1 {
 
@@ -645,11 +900,13 @@ body {
 
   }
 
+
   .person {
 
     align-items: flex-start;
 
   }
+
 
   .actions {
 
@@ -657,11 +914,13 @@ body {
 
   }
 
+
   .form-box {
 
     padding: 18px;
 
   }
+
 
   .form-grid {
 
@@ -669,11 +928,13 @@ body {
 
   }
 
+
   .field.full {
 
     grid-column: auto;
 
   }
+
 
   .preview-grid {
 
@@ -692,9 +953,86 @@ body {
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<section id="loginPage">
+
+  <div class="login-box">
+
+    <div class="login-logo">
+
+      缘分<span>·</span>相遇
+
+    </div>
+
+    <div class="login-subtitle">
+
+      管理员后台
+
+    </div>
+
+
+    <div
+      id="loginError"
+      class="login-error"
+    ></div>
+
+
+    <div class="login-field">
+
+      <label>
+        管理员邮箱
+      </label>
+
+      <input
+        id="loginEmail"
+        type="email"
+        autocomplete="email"
+        placeholder="请输入管理员邮箱"
+      >
+
+    </div>
+
+
+    <div class="login-field">
+
+      <label>
+        密码
+      </label>
+
+      <input
+        id="loginPassword"
+        type="password"
+        autocomplete="current-password"
+        placeholder="请输入密码"
+      >
+
+    </div>
+
+
+    <button
+      id="loginButton"
+      class="login-button"
+      onclick="login()"
+    >
+
+      登录后台
+
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     ADMIN
+===================================================== -->
+
+<section id="adminPage">
+
 
 <header class="header">
 
@@ -704,14 +1042,35 @@ body {
 
   </div>
 
-  <a
-    href="../"
-    class="view-site"
-  >
 
-    查看网站
+  <div class="header-right">
 
-  </a>
+    <span
+      id="userEmail"
+      class="user-email"
+    ></span>
+
+
+    <a
+      href="../"
+      class="view-site"
+    >
+
+      网站
+
+    </a>
+
+
+    <button
+      class="logout"
+      onclick="logout()"
+    >
+
+      退出
+
+    </button>
+
+  </div>
 
 </header>
 
@@ -719,15 +1078,12 @@ body {
 <main class="container">
 
 
-<!-- =========================
-     TOP
-========================= -->
-
 <div class="top">
 
   <h1>
     女士资料管理
   </h1>
+
 
   <button
     class="add-button"
@@ -741,19 +1097,11 @@ body {
 </div>
 
 
-<!-- =========================
-     MESSAGE
-========================= -->
-
 <div
   id="notice"
   class="notice"
 ></div>
 
-
-<!-- =========================
-     FORM
-========================= -->
 
 <section
   id="formBox"
@@ -771,8 +1119,6 @@ body {
   <div class="form-grid">
 
 
-    <!-- 姓名 -->
-
     <div class="field">
 
       <label>
@@ -787,8 +1133,6 @@ body {
 
     </div>
 
-
-    <!-- 年龄 -->
 
     <div class="field">
 
@@ -807,8 +1151,6 @@ body {
     </div>
 
 
-    <!-- 城市 -->
-
     <div class="field">
 
       <label>
@@ -823,8 +1165,6 @@ body {
 
     </div>
 
-
-    <!-- 职业 -->
 
     <div class="field">
 
@@ -841,8 +1181,6 @@ body {
     </div>
 
 
-    <!-- WhatsApp -->
-
     <div class="field">
 
       <label>
@@ -857,8 +1195,6 @@ body {
 
     </div>
 
-
-    <!-- Telegram -->
 
     <div class="field">
 
@@ -875,8 +1211,6 @@ body {
     </div>
 
 
-    <!-- 简介 -->
-
     <div class="field full">
 
       <label>
@@ -891,12 +1225,10 @@ body {
     </div>
 
 
-    <!-- 照片 -->
-
     <div class="field full">
 
       <label>
-        照片
+        多张照片
       </label>
 
       <div class="upload-box">
@@ -917,8 +1249,6 @@ body {
 
     </div>
 
-
-    <!-- 视频 -->
 
     <div class="field full">
 
@@ -944,11 +1274,8 @@ body {
 
     </div>
 
-
   </div>
 
-
-  <!-- 发布 -->
 
   <label class="publish">
 
@@ -963,8 +1290,6 @@ body {
   </label>
 
 
-  <!-- Buttons -->
-
   <div class="form-buttons">
 
     <button
@@ -975,6 +1300,7 @@ body {
       保存资料
 
     </button>
+
 
     <button
       class="cancel"
@@ -989,10 +1315,6 @@ body {
 
 </section>
 
-
-<!-- =========================
-     LIST
-========================= -->
 
 <section
   id="list"
@@ -1010,11 +1332,13 @@ body {
 
 </main>
 
+</section>
+
 
 <script>
 
 /* =====================================================
-   SUPABASE
+   Supabase
 ===================================================== */
 
 const SUPABASE_URL =
@@ -1023,6 +1347,13 @@ const SUPABASE_URL =
 
 const SUPABASE_KEY =
   "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
 /* =====================================================
@@ -1043,7 +1374,285 @@ let existingVideos = [];
 
 
 /* =====================================================
-   API
+   页面启动
+===================================================== */
+
+async function init() {
+
+  const {
+    data: {
+      session
+    }
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+
+  if (session) {
+
+    showAdmin(
+      session
+    );
+
+  }
+
+  else {
+
+    showLogin();
+
+  }
+
+
+  supabaseClient
+    .auth
+    .onAuthStateChange(
+      (
+        event,
+        session
+      ) => {
+
+        if (session) {
+
+          showAdmin(
+            session
+          );
+
+        }
+
+        else {
+
+          showLogin();
+
+        }
+
+      }
+    );
+
+}
+
+
+/* =====================================================
+   登录页面
+===================================================== */
+
+function showLogin() {
+
+  document
+    .getElementById(
+      "loginPage"
+    )
+    .style
+    .display =
+    "flex";
+
+
+  document
+    .getElementById(
+      "adminPage"
+    )
+    .style
+    .display =
+    "none";
+
+}
+
+
+/* =====================================================
+   后台
+===================================================== */
+
+async function showAdmin(
+  session
+) {
+
+  document
+    .getElementById(
+      "loginPage"
+    )
+    .style
+    .display =
+    "none";
+
+
+  document
+    .getElementById(
+      "adminPage"
+    )
+    .style
+    .display =
+    "block";
+
+
+  document
+    .getElementById(
+      "userEmail"
+    )
+    .textContent =
+    session.user.email || "";
+
+
+  await loadPeople();
+
+}
+
+
+/* =====================================================
+   登录
+===================================================== */
+
+async function login() {
+
+  const email =
+    document
+      .getElementById(
+        "loginEmail"
+      )
+      .value
+      .trim();
+
+
+  const password =
+    document
+      .getElementById(
+        "loginPassword"
+      )
+      .value;
+
+
+  const errorBox =
+    document
+      .getElementById(
+        "loginError"
+      );
+
+
+  const button =
+    document
+      .getElementById(
+        "loginButton"
+      );
+
+
+  errorBox.style.display =
+    "none";
+
+
+  if (!email) {
+
+    errorBox.textContent =
+      "请输入管理员邮箱";
+
+    errorBox.style.display =
+      "block";
+
+    return;
+
+  }
+
+
+  if (!password) {
+
+    errorBox.textContent =
+      "请输入密码";
+
+    errorBox.style.display =
+      "block";
+
+    return;
+
+  }
+
+
+  button.disabled =
+    true;
+
+
+  button.textContent =
+    "登录中……";
+
+
+  try {
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .auth
+        .signInWithPassword({
+
+          email,
+
+          password
+
+        });
+
+
+    if (error) {
+
+      throw error;
+
+    }
+
+
+    if (!data.session) {
+
+      throw new Error(
+        "登录失败，请检查邮箱和密码。"
+      );
+
+    }
+
+  }
+
+  catch(error) {
+
+    console.error(
+      error
+    );
+
+
+    errorBox.textContent =
+      "登录失败：\n" +
+      error.message;
+
+
+    errorBox.style.display =
+      "block";
+
+  }
+
+
+  finally {
+
+    button.disabled =
+      false;
+
+
+    button.textContent =
+      "登录后台";
+
+  }
+
+}
+
+
+/* =====================================================
+   退出
+===================================================== */
+
+async function logout() {
+
+  await supabaseClient
+    .auth
+    .signOut();
+
+}
+
+
+/* =====================================================
+   数据请求
 ===================================================== */
 
 async function supabaseRequest(
@@ -1051,10 +1660,31 @@ async function supabaseRequest(
   options = {}
 ) {
 
+  const {
+    data: {
+      session
+    }
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+
+  if (!session) {
+
+    throw new Error(
+      "登录已失效，请重新登录。"
+    );
+
+  }
+
+
   const response =
     await fetch(
+
       SUPABASE_URL +
       endpoint,
+
       {
 
         ...options,
@@ -1066,7 +1696,7 @@ async function supabaseRequest(
 
           "Authorization":
             "Bearer " +
-            SUPABASE_KEY,
+            session.access_token,
 
           "Content-Type":
             "application/json",
@@ -1076,6 +1706,7 @@ async function supabaseRequest(
         }
 
       }
+
     );
 
 
@@ -1116,6 +1747,25 @@ async function uploadFile(
   file
 ) {
 
+  const {
+    data: {
+      session
+    }
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+
+  if (!session) {
+
+    throw new Error(
+      "登录已失效。"
+    );
+
+  }
+
+
   const safeName =
     file.name
       .replace(
@@ -1134,10 +1784,6 @@ async function uploadFile(
     safeName;
 
 
-  const path =
-    filename;
-
-
   const response =
     await fetch(
 
@@ -1145,7 +1791,7 @@ async function uploadFile(
       "/storage/v1/object/" +
       bucket +
       "/" +
-      path,
+      filename,
 
       {
 
@@ -1158,7 +1804,7 @@ async function uploadFile(
 
           "Authorization":
             "Bearer " +
-            SUPABASE_KEY,
+            session.access_token,
 
           "x-upsert":
             "false"
@@ -1192,7 +1838,7 @@ async function uploadFile(
     "/storage/v1/object/public/" +
     bucket +
     "/" +
-    path
+    filename
 
   );
 
@@ -1221,77 +1867,6 @@ function showNotice(
   box.className =
     "notice " +
     type;
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-}
-
-
-/* =====================================================
-   加载女士
-===================================================== */
-
-async function loadPeople() {
-
-  const list =
-    document.getElementById(
-      "list"
-    );
-
-
-  list.innerHTML = `
-
-    <div class="loading">
-
-      正在加载女士资料……
-
-    </div>
-
-  `;
-
-
-  try {
-
-    people =
-      await supabaseRequest(
-        "/rest/v1/women" +
-        "?select=*" +
-        "&order=created_at.desc"
-      );
-
-
-    renderList();
-
-  }
-
-  catch(error) {
-
-    console.error(
-      error
-    );
-
-
-    list.innerHTML = `
-
-      <div class="loading">
-
-        加载失败
-
-        <br><br>
-
-        ${escapeHtml(
-          error.message
-        )}
-
-      </div>
-
-    `;
-
-  }
 
 }
 
@@ -1337,7 +1912,74 @@ function escapeHtml(
 
 
 /* =====================================================
-   渲染列表
+   加载资料
+===================================================== */
+
+async function loadPeople() {
+
+  const list =
+    document.getElementById(
+      "list"
+    );
+
+
+  list.innerHTML = `
+
+    <div class="loading">
+
+      正在加载女士资料……
+
+    </div>
+
+  `;
+
+
+  try {
+
+    people =
+      await supabaseRequest(
+
+        "/rest/v1/women" +
+        "?select=*" +
+        "&order=created_at.desc"
+
+      );
+
+
+    renderList();
+
+  }
+
+  catch(error) {
+
+    console.error(
+      error
+    );
+
+
+    list.innerHTML = `
+
+      <div class="loading">
+
+        加载失败
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =====================================================
+   列表
 ===================================================== */
 
 function renderList() {
@@ -1374,7 +2016,6 @@ function renderList() {
   people.forEach(
     person => {
 
-
       const photos =
         Array.isArray(
           person.photos
@@ -1404,6 +2045,14 @@ function renderList() {
           );
 
       }
+
+
+      const videos =
+        Array.isArray(
+          person.videos
+        )
+        ? person.videos
+        : [];
 
 
       const card =
@@ -1457,12 +2106,10 @@ function renderList() {
 
           <p>
 
-            ${
-              escapeHtml(
-                person.city ||
-                ""
-              )
-            }
+            ${escapeHtml(
+              person.city ||
+              ""
+            )}
 
             ${
               person.occupation
@@ -1483,16 +2130,8 @@ function renderList() {
 
             张
 
-           　
-
-            视频：
-            ${
-              Array.isArray(
-                person.videos
-              )
-              ? person.videos.length
-              : 0
-            }
+            　 视频：
+            ${videos.length}
 
             个
 
@@ -1532,7 +2171,10 @@ function renderList() {
 
           <button
             class="action"
-            onclick="togglePublish('${person.id}', ${!person.is_published})"
+            onclick="togglePublish(
+              '${person.id}',
+              ${!person.is_published}
+            )"
           >
 
             ${
@@ -1771,60 +2413,26 @@ function editPerson(
 
 function clearForm() {
 
-  document
-    .getElementById(
-      "name"
-    )
-    .value =
-    "";
+  [
+    "name",
+    "age",
+    "city",
+    "occupation",
+    "description",
+    "whatsapp",
+    "telegram"
+  ]
+  .forEach(
+    id => {
 
+      document
+        .getElementById(
+          id
+        )
+        .value = "";
 
-  document
-    .getElementById(
-      "age"
-    )
-    .value =
-    "";
-
-
-  document
-    .getElementById(
-      "city"
-    )
-    .value =
-    "";
-
-
-  document
-    .getElementById(
-      "occupation"
-    )
-    .value =
-    "";
-
-
-  document
-    .getElementById(
-      "description"
-    )
-    .value =
-    "";
-
-
-  document
-    .getElementById(
-      "whatsapp"
-    )
-    .value =
-    "";
-
-
-  document
-    .getElementById(
-      "telegram"
-    )
-    .value =
-    "";
+    }
+  );
 
 
   document
@@ -1872,7 +2480,7 @@ function closeForm() {
 
 
 /* =====================================================
-   选择照片
+   照片选择
 ===================================================== */
 
 document
@@ -1891,7 +2499,9 @@ document
           )
         ];
 
+
       renderPreviews();
+
 
       this.value =
         "";
@@ -1901,7 +2511,7 @@ document
 
 
 /* =====================================================
-   选择视频
+   视频选择
 ===================================================== */
 
 document
@@ -1920,7 +2530,9 @@ document
           )
         ];
 
+
       renderPreviews();
+
 
       this.value =
         "";
@@ -1954,8 +2566,6 @@ function renderPreviews() {
   videoBox.innerHTML =
     "";
 
-
-  /* 旧照片 */
 
   existingPhotos.forEach(
     (
@@ -2021,6 +2631,7 @@ function renderPreviews() {
               1
             );
 
+
           renderPreviews();
 
         };
@@ -2033,8 +2644,6 @@ function renderPreviews() {
     }
   );
 
-
-  /* 新照片 */
 
   selectedPhotos.forEach(
     (
@@ -2086,6 +2695,7 @@ function renderPreviews() {
               1
             );
 
+
           renderPreviews();
 
         };
@@ -2099,33 +2709,11 @@ function renderPreviews() {
   );
 
 
-  /* 旧视频 */
-
   existingVideos.forEach(
     (
       video,
       index
     ) => {
-
-      let url =
-        video;
-
-
-      if (
-        !url.startsWith(
-          "http"
-        )
-      ) {
-
-        url =
-          SUPABASE_URL +
-          "/storage/v1/object/public/women-videos/" +
-          encodeURIComponent(
-            video
-          );
-
-      }
-
 
       const item =
         document.createElement(
@@ -2140,7 +2728,7 @@ function renderPreviews() {
       item.innerHTML = `
 
         <video
-          src="${escapeHtml(url)}"
+          src="${escapeHtml(video)}"
           controls
         ></video>
 
@@ -2166,6 +2754,7 @@ function renderPreviews() {
               1
             );
 
+
           renderPreviews();
 
         };
@@ -2178,8 +2767,6 @@ function renderPreviews() {
     }
   );
 
-
-  /* 新视频 */
 
   selectedVideos.forEach(
     (
@@ -2231,6 +2818,7 @@ function renderPreviews() {
               index,
               1
             );
+
 
           renderPreviews();
 
@@ -2359,13 +2947,10 @@ async function savePerson() {
     );
 
 
-    /* =====================
-       上传新照片
-    ===================== */
+    /* 上传照片 */
 
     for (
-      const file
-      of selectedPhotos
+      const file of selectedPhotos
     ) {
 
       const url =
@@ -2382,13 +2967,10 @@ async function savePerson() {
     }
 
 
-    /* =====================
-       上传新视频
-    ===================== */
+    /* 上传视频 */
 
     for (
-      const file
-      of selectedVideos
+      const file of selectedVideos
     ) {
 
       const url =
@@ -2405,28 +2987,10 @@ async function savePerson() {
     }
 
 
-    /* =====================
-       主照片
-    ===================== */
-
-    let imageUrl =
+    const imageUrl =
+      existingPhotos[0] ||
       "";
 
-
-    if (
-      existingPhotos.length
-      > 0
-    ) {
-
-      imageUrl =
-        existingPhotos[0];
-
-    }
-
-
-    /* =====================
-       数据
-    ===================== */
 
     const data = {
 
@@ -2459,10 +3023,6 @@ async function savePerson() {
     };
 
 
-    /* =====================
-       新增
-    ===================== */
-
     if (!editingId) {
 
       await supabaseRequest(
@@ -2488,11 +3048,6 @@ async function savePerson() {
       );
 
     }
-
-
-    /* =====================
-       编辑
-    ===================== */
 
     else {
 
@@ -2641,18 +3196,16 @@ async function deletePerson(
   }
 
 
-  const ok =
-    confirm(
+  if (
+    !confirm(
       "确定删除 " +
       (
         person.name ||
         "这位女士"
       ) +
-      " 吗？\n\n删除后数据库资料也会删除。"
-    );
-
-
-  if (!ok) {
+      " 吗？"
+    )
+  ) {
 
     return;
 
@@ -2702,13 +3255,12 @@ async function deletePerson(
 
 
 /* =====================================================
-   开始
+   启动
 ===================================================== */
 
-loadPeople();
+init();
 
 </script>
-
 
 </body>
 
