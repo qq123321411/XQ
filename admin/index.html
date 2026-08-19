@@ -7,889 +7,1034 @@
 
 <meta
   name="viewport"
-  content="width=device-width,initial-scale=1"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>缘分 · 相遇 - 管理后台</title>
+<title>缘分·相遇 - 管理后台</title>
+
+<meta
+  name="robots"
+  content="noindex,nofollow"
+>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <style>
 
-/* =========================================
+/* =========================
    基础
-========================================= */
+========================= */
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-body {
+body{
 
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
+    "PingFang SC",
     "Microsoft YaHei",
     Arial,
     sans-serif;
 
-  background: #f5f5f5;
+  background:#f5f5f5;
 
-  color: #333;
+  color:#222;
 
+  line-height:1.6;
 }
 
 button,
 input,
-textarea {
-  font-family: inherit;
+textarea,
+select{
+
+  font-family:inherit;
+
+}
+
+button{
+
+  cursor:pointer;
+
+}
+
+.hidden{
+
+  display:none !important;
+
 }
 
 
-/* =========================================
-   登录
-========================================= */
+/* =========================
+   登录页面
+========================= */
 
-.login-page {
+.login-page{
 
-  min-height: 100vh;
+  min-height:100vh;
 
-  display: flex;
+  display:flex;
 
-  align-items: center;
+  align-items:center;
 
-  justify-content: center;
+  justify-content:center;
 
-  padding: 20px;
+  padding:20px;
 
   background:
     linear-gradient(
       135deg,
       #faf9f7,
-      #eee8e1
+      #eee8e0
     );
 
 }
 
-.login-box {
+.login-box{
 
-  width: 100%;
+  width:100%;
 
-  max-width: 420px;
+  max-width:430px;
 
-  background: #fff;
+  background:#fff;
 
-  padding: 40px;
+  border-radius:18px;
 
-  border-radius: 16px;
+  padding:40px;
 
   box-shadow:
-    0 15px 50px rgba(0,0,0,.08);
+    0 20px 60px rgba(0,0,0,.10);
 
 }
 
-.login-logo {
+.login-box h1{
 
-  text-align: center;
+  font-size:28px;
 
-  font-size: 26px;
-
-  font-weight: 700;
-
-  margin-bottom: 8px;
+  margin-bottom:8px;
 
 }
 
-.login-logo span {
+.login-box .subtitle{
 
-  color: #b58b63;
+  color:#999;
 
-}
+  font-size:14px;
 
-.login-title {
-
-  text-align: center;
-
-  color: #888;
-
-  font-size: 14px;
-
-  margin-bottom: 30px;
+  margin-bottom:30px;
 
 }
 
-.form-group {
+.form-group{
 
-  margin-bottom: 18px;
-
-}
-
-.form-group label {
-
-  display: block;
-
-  margin-bottom: 7px;
-
-  font-size: 14px;
-
-  color: #555;
+  margin-bottom:18px;
 
 }
 
-.form-group input {
+.form-group label{
 
-  width: 100%;
+  display:block;
 
-  padding: 13px;
+  font-size:14px;
 
-  border: 1px solid #ddd;
+  font-weight:600;
 
-  border-radius: 8px;
-
-  outline: none;
-
-  font-size: 15px;
+  margin-bottom:7px;
 
 }
 
-.form-group input:focus {
+.form-group input,
+.form-group textarea,
+.form-group select{
 
-  border-color: #b58b63;
+  width:100%;
 
-}
+  border:1px solid #ddd;
 
-.login-button {
+  border-radius:9px;
 
-  width: 100%;
+  padding:12px 14px;
 
-  padding: 14px;
+  outline:none;
 
-  border: 0;
+  background:#fff;
 
-  border-radius: 8px;
-
-  background: #2b2927;
-
-  color: #fff;
-
-  font-size: 15px;
-
-  font-weight: 600;
-
-  cursor: pointer;
+  font-size:14px;
 
 }
 
-.login-button:disabled {
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
 
-  opacity: .6;
+  border-color:#b58b63;
+
+  box-shadow:
+    0 0 0 3px rgba(181,139,99,.10);
 
 }
 
-.login-error {
+.login-button{
 
-  display: none;
+  width:100%;
 
-  margin-top: 15px;
+  border:0;
 
-  padding: 12px;
+  border-radius:9px;
 
-  background: #fff1f1;
+  padding:13px;
 
-  color: #c33;
+  background:#2b2927;
 
-  border-radius: 8px;
+  color:#fff;
 
-  font-size: 13px;
+  font-size:15px;
+
+  font-weight:600;
+
+}
+
+.login-button:hover{
+
+  opacity:.9;
+
+}
+
+.login-error{
+
+  color:#d33;
+
+  background:#fff0f0;
+
+  border-radius:8px;
+
+  padding:10px 12px;
+
+  margin-bottom:15px;
+
+  font-size:13px;
 
 }
 
 
-/* =========================================
-   后台
-========================================= */
+/* =========================
+   后台整体
+========================= */
 
-.admin-page {
+.admin-page{
 
-  display: none;
-
-  min-height: 100vh;
-
-}
-
-.admin-header {
-
-  height: 68px;
-
-  background: #fff;
-
-  border-bottom: 1px solid #eee;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  padding: 0 30px;
-
-  position: sticky;
-
-  top: 0;
-
-  z-index: 20;
-
-}
-
-.admin-brand {
-
-  font-size: 21px;
-
-  font-weight: 700;
-
-}
-
-.admin-brand span {
-
-  color: #b58b63;
-
-}
-
-.header-right {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 15px;
-
-}
-
-.user-email {
-
-  color: #777;
-
-  font-size: 13px;
-
-}
-
-.logout-button {
-
-  padding: 8px 15px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 20px;
-
-  background: #fff;
-
-  cursor: pointer;
-
-}
-
-.logout-button:hover {
-
-  background: #2b2927;
-
-  color: #fff;
-
-}
-
-.admin-container {
-
-  width: 92%;
-
-  max-width: 1200px;
-
-  margin: 35px auto 80px;
-
-}
-
-.page-title {
-
-  margin-bottom: 20px;
-
-}
-
-.page-title h1 {
-
-  font-size: 28px;
-
-  margin-bottom: 5px;
-
-}
-
-.page-title p {
-
-  color: #888;
-
-  font-size: 14px;
+  min-height:100vh;
 
 }
 
 
-/* =========================================
-   添加 / 编辑
-========================================= */
+/* =========================
+   顶部
+========================= */
 
-.editor-box {
+.admin-header{
 
-  background: #fff;
+  height:68px;
 
-  padding: 25px;
+  background:#fff;
 
-  border-radius: 14px;
+  border-bottom:1px solid #eee;
 
-  border: 1px solid #eee;
+  display:flex;
 
-  margin-bottom: 30px;
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 30px;
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
 
 }
 
-.editor-box h2 {
+.admin-brand{
 
-  font-size: 20px;
+  font-size:20px;
 
-  margin-bottom: 20px;
+  font-weight:700;
 
 }
 
-.form-grid {
+.admin-brand span{
 
-  display: grid;
+  color:#b58b63;
+
+}
+
+.header-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.user-email{
+
+  color:#777;
+
+  font-size:13px;
+
+}
+
+.logout-button{
+
+  border:1px solid #ddd;
+
+  background:#fff;
+
+  padding:8px 14px;
+
+  border-radius:20px;
+
+  font-size:13px;
+
+}
+
+.logout-button:hover{
+
+  background:#222;
+
+  color:#fff;
+
+}
+
+
+/* =========================
+   内容
+========================= */
+
+.admin-container{
+
+  width:94%;
+
+  max-width:1400px;
+
+  margin:30px auto 70px;
+
+}
+
+
+/* =========================
+   顶部操作
+========================= */
+
+.page-title{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  margin-bottom:25px;
+
+}
+
+.page-title h1{
+
+  font-size:28px;
+
+}
+
+.add-button{
+
+  border:0;
+
+  border-radius:9px;
+
+  padding:12px 20px;
+
+  background:#2b2927;
+
+  color:#fff;
+
+  font-weight:600;
+
+}
+
+.add-button:hover{
+
+  opacity:.9;
+
+}
+
+
+/* =========================
+   提示
+========================= */
+
+.message{
+
+  padding:12px 15px;
+
+  border-radius:9px;
+
+  margin-bottom:20px;
+
+  font-size:14px;
+
+}
+
+.message.success{
+
+  background:#edf9f1;
+
+  color:#18733b;
+
+}
+
+.message.error{
+
+  background:#fff0f0;
+
+  color:#c22;
+
+}
+
+.message.info{
+
+  background:#eef5ff;
+
+  color:#2864a7;
+
+}
+
+
+/* =========================
+   女士列表
+========================= */
+
+.women-list{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:20px;
+
+}
+
+.woman-admin-card{
+
+  background:#fff;
+
+  border:1px solid #eee;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+}
+
+.card-photo{
+
+  width:100%;
+
+  aspect-ratio:3 / 4;
+
+  background:#eee;
+
+  overflow:hidden;
+
+}
+
+.card-photo img{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+
+}
+
+.card-no-photo{
+
+  width:100%;
+
+  height:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#999;
+
+}
+
+.card-content{
+
+  padding:18px;
+
+}
+
+.card-content h2{
+
+  font-size:19px;
+
+  margin-bottom:5px;
+
+}
+
+.card-meta{
+
+  color:#888;
+
+  font-size:13px;
+
+  margin-bottom:10px;
+
+}
+
+.card-description{
+
+  color:#777;
+
+  font-size:13px;
+
+  display:-webkit-box;
+
+  -webkit-line-clamp:3;
+
+  -webkit-box-orient:vertical;
+
+  overflow:hidden;
+
+}
+
+.card-media-count{
+
+  margin-top:12px;
+
+  font-size:13px;
+
+  color:#888;
+
+}
+
+.card-status{
+
+  display:inline-block;
+
+  padding:4px 9px;
+
+  border-radius:15px;
+
+  font-size:12px;
+
+  margin-top:10px;
+
+}
+
+.status-on{
+
+  background:#e8f7ed;
+
+  color:#168a43;
+
+}
+
+.status-off{
+
+  background:#eee;
+
+  color:#888;
+
+}
+
+.card-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-top:16px;
+
+}
+
+.card-actions button{
+
+  flex:1;
+
+  border:1px solid #ddd;
+
+  background:#fff;
+
+  padding:9px;
+
+  border-radius:8px;
+
+  font-size:13px;
+
+}
+
+.card-actions .edit-btn:hover{
+
+  background:#222;
+
+  color:#fff;
+
+}
+
+.card-actions .delete-btn{
+
+  color:#c33;
+
+}
+
+.card-actions .delete-btn:hover{
+
+  background:#c33;
+
+  color:#fff;
+
+}
+
+
+/* =========================
+   Modal
+========================= */
+
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.55);
+
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:center;
+
+  padding:30px 15px;
+
+  overflow-y:auto;
+
+  z-index:500;
+
+}
+
+.modal-box{
+
+  width:100%;
+
+  max-width:850px;
+
+  background:#fff;
+
+  border-radius:16px;
+
+  padding:30px;
+
+  position:relative;
+
+}
+
+.modal-header{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  margin-bottom:25px;
+
+}
+
+.modal-header h2{
+
+  font-size:23px;
+
+}
+
+.close-modal{
+
+  width:35px;
+
+  height:35px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:#eee;
+
+  font-size:20px;
+
+}
+
+
+/* =========================
+   表单
+========================= */
+
+.form-grid{
+
+  display:grid;
 
   grid-template-columns:
     repeat(2,minmax(0,1fr));
 
-  gap: 16px;
+  gap:0 18px;
 
 }
 
-.form-item {
+.form-full{
 
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 6px;
+  grid-column:1 / -1;
 
 }
 
-.form-item.full {
+textarea{
 
-  grid-column: 1 / -1;
+  min-height:110px;
 
-}
-
-.form-item label {
-
-  font-size: 13px;
-
-  color: #555;
-
-}
-
-.form-item input,
-
-.form-item textarea {
-
-  width: 100%;
-
-  padding: 11px 12px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 7px;
-
-  outline: none;
-
-}
-
-.form-item textarea {
-
-  min-height: 100px;
-
-  resize: vertical;
-
-}
-
-.form-item input:focus,
-
-.form-item textarea:focus {
-
-  border-color: #b58b63;
-
-}
-
-.primary-button {
-
-  margin-top: 20px;
-
-  padding: 12px 25px;
-
-  border: 0;
-
-  border-radius: 8px;
-
-  background: #2b2927;
-
-  color: #fff;
-
-  cursor: pointer;
-
-  font-weight: 600;
-
-}
-
-.secondary-button {
-
-  margin-top: 20px;
-
-  margin-left: 8px;
-
-  padding: 11px 22px;
-
-  border: 1px solid #ddd;
-
-  border-radius: 8px;
-
-  background: #fff;
-
-  cursor: pointer;
-
-}
-
-.hidden {
-
-  display: none !important;
+  resize:vertical;
 
 }
 
 
-/* =========================================
+/* =========================
    上传区域
-========================================= */
+========================= */
 
-.upload-box {
+.upload-box{
 
-  margin-top: 25px;
+  border:2px dashed #ddd;
 
-  padding-top: 25px;
+  border-radius:12px;
 
-  border-top: 1px solid #eee;
+  padding:20px;
 
-}
-
-.upload-title {
-
-  font-size: 17px;
-
-  font-weight: 600;
-
-  margin-bottom: 10px;
+  background:#fafafa;
 
 }
 
-.upload-help {
+.upload-box:hover{
 
-  color: #999;
-
-  font-size: 13px;
-
-  margin-bottom: 12px;
+  border-color:#b58b63;
 
 }
 
-.upload-input {
+.upload-box label{
 
-  width: 100%;
+  display:block;
 
-  padding: 12px;
+  font-weight:600;
 
-  border: 1px dashed #ccc;
-
-  border-radius: 8px;
-
-  background: #fafafa;
-
-  cursor: pointer;
+  margin-bottom:10px;
 
 }
 
-.upload-status {
+.file-input{
 
-  margin-top: 10px;
+  width:100%;
 
-  font-size: 13px;
+  font-size:14px;
 
-  color: #777;
+}
+
+.upload-help{
+
+  color:#999;
+
+  font-size:12px;
+
+  margin-top:8px;
 
 }
 
 
-/* =========================================
-   媒体列表
-========================================= */
+/* =========================
+   媒体预览
+========================= */
 
-.media-section {
+.media-section{
 
-  margin-top: 20px;
+  margin-top:25px;
 
 }
 
-.media-grid {
+.media-section h3{
 
-  display: grid;
+  font-size:16px;
+
+  margin-bottom:12px;
+
+}
+
+.media-grid{
+
+  display:grid;
 
   grid-template-columns:
-    repeat(5,minmax(0,1fr));
+    repeat(4,minmax(0,1fr));
 
-  gap: 12px;
-
-  margin-top: 15px;
+  gap:10px;
 
 }
 
-.media-item {
+.media-item{
 
-  position: relative;
+  position:relative;
 
-  background: #f2f2f2;
+  border:1px solid #eee;
 
-  border-radius: 8px;
+  border-radius:9px;
 
-  overflow: hidden;
+  overflow:hidden;
 
-  aspect-ratio: 3 / 4;
-
-}
-
-.media-item img {
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-
-  display: block;
+  background:#f5f5f5;
 
 }
 
-.media-item video {
+.media-item img{
 
-  width: 100%;
+  width:100%;
 
-  height: 100%;
+  aspect-ratio:1 / 1;
 
-  object-fit: cover;
+  object-fit:cover;
 
-  display: block;
-
-}
-
-.media-delete {
-
-  position: absolute;
-
-  top: 6px;
-
-  right: 6px;
-
-  width: 28px;
-
-  height: 28px;
-
-  border: 0;
-
-  border-radius: 50%;
-
-  background: rgba(0,0,0,.7);
-
-  color: #fff;
-
-  cursor: pointer;
-
-  font-size: 16px;
+  display:block;
 
 }
 
-.media-name {
+.media-item video{
 
-  position: absolute;
+  width:100%;
 
-  bottom: 0;
+  aspect-ratio:1 / 1;
 
-  left: 0;
+  object-fit:cover;
 
-  right: 0;
+  display:block;
 
-  padding: 6px;
+  background:#000;
 
-  background: rgba(0,0,0,.65);
+}
 
-  color: #fff;
+.remove-media{
 
-  font-size: 10px;
+  position:absolute;
 
-  overflow: hidden;
+  top:5px;
 
-  white-space: nowrap;
+  right:5px;
 
-  text-overflow: ellipsis;
+  width:27px;
+
+  height:27px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(0,0,0,.7);
+
+  color:#fff;
+
+  font-size:16px;
+
+}
+
+.empty-media{
+
+  color:#999;
+
+  font-size:13px;
 
 }
 
 
-/* =========================================
-   女士列表
-========================================= */
+/* =========================
+   底部
+========================= */
 
-.women-list {
+.modal-footer{
 
-  display: grid;
+  display:flex;
 
-  gap: 15px;
+  justify-content:flex-end;
 
-}
+  gap:10px;
 
-.woman-admin-card {
+  margin-top:30px;
 
-  background: #fff;
+  padding-top:20px;
 
-  border: 1px solid #eee;
-
-  border-radius: 12px;
-
-  padding: 18px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 20px;
+  border-top:1px solid #eee;
 
 }
 
-.woman-info {
+.cancel-button{
 
-  display: flex;
+  border:1px solid #ddd;
 
-  align-items: center;
+  background:#fff;
 
-  gap: 15px;
+  padding:11px 20px;
 
-}
-
-.woman-photo {
-
-  width: 70px;
-
-  height: 90px;
-
-  border-radius: 8px;
-
-  overflow: hidden;
-
-  background: #eee;
-
-  flex-shrink: 0;
+  border-radius:8px;
 
 }
 
-.woman-photo img {
+.save-button{
 
-  width: 100%;
+  border:0;
 
-  height: 100%;
+  background:#2b2927;
 
-  object-fit: cover;
+  color:#fff;
 
-}
+  padding:11px 25px;
 
-.woman-text h3 {
+  border-radius:8px;
 
-  margin-bottom: 5px;
-
-}
-
-.woman-text p {
-
-  color: #888;
-
-  font-size: 13px;
+  font-weight:600;
 
 }
 
-.status {
+.save-button:disabled{
 
-  display: inline-block;
+  opacity:.5;
 
-  padding: 3px 8px;
-
-  border-radius: 10px;
-
-  font-size: 11px;
-
-  margin-top: 5px;
-
-}
-
-.status-on {
-
-  background: #e8f7ed;
-
-  color: #168a43;
-
-}
-
-.status-off {
-
-  background: #eee;
-
-  color: #777;
-
-}
-
-.card-actions {
-
-  display: flex;
-
-  gap: 8px;
-
-  flex-wrap: wrap;
-
-}
-
-.action-button {
-
-  padding: 8px 14px;
-
-  border-radius: 7px;
-
-  border: 1px solid #ddd;
-
-  background: #fff;
-
-  cursor: pointer;
-
-}
-
-.delete-button {
-
-  color: #d33;
-
-}
-
-.publish-button {
-
-  color: #168a43;
+  cursor:not-allowed;
 
 }
 
 
-/* =========================================
-   提示
-========================================= */
+/* =========================
+   Loading
+========================= */
 
-.notice {
+.loading-page{
 
-  display: none;
+  text-align:center;
 
-  margin-bottom: 20px;
+  padding:80px 20px;
 
-  padding: 12px 15px;
-
-  border-radius: 8px;
-
-  font-size: 14px;
-
-}
-
-.notice-success {
-
-  background: #e8f7ed;
-
-  color: #168a43;
-
-}
-
-.notice-error {
-
-  background: #fff1f1;
-
-  color: #c33;
+  color:#999;
 
 }
 
 
-/* =========================================
+/* =========================
    手机
-========================================= */
+========================= */
 
-@media(max-width:700px) {
+@media(max-width:900px){
 
-  .admin-header {
+  .women-list{
 
-    padding: 0 15px;
-
-  }
-
-  .user-email {
-
-    display: none;
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
 
   }
 
-  .admin-container {
+}
 
-    width: calc(100% - 30px);
 
-    margin-top: 25px;
+@media(max-width:650px){
 
-  }
+  .admin-header{
 
-  .form-grid {
-
-    grid-template-columns: 1fr;
+    padding:0 15px;
 
   }
 
-  .form-item.full {
+  .user-email{
 
-    grid-column: auto;
+    display:none;
 
   }
 
-  .media-grid {
+  .admin-container{
+
+    width:calc(100% - 30px);
+
+    margin-top:20px;
+
+  }
+
+  .page-title{
+
+    align-items:flex-start;
+
+  }
+
+  .page-title h1{
+
+    font-size:23px;
+
+  }
+
+  .women-list{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .modal{
+
+    padding:10px;
+
+  }
+
+  .modal-box{
+
+    padding:20px;
+
+    border-radius:12px;
+
+  }
+
+  .form-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .form-full{
+
+    grid-column:auto;
+
+  }
+
+  .media-grid{
 
     grid-template-columns:
       repeat(3,minmax(0,1fr));
-
-  }
-
-  .woman-admin-card {
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-  }
-
-  .card-actions {
-
-    width: 100%;
-
-  }
-
-  .action-button {
-
-    flex: 1;
 
   }
 
@@ -903,24 +1048,30 @@ textarea {
 <body>
 
 
-<!-- =========================================
-     登录页面
-========================================= -->
+<!-- ==================================================
+     登录
+================================================== -->
 
-<div
+<section
   id="loginPage"
   class="login-page"
 >
 
   <div class="login-box">
 
-    <div class="login-logo">
-      缘分<span>·</span>相遇
-    </div>
+    <h1>
+      缘分 · 相遇
+    </h1>
 
-    <div class="login-title">
+    <p class="subtitle">
       管理后台
-    </div>
+    </p>
+
+
+    <div
+      id="loginError"
+      class="login-error hidden"
+    ></div>
 
 
     <form id="loginForm">
@@ -958,40 +1109,44 @@ textarea {
 
 
       <button
-        id="loginButton"
         class="login-button"
         type="submit"
       >
         登录后台
       </button>
 
-
-      <div
-        id="loginError"
-        class="login-error"
-      ></div>
-
     </form>
 
   </div>
 
-</div>
+</section>
 
 
-<!-- =========================================
+<!-- ==================================================
      后台
-========================================= -->
+================================================== -->
 
-<div
+<section
   id="adminPage"
-  class="admin-page"
+  class="admin-page hidden"
 >
 
 
 <header class="admin-header">
 
   <div class="admin-brand">
+
     缘分<span>·</span>相遇
+
+    <span style="
+      color:#999;
+      font-weight:400;
+      font-size:13px;
+      margin-left:8px;
+    ">
+      管理后台
+    </span>
+
   </div>
 
 
@@ -1005,6 +1160,7 @@ textarea {
     <button
       id="logoutButton"
       class="logout-button"
+      type="button"
     >
       退出登录
     </button>
@@ -1017,265 +1173,27 @@ textarea {
 <main class="admin-container">
 
 
+<div class="page-title">
+
+  <h1>
+    女士资料
+  </h1>
+
+  <button
+    id="addWomanButton"
+    class="add-button"
+    type="button"
+  >
+    ＋ 添加女士
+  </button>
+
+</div>
+
+
 <div
-  id="notice"
-  class="notice"
+  id="message"
+  class="message hidden"
 ></div>
-
-
-<div class="page-title">
-
-  <h1>
-    女士资料管理
-  </h1>
-
-  <p>
-    在这里添加、编辑女士资料以及上传照片和视频。
-  </p>
-
-</div>
-
-
-<!-- =========================================
-     编辑器
-========================================= -->
-
-<section class="editor-box">
-
-  <h2 id="editorTitle">
-    添加女士
-  </h2>
-
-
-  <form id="womanForm">
-
-
-    <div class="form-grid">
-
-
-      <div class="form-item">
-
-        <label>
-          姓名
-        </label>
-
-        <input
-          id="name"
-          type="text"
-          required
-        >
-
-      </div>
-
-
-      <div class="form-item">
-
-        <label>
-          年龄
-        </label>
-
-        <input
-          id="age"
-          type="number"
-          min="18"
-          max="100"
-          required
-        >
-
-      </div>
-
-
-      <div class="form-item">
-
-        <label>
-          城市
-        </label>
-
-        <input
-          id="city"
-          type="text"
-        >
-
-      </div>
-
-
-      <div class="form-item">
-
-        <label>
-          职业
-        </label>
-
-        <input
-          id="occupation"
-          type="text"
-        >
-
-      </div>
-
-
-      <div class="form-item">
-
-        <label>
-          WhatsApp
-        </label>
-
-        <input
-          id="whatsapp"
-          type="text"
-          placeholder="+52..."
-        >
-
-      </div>
-
-
-      <div class="form-item">
-
-        <label>
-          Telegram
-        </label>
-
-        <input
-          id="telegram"
-          type="text"
-          placeholder="@username"
-        >
-
-      </div>
-
-
-      <div class="form-item full">
-
-        <label>
-          简介
-        </label>
-
-        <textarea
-          id="description"
-          placeholder="填写女士简介"
-        ></textarea>
-
-      </div>
-
-
-    </div>
-
-
-    <button
-      id="saveButton"
-      class="primary-button"
-      type="submit"
-    >
-      添加女士
-    </button>
-
-
-    <button
-      id="cancelEditButton"
-      class="secondary-button hidden"
-      type="button"
-    >
-      取消编辑
-    </button>
-
-
-  </form>
-
-
-<!-- =========================================
-     媒体管理
-========================================= -->
-
-<div
-  id="mediaManager"
-  class="hidden"
->
-
-
-<div class="upload-box">
-
-  <div class="upload-title">
-    📷 上传照片
-  </div>
-
-  <div class="upload-help">
-    可以一次选择多张照片。支持 JPG、PNG、WEBP 等常见图片格式。
-  </div>
-
-  <input
-    id="photoInput"
-    class="upload-input"
-    type="file"
-    accept="image/*"
-    multiple
-  >
-
-  <div
-    id="photoUploadStatus"
-    class="upload-status"
-  ></div>
-
-
-  <div
-    id="photoGrid"
-    class="media-grid"
-  ></div>
-
-</div>
-
-
-<div class="upload-box">
-
-  <div class="upload-title">
-    🎬 上传视频
-  </div>
-
-  <div class="upload-help">
-    可以一次选择多个视频。建议上传 MP4 格式，单个视频不要过大。
-  </div>
-
-  <input
-    id="videoInput"
-    class="upload-input"
-    type="file"
-    accept="video/*"
-    multiple
-  >
-
-  <div
-    id="videoUploadStatus"
-    class="upload-status"
-  ></div>
-
-
-  <div
-    id="videoGrid"
-    class="media-grid"
-  ></div>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-<!-- =========================================
-     女士列表
-========================================= -->
-
-<div class="page-title">
-
-  <h1>
-    已有女士
-  </h1>
-
-  <p>
-    点击「编辑」即可修改资料和管理照片、视频。
-  </p>
-
-</div>
 
 
 <div
@@ -1283,273 +1201,780 @@ textarea {
   class="women-list"
 >
 
-  正在加载……
+  <div class="loading-page">
+    正在加载资料……
+  </div>
 
 </div>
 
 
 </main>
 
+</section>
+
+
+<!-- ==================================================
+     编辑窗口
+================================================== -->
+
+<div
+  id="womanModal"
+  class="modal hidden"
+>
+
+  <div class="modal-box">
+
+
+    <div class="modal-header">
+
+      <h2 id="modalTitle">
+        添加女士
+      </h2>
+
+      <button
+        id="closeModalButton"
+        class="close-modal"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <form id="womanForm">
+
+
+      <input
+        id="womanId"
+        type="hidden"
+      >
+
+
+      <div class="form-grid">
+
+
+        <!-- 姓名 -->
+
+        <div class="form-group">
+
+          <label>
+            姓名 *
+          </label>
+
+          <input
+            id="womanName"
+            type="text"
+            required
+            placeholder="例如：Sofia"
+          >
+
+        </div>
+
+
+        <!-- 年龄 -->
+
+        <div class="form-group">
+
+          <label>
+            年龄 *
+          </label>
+
+          <input
+            id="womanAge"
+            type="number"
+            min="18"
+            max="100"
+            required
+            placeholder="例如：28"
+          >
+
+        </div>
+
+
+        <!-- 城市 -->
+
+        <div class="form-group">
+
+          <label>
+            城市
+          </label>
+
+          <input
+            id="womanCity"
+            type="text"
+            placeholder="例如：Mexico City"
+          >
+
+        </div>
+
+
+        <!-- 职业 -->
+
+        <div class="form-group">
+
+          <label>
+            职业
+          </label>
+
+          <input
+            id="womanOccupation"
+            type="text"
+            placeholder="例如：Designer"
+          >
+
+        </div>
+
+
+        <!-- WhatsApp -->
+
+        <div class="form-group">
+
+          <label>
+            WhatsApp
+          </label>
+
+          <input
+            id="womanWhatsapp"
+            type="text"
+            placeholder="例如：5215512345678"
+          >
+
+        </div>
+
+
+        <!-- Telegram -->
+
+        <div class="form-group">
+
+          <label>
+            Telegram
+          </label>
+
+          <input
+            id="womanTelegram"
+            type="text"
+            placeholder="例如：@username"
+          >
+
+        </div>
+
+
+        <!-- 描述 -->
+
+        <div class="form-group form-full">
+
+          <label>
+            个人介绍
+          </label>
+
+          <textarea
+            id="womanDescription"
+            placeholder="填写女士的个人介绍……"
+          ></textarea>
+
+        </div>
+
+
+        <!-- 是否发布 -->
+
+        <div class="form-group form-full">
+
+          <label>
+            网站显示
+          </label>
+
+          <select id="womanPublished">
+
+            <option value="true">
+              发布到网站
+            </option>
+
+            <option value="false">
+              暂不发布
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- ======================
+             照片上传
+        ======================= -->
+
+        <div class="form-group form-full">
+
+          <div class="upload-box">
+
+            <label>
+              上传照片
+            </label>
+
+            <input
+              id="photoInput"
+              class="file-input"
+              type="file"
+              accept="image/*"
+              multiple
+            >
+
+            <p class="upload-help">
+
+              可以一次选择多张照片。
+              JPG、PNG、WEBP 等图片均可。
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- ======================
+             视频上传
+        ======================= -->
+
+        <div class="form-group form-full">
+
+          <div class="upload-box">
+
+            <label>
+              上传短视频
+            </label>
+
+            <input
+              id="videoInput"
+              class="file-input"
+              type="file"
+              accept="video/*"
+              multiple
+            >
+
+            <p class="upload-help">
+
+              可以一次选择多个视频。
+              建议使用 MP4 格式。
+
+            </p>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- ======================
+           已有照片
+      ======================= -->
+
+      <div class="media-section">
+
+        <h3>
+          已有照片
+        </h3>
+
+        <div
+          id="existingPhotos"
+          class="media-grid"
+        ></div>
+
+      </div>
+
+
+      <!-- ======================
+           已有视频
+      ======================= -->
+
+      <div class="media-section">
+
+        <h3>
+          已有视频
+        </h3>
+
+        <div
+          id="existingVideos"
+          class="media-grid"
+        ></div>
+
+      </div>
+
+
+      <!-- ======================
+           底部
+      ======================= -->
+
+      <div class="modal-footer">
+
+        <button
+          id="cancelButton"
+          class="cancel-button"
+          type="button"
+        >
+          取消
+        </button>
+
+        <button
+          id="saveButton"
+          class="save-button"
+          type="submit"
+        >
+          保存资料
+        </button>
+
+      </div>
+
+
+    </form>
+
+  </div>
+
 </div>
 
 
 <script>
 
-/* =========================================
-   Supabase
-========================================= */
+/* ==================================================
+   Supabase 配置
+================================================== */
 
 const SUPABASE_URL =
 "https://yutraouosffjteivvlfx.supabase.co";
+
 
 const SUPABASE_KEY =
 "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
 
 const supabaseClient =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-/* =========================================
+/* ==================================================
    全局变量
-========================================= */
+================================================== */
 
-let editingId = null;
+let currentUser = null;
 
-let currentWoman = null;
+let women = [];
+
+let editingWoman = null;
+
+let currentPhotos = [];
+
+let currentVideos = [];
+
+let pendingPhotos = [];
+
+let pendingVideos = [];
 
 
-/* =========================================
-   元素
-========================================= */
+/* ==================================================
+   DOM
+================================================== */
 
 const loginPage =
-document.getElementById("loginPage");
+  document.getElementById(
+    "loginPage"
+  );
 
 const adminPage =
-document.getElementById("adminPage");
+  document.getElementById(
+    "adminPage"
+  );
 
 const loginForm =
-document.getElementById("loginForm");
+  document.getElementById(
+    "loginForm"
+  );
 
 const loginError =
-document.getElementById("loginError");
-
-const loginButton =
-document.getElementById("loginButton");
-
-const logoutButton =
-document.getElementById("logoutButton");
-
-const userEmail =
-document.getElementById("userEmail");
+  document.getElementById(
+    "loginError"
+  );
 
 const womenList =
-document.getElementById("womenList");
+  document.getElementById(
+    "womenList"
+  );
+
+const messageBox =
+  document.getElementById(
+    "message"
+  );
+
+const modal =
+  document.getElementById(
+    "womanModal"
+  );
 
 const womanForm =
-document.getElementById("womanForm");
-
-const saveButton =
-document.getElementById("saveButton");
-
-const cancelEditButton =
-document.getElementById("cancelEditButton");
-
-const editorTitle =
-document.getElementById("editorTitle");
-
-const mediaManager =
-document.getElementById("mediaManager");
-
-const photoInput =
-document.getElementById("photoInput");
-
-const videoInput =
-document.getElementById("videoInput");
-
-const photoGrid =
-document.getElementById("photoGrid");
-
-const videoGrid =
-document.getElementById("videoGrid");
-
-const photoUploadStatus =
-document.getElementById("photoUploadStatus");
-
-const videoUploadStatus =
-document.getElementById("videoUploadStatus");
-
-const notice =
-document.getElementById("notice");
+  document.getElementById(
+    "womanForm"
+  );
 
 
-/* =========================================
-   HTML 安全
-========================================= */
+/* ==================================================
+   HTML 安全处理
+================================================== */
 
-function escapeHtml(value) {
+function escapeHtml(value){
 
-  return String(value ?? "")
+  return String(
+    value ?? ""
+  )
 
-    .replace(/&/g,"&amp;")
+  .replace(
+    /&/g,
+    "&amp;"
+  )
 
-    .replace(/</g,"&lt;")
+  .replace(
+    /</g,
+    "&lt;"
+  )
 
-    .replace(/>/g,"&gt;")
+  .replace(
+    />/g,
+    "&gt;"
+  )
 
-    .replace(/"/g,"&quot;")
+  .replace(
+    /"/g,
+    "&quot;"
+  )
 
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================================
-   提示
-========================================= */
-
-function showNotice(
-  message,
-  type = "success"
-) {
-
-  notice.textContent =
-    message;
-
-  notice.className =
-    "notice " +
-    (
-      type === "error"
-      ? "notice-error"
-      : "notice-success"
-    );
-
-  notice.style.display =
-    "block";
-
-
-  setTimeout(
-    function() {
-
-      notice.style.display =
-        "none";
-
-    },
-    3500
+  .replace(
+    /'/g,
+    "&#039;"
   );
 
 }
 
 
-/* =========================================
+/* ==================================================
    Storage URL
-========================================= */
+================================================== */
 
-function getStorageUrl(
-  bucket,
-  path
-) {
+function getStorageUrl(path){
 
-  if (!path) {
+  if(!path){
 
     return "";
 
   }
 
 
-  if (
-    path.startsWith("http://") ||
-    path.startsWith("https://")
-  ) {
+  const value =
+    String(path).trim();
 
-    return path;
+
+  if(
+    value.startsWith(
+      "http://"
+    ) ||
+
+    value.startsWith(
+      "https://"
+    )
+  ){
+
+    return value;
 
   }
 
 
   return (
+
     SUPABASE_URL +
-    "/storage/v1/object/public/" +
-    bucket +
-    "/" +
-    path
+
+    "/storage/v1/object/public/women-photos/" +
+
+    value.replace(
+      /^\/+/,
+      ""
+    )
+
   );
 
 }
 
 
-/* =========================================
-   登录状态
-========================================= */
+/* ==================================================
+   媒体数组转换
+================================================== */
 
-async function checkLogin() {
+function normalizeArray(value){
+
+  if(!value){
+
+    return [];
+
+  }
+
+
+  if(Array.isArray(value)){
+
+    return value
+      .flat(Infinity)
+      .filter(Boolean)
+      .map(
+        item =>
+          String(item).trim()
+      )
+      .filter(Boolean);
+
+  }
+
+
+  if(typeof value === "string"){
+
+    const text =
+      value.trim();
+
+
+    if(!text){
+
+      return [];
+
+    }
+
+
+    try{
+
+      const parsed =
+        JSON.parse(text);
+
+
+      if(Array.isArray(parsed)){
+
+        return parsed
+          .flat(Infinity)
+          .filter(Boolean)
+          .map(
+            item =>
+              String(item).trim()
+          )
+          .filter(Boolean);
+
+      }
+
+    }catch(error){}
+
+
+    if(
+      text.includes(",")
+    ){
+
+      return text
+        .split(",")
+        .map(
+          item =>
+            item.trim()
+        )
+        .filter(Boolean);
+
+    }
+
+
+    return [text];
+
+  }
+
+
+  return [];
+
+}
+
+
+/* ==================================================
+   显示消息
+================================================== */
+
+function showMessage(
+  text,
+  type="success"
+){
+
+  messageBox.textContent =
+    text;
+
+  messageBox.className =
+    "message " +
+    type;
+
+  setTimeout(
+    () => {
+
+      messageBox.className =
+        "message hidden";
+
+    },
+    5000
+  );
+
+}
+
+
+/* ==================================================
+   登录
+================================================== */
+
+loginForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+
+    loginError.classList.add(
+      "hidden"
+    );
+
+
+    const email =
+      document
+        .getElementById(
+          "loginEmail"
+        )
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById(
+          "loginPassword"
+        )
+        .value;
+
+
+    try{
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth.signInWithPassword({
+
+          email,
+          password
+
+        });
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      currentUser =
+        data.user;
+
+
+      showAdmin();
+
+    }catch(error){
+
+      console.error(
+        error
+      );
+
+
+      loginError.textContent =
+        "登录失败：" +
+        error.message;
+
+
+      loginError.classList.remove(
+        "hidden"
+      );
+
+    }
+
+  }
+);
+
+
+/* ==================================================
+   检查登录状态
+================================================== */
+
+async function checkSession(){
 
   const {
-    data,
-    error
+    data
   } =
-  await supabaseClient
-    .auth
-    .getSession();
+    await supabaseClient.auth.getSession();
 
 
-  if (
-    error ||
-    !data.session
-  ) {
+  if(
+    data &&
+    data.session &&
+    data.session.user
+  ){
+
+    currentUser =
+      data.session.user;
+
+
+    showAdmin();
+
+  }else{
 
     showLogin();
 
-    return;
-
   }
 
+}
 
-  showAdmin(
-    data.session.user
+
+/* ==================================================
+   显示登录
+================================================== */
+
+function showLogin(){
+
+  loginPage.classList.remove(
+    "hidden"
+  );
+
+  adminPage.classList.add(
+    "hidden"
   );
 
 }
 
 
-/* =========================================
-   显示登录
-========================================= */
-
-function showLogin() {
-
-  loginPage.style.display =
-    "flex";
-
-  adminPage.style.display =
-    "none";
-
-}
-
-
-/* =========================================
+/* ==================================================
    显示后台
-========================================= */
+================================================== */
 
-function showAdmin(user) {
+function showAdmin(){
 
-  loginPage.style.display =
-    "none";
+  loginPage.classList.add(
+    "hidden"
+  );
 
-  adminPage.style.display =
-    "block";
+  adminPage.classList.remove(
+    "hidden"
+  );
 
 
-  if (user) {
-
-    userEmail.textContent =
-      user.email || "";
-
-  }
+  document
+    .getElementById(
+      "userEmail"
+    )
+    .textContent =
+    currentUser?.email ||
+    "";
 
 
   loadWomen();
@@ -1557,348 +1982,129 @@ function showAdmin(user) {
 }
 
 
-/* =========================================
-   登录
-========================================= */
+/* ==================================================
+   退出
+================================================== */
 
-loginForm.addEventListener(
-  "submit",
-  async function(event) {
+document
+  .getElementById(
+    "logoutButton"
+  )
+  .addEventListener(
+    "click",
+    async function(){
 
-    event.preventDefault();
-
-
-    loginError.style.display =
-      "none";
-
-    loginButton.disabled =
-      true;
-
-    loginButton.textContent =
-      "登录中……";
+      await supabaseClient
+        .auth
+        .signOut();
 
 
-    const email =
-      document
-        .getElementById("loginEmail")
-        .value
-        .trim();
+      currentUser =
+        null;
 
 
-    const password =
-      document
-        .getElementById("loginPassword")
-        .value;
+      showLogin();
 
+    }
+  );
+
+
+/* ==================================================
+   加载女士
+================================================== */
+
+async function loadWomen(){
+
+  womenList.innerHTML = `
+
+    <div class="loading-page">
+      正在加载资料……
+    </div>
+
+  `;
+
+
+  try{
 
     const {
       data,
       error
     } =
-    await supabaseClient
-      .auth
-      .signInWithPassword({
+      await supabaseClient
 
-        email:
-          email,
+        .from(
+          "women"
+        )
 
-        password:
-          password
+        .select(
+          "*"
+        )
 
-      });
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        );
 
 
-    if (error) {
+    if(error){
 
-      loginError.textContent =
-        "登录失败：" +
-        error.message;
-
-      loginError.style.display =
-        "block";
-
-      loginButton.disabled =
-        false;
-
-      loginButton.textContent =
-        "登录后台";
-
-      return;
+      throw error;
 
     }
 
 
-    showAdmin(
-      data.user
+    women =
+      data || [];
+
+
+    renderWomenList();
+
+  }catch(error){
+
+    console.error(
+      error
     );
 
-
-    loginButton.disabled =
-      false;
-
-    loginButton.textContent =
-      "登录后台";
-
-  }
-);
-
-
-/* =========================================
-   退出
-========================================= */
-
-logoutButton.addEventListener(
-  "click",
-  async function() {
-
-    await supabaseClient
-      .auth
-      .signOut();
-
-
-    editingId = null;
-
-    currentWoman = null;
-
-    resetEditor();
-
-    showLogin();
-
-  }
-);
-
-
-/* =========================================
-   新增 / 修改
-========================================= */
-
-womanForm.addEventListener(
-  "submit",
-  async function(event) {
-
-    event.preventDefault();
-
-
-    const payload = {
-
-      name:
-        document
-          .getElementById("name")
-          .value
-          .trim(),
-
-      age:
-        Number(
-          document
-            .getElementById("age")
-            .value
-        ),
-
-      city:
-        document
-          .getElementById("city")
-          .value
-          .trim(),
-
-      occupation:
-        document
-          .getElementById("occupation")
-          .value
-          .trim(),
-
-      description:
-        document
-          .getElementById("description")
-          .value
-          .trim(),
-
-      whatsapp:
-        document
-          .getElementById("whatsapp")
-          .value
-          .trim(),
-
-      telegram:
-        document
-          .getElementById("telegram")
-          .value
-          .trim(),
-
-      is_published:
-        currentWoman
-        ? currentWoman.is_published
-        : true
-
-    };
-
-
-    saveButton.disabled =
-      true;
-
-    saveButton.textContent =
-      "保存中……";
-
-
-    let result;
-
-
-    if (editingId) {
-
-      result =
-        await supabaseClient
-          .from("women")
-          .update(payload)
-          .eq("id", editingId);
-
-    } else {
-
-      result =
-        await supabaseClient
-          .from("women")
-          .insert(payload)
-          .select()
-          .single();
-
-    }
-
-
-    if (result.error) {
-
-      showNotice(
-        "保存失败：" +
-        result.error.message,
-        "error"
-      );
-
-      saveButton.disabled =
-        false;
-
-      saveButton.textContent =
-        editingId
-        ? "保存修改"
-        : "添加女士";
-
-      return;
-
-    }
-
-
-    showNotice(
-      editingId
-      ? "女士资料修改成功"
-      : "女士资料添加成功"
-    );
-
-
-    if (!editingId) {
-
-      if (result.data) {
-
-        editingId =
-          result.data.id;
-
-        currentWoman =
-          result.data;
-
-        mediaManager
-          .classList
-          .remove("hidden");
-
-        editorTitle.textContent =
-          "编辑女士";
-
-        saveButton.textContent =
-          "保存修改";
-
-        cancelEditButton
-          .classList
-          .remove("hidden");
-
-      }
-
-    } else {
-
-      await loadCurrentWoman();
-
-    }
-
-
-    saveButton.disabled =
-      false;
-
-    loadWomen();
-
-  }
-);
-
-
-/* =========================================
-   加载所有女士
-========================================= */
-
-async function loadWomen() {
-
-  womenList.innerHTML = `
-    <div style="
-      padding:30px;
-      background:#fff;
-      border-radius:12px;
-      color:#777;
-    ">
-      正在读取女士资料……
-    </div>
-  `;
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("women")
-    .select("*")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
-
-
-  if (error) {
 
     womenList.innerHTML = `
-      <div style="
-        padding:25px;
-        background:#fff1f1;
-        color:#c33;
-        border-radius:12px;
-      ">
-        读取失败：
-        ${escapeHtml(error.message)}
+
+      <div class="loading-page">
+
+        加载失败：
+
+        ${escapeHtml(
+          error.message
+        )}
+
       </div>
+
     `;
 
-    return;
-
   }
 
+}
 
-  if (
-    !data ||
-    data.length === 0
-  ) {
+
+/* ==================================================
+   渲染女士列表
+================================================== */
+
+function renderWomenList(){
+
+  if(
+    women.length === 0
+  ){
 
     womenList.innerHTML = `
-      <div style="
-        padding:40px;
-        background:#fff;
-        border-radius:12px;
-        text-align:center;
-        color:#888;
-      ">
-        目前没有女士资料。
+
+      <div class="loading-page">
+
+        暂时没有女士资料。
+
       </div>
+
     `;
 
     return;
@@ -1909,199 +2115,201 @@ async function loadWomen() {
   womenList.innerHTML = "";
 
 
-  data.forEach(
-    function(woman) {
+  women.forEach(
+    woman => {
 
       const card =
-        document.createElement("div");
+        document.createElement(
+          "article"
+        );
 
 
       card.className =
         "woman-admin-card";
 
 
-      let image =
-        woman.image_url || "";
+      const photos =
+        normalizeArray(
+          woman.photos
+        );
 
 
-      if (
-        !image &&
-        Array.isArray(woman.photos) &&
-        woman.photos.length > 0
-      ) {
+      const videos =
+        normalizeArray(
+          woman.videos
+        );
 
-        image =
+
+      let cover =
+        "";
+
+
+      if(
+        woman.image_url
+      ){
+
+        cover =
           getStorageUrl(
-            "women-photos",
-            woman.photos[0]
+            woman.image_url
+          );
+
+      }else if(
+        photos.length > 0
+      ){
+
+        cover =
+          getStorageUrl(
+            photos[0]
           );
 
       }
 
 
-      if (!image) {
-
-        image =
-          "data:image/svg+xml;charset=UTF-8," +
-          encodeURIComponent(`
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="300"
-              height="400"
-            >
-              <rect
-                width="300"
-                height="400"
-                fill="#eee"
-              />
-
-              <text
-                x="150"
-                y="200"
-                text-anchor="middle"
-                fill="#999"
-              >
-                暂无照片
-              </text>
-            </svg>
-          `);
-
-      }
-
-
-      const photoCount =
-        Array.isArray(woman.photos)
-        ? woman.photos.length
-        : 0;
-
-
-      const videoCount =
-        Array.isArray(woman.videos)
-        ? woman.videos.length
-        : 0;
-
-
       card.innerHTML = `
 
-        <div class="woman-info">
+        <div class="card-photo">
 
-          <div class="woman-photo">
+          ${
+            cover
 
-            <img
-              src="${escapeHtml(image)}"
-              alt=""
-            >
+            ?
 
-          </div>
+            `
 
+              <img
+                src="${escapeHtml(
+                  cover
+                )}"
+                alt="${escapeHtml(
+                  woman.name
+                )}"
+              >
 
-          <div class="woman-text">
+            `
 
-            <h3>
+            :
 
-              ${escapeHtml(
-                woman.name ||
-                "未填写姓名"
-              )}
+            `
 
-              ${
-                woman.age
-                ? " · " +
-                  escapeHtml(woman.age) +
-                  "岁"
-                : ""
-              }
+              <div class="card-no-photo">
+                暂无照片
+              </div>
 
-            </h3>
-
-
-            <p>
-
-              ${escapeHtml(
-                woman.city || ""
-              )}
-
-              ${
-                woman.occupation
-                ? " · " +
-                  escapeHtml(
-                    woman.occupation
-                  )
-                : ""
-              }
-
-            </p>
-
-
-            <p style="
-              margin-top:5px;
-              color:#999;
-              font-size:12px;
-            ">
-
-              📷 ${photoCount} 张照片
-
-              &nbsp;&nbsp;
-
-              🎬 ${videoCount} 个视频
-
-            </p>
-
-
-            <span
-              class="
-                status
-                ${
-                  woman.is_published
-                  ? "status-on"
-                  : "status-off"
-                }
-              "
-            >
-
-              ${
-                woman.is_published
-                ? "已发布"
-                : "未发布"
-              }
-
-            </span>
-
-          </div>
+            `
+          }
 
         </div>
 
 
-        <div class="card-actions">
+        <div class="card-content">
 
-          <button
-            class="action-button"
-            data-edit="${escapeHtml(woman.id)}"
-          >
-            编辑
-          </button>
+          <h2>
+
+            ${escapeHtml(
+              woman.name ||
+              "未填写姓名"
+            )}
+
+            ${
+              woman.age
+              ?
+              " · " +
+              escapeHtml(
+                woman.age
+              ) +
+              "岁"
+              :
+              ""
+            }
+
+          </h2>
 
 
-          <button
-            class="action-button publish-button"
-            data-publish="${escapeHtml(woman.id)}"
+          <div class="card-meta">
+
+            ${
+              woman.city
+              ?
+              escapeHtml(
+                woman.city
+              )
+              :
+              "未填写城市"
+            }
+
+            ${
+              woman.occupation
+              ?
+              " · " +
+              escapeHtml(
+                woman.occupation
+              )
+              :
+              ""
+            }
+
+          </div>
+
+
+          <div class="card-description">
+
+            ${escapeHtml(
+              woman.description ||
+              "暂无个人介绍"
+            )}
+
+          </div>
+
+
+          <div class="card-media-count">
+
+            📷 ${photos.length} 张照片
+
+            &nbsp;&nbsp;
+
+            🎬 ${videos.length} 个视频
+
+          </div>
+
+
+          <span
+            class="card-status ${
+              woman.is_published
+              ?
+              "status-on"
+              :
+              "status-off"
+            }"
           >
 
             ${
               woman.is_published
-              ? "隐藏"
-              : "发布"
+              ?
+              "已发布"
+              :
+              "未发布"
             }
 
-          </button>
+          </span>
 
 
-          <button
-            class="action-button delete-button"
-            data-delete="${escapeHtml(woman.id)}"
-          >
-            删除
-          </button>
+          <div class="card-actions">
+
+            <button
+              class="edit-btn"
+              type="button"
+            >
+              编辑
+            </button>
+
+            <button
+              class="delete-btn"
+              type="button"
+            >
+              删除
+            </button>
+
+          </div>
 
         </div>
 
@@ -2110,14 +2318,14 @@ async function loadWomen() {
 
       card
         .querySelector(
-          "[data-edit]"
+          ".edit-btn"
         )
         .addEventListener(
           "click",
-          function() {
+          () => {
 
-            editWoman(
-              woman.id
+            openEditWoman(
+              woman
             );
 
           }
@@ -2126,32 +2334,14 @@ async function loadWomen() {
 
       card
         .querySelector(
-          "[data-publish]"
+          ".delete-btn"
         )
         .addEventListener(
           "click",
-          function() {
-
-            togglePublish(
-              woman.id,
-              woman.is_published
-            );
-
-          }
-        );
-
-
-      card
-        .querySelector(
-          "[data-delete]"
-        )
-        .addEventListener(
-          "click",
-          function() {
+          () => {
 
             deleteWoman(
-              woman.id,
-              woman.name
+              woman
             );
 
           }
@@ -2168,1126 +2358,1143 @@ async function loadWomen() {
 }
 
 
-/* =========================================
-   编辑女士
-========================================= */
+/* ==================================================
+   添加女士
+================================================== */
 
-async function editWoman(id) {
+document
+  .getElementById(
+    "addWomanButton"
+  )
+  .addEventListener(
+    "click",
+    function(){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("women")
-    .select("*")
-    .eq("id", id)
-    .single();
+      openAddWoman();
 
-
-  if (error) {
-
-    showNotice(
-      "读取资料失败：" +
-      error.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  editingId =
-    id;
-
-  currentWoman =
-    data;
-
-
-  document
-    .getElementById("name")
-    .value =
-    data.name || "";
-
-
-  document
-    .getElementById("age")
-    .value =
-    data.age || "";
-
-
-  document
-    .getElementById("city")
-    .value =
-    data.city || "";
-
-
-  document
-    .getElementById("occupation")
-    .value =
-    data.occupation || "";
-
-
-  document
-    .getElementById("description")
-    .value =
-    data.description || "";
-
-
-  document
-    .getElementById("whatsapp")
-    .value =
-    data.whatsapp || "";
-
-
-  document
-    .getElementById("telegram")
-    .value =
-    data.telegram || "";
-
-
-  editorTitle.textContent =
-    "编辑女士";
-
-
-  saveButton.textContent =
-    "保存修改";
-
-
-  cancelEditButton
-    .classList
-    .remove("hidden");
-
-
-  mediaManager
-    .classList
-    .remove("hidden");
-
-
-  renderPhotos(
-    data.photos
+    }
   );
 
 
-  renderVideos(
-    data.videos
-  );
+function openAddWoman(){
 
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =========================================
-   重新读取当前女士
-========================================= */
-
-async function loadCurrentWoman() {
-
-  if (!editingId) {
-
-    return;
-
-  }
-
-
-  const {
-    data
-  } =
-  await supabaseClient
-    .from("women")
-    .select("*")
-    .eq("id", editingId)
-    .single();
-
-
-  if (data) {
-
-    currentWoman =
-      data;
-
-    renderPhotos(
-      data.photos
-    );
-
-    renderVideos(
-      data.videos
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   取消编辑
-========================================= */
-
-cancelEditButton.addEventListener(
-  "click",
-  function() {
-
-    resetEditor();
-
-  }
-);
-
-
-function resetEditor() {
-
-  editingId =
+  editingWoman =
     null;
 
-  currentWoman =
-    null;
+
+  currentPhotos =
+    [];
+
+  currentVideos =
+    [];
+
+  pendingPhotos =
+    [];
+
+  pendingVideos =
+    [];
+
+
+  document
+    .getElementById(
+      "modalTitle"
+    )
+    .textContent =
+    "添加女士";
 
 
   womanForm.reset();
 
 
-  editorTitle.textContent =
-    "添加女士";
-
-
-  saveButton.textContent =
-    "添加女士";
-
-
-  cancelEditButton
-    .classList
-    .add("hidden");
-
-
-  mediaManager
-    .classList
-    .add("hidden");
-
-
-  photoGrid.innerHTML =
+  document
+    .getElementById(
+      "womanId"
+    )
+    .value =
     "";
 
-  videoGrid.innerHTML =
-    "";
+
+  document
+    .getElementById(
+      "womanPublished"
+    )
+    .value =
+    "true";
+
+
+  renderExistingMedia();
+
+
+  modal.classList.remove(
+    "hidden"
+  );
 
 }
 
 
-/* =========================================
-   上传照片
-========================================= */
+/* ==================================================
+   编辑女士
+================================================== */
 
-photoInput.addEventListener(
-  "change",
-  async function() {
+function openEditWoman(
+  woman
+){
 
-    if (!editingId) {
+  editingWoman =
+    woman;
 
-      alert(
-        "请先保存女士资料，再上传照片。"
-      );
 
-      photoInput.value =
-        "";
+  currentPhotos =
+    normalizeArray(
+      woman.photos
+    );
 
-      return;
+
+  currentVideos =
+    normalizeArray(
+      woman.videos
+    );
+
+
+  pendingPhotos =
+    [];
+
+  pendingVideos =
+    [];
+
+
+  document
+    .getElementById(
+      "modalTitle"
+    )
+    .textContent =
+    "编辑女士";
+
+
+  document
+    .getElementById(
+      "womanId"
+    )
+    .value =
+    woman.id || "";
+
+
+  document
+    .getElementById(
+      "womanName"
+    )
+    .value =
+    woman.name || "";
+
+
+  document
+    .getElementById(
+      "womanAge"
+    )
+    .value =
+    woman.age || "";
+
+
+  document
+    .getElementById(
+      "womanCity"
+    )
+    .value =
+    woman.city || "";
+
+
+  document
+    .getElementById(
+      "womanOccupation"
+    )
+    .value =
+    woman.occupation || "";
+
+
+  document
+    .getElementById(
+      "womanDescription"
+    )
+    .value =
+    woman.description || "";
+
+
+  document
+    .getElementById(
+      "womanWhatsapp"
+    )
+    .value =
+    woman.whatsapp || "";
+
+
+  document
+    .getElementById(
+      "womanTelegram"
+    )
+    .value =
+    woman.telegram || "";
+
+
+  document
+    .getElementById(
+      "womanPublished"
+    )
+    .value =
+    woman.is_published
+      ? "true"
+      : "false";
+
+
+  document
+    .getElementById(
+      "photoInput"
+    )
+    .value =
+    "";
+
+
+  document
+    .getElementById(
+      "videoInput"
+    )
+    .value =
+    "";
+
+
+  renderExistingMedia();
+
+
+  modal.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* ==================================================
+   关闭窗口
+================================================== */
+
+function closeModal(){
+
+  modal.classList.add(
+    "hidden"
+  );
+
+}
+
+
+document
+  .getElementById(
+    "closeModalButton"
+  )
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+document
+  .getElementById(
+    "cancelButton"
+  )
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+/* ==================================================
+   选择照片
+================================================== */
+
+document
+  .getElementById(
+    "photoInput"
+  )
+  .addEventListener(
+    "change",
+    function(){
+
+      pendingPhotos =
+        Array.from(
+          this.files || []
+        );
 
     }
+  );
 
 
-    const files =
-      Array.from(
-        photoInput.files || []
-      );
+/* ==================================================
+   选择视频
+================================================== */
 
+document
+  .getElementById(
+    "videoInput"
+  )
+  .addEventListener(
+    "change",
+    function(){
 
-    if (
-      files.length === 0
-    ) {
-
-      return;
+      pendingVideos =
+        Array.from(
+          this.files || []
+        );
 
     }
+  );
 
 
-    photoUploadStatus.textContent =
-      "正在上传照片……";
+/* ==================================================
+   显示已有媒体
+================================================== */
+
+function renderExistingMedia(){
+
+  const photoBox =
+    document.getElementById(
+      "existingPhotos"
+    );
 
 
-    let photos =
-      Array.isArray(
-        currentWoman.photos
-      )
-      ? [...currentWoman.photos]
-      : [];
+  const videoBox =
+    document.getElementById(
+      "existingVideos"
+    );
 
 
-    try {
+  /* -------------------------
+     Photos
+  ------------------------- */
 
-      for (
-        let i = 0;
-        i < files.length;
-        i++
-      ) {
-
-        const file =
-          files[i];
+  photoBox.innerHTML =
+    "";
 
 
-        const extension =
-          file.name
-            .split(".")
-            .pop()
-            .toLowerCase();
+  if(
+    currentPhotos.length === 0
+  ){
+
+    photoBox.innerHTML = `
+
+      <div class="empty-media">
+        暂无照片
+      </div>
+
+    `;
+
+  }else{
+
+    currentPhotos.forEach(
+      (path,index) => {
+
+        const item =
+          document.createElement(
+            "div"
+          );
 
 
-        const path =
-          editingId +
-          "/" +
-          Date.now() +
-          "_" +
-          Math.random()
-            .toString(36)
-            .substring(2) +
-          "." +
-          extension;
+        item.className =
+          "media-item";
 
 
-        const {
-          error
-        } =
-        await supabaseClient
-          .storage
-          .from("women-photos")
-          .upload(
-            path,
-            file,
-            {
-              cacheControl:
-                "3600",
+        item.innerHTML = `
 
-              upsert:
-                false
+          <img
+            src="${escapeHtml(
+              getStorageUrl(
+                path
+              )
+            )}"
+            alt="照片"
+          >
+
+          <button
+            class="remove-media"
+            type="button"
+            title="删除照片"
+          >
+            ×
+          </button>
+
+        `;
+
+
+        item
+          .querySelector(
+            ".remove-media"
+          )
+          .addEventListener(
+            "click",
+            () => {
+
+              currentPhotos.splice(
+                index,
+                1
+              );
+
+              renderExistingMedia();
+
             }
           );
 
 
-        if (error) {
+        photoBox.appendChild(
+          item
+        );
+
+      }
+    );
+
+  }
+
+
+  /* -------------------------
+     Videos
+  ------------------------- */
+
+  videoBox.innerHTML =
+    "";
+
+
+  if(
+    currentVideos.length === 0
+  ){
+
+    videoBox.innerHTML = `
+
+      <div class="empty-media">
+        暂无视频
+      </div>
+
+    `;
+
+  }else{
+
+    currentVideos.forEach(
+      (path,index) => {
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+
+        item.className =
+          "media-item";
+
+
+        item.innerHTML = `
+
+          <video
+            controls
+            preload="metadata"
+          >
+
+            <source
+              src="${escapeHtml(
+                getStorageUrl(
+                  path
+                )
+              )}"
+            >
+
+          </video>
+
+
+          <button
+            class="remove-media"
+            type="button"
+            title="删除视频"
+          >
+            ×
+          </button>
+
+        `;
+
+
+        item
+          .querySelector(
+            ".remove-media"
+          )
+          .addEventListener(
+            "click",
+            () => {
+
+              currentVideos.splice(
+                index,
+                1
+              );
+
+              renderExistingMedia();
+
+            }
+          );
+
+
+        videoBox.appendChild(
+          item
+        );
+
+      }
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   上传文件到 Storage
+================================================== */
+
+async function uploadFile(
+  file,
+  folder
+){
+
+  if(!file){
+
+    throw new Error(
+      "没有选择文件"
+    );
+
+  }
+
+
+  /*
+    生成唯一文件名
+
+    防止不同女士使用
+    相同文件名导致覆盖
+  */
+
+  const extension =
+    file.name.includes(".")
+    ?
+    "." +
+    file.name
+      .split(".")
+      .pop()
+      .toLowerCase()
+    :
+    "";
+
+
+  const uniqueName =
+    Date.now() +
+    "_" +
+    Math.random()
+      .toString(36)
+      .substring(2,10) +
+    extension;
+
+
+  const path =
+    folder +
+    "/" +
+    uniqueName;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .storage
+      .from(
+        "women-photos"
+      )
+      .upload(
+        path,
+        file,
+        {
+
+          cacheControl:
+            "3600",
+
+          upsert:false,
+
+          contentType:
+            file.type || undefined
+
+        }
+      );
+
+
+  if(error){
+
+    throw error;
+
+  }
+
+
+  return data.path;
+
+}
+
+
+/* ==================================================
+   上传全部照片
+================================================== */
+
+async function uploadPhotos(){
+
+  const uploaded =
+    [];
+
+
+  if(
+    pendingPhotos.length === 0
+  ){
+
+    return uploaded;
+
+  }
+
+
+  for(
+    let i = 0;
+    i < pendingPhotos.length;
+    i++
+  ){
+
+    const file =
+      pendingPhotos[i];
+
+
+    if(
+      !file.type.startsWith(
+        "image/"
+      )
+    ){
+
+      throw new Error(
+        "文件不是图片：" +
+        file.name
+      );
+
+    }
+
+
+    const path =
+      await uploadFile(
+        file,
+        "photos"
+      );
+
+
+    uploaded.push(
+      path
+    );
+
+  }
+
+
+  return uploaded;
+
+}
+
+
+/* ==================================================
+   上传全部视频
+================================================== */
+
+async function uploadVideos(){
+
+  const uploaded =
+    [];
+
+
+  if(
+    pendingVideos.length === 0
+  ){
+
+    return uploaded;
+
+  }
+
+
+  for(
+    let i = 0;
+    i < pendingVideos.length;
+    i++
+  ){
+
+    const file =
+      pendingVideos[i];
+
+
+    if(
+      !file.type.startsWith(
+        "video/"
+      )
+    ){
+
+      throw new Error(
+        "文件不是视频：" +
+        file.name
+      );
+
+    }
+
+
+    const path =
+      await uploadFile(
+        file,
+        "videos"
+      );
+
+
+    uploaded.push(
+      path
+    );
+
+  }
+
+
+  return uploaded;
+
+}
+
+
+/* ==================================================
+   保存女士
+================================================== */
+
+womanForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+
+    const saveButton =
+      document.getElementById(
+        "saveButton"
+      );
+
+
+    saveButton.disabled =
+      true;
+
+
+    saveButton.textContent =
+      "正在保存……";
+
+
+    try{
+
+
+      /* ----------------------
+         上传照片
+      ---------------------- */
+
+      const newPhotos =
+        await uploadPhotos();
+
+
+      /* ----------------------
+         上传视频
+      ---------------------- */
+
+      const newVideos =
+        await uploadVideos();
+
+
+      /*
+        把新上传的媒体
+        加到现有数组后面
+      */
+
+      const finalPhotos =
+        [
+          ...currentPhotos,
+          ...newPhotos
+        ];
+
+
+      const finalVideos =
+        [
+          ...currentVideos,
+          ...newVideos
+        ];
+
+
+      /* ----------------------
+         表单数据
+      ---------------------- */
+
+      const name =
+        document
+          .getElementById(
+            "womanName"
+          )
+          .value
+          .trim();
+
+
+      const age =
+        Number(
+          document
+            .getElementById(
+              "womanAge"
+            )
+            .value
+        );
+
+
+      const city =
+        document
+          .getElementById(
+            "womanCity"
+          )
+          .value
+          .trim();
+
+
+      const occupation =
+        document
+          .getElementById(
+            "womanOccupation"
+          )
+          .value
+          .trim();
+
+
+      const description =
+        document
+          .getElementById(
+            "womanDescription"
+          )
+          .value
+          .trim();
+
+
+      const whatsapp =
+        document
+          .getElementById(
+            "womanWhatsapp"
+          )
+          .value
+          .trim();
+
+
+      const telegram =
+        document
+          .getElementById(
+            "womanTelegram"
+          )
+          .value
+          .trim();
+
+
+      const isPublished =
+        document
+          .getElementById(
+            "womanPublished"
+          )
+          .value ===
+          "true";
+
+
+      /*
+        image_url：
+
+        为了兼容你原来的主页，
+        第一张照片同时保存到 image_url。
+      */
+
+      const firstPhoto =
+        finalPhotos.length > 0
+        ?
+        finalPhotos[0]
+        :
+        "";
+
+
+      const record = {
+
+        name,
+
+        age,
+
+        city,
+
+        occupation,
+
+        description,
+
+        image_url:
+          firstPhoto,
+
+        whatsapp,
+
+        telegram,
+
+        is_published:
+          isPublished,
+
+        photos:
+          finalPhotos,
+
+        videos:
+          finalVideos
+
+      };
+
+
+      /* =====================
+         新增
+      ===================== */
+
+      if(
+        !editingWoman
+      ){
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from(
+              "women"
+            )
+            .insert(
+              record
+            );
+
+
+        if(error){
 
           throw error;
 
         }
 
 
-        photos.push(
-          path
+        showMessage(
+          "女士资料添加成功，照片和视频也已保存。",
+          "success"
         );
-
-
-        photoUploadStatus.textContent =
-          "正在上传第 " +
-          (i + 1) +
-          " / " +
-          files.length +
-          " 张……";
 
       }
 
 
-      const {
-        error:updateError
-      } =
-      await supabaseClient
-        .from("women")
-        .update({
-          photos:
-            photos
-        })
-        .eq(
-          "id",
-          editingId
-        );
-
-
-      if (updateError) {
-
-        throw updateError;
-
-      }
-
-
-      currentWoman.photos =
-        photos;
-
-
-      renderPhotos(
-        photos
-      );
-
-
-      photoUploadStatus.textContent =
-        "照片上传成功";
-
-
-      showNotice(
-        "照片上传成功"
-      );
-
-    }
-
-    catch(error) {
-
-      console.error(
-        error
-      );
-
-
-      photoUploadStatus.textContent =
-        "上传失败";
-
-
-      showNotice(
-        "照片上传失败：" +
-        error.message,
-        "error"
-      );
-
-    }
-
-
-    photoInput.value =
-      "";
-
-  }
-);
-
-
-/* =========================================
-   显示照片
-========================================= */
-
-function renderPhotos(
-  photos
-) {
-
-  photoGrid.innerHTML =
-    "";
-
-
-  if (
-    !Array.isArray(photos) ||
-    photos.length === 0
-  ) {
-
-    return;
-
-  }
-
-
-  photos.forEach(
-    function(path,index) {
-
-      const url =
-        getStorageUrl(
-          "women-photos",
-          path
-        );
-
-
-      const item =
-        document.createElement(
-          "div"
-        );
-
-
-      item.className =
-        "media-item";
-
-
-      item.innerHTML = `
-
-        <img
-          src="${escapeHtml(url)}"
-          alt="照片"
-        >
-
-
-        <button
-          class="media-delete"
-          type="button"
-        >
-          ×
-        </button>
-
-
-        <div class="media-name">
-
-          ${index + 1}.
-          ${escapeHtml(
-            String(path).split("/").pop()
-          )}
-
-        </div>
-
-      `;
-
-
-      item
-        .querySelector(
-          ".media-delete"
-        )
-        .addEventListener(
-          "click",
-          function() {
-
-            deletePhoto(
-              path
-            );
-
-          }
-        );
-
-
-      photoGrid.appendChild(
-        item
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   删除照片
-========================================= */
-
-async function deletePhoto(
-  path
-) {
-
-  if (
-    !confirm(
-      "确定删除这张照片吗？"
-    )
-  ) {
-
-    return;
-
-  }
-
-
-  const {
-    error:storageError
-  } =
-  await supabaseClient
-    .storage
-    .from("women-photos")
-    .remove([
-      path
-    ]);
-
-
-  if (storageError) {
-
-    showNotice(
-      "删除照片失败：" +
-      storageError.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  const photos =
-    (
-      Array.isArray(
-        currentWoman.photos
-      )
-      ? currentWoman.photos
-      : []
-    ).filter(
-      function(item) {
-
-        return item !== path;
-
-      }
-    );
-
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("women")
-    .update({
-      photos:
-        photos
-    })
-    .eq(
-      "id",
-      editingId
-    );
-
-
-  if (error) {
-
-    showNotice(
-      "更新照片列表失败：" +
-      error.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  currentWoman.photos =
-    photos;
-
-
-  renderPhotos(
-    photos
-  );
-
-
-  showNotice(
-    "照片已删除"
-  );
-
-}
-
-
-/* =========================================
-   上传视频
-========================================= */
-
-videoInput.addEventListener(
-  "change",
-  async function() {
-
-    if (!editingId) {
-
-      alert(
-        "请先保存女士资料，再上传视频。"
-      );
-
-      videoInput.value =
-        "";
-
-      return;
-
-    }
-
-
-    const files =
-      Array.from(
-        videoInput.files || []
-      );
-
-
-    if (
-      files.length === 0
-    ) {
-
-      return;
-
-    }
-
-
-    videoUploadStatus.textContent =
-      "正在上传视频……";
-
-
-    let videos =
-      Array.isArray(
-        currentWoman.videos
-      )
-      ? [...currentWoman.videos]
-      : [];
-
-
-    try {
-
-      for (
-        let i = 0;
-        i < files.length;
-        i++
-      ) {
-
-        const file =
-          files[i];
-
-
-        const extension =
-          file.name
-            .split(".")
-            .pop()
-            .toLowerCase();
-
-
-        const path =
-          editingId +
-          "/" +
-          Date.now() +
-          "_" +
-          Math.random()
-            .toString(36)
-            .substring(2) +
-          "." +
-          extension;
-
+      /* =====================
+         修改
+      ===================== */
+
+      else{
 
         const {
           error
         } =
-        await supabaseClient
-          .storage
-          .from("women-videos")
-          .upload(
-            path,
-            file,
-            {
-              cacheControl:
-                "3600",
-
-              upsert:
-                false
-            }
-          );
+          await supabaseClient
+            .from(
+              "women"
+            )
+            .update(
+              record
+            )
+            .eq(
+              "id",
+              editingWoman.id
+            );
 
 
-        if (error) {
+        if(error){
 
           throw error;
 
         }
 
 
-        videos.push(
-          path
+        showMessage(
+          "女士资料修改成功，照片和视频也已保存。",
+          "success"
         );
-
-
-        videoUploadStatus.textContent =
-          "正在上传第 " +
-          (i + 1) +
-          " / " +
-          files.length +
-          " 个视频……";
 
       }
 
 
-      const {
-        error:updateError
-      } =
-      await supabaseClient
-        .from("women")
-        .update({
-          videos:
-            videos
-        })
-        .eq(
-          "id",
-          editingId
-        );
+      closeModal();
 
 
-      if (updateError) {
-
-        throw updateError;
-
-      }
+      await loadWomen();
 
 
-      currentWoman.videos =
-        videos;
+      /*
+        清空临时文件
+      */
+
+      pendingPhotos =
+        [];
+
+      pendingVideos =
+        [];
 
 
-      renderVideos(
-        videos
-      );
-
-
-      videoUploadStatus.textContent =
-        "视频上传成功";
-
-
-      showNotice(
-        "视频上传成功"
-      );
-
-    }
-
-    catch(error) {
+    }catch(error){
 
       console.error(
         error
       );
 
 
-      videoUploadStatus.textContent =
-        "上传失败";
-
-
-      showNotice(
-        "视频上传失败：" +
+      showMessage(
+        "保存失败：" +
         error.message,
         "error"
       );
 
+    }finally{
+
+      saveButton.disabled =
+        false;
+
+      saveButton.textContent =
+        "保存资料";
+
     }
-
-
-    videoInput.value =
-      "";
 
   }
 );
 
 
-/* =========================================
-   显示视频
-========================================= */
-
-function renderVideos(
-  videos
-) {
-
-  videoGrid.innerHTML =
-    "";
-
-
-  if (
-    !Array.isArray(videos) ||
-    videos.length === 0
-  ) {
-
-    return;
-
-  }
-
-
-  videos.forEach(
-    function(path,index) {
-
-      const url =
-        getStorageUrl(
-          "women-videos",
-          path
-        );
-
-
-      const item =
-        document.createElement(
-          "div"
-        );
-
-
-      item.className =
-        "media-item";
-
-
-      item.innerHTML = `
-
-        <video
-          src="${escapeHtml(url)}"
-          controls
-          preload="metadata"
-        ></video>
-
-
-        <button
-          class="media-delete"
-          type="button"
-        >
-          ×
-        </button>
-
-
-        <div class="media-name">
-
-          视频 ${index + 1}
-
-        </div>
-
-      `;
-
-
-      item
-        .querySelector(
-          ".media-delete"
-        )
-        .addEventListener(
-          "click",
-          function() {
-
-            deleteVideo(
-              path
-            );
-
-          }
-        );
-
-
-      videoGrid.appendChild(
-        item
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================
-   删除视频
-========================================= */
-
-async function deleteVideo(
-  path
-) {
-
-  if (
-    !confirm(
-      "确定删除这个视频吗？"
-    )
-  ) {
-
-    return;
-
-  }
-
-
-  const {
-    error:storageError
-  } =
-  await supabaseClient
-    .storage
-    .from("women-videos")
-    .remove([
-      path
-    ]);
-
-
-  if (storageError) {
-
-    showNotice(
-      "删除视频失败：" +
-      storageError.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  const videos =
-    (
-      Array.isArray(
-        currentWoman.videos
-      )
-      ? currentWoman.videos
-      : []
-    ).filter(
-      function(item) {
-
-        return item !== path;
-
-      }
-    );
-
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("women")
-    .update({
-      videos:
-        videos
-    })
-    .eq(
-      "id",
-      editingId
-    );
-
-
-  if (error) {
-
-    showNotice(
-      "更新视频列表失败：" +
-      error.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  currentWoman.videos =
-    videos;
-
-
-  renderVideos(
-    videos
-  );
-
-
-  showNotice(
-    "视频已删除"
-  );
-
-}
-
-
-/* =========================================
-   发布 / 隐藏
-========================================= */
-
-async function togglePublish(
-  id,
-  currentStatus
-) {
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("women")
-    .update({
-
-      is_published:
-        !currentStatus
-
-    })
-    .eq(
-      "id",
-      id
-    );
-
-
-  if (error) {
-
-    showNotice(
-      "修改发布状态失败：" +
-      error.message,
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  showNotice(
-    currentStatus
-    ? "女士资料已隐藏"
-    : "女士资料已发布"
-  );
-
-
-  loadWomen();
-
-}
-
-
-/* =========================================
+/* ==================================================
    删除女士
-========================================= */
+================================================== */
 
 async function deleteWoman(
-  id,
-  name
-) {
+  woman
+){
 
-  if (
-    !confirm(
-      "确定删除「" +
-      name +
-      "」吗？\n\n" +
-      "删除女士资料后，数据库记录会被删除。"
-    )
-  ) {
+  const confirmed =
+    confirm(
+      "确定要删除「" +
+      (
+        woman.name ||
+        "这位女士"
+      ) +
+      "」吗？\n\n删除数据库资料后，该女士将不会再显示在网站。"
+    );
+
+
+  if(!confirmed){
 
     return;
 
   }
 
 
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("women")
-    .delete()
-    .eq(
-      "id",
-      id
+  try{
+
+
+    /*
+      先删除数据库记录
+    */
+
+    const {
+      error
+    } =
+      await supabaseClient
+
+        .from(
+          "women"
+        )
+
+        .delete()
+
+        .eq(
+          "id",
+          woman.id
+        );
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    /*
+      尝试删除 Storage 文件
+
+      即使 Storage 删除失败，
+      数据库记录也已经删除。
+    */
+
+    const paths = [
+
+      ...normalizeArray(
+        woman.photos
+      ),
+
+      ...normalizeArray(
+        woman.videos
+      )
+
+    ];
+
+
+    if(paths.length > 0){
+
+      await supabaseClient
+        .storage
+        .from(
+          "women-photos"
+        )
+        .remove(
+          paths
+        );
+
+    }
+
+
+    showMessage(
+      "删除成功。",
+      "success"
     );
 
 
-  if (error) {
+    await loadWomen();
 
-    showNotice(
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    showMessage(
       "删除失败：" +
       error.message,
       "error"
     );
 
-    return;
-
   }
-
-
-  if (
-    editingId === id
-  ) {
-
-    resetEditor();
-
-  }
-
-
-  showNotice(
-    "女士资料已删除"
-  );
-
-
-  loadWomen();
 
 }
 
 
-/* =========================================
-   登录状态监听
-========================================= */
+/* ==================================================
+   监听登录变化
+================================================== */
 
 supabaseClient
   .auth
   .onAuthStateChange(
-    function(
-      event,
-      session
-    ) {
+    (event,session) => {
 
-      if (session) {
+      if(
+        event ===
+        "SIGNED_OUT"
+      ){
 
-        showAdmin(
-          session.user
-        );
-
-      } else {
+        currentUser =
+          null;
 
         showLogin();
 
@@ -3297,11 +3504,11 @@ supabaseClient
   );
 
 
-/* =========================================
-   启动
-========================================= */
+/* ==================================================
+   开始检查
+================================================== */
 
-checkLogin();
+checkSession();
 
 </script>
 
