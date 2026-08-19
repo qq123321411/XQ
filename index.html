@@ -901,9 +901,8 @@
 </footer>
 
 
-
 <!-- ==================================================
-     SUPABASE
+     SUPABASE DATA
 ================================================== -->
 
 <script>
@@ -911,120 +910,162 @@
 const SUPABASE_URL =
 "https://yutraouosffjteivvlfx.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
 
-const supabaseClient =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-
-
-/* ==================================================
-   DATA
-================================================== */
-
 let women = [];
 
 
-
-/* ==================================================
-   YEAR
-================================================== */
-
-document
-.getElementById("year")
-.textContent =
+/* 年份 */
+document.getElementById("year").textContent =
 new Date().getFullYear();
 
 
+/* HTML 安全处理 */
+function escapeHtml(value) {
 
-/* ==================================================
-   LOAD WOMEN
-================================================== */
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
+}
+
+
+/* 获取照片 */
+function getPhotoUrl(woman) {
+
+  if (
+    !woman.photos ||
+    !Array.isArray(woman.photos) ||
+    woman.photos.length === 0
+  ) {
+    return "";
+  }
+
+  const photo = woman.photos[0];
+
+  if (!photo) {
+    return "";
+  }
+
+  if (
+    photo.startsWith("http://") ||
+    photo.startsWith("https://")
+  ) {
+    return photo;
+  }
+
+  return (
+    SUPABASE_URL +
+    "/storage/v1/object/public/women-photos/" +
+    photo
+  );
+
+}
+
+
+/* 加载女士 */
 async function loadWomen() {
 
   const grid =
-  document.getElementById(
-    "womenGrid"
-  );
-
+    document.getElementById("womenGrid");
 
   const count =
-  document.getElementById(
-    "count"
-  );
+    document.getElementById("count");
 
+  grid.innerHTML = `
+    <div class="loading">
+      正在连接数据库……
+    </div>
+  `;
 
   try {
 
+    const url =
+      SUPABASE_URL +
+      "/rest/v1/women" +
+      "?select=*" +
+      "&is_published=eq.true" +
+      "&order=sort_order.asc,created_at.desc";
+
+
     const response =
-    await supabaseClient
+      await fetch(url, {
 
-      .from("women")
+        method: "GET",
 
-      .select("*")
+        headers: {
 
-      .eq(
-        "is_published",
-        true
-      )
+          "apikey": SUPABASE_KEY,
 
-      .order(
-        "sort_order",
-        {
-          ascending: true
+          "Authorization":
+            "Bearer " + SUPABASE_KEY,
+
+          "Content-Type":
+            "application/json"
+
         }
-      )
 
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
+      });
+
+
+    const text =
+      await response.text();
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        "Supabase 错误 " +
+        response.status +
+        ": " +
+        text
       );
-
-
-    if (
-      response.error
-    ) {
-
-      throw response.error;
 
     }
 
 
-    women =
-    response.data || [];
+    let data;
+
+    try {
+
+      data = JSON.parse(text);
+
+    } catch {
+
+      throw new Error(
+        "Supabase 返回的数据不是 JSON：\n" +
+        text
+      );
+
+    }
+
+
+    women = data || [];
 
 
     count.textContent =
-    `共 ${women.length} 位`;
+      `共 ${women.length} 位`;
 
 
     createCityFilter();
 
 
-    renderWomen(
-      women
-    );
+    renderWomen(women);
 
   }
 
   catch(error) {
 
-    console.error(
-      error
-    );
+    console.error(error);
 
 
     count.textContent =
-    "加载失败";
+      "加载失败";
 
 
     grid.innerHTML = `
@@ -1035,11 +1076,13 @@ async function loadWomen() {
           暂时无法加载资料
         </h3>
 
-        <p>
-          ${escapeHtml(
-            error.message ||
-            "Supabase 连接失败"
-          )}
+        <p style="
+          max-width:700px;
+          margin:10px auto;
+          white-space:pre-wrap;
+          word-break:break-word;
+        ">
+          ${escapeHtml(error.message)}
         </p>
 
       </div>
@@ -1051,174 +1094,66 @@ async function loadWomen() {
 }
 
 
-
-/* ==================================================
-   CITY FILTER
-================================================== */
-
+/* 城市筛选 */
 function createCityFilter() {
 
   const select =
-  document.getElementById(
-    "cityFilter"
-  );
+    document.getElementById("cityFilter");
 
 
-  const cities =
-  [
+  const cities = [
     ...new Set(
 
       women
-
-        .map(
-          woman =>
-          woman.city
-        )
-
-        .filter(
-          city =>
-          city &&
-          city.trim()
-        )
+        .map(woman => woman.city)
+        .filter(city => city)
 
     )
   ];
 
 
   select.innerHTML = `
-
     <option value="">
       全部城市
     </option>
-
   `;
 
 
-  cities.forEach(
-    city => {
+  cities.forEach(city => {
 
-      const option =
-      document.createElement(
-        "option"
-      );
+    const option =
+      document.createElement("option");
 
+    option.value = city;
 
-      option.value =
-      city;
+    option.textContent = city;
 
+    select.appendChild(option);
 
-      option.textContent =
-      city;
-
-
-      select.appendChild(
-        option
-      );
-
-    }
-  );
+  });
 
 }
 
 
-
-/* ==================================================
-   PHOTO URL
-================================================== */
-
-function getPhotoUrl(
-  woman
-) {
-
-  if (
-    !woman.photos ||
-    !Array.isArray(
-      woman.photos
-    ) ||
-    woman.photos.length === 0
-  ) {
-
-    return "";
-
-  }
-
-
-  const photo =
-  woman.photos[0];
-
-
-  if (
-    !photo
-  ) {
-
-    return "";
-
-  }
-
-
-  if (
-    photo.startsWith(
-      "http://"
-    ) ||
-
-    photo.startsWith(
-      "https://"
-    )
-  ) {
-
-    return photo;
-
-  }
-
-
-  const result =
-  supabaseClient
-    .storage
-    .from(
-      "women-photos"
-    )
-    .getPublicUrl(
-      photo
-    );
-
-
-  return result
-    .data
-    .publicUrl;
-
-}
-
-
-
-/* ==================================================
-   RENDER WOMEN
-================================================== */
-
-function renderWomen(
-  list
-) {
+/* 显示女士 */
+function renderWomen(list) {
 
   const grid =
-  document.getElementById(
-    "womenGrid"
-  );
+    document.getElementById("womenGrid");
 
 
-  if (
-    !list ||
-    list.length === 0
-  ) {
+  if (!list.length) {
 
     grid.innerHTML = `
 
       <div class="loading">
 
         <h3>
-          暂时没有符合条件的资料
+          暂时没有女士资料
         </h3>
 
         <p>
-          请尝试更换筛选条件。
+          当前没有符合条件的资料。
         </p>
 
       </div>
@@ -1233,40 +1168,29 @@ function renderWomen(
   grid.innerHTML = "";
 
 
-  list.forEach(
-    woman => {
+  list.forEach(woman => {
+
+    const card =
+      document.createElement("article");
 
 
-      const card =
-      document.createElement(
-        "article"
-      );
-
-
-      card.className =
+    card.className =
       "woman-card";
 
 
-      const photo =
-      getPhotoUrl(
-        woman
-      );
+    const photo =
+      getPhotoUrl(woman);
 
 
-      const image =
+    const image =
       photo ||
-
       "data:image/svg+xml;charset=UTF-8," +
-
       encodeURIComponent(`
-
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="600"
           height="800"
-          viewBox="0 0 600 800"
         >
-
           <rect
             width="600"
             height="800"
@@ -1278,512 +1202,195 @@ function renderWomen(
             y="400"
             text-anchor="middle"
             font-size="28"
-            fill="#999999"
+            fill="#999"
           >
             暂无照片
           </text>
-
         </svg>
-
       `);
 
 
+    card.innerHTML = `
 
-      const whatsapp =
-      woman.whatsapp
-      ? `
+      <div class="woman-image">
 
-        <button
-
-          class="contact-btn whatsapp-btn"
-
-          type="button"
-
-          data-whatsapp="${escapeHtml(
-            woman.whatsapp
-          )}"
-
+        <img
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(woman.name || "女士")}"
+          loading="lazy"
         >
 
-          WhatsApp
-
-        </button>
-
-      `
-      : "";
+      </div>
 
 
+      <div class="woman-info">
 
-      const telegram =
-      woman.telegram
-      ? `
-
-        <button
-
-          class="contact-btn telegram-btn"
-
-          type="button"
-
-          data-telegram="${escapeHtml(
-            woman.telegram
-          )}"
-
-        >
-
-          Telegram
-
-        </button>
-
-      `
-      : "";
-
-
-
-      const intro =
-      woman.short_intro ||
-      woman.bio ||
-      "";
-
-
-
-      card.innerHTML = `
-
-        <div class="woman-image">
-
-          <img
-
-            src="${escapeHtml(
-              image
-            )}"
-
-            alt="${escapeHtml(
-              woman.name ||
-              "女士"
-            )}"
-
-            loading="lazy"
-
-          >
-
-        </div>
-
-
-        <div class="woman-info">
-
-
-          <h2>
-
-            ${escapeHtml(
-              woman.name ||
-              "未填写姓名"
-            )}
-
-            ${
-              woman.age
-              ? `，${escapeHtml(
-                  woman.age
-                )}岁`
+        <h2>
+          ${escapeHtml(woman.name || "未填写姓名")}
+          ${
+            woman.age
+              ? "，" + escapeHtml(woman.age) + "岁"
               : ""
-            }
+          }
+        </h2>
 
-          </h2>
 
-
-          ${
-            woman.city
+        ${
+          woman.city
             ? `
-
               <p class="city">
-
-                ${escapeHtml(
-                  woman.city
-                )}
-
+                ${escapeHtml(woman.city)}
               </p>
-
             `
             : ""
-          }
+        }
 
 
-          ${
-            woman.occupation
+        ${
+          woman.occupation
             ? `
-
               <p>
-
-                ${escapeHtml(
-                  woman.occupation
-                )}
-
+                ${escapeHtml(woman.occupation)}
               </p>
-
             `
             : ""
-          }
+        }
 
 
-          ${
-            woman.height_cm
+        ${
+          woman.height_cm
             ? `
-
               <p>
-
-                身高：
-                ${escapeHtml(
-                  woman.height_cm
-                )} cm
-
+                身高：${escapeHtml(woman.height_cm)} cm
               </p>
-
             `
             : ""
-          }
+        }
 
 
-          ${
-            woman.marital_status
+        ${
+          woman.marital_status
             ? `
-
               <p>
-
                 婚姻状况：
-                ${escapeHtml(
-                  woman.marital_status
-                )}
-
+                ${escapeHtml(woman.marital_status)}
               </p>
-
             `
             : ""
-          }
+        }
 
 
-          ${
-            intro
+        ${
+          woman.short_intro || woman.bio
             ? `
-
               <p class="description">
-
                 ${escapeHtml(
-                  intro
+                  woman.short_intro || woman.bio
                 )}
-
               </p>
-
             `
             : ""
-          }
+        }
 
 
-          ${
-            woman.hobbies
+        ${
+          woman.hobbies
             ? `
-
               <p class="description">
-
                 兴趣：
-                ${escapeHtml(
-                  woman.hobbies
-                )}
-
+                ${escapeHtml(woman.hobbies)}
               </p>
-
             `
             : ""
+        }
+
+
+        <div class="contact-buttons">
+
+          ${
+            woman.whatsapp
+              ? `
+                <button
+                  class="contact-btn whatsapp-btn"
+                  type="button"
+                  onclick="openWhatsApp('${escapeHtml(
+                    woman.whatsapp
+                  )}')"
+                >
+                  WhatsApp
+                </button>
+              `
+              : ""
           }
 
 
           ${
-            whatsapp ||
-            telegram
-            ? `
-
-              <div class="contact-buttons">
-
-                ${whatsapp}
-
-                ${telegram}
-
-              </div>
-
-            `
-            : ""
+            woman.telegram
+              ? `
+                <button
+                  class="contact-btn telegram-btn"
+                  type="button"
+                  onclick="openTelegram('${escapeHtml(
+                    woman.telegram
+                  )}')"
+                >
+                  Telegram
+                </button>
+              `
+              : ""
           }
-
 
         </div>
 
-      `;
+      </div>
+
+    `;
 
 
+    grid.appendChild(card);
 
-      grid.appendChild(
-        card
-      );
-
-
-      /* ================================
-         WhatsApp
-      ================================= */
-
-      const whatsappButton =
-      card.querySelector(
-        "[data-whatsapp]"
-      );
-
-
-      if (
-        whatsappButton
-      ) {
-
-        whatsappButton
-        .addEventListener(
-          "click",
-          function() {
-
-            openWhatsApp(
-              this.dataset.whatsapp
-            );
-
-          }
-        );
-
-      }
-
-
-
-      /* ================================
-         Telegram
-      ================================= */
-
-      const telegramButton =
-      card.querySelector(
-        "[data-telegram]"
-      );
-
-
-      if (
-        telegramButton
-      ) {
-
-        telegramButton
-        .addEventListener(
-          "click",
-          function() {
-
-            openTelegram(
-              this.dataset.telegram
-            );
-
-          }
-        );
-
-      }
-
-    }
-  );
+  });
 
 }
 
 
-
-/* ==================================================
-   FILTER
-================================================== */
-
-function filterWomen() {
-
-  const city =
-  document.getElementById(
-    "cityFilter"
-  ).value;
-
-
-  const age =
-  document.getElementById(
-    "ageFilter"
-  ).value;
-
-
-  let filtered =
-  [...women];
-
-
-  if (city) {
-
-    filtered =
-    filtered.filter(
-      woman =>
-      woman.city === city
-    );
-
-  }
-
-
-  if (age) {
-
-    filtered =
-    filtered.filter(
-      woman => {
-
-        const womanAge =
-        Number(
-          woman.age
-        );
-
-
-        if (
-          age === "18-25"
-        ) {
-
-          return (
-            womanAge >= 18 &&
-            womanAge <= 25
-          );
-
-        }
-
-
-        if (
-          age === "26-35"
-        ) {
-
-          return (
-            womanAge >= 26 &&
-            womanAge <= 35
-          );
-
-        }
-
-
-        if (
-          age === "36-45"
-        ) {
-
-          return (
-            womanAge >= 36 &&
-            womanAge <= 45
-          );
-
-        }
-
-
-        if (
-          age === "46+"
-        ) {
-
-          return womanAge >= 46;
-
-        }
-
-
-        return true;
-
-      }
-    );
-
-  }
-
-
-  renderWomen(
-    filtered
-  );
-
-}
-
-
-
-/* ==================================================
-   WHATSAPP
-================================================== */
-
-function openWhatsApp(
-  phone
-) {
-
-  if (!phone) {
-
-    return;
-
-  }
-
+/* WhatsApp */
+function openWhatsApp(phone) {
 
   let number =
-  String(
-    phone
-  ).trim();
-
-
-  number =
-  number.replace(
-    /[^\d+]/g,
-    ""
-  );
-
-
-  number =
-  number.replace(
-    /^\+/,
-    ""
-  );
+    String(phone)
+      .trim()
+      .replace(/[^\d]/g, "");
 
 
   if (!number) {
 
-    alert(
-      "WhatsApp 联系方式无效"
-    );
+    alert("WhatsApp 联系方式无效");
 
     return;
 
   }
 
 
-  const url =
-  `https://wa.me/${number}`;
-
-
   window.location.href =
-  url;
+    "https://wa.me/" + number;
 
 }
 
 
-
-/* ==================================================
-   TELEGRAM
-================================================== */
-
-function openTelegram(
-  username
-) {
-
-  if (!username) {
-
-    return;
-
-  }
-
+/* Telegram */
+function openTelegram(username) {
 
   let value =
-  String(
-    username
-  ).trim();
+    String(username).trim();
 
 
   if (
-    value.startsWith(
-      "https://t.me/"
-    ) ||
-
-    value.startsWith(
-      "http://t.me/"
-    )
+    value.startsWith("http://") ||
+    value.startsWith("https://")
   ) {
 
-    window.location.href =
-    value;
+    window.location.href = value;
 
     return;
 
@@ -1791,93 +1398,117 @@ function openTelegram(
 
 
   value =
-  value.replace(
-    /^@/,
-    ""
-  );
+    value.replace(/^@/, "");
+
+
+  if (!value) {
+
+    alert("Telegram 联系方式无效");
+
+    return;
+
+  }
 
 
   window.location.href =
-  `https://t.me/${value}`;
+    "https://t.me/" + value;
 
 }
 
 
+/* 年龄 + 城市筛选 */
+function filterWomen() {
 
-/* ==================================================
-   ESCAPE HTML
-================================================== */
+  const city =
+    document.getElementById("cityFilter").value;
 
-function escapeHtml(
-  value
-) {
+  const age =
+    document.getElementById("ageFilter").value;
 
-  return String(
-    value
-  )
 
-  .replace(
-    /&/g,
-    "&amp;"
-  )
+  let filtered =
+    women.filter(woman => {
 
-  .replace(
-    /</g,
-    "&lt;"
-  )
+      if (
+        city &&
+        woman.city !== city
+      ) {
+        return false;
+      }
 
-  .replace(
-    />/g,
-    "&gt;"
-  )
 
-  .replace(
-    /"/g,
-    "&quot;"
-  )
+      const womanAge =
+        Number(woman.age);
 
-  .replace(
-    /'/g,
-    "&#039;"
+
+      if (age === "18-25") {
+
+        return (
+          womanAge >= 18 &&
+          womanAge <= 25
+        );
+
+      }
+
+
+      if (age === "26-35") {
+
+        return (
+          womanAge >= 26 &&
+          womanAge <= 35
+        );
+
+      }
+
+
+      if (age === "36-45") {
+
+        return (
+          womanAge >= 36 &&
+          womanAge <= 45
+        );
+
+      }
+
+
+      if (age === "46+") {
+
+        return womanAge >= 46;
+
+      }
+
+
+      return true;
+
+    });
+
+
+  renderWomen(filtered);
+
+}
+
+
+/* 筛选事件 */
+document
+  .getElementById("cityFilter")
+  .addEventListener(
+    "change",
+    filterWomen
   );
 
-}
-
-
-
-/* ==================================================
-   FILTER EVENTS
-================================================== */
 
 document
-.getElementById(
-  "cityFilter"
-)
-.addEventListener(
-  "change",
-  filterWomen
-);
+  .getElementById("ageFilter")
+  .addEventListener(
+    "change",
+    filterWomen
+  );
 
 
-document
-.getElementById(
-  "ageFilter"
-)
-.addEventListener(
-  "change",
-  filterWomen
-);
-
-
-
-/* ==================================================
-   START
-================================================== */
-
+/* 开始 */
 loadWomen();
 
 </script>
-
 
 </body>
 
