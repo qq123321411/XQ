@@ -3,161 +3,1881 @@
 
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
 
-<title>Supabase 测试</title>
+  <title>缘分 · 相遇</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta
+    name="description"
+    content="寻找适合你的缘分"
+  >
+
+  <style>
+
+    /* ==================================================
+       基础
+    ================================================== */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "PingFang SC",
+        "Microsoft YaHei",
+        Arial,
+        sans-serif;
+
+      background: #faf9f7;
+
+      color: #2b2927;
+
+      line-height: 1.6;
+    }
+
+
+    button,
+    select {
+      font-family: inherit;
+    }
+
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+
+    /* ==================================================
+       顶部导航
+    ================================================== */
+
+    .site-header {
+
+      height: 72px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 0 6%;
+
+      background: rgba(255,255,255,0.96);
+
+      border-bottom: 1px solid #eee;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+    }
+
+
+    .brand {
+
+      font-size: 22px;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+    }
+
+
+    .brand span {
+      color: #b58b63;
+      margin: 0 3px;
+    }
+
+
+    .admin-link {
+
+      padding: 8px 16px;
+
+      border: 1px solid #ddd;
+
+      border-radius: 20px;
+
+      font-size: 14px;
+
+      color: #666;
+
+      transition: 0.2s;
+    }
+
+
+    .admin-link:hover {
+
+      background: #2b2927;
+
+      color: white;
+
+      border-color: #2b2927;
+    }
+
+
+
+    /* ==================================================
+       Hero
+    ================================================== */
+
+    .hero {
+
+      min-height: 420px;
+
+      display: flex;
+
+      align-items: center;
+
+      padding: 70px 8%;
+
+      background:
+
+        linear-gradient(
+          90deg,
+          rgba(250,249,247,1) 0%,
+          rgba(250,249,247,.93) 50%,
+          rgba(250,249,247,.55) 100%
+        );
+    }
+
+
+    .hero > div {
+
+      max-width: 700px;
+    }
+
+
+    .eyebrow {
+
+      font-size: 13px;
+
+      letter-spacing: 4px;
+
+      color: #b58b63;
+
+      margin-bottom: 18px;
+
+      font-weight: 600;
+    }
+
+
+    .hero h1 {
+
+      font-size: clamp(
+        38px,
+        6vw,
+        70px
+      );
+
+      line-height: 1.2;
+
+      font-weight: 600;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 24px;
+    }
+
+
+    .hero p:not(.eyebrow) {
+
+      color: #777;
+
+      font-size: 17px;
+
+      max-width: 520px;
+    }
+
+
+
+    /* ==================================================
+       工具栏
+    ================================================== */
+
+    .toolbar {
+
+      width: 88%;
+
+      max-width: 1400px;
+
+      margin: 40px auto 25px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      flex-wrap: wrap;
+    }
+
+
+    .toolbar strong {
+
+      font-size: 22px;
+
+      margin-right: 12px;
+    }
+
+
+    #count {
+
+      color: #999;
+
+      font-size: 14px;
+    }
+
+
+    .filters {
+
+      display: flex;
+
+      gap: 10px;
+    }
+
+
+    .filters select {
+
+      appearance: none;
+
+      border: 1px solid #ddd;
+
+      background: white;
+
+      padding: 11px 36px 11px 14px;
+
+      border-radius: 8px;
+
+      color: #444;
+
+      cursor: pointer;
+
+      outline: none;
+    }
+
+
+
+    /* ==================================================
+       女士列表
+    ================================================== */
+
+    .women-grid {
+
+      width: 88%;
+
+      max-width: 1400px;
+
+      margin: 0 auto 70px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          4,
+          minmax(0, 1fr)
+        );
+
+      gap: 24px;
+    }
+
+
+
+    /* ==================================================
+       女士卡片
+    ================================================== */
+
+    .woman-card {
+
+      background: white;
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      border: 1px solid #eee;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+      cursor: default;
+    }
+
+
+    .woman-card:hover {
+
+      transform: translateY(-5px);
+
+      box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.08);
+    }
+
+
+
+    /* ==================================================
+       图片
+    ================================================== */
+
+    .woman-image {
+
+      width: 100%;
+
+      aspect-ratio: 3 / 4;
+
+      background: #eee;
+
+      overflow: hidden;
+    }
+
+
+    .woman-image img {
+
+      width: 100%;
+
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      transition:
+        transform .5s ease;
+    }
+
+
+    .woman-card:hover
+    .woman-image img {
+
+      transform: scale(1.03);
+    }
+
+
+
+    /* ==================================================
+       信息
+    ================================================== */
+
+    .woman-info {
+
+      padding: 20px;
+    }
+
+
+    .woman-info h2 {
+
+      font-size: 21px;
+
+      font-weight: 600;
+
+      margin-bottom: 5px;
+    }
+
+
+    .city {
+
+      color: #b58b63;
+
+      font-size: 14px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .woman-info > p {
+
+      color: #777;
+
+      font-size: 14px;
+
+      margin-bottom: 6px;
+    }
+
+
+    .description {
+
+      margin-top: 12px;
+
+      line-height: 1.7;
+
+      display: -webkit-box;
+
+      -webkit-line-clamp: 3;
+
+      -webkit-box-orient: vertical;
+
+      overflow: hidden;
+    }
+
+
+
+    /* ==================================================
+       联系按钮
+    ================================================== */
+
+    .contact-buttons {
+
+      display: flex;
+
+      gap: 8px;
+
+      margin-top: 18px;
+    }
+
+
+    .contact-btn {
+
+      flex: 1;
+
+      border: 0;
+
+      padding: 11px 8px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      transition: .2s;
+    }
+
+
+    .whatsapp-btn {
+
+      background: #e8f7ed;
+
+      color: #168a43;
+    }
+
+
+    .whatsapp-btn:hover {
+
+      background: #168a43;
+
+      color: white;
+    }
+
+
+    .telegram-btn {
+
+      background: #e8f2fb;
+
+      color: #2481c7;
+    }
+
+
+    .telegram-btn:hover {
+
+      background: #2481c7;
+
+      color: white;
+    }
+
+
+
+    /* ==================================================
+       加载 / 空状态
+    ================================================== */
+
+    .loading {
+
+      grid-column: 1 / -1;
+
+      text-align: center;
+
+      padding: 80px 20px;
+
+      color: #888;
+    }
+
+
+    .loading h3 {
+
+      font-size: 22px;
+
+      color: #444;
+
+      margin-bottom: 10px;
+    }
+
+
+    .loading p {
+
+      color: #999;
+
+      font-size: 14px;
+    }
+
+
+
+    /* ==================================================
+       页脚
+    ================================================== */
+
+    footer {
+
+      text-align: center;
+
+      padding: 35px 20px;
+
+      border-top: 1px solid #eee;
+
+      color: #aaa;
+
+      font-size: 13px;
+
+      background: white;
+    }
+
+
+
+    /* ==================================================
+       平板
+    ================================================== */
+
+    @media (
+      max-width: 1000px
+    ) {
+
+      .women-grid {
+
+        grid-template-columns:
+          repeat(
+            3,
+            minmax(0,1fr)
+          );
+
+      }
+
+    }
+
+
+
+    /* ==================================================
+       手机
+    ================================================== */
+
+    @media (
+      max-width: 700px
+    ) {
+
+      .site-header {
+
+        height: 62px;
+
+        padding:
+          0 20px;
+      }
+
+
+      .brand {
+
+        font-size: 19px;
+      }
+
+
+      .admin-link {
+
+        font-size: 12px;
+
+        padding:
+          6px 12px;
+      }
+
+
+      .hero {
+
+        min-height: 360px;
+
+        padding:
+          55px 25px;
+      }
+
+
+      .hero h1 {
+
+        font-size: 39px;
+      }
+
+
+      .hero p:not(.eyebrow) {
+
+        font-size: 15px;
+      }
+
+
+      .toolbar {
+
+        width: calc(
+          100% - 40px
+        );
+
+        margin-top: 30px;
+
+        align-items:
+          flex-start;
+      }
+
+
+      .toolbar strong {
+
+        font-size: 20px;
+      }
+
+
+      .filters {
+
+        width: 100%;
+      }
+
+
+      .filters select {
+
+        flex: 1;
+
+        width: 50%;
+      }
+
+
+      .women-grid {
+
+        width: calc(
+          100% - 30px
+        );
+
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0,1fr)
+          );
+
+        gap: 12px;
+
+        margin-bottom: 50px;
+      }
+
+
+      .woman-info {
+
+        padding: 14px;
+      }
+
+
+      .woman-info h2 {
+
+        font-size: 17px;
+      }
+
+
+      .woman-info > p {
+
+        font-size: 12px;
+      }
+
+
+      .description {
+
+        font-size: 12px !important;
+      }
+
+
+      .contact-buttons {
+
+        flex-direction: column;
+
+        gap: 6px;
+      }
+
+
+      .contact-btn {
+
+        width: 100%;
+
+        padding: 9px;
+      }
+
+    }
+
+
+
+    /* ==================================================
+       小手机
+    ================================================== */
+
+    @media (
+      max-width: 400px
+    ) {
+
+      .women-grid {
+
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .woman-image {
+
+        aspect-ratio: 4 / 5;
+      }
+
+    }
+
+  </style>
 
 </head>
 
-<body style="
-font-family:Arial,sans-serif;
-padding:30px;
-">
 
-<h1>Supabase 数据库测试</h1>
+<body>
 
-<div id="result">
-正在连接 Supabase……
-</div>
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="site-header">
+
+  <a
+    class="brand"
+    href="./"
+  >
+    缘分<span>·</span>相遇
+  </a>
+
+
+  <a
+    class="admin-link"
+    href="admin/"
+  >
+    管理
+  </a>
+
+</header>
+
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<main>
+
+  <section class="hero">
+
+    <div>
+
+      <p class="eyebrow">
+        MEET SOMEONE SPECIAL
+      </p>
+
+
+      <h1>
+        认真认识一个人，<br>
+        从一次相遇开始。
+      </h1>
+
+
+      <p>
+        浏览真实资料，了解彼此，再决定是否联系。
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+<!-- ==================================================
+     TOOLBAR
+================================================== -->
+
+  <section class="toolbar">
+
+    <div>
+
+      <strong>
+        女士资料
+      </strong>
+
+      <span id="count">
+        加载中…
+      </span>
+
+    </div>
+
+
+    <div class="filters">
+
+      <select id="cityFilter">
+
+        <option value="">
+          全部城市
+        </option>
+
+      </select>
+
+
+      <select id="ageFilter">
+
+        <option value="">
+          全部年龄
+        </option>
+
+        <option value="18-25">
+          18–25
+        </option>
+
+        <option value="26-35">
+          26–35
+        </option>
+
+        <option value="36-45">
+          36–45
+        </option>
+
+        <option value="46+">
+          46+
+        </option>
+
+      </select>
+
+    </div>
+
+  </section>
+
+
+
+<!-- ==================================================
+     WOMEN GRID
+================================================== -->
+
+  <section
+    id="womenGrid"
+    class="women-grid"
+  >
+
+    <div class="loading">
+
+      正在加载资料…
+
+    </div>
+
+  </section>
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer>
+
+  ©
+  <span id="year"></span>
+  缘分·相遇
+
+</footer>
+
+
+
+<!-- ==================================================
+     SUPABASE
+================================================== -->
 
 <script>
 
 const SUPABASE_URL =
 "https://yutraouosffjteivvlfx.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
 
-const client =
+const supabaseClient =
 window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
 
-async function testDatabase() {
 
-const result =
-document.getElementById("result");
+/* ==================================================
+   DATA
+================================================== */
 
-
-try {
-
-const response =
-await client
-.from("women")
-.select("*");
+let women = [];
 
 
-if (response.error) {
 
-result.innerHTML = `
+/* ==================================================
+   YEAR
+================================================== */
 
-<h2 style="color:red;">
-数据库连接失败
-</h2>
+document
+.getElementById("year")
+.textContent =
+new Date().getFullYear();
 
-<p>
-${response.error.message}
-</p>
 
-<pre>
-${JSON.stringify(
-response.error,
-null,
-2
-)}
-</pre>
 
-`;
+/* ==================================================
+   LOAD WOMEN
+================================================== */
 
-return;
+async function loadWomen() {
+
+  const grid =
+  document.getElementById(
+    "womenGrid"
+  );
+
+
+  const count =
+  document.getElementById(
+    "count"
+  );
+
+
+  try {
+
+    const response =
+    await supabaseClient
+
+      .from("women")
+
+      .select("*")
+
+      .eq(
+        "is_published",
+        true
+      )
+
+      .order(
+        "sort_order",
+        {
+          ascending: true
+        }
+      )
+
+      .order(
+        "created_at",
+        {
+          ascending: false
+        }
+      );
+
+
+    if (
+      response.error
+    ) {
+
+      throw response.error;
+
+    }
+
+
+    women =
+    response.data || [];
+
+
+    count.textContent =
+    `共 ${women.length} 位`;
+
+
+    createCityFilter();
+
+
+    renderWomen(
+      women
+    );
+
+  }
+
+  catch(error) {
+
+    console.error(
+      error
+    );
+
+
+    count.textContent =
+    "加载失败";
+
+
+    grid.innerHTML = `
+
+      <div class="loading">
+
+        <h3>
+          暂时无法加载资料
+        </h3>
+
+        <p>
+          ${escapeHtml(
+            error.message ||
+            "Supabase 连接失败"
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+  }
 
 }
 
 
-const data =
-response.data;
+
+/* ==================================================
+   CITY FILTER
+================================================== */
+
+function createCityFilter() {
+
+  const select =
+  document.getElementById(
+    "cityFilter"
+  );
 
 
-if (!data || data.length === 0) {
+  const cities =
+  [
+    ...new Set(
 
-result.innerHTML = `
+      women
 
-<h2 style="color:orange;">
-数据库连接成功
-</h2>
+        .map(
+          woman =>
+          woman.city
+        )
 
-<p>
-但是 women 表目前没有数据。
-</p>
+        .filter(
+          city =>
+          city &&
+          city.trim()
+        )
 
-`;
-
-return;
-
-}
+    )
+  ];
 
 
-result.innerHTML = `
+  select.innerHTML = `
 
-<h2 style="color:green;">
-✅ Supabase 连接成功
-</h2>
+    <option value="">
+      全部城市
+    </option>
 
-<p>
-成功读取 ${data.length} 条女士资料。
-</p>
+  `;
 
-<pre style="
-white-space:pre-wrap;
-word-break:break-word;
-background:#f5f5f5;
-padding:20px;
-border-radius:10px;
-">
-${JSON.stringify(
-data,
-null,
-2
-)}
-</pre>
 
-`;
+  cities.forEach(
+    city => {
 
-}
+      const option =
+      document.createElement(
+        "option"
+      );
 
-catch(error) {
 
-result.innerHTML = `
+      option.value =
+      city;
 
-<h2 style="color:red;">
-发生错误
-</h2>
 
-<pre style="
-white-space:pre-wrap;
-word-break:break-word;
-">
-${error.message || error}
-</pre>
+      option.textContent =
+      city;
 
-`;
 
-}
+      select.appendChild(
+        option
+      );
+
+    }
+  );
 
 }
 
 
-testDatabase();
+
+/* ==================================================
+   PHOTO URL
+================================================== */
+
+function getPhotoUrl(
+  woman
+) {
+
+  if (
+    !woman.photos ||
+    !Array.isArray(
+      woman.photos
+    ) ||
+    woman.photos.length === 0
+  ) {
+
+    return "";
+
+  }
+
+
+  const photo =
+  woman.photos[0];
+
+
+  if (
+    !photo
+  ) {
+
+    return "";
+
+  }
+
+
+  if (
+    photo.startsWith(
+      "http://"
+    ) ||
+
+    photo.startsWith(
+      "https://"
+    )
+  ) {
+
+    return photo;
+
+  }
+
+
+  const result =
+  supabaseClient
+    .storage
+    .from(
+      "women-photos"
+    )
+    .getPublicUrl(
+      photo
+    );
+
+
+  return result
+    .data
+    .publicUrl;
+
+}
+
+
+
+/* ==================================================
+   RENDER WOMEN
+================================================== */
+
+function renderWomen(
+  list
+) {
+
+  const grid =
+  document.getElementById(
+    "womenGrid"
+  );
+
+
+  if (
+    !list ||
+    list.length === 0
+  ) {
+
+    grid.innerHTML = `
+
+      <div class="loading">
+
+        <h3>
+          暂时没有符合条件的资料
+        </h3>
+
+        <p>
+          请尝试更换筛选条件。
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  grid.innerHTML = "";
+
+
+  list.forEach(
+    woman => {
+
+
+      const card =
+      document.createElement(
+        "article"
+      );
+
+
+      card.className =
+      "woman-card";
+
+
+      const photo =
+      getPhotoUrl(
+        woman
+      );
+
+
+      const image =
+      photo ||
+
+      "data:image/svg+xml;charset=UTF-8," +
+
+      encodeURIComponent(`
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="600"
+          height="800"
+          viewBox="0 0 600 800"
+        >
+
+          <rect
+            width="600"
+            height="800"
+            fill="#eeeeee"
+          />
+
+          <text
+            x="300"
+            y="400"
+            text-anchor="middle"
+            font-size="28"
+            fill="#999999"
+          >
+            暂无照片
+          </text>
+
+        </svg>
+
+      `);
+
+
+
+      const whatsapp =
+      woman.whatsapp
+      ? `
+
+        <button
+
+          class="contact-btn whatsapp-btn"
+
+          type="button"
+
+          data-whatsapp="${escapeHtml(
+            woman.whatsapp
+          )}"
+
+        >
+
+          WhatsApp
+
+        </button>
+
+      `
+      : "";
+
+
+
+      const telegram =
+      woman.telegram
+      ? `
+
+        <button
+
+          class="contact-btn telegram-btn"
+
+          type="button"
+
+          data-telegram="${escapeHtml(
+            woman.telegram
+          )}"
+
+        >
+
+          Telegram
+
+        </button>
+
+      `
+      : "";
+
+
+
+      const intro =
+      woman.short_intro ||
+      woman.bio ||
+      "";
+
+
+
+      card.innerHTML = `
+
+        <div class="woman-image">
+
+          <img
+
+            src="${escapeHtml(
+              image
+            )}"
+
+            alt="${escapeHtml(
+              woman.name ||
+              "女士"
+            )}"
+
+            loading="lazy"
+
+          >
+
+        </div>
+
+
+        <div class="woman-info">
+
+
+          <h2>
+
+            ${escapeHtml(
+              woman.name ||
+              "未填写姓名"
+            )}
+
+            ${
+              woman.age
+              ? `，${escapeHtml(
+                  woman.age
+                )}岁`
+              : ""
+            }
+
+          </h2>
+
+
+          ${
+            woman.city
+            ? `
+
+              <p class="city">
+
+                ${escapeHtml(
+                  woman.city
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.occupation
+            ? `
+
+              <p>
+
+                ${escapeHtml(
+                  woman.occupation
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.height_cm
+            ? `
+
+              <p>
+
+                身高：
+                ${escapeHtml(
+                  woman.height_cm
+                )} cm
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.marital_status
+            ? `
+
+              <p>
+
+                婚姻状况：
+                ${escapeHtml(
+                  woman.marital_status
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            intro
+            ? `
+
+              <p class="description">
+
+                ${escapeHtml(
+                  intro
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            woman.hobbies
+            ? `
+
+              <p class="description">
+
+                兴趣：
+                ${escapeHtml(
+                  woman.hobbies
+                )}
+
+              </p>
+
+            `
+            : ""
+          }
+
+
+          ${
+            whatsapp ||
+            telegram
+            ? `
+
+              <div class="contact-buttons">
+
+                ${whatsapp}
+
+                ${telegram}
+
+              </div>
+
+            `
+            : ""
+          }
+
+
+        </div>
+
+      `;
+
+
+
+      grid.appendChild(
+        card
+      );
+
+
+      /* ================================
+         WhatsApp
+      ================================= */
+
+      const whatsappButton =
+      card.querySelector(
+        "[data-whatsapp]"
+      );
+
+
+      if (
+        whatsappButton
+      ) {
+
+        whatsappButton
+        .addEventListener(
+          "click",
+          function() {
+
+            openWhatsApp(
+              this.dataset.whatsapp
+            );
+
+          }
+        );
+
+      }
+
+
+
+      /* ================================
+         Telegram
+      ================================= */
+
+      const telegramButton =
+      card.querySelector(
+        "[data-telegram]"
+      );
+
+
+      if (
+        telegramButton
+      ) {
+
+        telegramButton
+        .addEventListener(
+          "click",
+          function() {
+
+            openTelegram(
+              this.dataset.telegram
+            );
+
+          }
+        );
+
+      }
+
+    }
+  );
+
+}
+
+
+
+/* ==================================================
+   FILTER
+================================================== */
+
+function filterWomen() {
+
+  const city =
+  document.getElementById(
+    "cityFilter"
+  ).value;
+
+
+  const age =
+  document.getElementById(
+    "ageFilter"
+  ).value;
+
+
+  let filtered =
+  [...women];
+
+
+  if (city) {
+
+    filtered =
+    filtered.filter(
+      woman =>
+      woman.city === city
+    );
+
+  }
+
+
+  if (age) {
+
+    filtered =
+    filtered.filter(
+      woman => {
+
+        const womanAge =
+        Number(
+          woman.age
+        );
+
+
+        if (
+          age === "18-25"
+        ) {
+
+          return (
+            womanAge >= 18 &&
+            womanAge <= 25
+          );
+
+        }
+
+
+        if (
+          age === "26-35"
+        ) {
+
+          return (
+            womanAge >= 26 &&
+            womanAge <= 35
+          );
+
+        }
+
+
+        if (
+          age === "36-45"
+        ) {
+
+          return (
+            womanAge >= 36 &&
+            womanAge <= 45
+          );
+
+        }
+
+
+        if (
+          age === "46+"
+        ) {
+
+          return womanAge >= 46;
+
+        }
+
+
+        return true;
+
+      }
+    );
+
+  }
+
+
+  renderWomen(
+    filtered
+  );
+
+}
+
+
+
+/* ==================================================
+   WHATSAPP
+================================================== */
+
+function openWhatsApp(
+  phone
+) {
+
+  if (!phone) {
+
+    return;
+
+  }
+
+
+  let number =
+  String(
+    phone
+  ).trim();
+
+
+  number =
+  number.replace(
+    /[^\d+]/g,
+    ""
+  );
+
+
+  number =
+  number.replace(
+    /^\+/,
+    ""
+  );
+
+
+  if (!number) {
+
+    alert(
+      "WhatsApp 联系方式无效"
+    );
+
+    return;
+
+  }
+
+
+  const url =
+  `https://wa.me/${number}`;
+
+
+  window.location.href =
+  url;
+
+}
+
+
+
+/* ==================================================
+   TELEGRAM
+================================================== */
+
+function openTelegram(
+  username
+) {
+
+  if (!username) {
+
+    return;
+
+  }
+
+
+  let value =
+  String(
+    username
+  ).trim();
+
+
+  if (
+    value.startsWith(
+      "https://t.me/"
+    ) ||
+
+    value.startsWith(
+      "http://t.me/"
+    )
+  ) {
+
+    window.location.href =
+    value;
+
+    return;
+
+  }
+
+
+  value =
+  value.replace(
+    /^@/,
+    ""
+  );
+
+
+  window.location.href =
+  `https://t.me/${value}`;
+
+}
+
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHtml(
+  value
+) {
+
+  return String(
+    value
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+
+/* ==================================================
+   FILTER EVENTS
+================================================== */
+
+document
+.getElementById(
+  "cityFilter"
+)
+.addEventListener(
+  "change",
+  filterWomen
+);
+
+
+document
+.getElementById(
+  "ageFilter"
+)
+.addEventListener(
+  "change",
+  filterWomen
+);
+
+
+
+/* ==================================================
+   START
+================================================== */
+
+loadWomen();
 
 </script>
+
 
 </body>
 
