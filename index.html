@@ -19,9 +19,9 @@
 
 <style>
 
-/* =========================================================
+/* ==================================================
    基础
-========================================================= */
+================================================== */
 
 *{
   box-sizing:border-box;
@@ -50,34 +50,31 @@ body{
 
   line-height:1.6;
 
-  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+body.viewer-open{
+  overflow:hidden;
 }
 
 button,
 select{
-
   font-family:inherit;
-
 }
 
 button{
-
   cursor:pointer;
-
 }
 
 a{
-
   text-decoration:none;
-
   color:inherit;
-
 }
 
 
-/* =========================================================
+/* ==================================================
    Header
-========================================================= */
+================================================== */
 
 .site-header{
 
@@ -100,9 +97,6 @@ a{
   top:0;
 
   z-index:100;
-
-  backdrop-filter:blur(10px);
-
 }
 
 .brand{
@@ -112,7 +106,6 @@ a{
   font-weight:700;
 
   letter-spacing:1px;
-
 }
 
 .brand span{
@@ -120,7 +113,6 @@ a{
   color:#b58b63;
 
   margin:0 3px;
-
 }
 
 .admin-link{
@@ -134,9 +126,6 @@ a{
   font-size:14px;
 
   color:#666;
-
-  transition:.2s;
-
 }
 
 .admin-link:hover{
@@ -144,17 +133,16 @@ a{
   background:#2b2927;
 
   color:#fff;
-
 }
 
 
-/* =========================================================
+/* ==================================================
    Hero
-========================================================= */
+================================================== */
 
 .hero{
 
-  min-height:430px;
+  min-height:420px;
 
   display:flex;
 
@@ -163,20 +151,17 @@ a{
   padding:70px 8%;
 
   background:
-
     linear-gradient(
       90deg,
       #faf9f7 0%,
-      rgba(250,249,247,.95) 55%,
-      rgba(250,249,247,.75) 100%
+      rgba(250,249,247,.94) 55%,
+      rgba(250,249,247,.65) 100%
     );
-
 }
 
-.hero-content{
+.hero > div{
 
   max-width:700px;
-
 }
 
 .eyebrow{
@@ -190,17 +175,11 @@ a{
   margin-bottom:18px;
 
   font-weight:600;
-
 }
 
 .hero h1{
 
-  font-size:
-    clamp(
-      38px,
-      6vw,
-      70px
-    );
+  font-size:clamp(38px,6vw,70px);
 
   line-height:1.2;
 
@@ -209,23 +188,21 @@ a{
   letter-spacing:1px;
 
   margin-bottom:24px;
-
 }
 
-.hero-description{
+.hero p:not(.eyebrow){
 
   color:#777;
 
   font-size:17px;
 
   max-width:520px;
-
 }
 
 
-/* =========================================================
+/* ==================================================
    Toolbar
-========================================================= */
+================================================== */
 
 .toolbar{
 
@@ -244,23 +221,13 @@ a{
   gap:20px;
 
   flex-wrap:wrap;
-
-}
-
-.toolbar-title{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
 }
 
 .toolbar strong{
 
   font-size:22px;
 
+  margin-right:12px;
 }
 
 #count{
@@ -268,7 +235,6 @@ a{
   color:#999;
 
   font-size:14px;
-
 }
 
 .filters{
@@ -276,7 +242,6 @@ a{
   display:flex;
 
   gap:10px;
-
 }
 
 .filters select{
@@ -296,19 +261,17 @@ a{
   cursor:pointer;
 
   outline:none;
-
 }
 
 .filters select:focus{
 
   border-color:#b58b63;
-
 }
 
 
-/* =========================================================
+/* ==================================================
    Grid
-========================================================= */
+================================================== */
 
 .women-grid{
 
@@ -321,19 +284,15 @@ a{
   display:grid;
 
   grid-template-columns:
-    repeat(
-      4,
-      minmax(0,1fr)
-    );
+    repeat(4,minmax(0,1fr));
 
   gap:24px;
-
 }
 
 
-/* =========================================================
+/* ==================================================
    Card
-========================================================= */
+================================================== */
 
 .woman-card{
 
@@ -346,11 +305,12 @@ a{
   border:1px solid #eee;
 
   transition:
-
     transform .25s ease,
-
     box-shadow .25s ease;
 
+  cursor:pointer;
+
+  position:relative;
 }
 
 .woman-card:hover{
@@ -359,19 +319,12 @@ a{
 
   box-shadow:
     0 15px 40px rgba(0,0,0,.08);
-
 }
 
 
-/* =========================================================
-   Media
-========================================================= */
-
-.media-gallery{
-
-  background:#eee;
-
-}
+/* ==================================================
+   主照片
+================================================== */
 
 .woman-image{
 
@@ -383,6 +336,7 @@ a{
 
   overflow:hidden;
 
+  position:relative;
 }
 
 .woman-image img{
@@ -395,98 +349,82 @@ a{
 
   display:block;
 
-  transition:
-    transform .5s ease;
-
+  transition:transform .5s ease;
 }
 
 .woman-card:hover
 .woman-image img{
 
   transform:scale(1.03);
-
 }
 
 
-/* =========================================================
-   多张照片
-========================================================= */
+/* ==================================================
+   媒体数量
+================================================== */
 
-.photo-list{
+.media-badge{
 
-  display:grid;
+  position:absolute;
 
-  grid-template-columns:
-    repeat(3,1fr);
+  top:12px;
 
-  gap:3px;
+  right:12px;
 
-  margin-top:3px;
+  padding:6px 10px;
 
-}
+  border-radius:20px;
 
-.photo-list img{
+  background:rgba(0,0,0,.58);
 
-  width:100%;
+  color:#fff;
 
-  aspect-ratio:1 / 1;
+  font-size:12px;
 
-  object-fit:cover;
-
-  display:block;
-
-  background:#eee;
-
+  backdrop-filter:blur(5px);
 }
 
 
-/* =========================================================
-   视频
-========================================================= */
+/* ==================================================
+   视频标识
+================================================== */
 
-.video-list{
+.video-badge{
 
-  display:grid;
+  position:absolute;
 
-  grid-template-columns:1fr;
+  left:12px;
 
-  gap:5px;
+  top:12px;
 
-  margin-top:5px;
+  padding:6px 10px;
 
-}
+  border-radius:20px;
 
-.video-list video{
+  background:rgba(181,139,99,.9);
 
-  width:100%;
+  color:#fff;
 
-  display:block;
-
-  background:#000;
-
-  max-height:500px;
-
+  font-size:12px;
 }
 
 
-/* =========================================================
-   信息
-========================================================= */
+/* ==================================================
+   Card Info
+================================================== */
 
 .woman-info{
 
-  padding:20px;
-
+  padding:18px;
 }
 
 .woman-info h2{
 
-  font-size:21px;
+  font-size:20px;
 
   font-weight:600;
 
-  margin-bottom:5px;
-
+  margin-bottom:4px;
 }
 
 .city{
@@ -495,107 +433,70 @@ a{
 
   font-size:14px;
 
-  margin-bottom:8px;
-
+  margin-bottom:7px;
 }
 
-.woman-info > p{
+.woman-info > p:not(.city){
 
   color:#777;
 
-  font-size:14px;
+  font-size:13px;
 
-  margin-bottom:6px;
-
+  margin-bottom:4px;
 }
 
 .description{
 
-  margin-top:12px;
+  margin-top:9px;
 
-  line-height:1.7;
+  line-height:1.65;
 
   display:-webkit-box;
 
-  -webkit-line-clamp:4;
+  -webkit-line-clamp:3;
 
   -webkit-box-orient:vertical;
 
   overflow:hidden;
 
+  color:#777;
+
+  font-size:13px;
 }
 
 
-/* =========================================================
-   联系按钮
-========================================================= */
+/* ==================================================
+   查看提示
+================================================== */
 
-.contact-buttons{
+.view-profile{
 
-  display:flex;
+  margin-top:14px;
 
-  gap:8px;
+  color:#b58b63;
 
-  margin-top:18px;
-
-}
-
-.contact-btn{
-
-  flex:1;
-
-  border:0;
-
-  padding:11px 8px;
-
-  border-radius:8px;
-
-  cursor:pointer;
-
-  font-size:14px;
+  font-size:13px;
 
   font-weight:600;
-
-  transition:.2s;
-
 }
 
-.whatsapp-btn{
+.view-profile span{
 
-  background:#e8f7ed;
+  display:inline-block;
 
-  color:#168a43;
-
+  transition:transform .2s ease;
 }
 
-.whatsapp-btn:hover{
+.woman-card:hover
+.view-profile span{
 
-  background:#168a43;
-
-  color:#fff;
-
-}
-
-.telegram-btn{
-
-  background:#e8f2fb;
-
-  color:#2481c7;
-
-}
-
-.telegram-btn:hover{
-
-  background:#2481c7;
-
-  color:#fff;
-
+  transform:translateX(5px);
 }
 
 
-/* =========================================================
+/* ==================================================
    Loading
-========================================================= */
+================================================== */
 
 .loading{
 
@@ -606,7 +507,6 @@ a{
   padding:80px 20px;
 
   color:#888;
-
 }
 
 .loading h3{
@@ -616,7 +516,6 @@ a{
   color:#444;
 
   margin-bottom:10px;
-
 }
 
 .loading p{
@@ -624,42 +523,12 @@ a{
   color:#999;
 
   font-size:14px;
-
 }
 
 
-/* =========================================================
-   Empty
-========================================================= */
-
-.empty-state{
-
-  grid-column:1 / -1;
-
-  text-align:center;
-
-  padding:80px 20px;
-
-}
-
-.empty-state h3{
-
-  font-size:22px;
-
-  margin-bottom:10px;
-
-}
-
-.empty-state p{
-
-  color:#999;
-
-}
-
-
-/* =========================================================
+/* ==================================================
    Footer
-========================================================= */
+================================================== */
 
 footer{
 
@@ -674,32 +543,416 @@ footer{
   font-size:13px;
 
   background:#fff;
-
 }
 
 
-/* =========================================================
+/* ==================================================
+   =========================
+   全屏资料查看器
+   =========================
+================================================== */
+
+.viewer{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:1000;
+
+  background:
+    rgba(0,0,0,.94);
+
+  display:flex;
+
+  flex-direction:column;
+
+  opacity:1;
+
+  visibility:visible;
+
+  transition:
+    opacity .2s ease,
+    visibility .2s ease;
+}
+
+.viewer.hidden{
+
+  opacity:0;
+
+  visibility:hidden;
+
+  pointer-events:none;
+}
+
+
+/* ==================================================
+   Viewer Header
+================================================== */
+
+.viewer-header{
+
+  height:70px;
+
+  flex-shrink:0;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 20px;
+
+  color:#fff;
+
+  position:relative;
+
+  z-index:20;
+}
+
+.viewer-title{
+
+  min-width:0;
+
+  overflow:hidden;
+}
+
+.viewer-title h2{
+
+  font-size:19px;
+
+  font-weight:600;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+.viewer-title p{
+
+  color:rgba(255,255,255,.65);
+
+  font-size:12px;
+}
+
+.viewer-counter{
+
+  font-size:13px;
+
+  color:rgba(255,255,255,.8);
+
+  margin-left:20px;
+
+  white-space:nowrap;
+}
+
+.close-viewer{
+
+  width:42px;
+
+  height:42px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.12);
+
+  color:#fff;
+
+  font-size:28px;
+
+  line-height:1;
+
+  flex-shrink:0;
+
+  margin-left:15px;
+}
+
+.close-viewer:hover{
+
+  background:rgba(255,255,255,.22);
+}
+
+
+/* ==================================================
+   Viewer Content
+================================================== */
+
+.viewer-content{
+
+  flex:1;
+
+  min-height:0;
+
+  position:relative;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  overflow:hidden;
+}
+
+
+/* ==================================================
+   滑动轨道
+================================================== */
+
+.viewer-track{
+
+  width:100%;
+
+  height:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  overflow-x:auto;
+
+  overflow-y:hidden;
+
+  scroll-snap-type:x mandatory;
+
+  scrollbar-width:none;
+
+  -webkit-overflow-scrolling:touch;
+}
+
+.viewer-track::-webkit-scrollbar{
+
+  display:none;
+}
+
+
+/* ==================================================
+   单个媒体
+================================================== */
+
+.viewer-slide{
+
+  flex:0 0 100%;
+
+  width:100%;
+
+  height:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  scroll-snap-align:center;
+
+  position:relative;
+
+  padding:10px 70px;
+}
+
+.viewer-slide img{
+
+  max-width:100%;
+
+  max-height:100%;
+
+  width:auto;
+
+  height:auto;
+
+  object-fit:contain;
+
+  display:block;
+
+  user-select:none;
+
+  -webkit-user-drag:none;
+
+  border-radius:4px;
+}
+
+.viewer-slide video{
+
+  max-width:100%;
+
+  max-height:100%;
+
+  width:auto;
+
+  height:auto;
+
+  object-fit:contain;
+
+  display:block;
+
+  background:#000;
+
+  border-radius:4px;
+}
+
+
+/* ==================================================
+   左右按钮
+================================================== */
+
+.viewer-arrow{
+
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:50px;
+
+  height:50px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.12);
+
+  color:#fff;
+
+  font-size:34px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:10;
+
+  transition:.2s ease;
+}
+
+.viewer-arrow:hover{
+
+  background:rgba(255,255,255,.25);
+
+}
+
+.viewer-arrow.left{
+
+  left:15px;
+}
+
+.viewer-arrow.right{
+
+  right:15px;
+}
+
+
+/* ==================================================
+   Viewer Bottom
+================================================== */
+
+.viewer-bottom{
+
+  flex-shrink:0;
+
+  min-height:90px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:12px;
+
+  padding:15px 20px 20px;
+
+  position:relative;
+
+  z-index:20;
+}
+
+.viewer-contact{
+
+  border:0;
+
+  border-radius:9px;
+
+  padding:11px 24px;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  color:#fff;
+
+  cursor:pointer;
+}
+
+.viewer-whatsapp{
+
+  background:#168a43;
+}
+
+.viewer-telegram{
+
+  background:#2481c7;
+}
+
+
+/* ==================================================
+   Swipe Hint
+================================================== */
+
+.swipe-hint{
+
+  position:absolute;
+
+  bottom:95px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  color:rgba(255,255,255,.65);
+
+  font-size:12px;
+
+  pointer-events:none;
+
+  opacity:0;
+
+  transition:opacity .3s ease;
+}
+
+.viewer.first-open .swipe-hint{
+
+  opacity:1;
+}
+
+
+/* ==================================================
    Tablet
-========================================================= */
+================================================== */
 
 @media(max-width:1000px){
 
   .women-grid{
 
     grid-template-columns:
-      repeat(
-        3,
-        minmax(0,1fr)
-      );
-
+      repeat(3,minmax(0,1fr));
   }
 
 }
 
 
-/* =========================================================
+/* ==================================================
    Mobile
-========================================================= */
+================================================== */
 
 @media(max-width:700px){
 
@@ -708,13 +961,11 @@ footer{
     height:62px;
 
     padding:0 20px;
-
   }
 
   .brand{
 
     font-size:19px;
-
   }
 
   .admin-link{
@@ -722,58 +973,44 @@ footer{
     font-size:12px;
 
     padding:6px 12px;
-
   }
+
 
   .hero{
 
     min-height:360px;
 
     padding:55px 25px;
-
   }
 
   .hero h1{
 
     font-size:39px;
-
   }
 
-  .hero-description{
+  .hero p:not(.eyebrow){
 
     font-size:15px;
-
   }
+
 
   .toolbar{
 
-    width:
-      calc(
-        100% - 40px
-      );
+    width:calc(100% - 30px);
 
     margin-top:30px;
 
     align-items:flex-start;
-
-  }
-
-  .toolbar-title{
-
-    width:100%;
-
   }
 
   .toolbar strong{
 
     font-size:20px;
-
   }
 
   .filters{
 
     width:100%;
-
   }
 
   .filters select{
@@ -781,87 +1018,182 @@ footer{
     flex:1;
 
     width:50%;
-
   }
+
 
   .women-grid{
 
-    width:
-      calc(
-        100% - 30px
-      );
+    width:calc(100% - 30px);
 
     grid-template-columns:
-      repeat(
-        2,
-        minmax(0,1fr)
-      );
+      repeat(2,minmax(0,1fr));
 
     gap:12px;
 
     margin-bottom:50px;
-
   }
+
 
   .woman-info{
 
-    padding:14px;
-
+    padding:13px;
   }
 
   .woman-info h2{
 
-    font-size:17px;
-
+    font-size:16px;
   }
 
-  .woman-info > p{
+  .city{
 
     font-size:12px;
+  }
 
+  .woman-info > p:not(.city){
+
+    font-size:11px;
   }
 
   .description{
 
-    font-size:12px !important;
-
+    font-size:11px;
   }
 
-  .contact-buttons{
+  .view-profile{
 
-    flex-direction:column;
+    font-size:12px;
 
-    gap:6px;
-
+    margin-top:10px;
   }
 
-  .contact-btn{
+  .media-badge,
+  .video-badge{
 
-    width:100%;
+    font-size:10px;
 
-    padding:9px;
+    padding:4px 7px;
 
+    top:8px;
+  }
+
+  .media-badge{
+
+    right:8px;
+  }
+
+  .video-badge{
+
+    left:8px;
+  }
+
+
+  /* Viewer */
+
+  .viewer-header{
+
+    height:60px;
+
+    padding:0 12px;
+  }
+
+  .viewer-title h2{
+
+    font-size:16px;
+  }
+
+  .viewer-title p{
+
+    font-size:11px;
+  }
+
+  .viewer-counter{
+
+    font-size:12px;
+
+    margin-left:8px;
+  }
+
+  .close-viewer{
+
+    width:38px;
+
+    height:38px;
+
+    font-size:25px;
+
+    margin-left:8px;
+  }
+
+  .viewer-slide{
+
+    padding:10px 5px;
+  }
+
+  .viewer-slide img,
+  .viewer-slide video{
+
+    max-width:100%;
+
+    max-height:calc(100vh - 180px);
+  }
+
+  .viewer-arrow{
+
+    width:40px;
+
+    height:40px;
+
+    font-size:27px;
+
+    background:rgba(0,0,0,.2);
+  }
+
+  .viewer-arrow.left{
+
+    left:5px;
+  }
+
+  .viewer-arrow.right{
+
+    right:5px;
+  }
+
+  .viewer-bottom{
+
+    min-height:75px;
+
+    padding:10px 15px 15px;
+  }
+
+  .viewer-contact{
+
+    padding:9px 18px;
+
+    font-size:13px;
+  }
+
+  .swipe-hint{
+
+    bottom:80px;
   }
 
 }
 
 
-/* =========================================================
+/* ==================================================
    Small phone
-========================================================= */
+================================================== */
 
 @media(max-width:400px){
 
   .women-grid{
 
     grid-template-columns:1fr;
-
   }
 
   .woman-image{
 
     aspect-ratio:4 / 5;
-
   }
 
 }
@@ -874,9 +1206,9 @@ footer{
 <body>
 
 
-<!-- =======================================================
+<!-- ==================================================
      Header
-======================================================= -->
+================================================== -->
 
 <header class="site-header">
 
@@ -892,7 +1224,7 @@ footer{
 
   <a
     class="admin-link"
-    href="./admin/"
+    href="admin/"
   >
 
     管理
@@ -902,41 +1234,32 @@ footer{
 </header>
 
 
-<!-- =======================================================
+<!-- ==================================================
      Main
-======================================================= -->
+================================================== -->
 
 <main>
 
 
-<!-- =======================================================
+<!-- ==================================================
      Hero
-======================================================= -->
+================================================== -->
 
 <section class="hero">
 
-  <div class="hero-content">
+  <div>
 
     <p class="eyebrow">
-
       MEET SOMEONE SPECIAL
-
     </p>
 
-
     <h1>
-
       认真认识一个人，<br>
-
       从一次相遇开始。
-
     </h1>
 
-
-    <p class="hero-description">
-
+    <p>
       浏览真实资料，了解彼此，再决定是否联系。
-
     </p>
 
   </div>
@@ -944,25 +1267,20 @@ footer{
 </section>
 
 
-<!-- =======================================================
+<!-- ==================================================
      Toolbar
-======================================================= -->
+================================================== -->
 
 <section class="toolbar">
 
-  <div class="toolbar-title">
+  <div>
 
     <strong>
-
       女士资料
-
     </strong>
 
-
     <span id="count">
-
       加载中…
-
     </span>
 
   </div>
@@ -970,13 +1288,10 @@ footer{
 
   <div class="filters">
 
-
     <select id="cityFilter">
 
       <option value="">
-
         全部城市
-
       </option>
 
     </select>
@@ -985,37 +1300,23 @@ footer{
     <select id="ageFilter">
 
       <option value="">
-
         全部年龄
-
       </option>
-
 
       <option value="18-25">
-
         18–25
-
       </option>
-
 
       <option value="26-35">
-
         26–35
-
       </option>
-
 
       <option value="36-45">
-
         36–45
-
       </option>
 
-
       <option value="46+">
-
         46+
-
       </option>
 
     </select>
@@ -1025,9 +1326,9 @@ footer{
 </section>
 
 
-<!-- =======================================================
-     女士列表
-======================================================= -->
+<!-- ==================================================
+     Women Grid
+================================================== -->
 
 <section
   id="womenGrid"
@@ -1046,46 +1347,161 @@ footer{
 </main>
 
 
-<!-- =======================================================
+<!-- ==================================================
      Footer
-======================================================= -->
+================================================== -->
 
 <footer>
 
   ©
-
   <span id="year"></span>
-
   缘分·相遇
 
 </footer>
 
 
+<!-- ==================================================
+     全屏资料查看器
+================================================== -->
+
+<div
+  id="profileViewer"
+  class="viewer hidden"
+>
+
+
+  <!-- Header -->
+
+  <div class="viewer-header">
+
+
+    <div class="viewer-title">
+
+      <h2 id="viewerName">
+        女士资料
+      </h2>
+
+      <p id="viewerInfo">
+        -
+      </p>
+
+    </div>
+
+
+    <div
+      id="viewerCounter"
+      class="viewer-counter"
+    >
+      1 / 1
+    </div>
+
+
+    <button
+      id="closeViewer"
+      class="close-viewer"
+      type="button"
+      aria-label="关闭"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <!-- Content -->
+
+  <div class="viewer-content">
+
+
+    <button
+      id="prevMedia"
+      class="viewer-arrow left"
+      type="button"
+      aria-label="上一张"
+    >
+      ‹
+    </button>
+
+
+    <div
+      id="viewerTrack"
+      class="viewer-track"
+    ></div>
+
+
+    <button
+      id="nextMedia"
+      class="viewer-arrow right"
+      type="button"
+      aria-label="下一张"
+    >
+      ›
+    </button>
+
+
+    <div class="swipe-hint">
+      左右滑动查看更多
+    </div>
+
+  </div>
+
+
+  <!-- Bottom -->
+
+  <div class="viewer-bottom">
+
+    <button
+      id="viewerWhatsapp"
+      class="viewer-contact viewer-whatsapp"
+      type="button"
+    >
+      WhatsApp
+    </button>
+
+
+    <button
+      id="viewerTelegram"
+      class="viewer-contact viewer-telegram"
+      type="button"
+    >
+      Telegram
+    </button>
+
+  </div>
+
+</div>
+
+
 <script>
 
-
-/* =========================================================
-   Supabase 配置
-========================================================= */
+/* ==================================================
+   Supabase
+================================================== */
 
 const SUPABASE_URL =
-  "https://yutraouosffjteivvlfx.supabase.co";
+"https://yutraouosffjteivvlfx.supabase.co";
 
 
 const SUPABASE_KEY =
-  "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
+"sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
 
-/* =========================================================
-   全局数据
-========================================================= */
+/* ==================================================
+   全局变量
+================================================== */
 
 let women = [];
 
+let currentViewerWoman = null;
 
-/* =========================================================
-   年份
-========================================================= */
+let currentMedia = [];
+
+let currentMediaIndex = 0;
+
+
+/* ==================================================
+   Year
+================================================== */
 
 document
   .getElementById("year")
@@ -1093,45 +1509,30 @@ document
   new Date().getFullYear();
 
 
-/* =========================================================
+/* ==================================================
    HTML 安全处理
-========================================================= */
+================================================== */
 
 function escapeHtml(value){
 
   return String(value ?? "")
 
-    .replace(
-      /&/g,
-      "&amp;"
-    )
+    .replace(/&/g,"&amp;")
 
-    .replace(
-      /</g,
-      "&lt;"
-    )
+    .replace(/</g,"&lt;")
 
-    .replace(
-      />/g,
-      "&gt;"
-    )
+    .replace(/>/g,"&gt;")
 
-    .replace(
-      /"/g,
-      "&quot;"
-    )
+    .replace(/"/g,"&quot;")
 
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* =========================================================
+/* ==================================================
    Storage URL
-========================================================= */
+================================================== */
 
 function convertStorageUrl(path){
 
@@ -1146,17 +1547,6 @@ function convertStorageUrl(path){
     String(path).trim();
 
 
-  if(!value){
-
-    return "";
-
-  }
-
-
-  /*
-    如果已经是完整 URL
-  */
-
   if(
     value.startsWith("http://") ||
     value.startsWith("https://") ||
@@ -1168,35 +1558,22 @@ function convertStorageUrl(path){
   }
 
 
-  /*
-    后台上传格式：
-
-    photos/xxx.jpg
-
-    videos/xxx.mp4
-
-    因此直接拼接 Storage public URL
-  */
-
   return (
 
     SUPABASE_URL +
 
     "/storage/v1/object/public/women-photos/" +
 
-    value.replace(
-      /^\/+/,
-      ""
-    )
+    value.replace(/^\/+/,"")
 
   );
 
 }
 
 
-/* =========================================================
+/* ==================================================
    数组转换
-========================================================= */
+================================================== */
 
 function normalizeMedia(value){
 
@@ -1207,10 +1584,6 @@ function normalizeMedia(value){
   }
 
 
-  /*
-    数据库已经是数组
-  */
-
   if(Array.isArray(value)){
 
     return value
@@ -1220,18 +1593,14 @@ function normalizeMedia(value){
       .filter(Boolean)
 
       .map(
-        item =>
-          String(item).trim()
+        v =>
+          String(v).trim()
       )
 
       .filter(Boolean);
 
   }
 
-
-  /*
-    数据库是 JSON 字符串
-  */
 
   if(typeof value === "string"){
 
@@ -1261,29 +1630,16 @@ function normalizeMedia(value){
           .filter(Boolean)
 
           .map(
-            item =>
-              String(item).trim()
+            v =>
+              String(v).trim()
           )
 
           .filter(Boolean);
 
       }
 
-    }catch(error){
+    }catch(error){}
 
-      /*
-        不是 JSON，
-        继续按照普通字符串处理
-      */
-
-    }
-
-
-    /*
-      兼容：
-
-      photo1.jpg,photo2.jpg
-    */
 
     if(text.includes(",")){
 
@@ -1292,8 +1648,8 @@ function normalizeMedia(value){
         .split(",")
 
         .map(
-          item =>
-            item.trim()
+          v =>
+            v.trim()
         )
 
         .filter(Boolean);
@@ -1311,9 +1667,9 @@ function normalizeMedia(value){
 }
 
 
-/* =========================================================
+/* ==================================================
    获取照片
-========================================================= */
+================================================== */
 
 function getPhotos(woman){
 
@@ -1321,10 +1677,7 @@ function getPhotos(woman){
 
 
   /*
-    image_url 是旧字段。
-
-    后台保存第一张照片的时候
-    会同时写入 image_url。
+    兼容旧 image_url
   */
 
   if(woman.image_url){
@@ -1337,26 +1690,26 @@ function getPhotos(woman){
 
 
   /*
-    photos 是完整照片数组
+    新 photos
   */
 
-  const extraPhotos =
+  const extra =
     normalizeMedia(
       woman.photos
     );
 
 
-  photos.push(
-    ...extraPhotos
-  );
+  photos =
+    photos.concat(
+      extra
+    );
 
 
   /*
-    URL 转换 + 去重
+    去重 + URL
   */
 
   return [
-
     ...new Set(
 
       photos
@@ -1370,15 +1723,14 @@ function getPhotos(woman){
         .filter(Boolean)
 
     )
-
   ];
 
 }
 
 
-/* =========================================================
+/* ==================================================
    获取视频
-========================================================= */
+================================================== */
 
 function getVideos(woman){
 
@@ -1389,6 +1741,8 @@ function getVideos(woman){
       normalizeMedia(
         woman.videos
       )
+
+        .filter(Boolean)
 
         .map(
           convertStorageUrl
@@ -1403,9 +1757,9 @@ function getVideos(woman){
 }
 
 
-/* =========================================================
+/* ==================================================
    默认图片
-========================================================= */
+================================================== */
 
 function getDefaultImage(){
 
@@ -1434,9 +1788,7 @@ function getDefaultImage(){
           font-size="28"
           fill="#999999"
         >
-
           暂无照片
-
         </text>
 
       </svg>
@@ -1448,91 +1800,61 @@ function getDefaultImage(){
 }
 
 
-/* =========================================================
-   创建城市筛选
-========================================================= */
+/* ==================================================
+   获取全部媒体
+================================================== */
 
-function createCityFilter(){
+function getAllMedia(woman){
 
-  const select =
-    document.getElementById(
-      "cityFilter"
-    );
+  const photos =
+    getPhotos(woman);
 
 
-  const cities = [
-
-    ...new Set(
-
-      women
-
-        .map(
-          woman =>
-            woman.city
-        )
-
-        .filter(
-          city =>
-            city &&
-            String(city).trim()
-        )
-
-        .map(
-          city =>
-            String(city).trim()
-        )
-
-    )
-
-  ].sort(
-    (a,b) =>
-      a.localeCompare(
-        b
-      )
-  );
+  const videos =
+    getVideos(woman);
 
 
-  select.innerHTML = `
-
-    <option value="">
-
-      全部城市
-
-    </option>
-
-  `;
+  const media = [];
 
 
-  cities.forEach(
-    city => {
+  photos.forEach(
+    url => {
 
-      const option =
-        document.createElement(
-          "option"
-        );
+      media.push({
 
+        type:"image",
 
-      option.value =
-        city;
+        url:url
 
-
-      option.textContent =
-        city;
-
-
-      select.appendChild(
-        option
-      );
+      });
 
     }
   );
 
+
+  videos.forEach(
+    url => {
+
+      media.push({
+
+        type:"video",
+
+        url:url
+
+      });
+
+    }
+  );
+
+
+  return media;
+
 }
 
 
-/* =========================================================
-   加载 Supabase 数据
-========================================================= */
+/* ==================================================
+   加载数据库
+================================================== */
 
 async function loadWomen(){
 
@@ -1548,35 +1870,18 @@ async function loadWomen(){
     );
 
 
-  grid.innerHTML = `
+  try{
 
-    <div class="loading">
+    grid.innerHTML = `
 
-      <h3>
+      <div class="loading">
 
         正在连接数据库……
 
-      </h3>
+      </div>
 
-      <p>
+    `;
 
-        请稍候
-
-      </p>
-
-    </div>
-
-  `;
-
-
-  try{
-
-
-    /*
-      只获取已经发布的女士。
-
-      is_published = true
-    */
 
     const url =
 
@@ -1608,9 +1913,6 @@ async function loadWomen(){
               SUPABASE_KEY,
 
             "Content-Type":
-              "application/json",
-
-            "Accept":
               "application/json"
 
           }
@@ -1627,13 +1929,11 @@ async function loadWomen(){
 
       throw new Error(
 
-        "Supabase 请求失败。" +
-
-        "\nHTTP 状态：" +
+        "Supabase 错误 " +
 
         response.status +
 
-        "\n" +
+        ": " +
 
         text
 
@@ -1648,25 +1948,19 @@ async function loadWomen(){
     try{
 
       data =
-        JSON.parse(
-          text
-        );
+        JSON.parse(text);
 
     }catch(error){
 
       throw new Error(
-
-        "Supabase 返回的数据无法解析。"
-
+        "Supabase 返回的数据不是 JSON"
       );
 
     }
 
 
     women =
-      Array.isArray(data)
-      ? data
-      : [];
+      data || [];
 
 
     count.textContent =
@@ -1684,7 +1978,6 @@ async function loadWomen(){
   }catch(error){
 
     console.error(
-      "加载女士资料失败：",
       error
     );
 
@@ -1698,23 +1991,13 @@ async function loadWomen(){
       <div class="loading">
 
         <h3>
-
           女士资料无法加载
-
         </h3>
 
-
-        <p style="
-          max-width:700px;
-          margin:12px auto;
-          white-space:pre-wrap;
-          word-break:break-word;
-        ">
-
+        <p>
           ${escapeHtml(
             error.message
           )}
-
         </p>
 
       </div>
@@ -1726,9 +2009,95 @@ async function loadWomen(){
 }
 
 
-/* =========================================================
-   渲染女士
-========================================================= */
+/* ==================================================
+   城市筛选
+================================================== */
+
+function createCityFilter(){
+
+  const select =
+    document.getElementById(
+      "cityFilter"
+    );
+
+
+  const currentValue =
+    select.value;
+
+
+  const cities = [
+
+    ...new Set(
+
+      women
+
+        .map(
+          woman =>
+            woman.city
+        )
+
+        .filter(
+          city =>
+            city &&
+            String(city).trim()
+        )
+
+    )
+
+  ];
+
+
+  select.innerHTML = `
+
+    <option value="">
+      全部城市
+    </option>
+
+  `;
+
+
+  cities.forEach(
+    city => {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        city;
+
+
+      option.textContent =
+        city;
+
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  if(
+    cities.includes(
+      currentValue
+    )
+  ){
+
+    select.value =
+      currentValue;
+
+  }
+
+}
+
+
+/* ==================================================
+   渲染首页
+================================================== */
 
 function renderWomen(list){
 
@@ -1745,19 +2114,14 @@ function renderWomen(list){
 
     grid.innerHTML = `
 
-      <div class="empty-state">
+      <div class="loading">
 
         <h3>
-
           暂时没有女士资料
-
         </h3>
 
-
         <p>
-
           当前没有符合条件的资料。
-
         </p>
 
       </div>
@@ -1774,7 +2138,7 @@ function renderWomen(list){
 
 
   list.forEach(
-    woman => {
+    (woman,index) => {
 
 
       const card =
@@ -1787,19 +2151,11 @@ function renderWomen(list){
         "woman-card";
 
 
-      /*
-        获取照片
-      */
-
       const photos =
         getPhotos(
           woman
         );
 
-
-      /*
-        获取视频
-      */
 
       const videos =
         getVideos(
@@ -1807,11 +2163,14 @@ function renderWomen(list){
         );
 
 
-      /*
-        第一张图片
-      */
+      const allMedia =
+        getAllMedia(
+          woman
+        );
+
 
       const firstPhoto =
+
         photos.length > 0
 
         ?
@@ -1823,91 +2182,19 @@ function renderWomen(list){
         getDefaultImage();
 
 
-      /* =================================================
-         Media
-      ================================================= */
+      let mediaBadge = "";
 
-      let mediaHTML = `
-
-        <div class="media-gallery">
-
-          <div class="woman-image">
-
-            <img
-
-              src="${escapeHtml(
-                firstPhoto
-              )}"
-
-              alt="${escapeHtml(
-                woman.name ||
-                "女士"
-              )}"
-
-              loading="lazy"
-
-              onerror="
-                this.onerror=null;
-                this.src='${getDefaultImage()}';
-              "
-
-            >
-
-          </div>
-
-      `;
-
-
-      /*
-        其他照片
-      */
 
       if(
-        photos.length > 1
+        allMedia.length > 1
       ){
 
-        mediaHTML += `
+        mediaBadge = `
 
-          <div class="photo-list">
+          <div class="media-badge">
 
-        `;
-
-
-        photos
-
-          .slice(1)
-
-          .forEach(
-            photo => {
-
-              mediaHTML += `
-
-                <img
-
-                  src="${escapeHtml(
-                    photo
-                  )}"
-
-                  alt="${escapeHtml(
-                    woman.name ||
-                    "女士"
-                  )}"
-
-                  loading="lazy"
-
-                  onerror="
-                    this.style.display='none';
-                  "
-
-                >
-
-              `;
-
-            }
-          );
-
-
-        mediaHTML += `
+            📷
+            ${allMedia.length}
 
           </div>
 
@@ -1916,55 +2203,18 @@ function renderWomen(list){
       }
 
 
-      /*
-        视频
-      */
+      let videoBadge = "";
+
 
       if(
         videos.length > 0
       ){
 
-        mediaHTML += `
+        videoBadge = `
 
-          <div class="video-list">
+          <div class="video-badge">
 
-        `;
-
-
-        videos.forEach(
-          video => {
-
-            mediaHTML += `
-
-              <video
-
-                controls
-
-                playsinline
-
-                preload="metadata"
-
-              >
-
-                <source
-
-                  src="${escapeHtml(
-                    video
-                  )}"
-
-                >
-
-                您的浏览器不支持视频播放。
-
-              </video>
-
-            `;
-
-          }
-        );
-
-
-        mediaHTML += `
+            ▶ 有视频
 
           </div>
 
@@ -1973,18 +2223,27 @@ function renderWomen(list){
       }
 
 
-      mediaHTML += `
+      card.innerHTML = `
+
+        <div class="woman-image">
+
+          <img
+            src="${escapeHtml(
+              firstPhoto
+            )}"
+            alt="${escapeHtml(
+              woman.name ||
+              "女士"
+            )}"
+            loading="lazy"
+          >
+
+          ${mediaBadge}
+
+          ${videoBadge}
 
         </div>
 
-      `;
-
-
-      /* =================================================
-         信息
-      ================================================= */
-
-      let infoHTML = `
 
         <div class="woman-info">
 
@@ -1997,10 +2256,9 @@ function renderWomen(list){
 
             ${
               woman.age
-
               ?
 
-              "，" +
+              " · " +
               escapeHtml(
                 woman.age
               ) +
@@ -2013,240 +2271,127 @@ function renderWomen(list){
 
           </h2>
 
-      `;
+
+          ${
+            woman.city
+
+            ?
+
+            `
+
+              <p class="city">
+
+                ${escapeHtml(
+                  woman.city
+                )}
+
+              </p>
+
+            `
+
+            :
+
+            ""
+          }
 
 
-      /*
-        城市
-      */
+          ${
+            woman.occupation
 
-      if(
-        woman.city
-      ){
+            ?
 
-        infoHTML += `
+            `
 
-          <p class="city">
+              <p>
 
-            ${escapeHtml(
-              woman.city
-            )}
+                ${escapeHtml(
+                  woman.occupation
+                )}
 
-          </p>
+              </p>
 
-        `;
+            `
 
-      }
+            :
 
-
-      /*
-        职业
-      */
-
-      if(
-        woman.occupation
-      ){
-
-        infoHTML += `
-
-          <p>
-
-            ${escapeHtml(
-              woman.occupation
-            )}
-
-          </p>
-
-        `;
-
-      }
+            ""
+          }
 
 
-      /*
-        个人介绍
-      */
+          ${
+            woman.description
 
-      if(
-        woman.description
-      ){
+            ?
 
-        infoHTML += `
+            `
 
-          <p class="description">
+              <p class="description">
 
-            ${escapeHtml(
-              woman.description
-            )}
+                ${escapeHtml(
+                  woman.description
+                )}
 
-          </p>
+              </p>
 
-        `;
+            `
 
-      }
+            :
 
-
-      /*
-        联系方式
-      */
-
-      if(
-        woman.whatsapp ||
-        woman.telegram
-      ){
-
-        infoHTML += `
-
-          <div class="contact-buttons">
-
-        `;
+            ""
+          }
 
 
-        /*
-          WhatsApp
-        */
+          <div class="view-profile">
 
-        if(
-          woman.whatsapp
-        ){
+            查看资料
 
-          infoHTML += `
-
-            <button
-
-              class="contact-btn whatsapp-btn"
-
-              type="button"
-
-              data-whatsapp="${escapeHtml(
-                woman.whatsapp
-              )}"
-
-            >
-
-              WhatsApp
-
-            </button>
-
-          `;
-
-        }
-
-
-        /*
-          Telegram
-        */
-
-        if(
-          woman.telegram
-        ){
-
-          infoHTML += `
-
-            <button
-
-              class="contact-btn telegram-btn"
-
-              type="button"
-
-              data-telegram="${escapeHtml(
-                woman.telegram
-              )}"
-
-            >
-
-              Telegram
-
-            </button>
-
-          `;
-
-        }
-
-
-        infoHTML += `
+            <span>
+              →
+            </span>
 
           </div>
-
-        `;
-
-      }
-
-
-      infoHTML += `
 
         </div>
 
       `;
 
 
+      const image =
+        card.querySelector(
+          "img"
+        );
+
+
+      image.addEventListener(
+        "error",
+        function(){
+
+          this.src =
+            getDefaultImage();
+
+        }
+      );
+
+
       /*
-        写入卡片
+        点击整个卡片
       */
 
-      card.innerHTML =
-        mediaHTML +
-        infoHTML;
+      card.addEventListener(
+        "click",
+        function(){
+
+          openViewer(
+            woman
+          );
+
+        }
+      );
 
 
       grid.appendChild(
         card
       );
-
-
-      /*
-        WhatsApp
-      */
-
-      const whatsappButton =
-        card.querySelector(
-          "[data-whatsapp]"
-        );
-
-
-      if(
-        whatsappButton
-      ){
-
-        whatsappButton.addEventListener(
-          "click",
-          function(){
-
-            openWhatsApp(
-              this.dataset.whatsapp
-            );
-
-          }
-        );
-
-      }
-
-
-      /*
-        Telegram
-      */
-
-      const telegramButton =
-        card.querySelector(
-          "[data-telegram]"
-        );
-
-
-      if(
-        telegramButton
-      ){
-
-        telegramButton.addEventListener(
-          "click",
-          function(){
-
-            openTelegram(
-              this.dataset.telegram
-            );
-
-          }
-        );
-
-      }
 
     }
   );
@@ -2254,9 +2399,746 @@ function renderWomen(list){
 }
 
 
-/* =========================================================
+/* ==================================================
+   打开资料查看器
+================================================== */
+
+function openViewer(
+  woman
+){
+
+  currentViewerWoman =
+    woman;
+
+
+  currentMedia =
+    getAllMedia(
+      woman
+    );
+
+
+  /*
+    如果没有媒体，
+    也创建一个默认图片
+  */
+
+  if(
+    currentMedia.length === 0
+  ){
+
+    currentMedia = [
+
+      {
+
+        type:"image",
+
+        url:
+          getDefaultImage()
+
+      }
+
+    ];
+
+  }
+
+
+  currentMediaIndex =
+    0;
+
+
+  /*
+    标题
+  */
+
+  document
+    .getElementById(
+      "viewerName"
+    )
+    .textContent =
+
+    (
+      woman.name ||
+      "女士"
+    ) +
+
+    (
+      woman.age
+      ?
+      " · " +
+      woman.age +
+      "岁"
+      :
+      ""
+    );
+
+
+  const infoParts = [];
+
+
+  if(woman.city){
+
+    infoParts.push(
+      woman.city
+    );
+
+  }
+
+
+  if(woman.occupation){
+
+    infoParts.push(
+      woman.occupation
+    );
+
+  }
+
+
+  document
+    .getElementById(
+      "viewerInfo"
+    )
+    .textContent =
+
+    infoParts.join(
+      " · "
+    );
+
+
+  /*
+    创建媒体
+  */
+
+  renderViewerMedia();
+
+
+  /*
+    联系按钮
+  */
+
+  const whatsappButton =
+    document.getElementById(
+      "viewerWhatsapp"
+    );
+
+
+  const telegramButton =
+    document.getElementById(
+      "viewerTelegram"
+    );
+
+
+  whatsappButton.style.display =
+    woman.whatsapp
+    ?
+    "block"
+    :
+    "none";
+
+
+  telegramButton.style.display =
+    woman.telegram
+    ?
+    "block"
+    :
+    "none";
+
+
+  /*
+    打开
+  */
+
+  const viewer =
+    document.getElementById(
+      "profileViewer"
+    );
+
+
+  viewer.classList.remove(
+    "hidden"
+  );
+
+
+  viewer.classList.add(
+    "first-open"
+  );
+
+
+  document.body.classList.add(
+    "viewer-open"
+  );
+
+
+  /*
+    3秒后隐藏提示
+  */
+
+  setTimeout(
+    () => {
+
+      viewer.classList.remove(
+        "first-open"
+      );
+
+    },
+    3000
+  );
+
+}
+
+
+/* ==================================================
+   创建 Viewer 媒体
+================================================== */
+
+function renderViewerMedia(){
+
+  const track =
+    document.getElementById(
+      "viewerTrack"
+    );
+
+
+  track.innerHTML =
+    "";
+
+
+  currentMedia.forEach(
+    (media,index) => {
+
+      const slide =
+        document.createElement(
+          "div"
+        );
+
+
+      slide.className =
+        "viewer-slide";
+
+
+      if(
+        media.type === "video"
+      ){
+
+        slide.innerHTML = `
+
+          <video
+            controls
+            playsinline
+            preload="metadata"
+          >
+
+            <source
+              src="${escapeHtml(
+                media.url
+              )}"
+            >
+
+            您的浏览器不支持视频播放。
+
+          </video>
+
+        `;
+
+      }else{
+
+        slide.innerHTML = `
+
+          <img
+            src="${escapeHtml(
+              media.url
+            )}"
+            alt="资料照片"
+            draggable="false"
+          >
+
+        `;
+
+      }
+
+
+      track.appendChild(
+        slide
+      );
+
+    }
+  );
+
+
+  /*
+    图片加载失败处理
+  */
+
+  track
+    .querySelectorAll(
+      "img"
+    )
+    .forEach(
+      img => {
+
+        img.addEventListener(
+          "error",
+          function(){
+
+            this.src =
+              getDefaultImage();
+
+          }
+        );
+
+      }
+    );
+
+
+  /*
+    当前定位到第一张
+  */
+
+  requestAnimationFrame(
+    () => {
+
+      scrollViewerTo(
+        0,
+        false
+      );
+
+    }
+  );
+
+
+  updateViewerCounter();
+
+}
+
+
+/* ==================================================
+   滑动到指定媒体
+================================================== */
+
+function scrollViewerTo(
+  index,
+  smooth=true
+){
+
+  if(
+    !currentMedia.length
+  ){
+
+    return;
+
+  }
+
+
+  index =
+    Math.max(
+      0,
+      Math.min(
+        index,
+        currentMedia.length - 1
+      )
+    );
+
+
+  currentMediaIndex =
+    index;
+
+
+  const track =
+    document.getElementById(
+      "viewerTrack"
+    );
+
+
+  const width =
+    track.clientWidth;
+
+
+  track.scrollTo({
+
+    left:
+      width * index,
+
+    behavior:
+      smooth
+      ?
+      "smooth"
+      :
+      "auto"
+
+  });
+
+
+  updateViewerCounter();
+
+}
+
+
+/* ==================================================
+   上一张
+================================================== */
+
+function previousMedia(){
+
+  if(
+    currentMediaIndex <= 0
+  ){
+
+    return;
+
+  }
+
+
+  scrollViewerTo(
+    currentMediaIndex - 1
+  );
+
+}
+
+
+/* ==================================================
+   下一张
+================================================== */
+
+function nextMedia(){
+
+  if(
+    currentMediaIndex >=
+    currentMedia.length - 1
+  ){
+
+    return;
+
+  }
+
+
+  scrollViewerTo(
+    currentMediaIndex + 1
+  );
+
+}
+
+
+/* ==================================================
+   Counter
+================================================== */
+
+function updateViewerCounter(){
+
+  const counter =
+    document.getElementById(
+      "viewerCounter"
+    );
+
+
+  counter.textContent =
+
+    (
+      currentMediaIndex + 1
+    ) +
+
+    " / " +
+
+    currentMedia.length;
+
+}
+
+
+/* ==================================================
+   监听手动左右滑动
+================================================== */
+
+let scrollTimer = null;
+
+
+document
+  .getElementById(
+    "viewerTrack"
+  )
+  .addEventListener(
+    "scroll",
+    function(){
+
+      clearTimeout(
+        scrollTimer
+      );
+
+
+      scrollTimer =
+        setTimeout(
+          () => {
+
+            const width =
+              this.clientWidth;
+
+
+            if(!width){
+
+              return;
+
+            }
+
+
+            let index =
+              Math.round(
+                this.scrollLeft /
+                width
+              );
+
+
+            index =
+              Math.max(
+                0,
+                Math.min(
+                  index,
+                  currentMedia.length - 1
+                )
+              );
+
+
+            currentMediaIndex =
+              index;
+
+
+            updateViewerCounter();
+
+
+            /*
+              如果滑到了视频，
+              其他视频暂停
+            */
+
+            this
+              .querySelectorAll(
+                "video"
+              )
+              .forEach(
+                (video,videoIndex) => {
+
+                  /*
+                    找到这个 video 所属 slide
+                  */
+
+                  const slide =
+                    video.closest(
+                      ".viewer-slide"
+                    );
+
+
+                  if(!slide){
+
+                    return;
+
+                  }
+
+
+                  const slides =
+                    Array.from(
+                      this.children
+                    );
+
+
+                  const slideIndex =
+                    slides.indexOf(
+                      slide
+                    );
+
+
+                  if(
+                    slideIndex !==
+                    currentMediaIndex
+                  ){
+
+                    video.pause();
+
+                  }
+
+                }
+              );
+
+          },
+          80
+        );
+
+    }
+  );
+
+
+/* ==================================================
+   关闭 Viewer
+================================================== */
+
+function closeViewer(){
+
+  const viewer =
+    document.getElementById(
+      "profileViewer"
+    );
+
+
+  /*
+    暂停视频
+  */
+
+  viewer
+    .querySelectorAll(
+      "video"
+    )
+    .forEach(
+      video => {
+
+        video.pause();
+
+      }
+    );
+
+
+  viewer.classList.add(
+    "hidden"
+  );
+
+
+  document.body.classList.remove(
+    "viewer-open"
+  );
+
+
+  currentViewerWoman =
+    null;
+
+}
+
+
+document
+  .getElementById(
+    "closeViewer"
+  )
+  .addEventListener(
+    "click",
+    closeViewer
+  );
+
+
+/* ==================================================
+   点击黑色背景关闭
+================================================== */
+
+document
+  .getElementById(
+    "profileViewer"
+  )
+  .addEventListener(
+    "click",
+    function(event){
+
+      /*
+        只有点击最外层背景才关闭
+
+        点击图片 / 视频 / 按钮
+        不关闭
+      */
+
+      if(
+        event.target === this
+      ){
+
+        closeViewer();
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
+   左右按钮
+================================================== */
+
+document
+  .getElementById(
+    "prevMedia"
+  )
+  .addEventListener(
+    "click",
+    previousMedia
+  );
+
+
+document
+  .getElementById(
+    "nextMedia"
+  )
+  .addEventListener(
+    "click",
+    nextMedia
+  );
+
+
+/* ==================================================
+   键盘
+================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    const viewer =
+      document.getElementById(
+        "profileViewer"
+      );
+
+
+    if(
+      viewer.classList.contains(
+        "hidden"
+      )
+    ){
+
+      return;
+
+    }
+
+
+    if(
+      event.key ===
+      "Escape"
+    ){
+
+      closeViewer();
+
+      return;
+
+    }
+
+
+    if(
+      event.key ===
+      "ArrowLeft"
+    ){
+
+      previousMedia();
+
+      return;
+
+    }
+
+
+    if(
+      event.key ===
+      "ArrowRight"
+    ){
+
+      nextMedia();
+
+      return;
+
+    }
+
+  }
+);
+
+
+/* ==================================================
    WhatsApp
-========================================================= */
+================================================== */
 
 function openWhatsApp(
   phone
@@ -2266,19 +3148,10 @@ function openWhatsApp(
     String(
       phone || ""
     )
-    .trim();
 
+    .trim()
 
-  /*
-    如果后台填写：
-
-    +52 155 1234 5678
-
-    自动只保留数字
-  */
-
-  number =
-    number.replace(
+    .replace(
       /[^\d]/g,
       ""
     );
@@ -2295,26 +3168,16 @@ function openWhatsApp(
   }
 
 
-  /*
-    wa.me 格式：
-
-    https://wa.me/国家码+号码
-  */
-
-  const url =
+  window.location.href =
     "https://wa.me/" +
     number;
-
-
-  window.location.href =
-    url;
 
 }
 
 
-/* =========================================================
+/* ==================================================
    Telegram
-========================================================= */
+================================================== */
 
 function openTelegram(
   username
@@ -2323,29 +3186,10 @@ function openTelegram(
   let value =
     String(
       username || ""
-    ).trim();
+    )
 
+    .trim();
 
-  if(!value){
-
-    alert(
-      "Telegram 联系方式无效"
-    );
-
-    return;
-
-  }
-
-
-  /*
-    后台可以填写：
-
-    @username
-
-    username
-
-    https://t.me/username
-  */
 
   if(
     value.startsWith(
@@ -2390,26 +3234,82 @@ function openTelegram(
 }
 
 
-/* =========================================================
+/* ==================================================
+   Viewer WhatsApp
+================================================== */
+
+document
+  .getElementById(
+    "viewerWhatsapp"
+  )
+  .addEventListener(
+    "click",
+    function(event){
+
+      event.stopPropagation();
+
+
+      if(
+        currentViewerWoman &&
+        currentViewerWoman.whatsapp
+      ){
+
+        openWhatsApp(
+          currentViewerWoman.whatsapp
+        );
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
+   Viewer Telegram
+================================================== */
+
+document
+  .getElementById(
+    "viewerTelegram"
+  )
+  .addEventListener(
+    "click",
+    function(event){
+
+      event.stopPropagation();
+
+
+      if(
+        currentViewerWoman &&
+        currentViewerWoman.telegram
+      ){
+
+        openTelegram(
+          currentViewerWoman.telegram
+        );
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
    筛选
-========================================================= */
+================================================== */
 
 function filterWomen(){
 
   const city =
-    document
-      .getElementById(
-        "cityFilter"
-      )
-      .value;
+    document.getElementById(
+      "cityFilter"
+    ).value;
 
 
   const age =
-    document
-      .getElementById(
-        "ageFilter"
-      )
-      .value;
+    document.getElementById(
+      "ageFilter"
+    ).value;
 
 
   const filtered =
@@ -2423,9 +3323,7 @@ function filterWomen(){
 
         if(
           city &&
-          String(
-            woman.city || ""
-          ).trim() !== city
+          woman.city !== city
         ){
 
           return false;
@@ -2492,11 +3390,7 @@ function filterWomen(){
           age === "46+"
         ){
 
-          return (
-
-            womanAge >= 46
-
-          );
+          return womanAge >= 46;
 
         }
 
@@ -2507,18 +3401,6 @@ function filterWomen(){
     );
 
 
-  /*
-    更新数量
-  */
-
-  document
-    .getElementById(
-      "count"
-    )
-    .textContent =
-    `共 ${filtered.length} 位`;
-
-
   renderWomen(
     filtered
   );
@@ -2526,9 +3408,9 @@ function filterWomen(){
 }
 
 
-/* =========================================================
+/* ==================================================
    筛选事件
-========================================================= */
+================================================== */
 
 document
   .getElementById(
@@ -2550,9 +3432,9 @@ document
   );
 
 
-/* =========================================================
-   页面启动
-========================================================= */
+/* ==================================================
+   开始
+================================================== */
 
 loadWomen();
 
