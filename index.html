@@ -19,10 +19,6 @@
 
 <style>
 
-/* ==================================================
-   基础
-================================================== */
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -34,7 +30,6 @@ html{
 }
 
 body{
-
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -45,16 +40,8 @@ body{
     sans-serif;
 
   background:#faf9f7;
-
   color:#2b2927;
-
   line-height:1.6;
-
-  overflow-x:hidden;
-}
-
-body.viewer-open{
-  overflow:hidden;
 }
 
 button,
@@ -72,18 +59,15 @@ a{
 }
 
 
-/* ==================================================
+/* =========================
    Header
-================================================== */
+========================= */
 
 .site-header{
-
   height:72px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   padding:0 6%;
@@ -93,59 +77,46 @@ a{
   border-bottom:1px solid #eee;
 
   position:sticky;
-
   top:0;
 
   z-index:100;
 }
 
 .brand{
-
   font-size:22px;
-
   font-weight:700;
-
   letter-spacing:1px;
 }
 
 .brand span{
-
   color:#b58b63;
-
   margin:0 3px;
 }
 
 .admin-link{
-
   padding:8px 16px;
 
   border:1px solid #ddd;
-
   border-radius:20px;
 
   font-size:14px;
-
   color:#666;
 }
 
 .admin-link:hover{
-
   background:#2b2927;
-
   color:#fff;
 }
 
 
-/* ==================================================
+/* =========================
    Hero
-================================================== */
+========================= */
 
 .hero{
-
   min-height:420px;
 
   display:flex;
-
   align-items:center;
 
   padding:70px 8%;
@@ -160,92 +131,66 @@ a{
 }
 
 .hero > div{
-
   max-width:700px;
 }
 
 .eyebrow{
-
   font-size:13px;
-
   letter-spacing:4px;
-
   color:#b58b63;
-
   margin-bottom:18px;
-
   font-weight:600;
 }
 
 .hero h1{
-
   font-size:clamp(38px,6vw,70px);
-
   line-height:1.2;
-
   font-weight:600;
-
   letter-spacing:1px;
-
   margin-bottom:24px;
 }
 
 .hero p:not(.eyebrow){
-
   color:#777;
-
   font-size:17px;
-
   max-width:520px;
 }
 
 
-/* ==================================================
+/* =========================
    Toolbar
-================================================== */
+========================= */
 
 .toolbar{
-
   width:88%;
-
   max-width:1400px;
 
   margin:40px auto 25px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   gap:20px;
-
   flex-wrap:wrap;
 }
 
 .toolbar strong{
-
   font-size:22px;
-
   margin-right:12px;
 }
 
 #count{
-
   color:#999;
-
   font-size:14px;
 }
 
 .filters{
-
   display:flex;
-
   gap:10px;
 }
 
 .filters select{
-
   appearance:none;
 
   border:1px solid #ddd;
@@ -263,23 +208,16 @@ a{
   outline:none;
 }
 
-.filters select:focus{
 
-  border-color:#b58b63;
-}
-
-
-/* ==================================================
+/* =========================
    Grid
-================================================== */
+========================= */
 
 .women-grid{
-
   width:88%;
-
   max-width:1400px;
 
-  margin:0 auto 70px;
+  margin:0 auto 25px;
 
   display:grid;
 
@@ -290,12 +228,11 @@ a{
 }
 
 
-/* ==================================================
+/* =========================
    Card
-================================================== */
+========================= */
 
 .woman-card{
-
   background:#fff;
 
   border-radius:14px;
@@ -309,12 +246,9 @@ a{
     box-shadow .25s ease;
 
   cursor:pointer;
-
-  position:relative;
 }
 
 .woman-card:hover{
-
   transform:translateY(-5px);
 
   box-shadow:
@@ -322,12 +256,15 @@ a{
 }
 
 
-/* ==================================================
-   主照片
-================================================== */
+/* =========================
+   Media
+========================= */
+
+.media-gallery{
+  background:#eee;
+}
 
 .woman-image{
-
   width:100%;
 
   aspect-ratio:3 / 4;
@@ -335,91 +272,27 @@ a{
   background:#eee;
 
   overflow:hidden;
-
-  position:relative;
 }
 
 .woman-image img{
-
   width:100%;
-
   height:100%;
 
   object-fit:cover;
 
   display:block;
-
-  transition:transform .5s ease;
-}
-
-.woman-card:hover
-.woman-image img{
-
-  transform:scale(1.03);
 }
 
 
-/* ==================================================
-   媒体数量
-================================================== */
-
-.media-badge{
-
-  position:absolute;
-
-  top:12px;
-
-  right:12px;
-
-  padding:6px 10px;
-
-  border-radius:20px;
-
-  background:rgba(0,0,0,.58);
-
-  color:#fff;
-
-  font-size:12px;
-
-  backdrop-filter:blur(5px);
-}
-
-
-/* ==================================================
-   视频标识
-================================================== */
-
-.video-badge{
-
-  position:absolute;
-
-  left:12px;
-
-  top:12px;
-
-  padding:6px 10px;
-
-  border-radius:20px;
-
-  background:rgba(181,139,99,.9);
-
-  color:#fff;
-
-  font-size:12px;
-}
-
-
-/* ==================================================
+/* =========================
    Card Info
-================================================== */
+========================= */
 
 .woman-info{
-
   padding:18px;
 }
 
 .woman-info h2{
-
   font-size:20px;
 
   font-weight:600;
@@ -428,7 +301,6 @@ a{
 }
 
 .city{
-
   color:#b58b63;
 
   font-size:14px;
@@ -436,20 +308,18 @@ a{
   margin-bottom:7px;
 }
 
-.woman-info > p:not(.city){
-
+.woman-info > p{
   color:#777;
 
-  font-size:13px;
+  font-size:14px;
 
-  margin-bottom:4px;
+  margin-bottom:5px;
 }
 
 .description{
-
   margin-top:9px;
 
-  line-height:1.65;
+  line-height:1.7;
 
   display:-webkit-box;
 
@@ -458,80 +328,475 @@ a{
   -webkit-box-orient:vertical;
 
   overflow:hidden;
-
-  color:#777;
-
-  font-size:13px;
 }
 
 
-/* ==================================================
-   查看提示
-================================================== */
+/* =========================
+   More Card
+========================= */
 
-.view-profile{
+.more-card{
+  background:#fff;
 
-  margin-top:14px;
+  border:1px solid #e7e0d8;
 
-  color:#b58b63;
+  border-radius:14px;
 
-  font-size:13px;
+  min-height:100%;
 
-  font-weight:600;
-}
+  display:flex;
 
-.view-profile span{
+  align-items:center;
 
-  display:inline-block;
-
-  transition:transform .2s ease;
-}
-
-.woman-card:hover
-.view-profile span{
-
-  transform:translateX(5px);
-}
-
-
-/* ==================================================
-   Loading
-================================================== */
-
-.loading{
-
-  grid-column:1 / -1;
+  justify-content:center;
 
   text-align:center;
 
-  padding:80px 20px;
+  padding:35px 25px;
 
-  color:#888;
+  cursor:pointer;
+
+  transition:.25s;
+
+  position:relative;
+
+  overflow:hidden;
 }
 
-.loading h3{
+.more-card:hover{
+  transform:translateY(-5px);
 
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+}
+
+.more-card-content{
+  max-width:260px;
+}
+
+.more-icon{
+  width:62px;
+  height:62px;
+
+  margin:0 auto 20px;
+
+  border-radius:50%;
+
+  background:#f5eee7;
+
+  color:#b58b63;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:27px;
+}
+
+.more-card h2{
   font-size:22px;
-
-  color:#444;
 
   margin-bottom:10px;
 }
 
-.loading p{
-
-  color:#999;
+.more-card p{
+  color:#888;
 
   font-size:14px;
+
+  line-height:1.8;
+
+  margin-bottom:20px;
+}
+
+.join-button{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:10px 24px;
+
+  background:#2b2927;
+
+  color:#fff;
+
+  border-radius:8px;
+
+  font-size:14px;
+
+  font-weight:600;
 }
 
 
-/* ==================================================
+/* =========================
+   Modal
+========================= */
+
+.profile-modal{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.72);
+
+  z-index:500;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+}
+
+.profile-modal.show{
+  display:flex;
+}
+
+.profile-modal-box{
+  width:100%;
+
+  max-width:1100px;
+
+  max-height:92vh;
+
+  overflow:hidden;
+
+  background:#fff;
+
+  border-radius:18px;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1.05fr)
+    minmax(320px,.95fr);
+
+  position:relative;
+}
+
+
+/* =========================
+   Gallery
+========================= */
+
+.profile-gallery{
+  background:#111;
+
+  min-height:600px;
+
+  position:relative;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  overflow:hidden;
+}
+
+.gallery-track{
+  width:100%;
+  height:100%;
+
+  display:flex;
+
+  overflow-x:auto;
+
+  overflow-y:hidden;
+
+  scroll-snap-type:x mandatory;
+
+  scroll-behavior:smooth;
+
+  scrollbar-width:none;
+}
+
+.gallery-track::-webkit-scrollbar{
+  display:none;
+}
+
+.gallery-slide{
+  min-width:100%;
+
+  height:100%;
+
+  scroll-snap-align:center;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:#111;
+}
+
+.gallery-slide img,
+.gallery-slide video{
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  display:block;
+}
+
+.gallery-arrow{
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:44px;
+  height:44px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.75);
+
+  color:#222;
+
+  font-size:24px;
+
+  z-index:5;
+}
+
+.gallery-arrow:hover{
+  background:#fff;
+}
+
+.gallery-prev{
+  left:15px;
+}
+
+.gallery-next{
+  right:15px;
+}
+
+.gallery-counter{
+  position:absolute;
+
+  bottom:15px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:rgba(0,0,0,.6);
+
+  color:#fff;
+
+  padding:5px 12px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  z-index:5;
+}
+
+.gallery-hint{
+  position:absolute;
+
+  bottom:15px;
+  left:15px;
+
+  color:#fff;
+
+  background:rgba(0,0,0,.5);
+
+  padding:5px 10px;
+
+  border-radius:15px;
+
+  font-size:11px;
+
+  z-index:5;
+}
+
+
+/* =========================
+   Profile Info
+========================= */
+
+.profile-info{
+  padding:40px;
+
+  overflow-y:auto;
+}
+
+.profile-close{
+  position:absolute;
+
+  top:15px;
+  right:15px;
+
+  width:40px;
+  height:40px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(0,0,0,.08);
+
+  font-size:24px;
+
+  z-index:20;
+}
+
+.profile-info h2{
+  font-size:30px;
+
+  margin-bottom:5px;
+}
+
+.profile-city{
+  color:#b58b63;
+
+  font-size:15px;
+
+  margin-bottom:20px;
+}
+
+.profile-meta{
+  color:#666;
+
+  font-size:14px;
+
+  margin-bottom:25px;
+}
+
+.profile-description{
+  color:#555;
+
+  font-size:15px;
+
+  line-height:1.9;
+
+  white-space:pre-wrap;
+
+  margin-bottom:30px;
+}
+
+.profile-contact{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+}
+
+.profile-contact button{
+  width:100%;
+
+  border:0;
+
+  border-radius:9px;
+
+  padding:13px;
+
+  font-size:14px;
+
+  font-weight:600;
+}
+
+.profile-whatsapp{
+  background:#e8f7ed;
+
+  color:#168a43;
+}
+
+.profile-telegram{
+  background:#e8f2fb;
+
+  color:#2481c7;
+}
+
+
+/* =========================
+   Join Section
+========================= */
+
+.join-section{
+  width:88%;
+  max-width:1400px;
+
+  margin:0 auto 70px;
+
+  background:#fff;
+
+  border:1px solid #eee;
+
+  border-radius:16px;
+
+  padding:45px 30px;
+
+  text-align:center;
+}
+
+.join-section h2{
+  font-size:27px;
+
+  margin-bottom:10px;
+}
+
+.join-section p{
+  color:#888;
+
+  font-size:14px;
+
+  margin-bottom:22px;
+}
+
+.join-actions{
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+}
+
+.join-contact-btn{
+  border:0;
+
+  border-radius:9px;
+
+  padding:12px 25px;
+
+  font-size:14px;
+
+  font-weight:600;
+}
+
+.join-whatsapp{
+  background:#e8f7ed;
+
+  color:#168a43;
+}
+
+.join-telegram{
+  background:#e8f2fb;
+
+  color:#2481c7;
+}
+
+
+/* =========================
    Footer
-================================================== */
+========================= */
 
 footer{
-
   text-align:center;
 
   padding:35px 20px;
@@ -546,457 +811,97 @@ footer{
 }
 
 
-/* ==================================================
-   =========================
-   全屏资料查看器
-   =========================
-================================================== */
+/* =========================
+   Loading
+========================= */
 
-.viewer{
+.loading{
+  grid-column:1 / -1;
 
-  position:fixed;
+  text-align:center;
 
-  inset:0;
+  padding:80px 20px;
 
-  z-index:1000;
-
-  background:
-    rgba(0,0,0,.94);
-
-  display:flex;
-
-  flex-direction:column;
-
-  opacity:1;
-
-  visibility:visible;
-
-  transition:
-    opacity .2s ease,
-    visibility .2s ease;
+  color:#888;
 }
 
-.viewer.hidden{
+.loading h3{
+  font-size:22px;
 
-  opacity:0;
+  color:#444;
 
-  visibility:hidden;
-
-  pointer-events:none;
+  margin-bottom:10px;
 }
 
 
-/* ==================================================
-   Viewer Header
-================================================== */
-
-.viewer-header{
-
-  height:70px;
-
-  flex-shrink:0;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  padding:0 20px;
-
-  color:#fff;
-
-  position:relative;
-
-  z-index:20;
-}
-
-.viewer-title{
-
-  min-width:0;
-
-  overflow:hidden;
-}
-
-.viewer-title h2{
-
-  font-size:19px;
-
-  font-weight:600;
-
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-}
-
-.viewer-title p{
-
-  color:rgba(255,255,255,.65);
-
-  font-size:12px;
-}
-
-.viewer-counter{
-
-  font-size:13px;
-
-  color:rgba(255,255,255,.8);
-
-  margin-left:20px;
-
-  white-space:nowrap;
-}
-
-.close-viewer{
-
-  width:42px;
-
-  height:42px;
-
-  border:0;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.12);
-
-  color:#fff;
-
-  font-size:28px;
-
-  line-height:1;
-
-  flex-shrink:0;
-
-  margin-left:15px;
-}
-
-.close-viewer:hover{
-
-  background:rgba(255,255,255,.22);
-}
-
-
-/* ==================================================
-   Viewer Content
-================================================== */
-
-.viewer-content{
-
-  flex:1;
-
-  min-height:0;
-
-  position:relative;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  overflow:hidden;
-}
-
-
-/* ==================================================
-   滑动轨道
-================================================== */
-
-.viewer-track{
-
-  width:100%;
-
-  height:100%;
-
-  display:flex;
-
-  align-items:center;
-
-  overflow-x:auto;
-
-  overflow-y:hidden;
-
-  scroll-snap-type:x mandatory;
-
-  scrollbar-width:none;
-
-  -webkit-overflow-scrolling:touch;
-}
-
-.viewer-track::-webkit-scrollbar{
-
-  display:none;
-}
-
-
-/* ==================================================
-   单个媒体
-================================================== */
-
-.viewer-slide{
-
-  flex:0 0 100%;
-
-  width:100%;
-
-  height:100%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  scroll-snap-align:center;
-
-  position:relative;
-
-  padding:10px 70px;
-}
-
-.viewer-slide img{
-
-  max-width:100%;
-
-  max-height:100%;
-
-  width:auto;
-
-  height:auto;
-
-  object-fit:contain;
-
-  display:block;
-
-  user-select:none;
-
-  -webkit-user-drag:none;
-
-  border-radius:4px;
-}
-
-.viewer-slide video{
-
-  max-width:100%;
-
-  max-height:100%;
-
-  width:auto;
-
-  height:auto;
-
-  object-fit:contain;
-
-  display:block;
-
-  background:#000;
-
-  border-radius:4px;
-}
-
-
-/* ==================================================
-   左右按钮
-================================================== */
-
-.viewer-arrow{
-
-  position:absolute;
-
-  top:50%;
-
-  transform:translateY(-50%);
-
-  width:50px;
-
-  height:50px;
-
-  border:0;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.12);
-
-  color:#fff;
-
-  font-size:34px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  z-index:10;
-
-  transition:.2s ease;
-}
-
-.viewer-arrow:hover{
-
-  background:rgba(255,255,255,.25);
-
-}
-
-.viewer-arrow.left{
-
-  left:15px;
-}
-
-.viewer-arrow.right{
-
-  right:15px;
-}
-
-
-/* ==================================================
-   Viewer Bottom
-================================================== */
-
-.viewer-bottom{
-
-  flex-shrink:0;
-
-  min-height:90px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:12px;
-
-  padding:15px 20px 20px;
-
-  position:relative;
-
-  z-index:20;
-}
-
-.viewer-contact{
-
-  border:0;
-
-  border-radius:9px;
-
-  padding:11px 24px;
-
-  font-size:14px;
-
-  font-weight:600;
-
-  color:#fff;
-
-  cursor:pointer;
-}
-
-.viewer-whatsapp{
-
-  background:#168a43;
-}
-
-.viewer-telegram{
-
-  background:#2481c7;
-}
-
-
-/* ==================================================
-   Swipe Hint
-================================================== */
-
-.swipe-hint{
-
-  position:absolute;
-
-  bottom:95px;
-
-  left:50%;
-
-  transform:translateX(-50%);
-
-  color:rgba(255,255,255,.65);
-
-  font-size:12px;
-
-  pointer-events:none;
-
-  opacity:0;
-
-  transition:opacity .3s ease;
-}
-
-.viewer.first-open .swipe-hint{
-
-  opacity:1;
-}
-
-
-/* ==================================================
+/* =========================
    Tablet
-================================================== */
+========================= */
 
 @media(max-width:1000px){
 
   .women-grid{
-
     grid-template-columns:
       repeat(3,minmax(0,1fr));
+  }
+
+  .profile-modal-box{
+    grid-template-columns:1fr;
+    max-width:700px;
+
+    max-height:92vh;
+
+    overflow-y:auto;
+  }
+
+  .profile-gallery{
+    min-height:500px;
+
+    height:55vh;
+  }
+
+  .profile-info{
+    padding:30px;
   }
 
 }
 
 
-/* ==================================================
+/* =========================
    Mobile
-================================================== */
+========================= */
 
 @media(max-width:700px){
 
   .site-header{
-
     height:62px;
-
     padding:0 20px;
   }
 
   .brand{
-
     font-size:19px;
   }
 
   .admin-link{
-
     font-size:12px;
-
     padding:6px 12px;
   }
 
-
   .hero{
-
     min-height:360px;
-
     padding:55px 25px;
   }
 
   .hero h1{
-
     font-size:39px;
   }
 
   .hero p:not(.eyebrow){
-
     font-size:15px;
   }
 
-
   .toolbar{
-
-    width:calc(100% - 30px);
+    width:calc(100% - 40px);
 
     margin-top:30px;
 
@@ -1004,25 +909,19 @@ footer{
   }
 
   .toolbar strong{
-
     font-size:20px;
   }
 
   .filters{
-
     width:100%;
   }
 
   .filters select{
-
     flex:1;
-
     width:50%;
   }
 
-
   .women-grid{
-
     width:calc(100% - 30px);
 
     grid-template-columns:
@@ -1030,170 +929,113 @@ footer{
 
     gap:12px;
 
-    margin-bottom:50px;
+    margin-bottom:35px;
   }
 
-
   .woman-info{
-
     padding:13px;
   }
 
   .woman-info h2{
-
-    font-size:16px;
+    font-size:17px;
   }
 
-  .city{
-
+  .woman-info > p{
     font-size:12px;
-  }
-
-  .woman-info > p:not(.city){
-
-    font-size:11px;
   }
 
   .description{
-
-    font-size:11px;
+    font-size:12px !important;
   }
 
-  .view-profile{
+  .more-card{
+    padding:25px 12px;
 
+    min-height:300px;
+  }
+
+  .more-icon{
+    width:50px;
+    height:50px;
+
+    font-size:21px;
+
+    margin-bottom:13px;
+  }
+
+  .more-card h2{
+    font-size:17px;
+  }
+
+  .more-card p{
     font-size:12px;
-
-    margin-top:10px;
   }
 
-  .media-badge,
-  .video-badge{
+  .join-section{
+    width:calc(100% - 30px);
 
-    font-size:10px;
+    padding:35px 20px;
 
-    padding:4px 7px;
-
-    top:8px;
+    margin-bottom:45px;
   }
 
-  .media-badge{
-
-    right:8px;
+  .join-section h2{
+    font-size:22px;
   }
 
-  .video-badge{
-
-    left:8px;
+  .profile-modal{
+    padding:0;
   }
 
+  .profile-modal-box{
+    width:100%;
+    height:100%;
+    max-height:100vh;
 
-  /* Viewer */
+    border-radius:0;
 
-  .viewer-header{
+    display:block;
 
-    height:60px;
-
-    padding:0 12px;
+    overflow-y:auto;
   }
 
-  .viewer-title h2{
+  .profile-gallery{
+    height:55vh;
 
-    font-size:16px;
+    min-height:350px;
   }
 
-  .viewer-title p{
-
-    font-size:11px;
+  .profile-info{
+    padding:25px 20px 40px;
   }
 
-  .viewer-counter{
-
-    font-size:12px;
-
-    margin-left:8px;
-  }
-
-  .close-viewer{
-
-    width:38px;
-
-    height:38px;
-
+  .profile-info h2{
     font-size:25px;
-
-    margin-left:8px;
   }
 
-  .viewer-slide{
-
-    padding:10px 5px;
-  }
-
-  .viewer-slide img,
-  .viewer-slide video{
-
-    max-width:100%;
-
-    max-height:calc(100vh - 180px);
-  }
-
-  .viewer-arrow{
-
-    width:40px;
-
-    height:40px;
-
-    font-size:27px;
-
-    background:rgba(0,0,0,.2);
-  }
-
-  .viewer-arrow.left{
-
-    left:5px;
-  }
-
-  .viewer-arrow.right{
-
-    right:5px;
-  }
-
-  .viewer-bottom{
-
-    min-height:75px;
-
-    padding:10px 15px 15px;
-  }
-
-  .viewer-contact{
-
-    padding:9px 18px;
-
-    font-size:13px;
-  }
-
-  .swipe-hint{
-
-    bottom:80px;
+  .gallery-hint{
+    display:none;
   }
 
 }
 
 
-/* ==================================================
+/* =========================
    Small phone
-================================================== */
+========================= */
 
 @media(max-width:400px){
 
   .women-grid{
-
     grid-template-columns:1fr;
   }
 
   .woman-image{
-
     aspect-ratio:4 / 5;
+  }
+
+  .more-card{
+    min-height:260px;
   }
 
 }
@@ -1206,44 +1048,27 @@ footer{
 <body>
 
 
-<!-- ==================================================
-     Header
-================================================== -->
-
 <header class="site-header">
 
   <a
     class="brand"
     href="./"
   >
-
     缘分<span>·</span>相遇
-
   </a>
-
 
   <a
     class="admin-link"
     href="admin/"
   >
-
     管理
-
   </a>
 
 </header>
 
 
-<!-- ==================================================
-     Main
-================================================== -->
-
 <main>
 
-
-<!-- ==================================================
-     Hero
-================================================== -->
 
 <section class="hero">
 
@@ -1266,10 +1091,6 @@ footer{
 
 </section>
 
-
-<!-- ==================================================
-     Toolbar
-================================================== -->
 
 <section class="toolbar">
 
@@ -1326,18 +1147,39 @@ footer{
 </section>
 
 
-<!-- ==================================================
-     Women Grid
-================================================== -->
-
 <section
   id="womenGrid"
   class="women-grid"
 >
 
   <div class="loading">
-
     正在加载资料…
+  </div>
+
+</section>
+
+
+<section class="join-section">
+
+  <h2>
+    申请加入
+  </h2>
+
+  <p>
+    如果你希望出现在这里，可以联系我们了解申请方式。
+  </p>
+
+  <div
+    id="joinActions"
+    class="join-actions"
+  >
+
+    <div style="
+      color:#999;
+      font-size:13px;
+    ">
+      正在加载联系方式……
+    </div>
 
   </div>
 
@@ -1346,10 +1188,6 @@ footer{
 
 </main>
 
-
-<!-- ==================================================
-     Footer
-================================================== -->
 
 <footer>
 
@@ -1361,111 +1199,71 @@ footer{
 
 
 <!-- ==================================================
-     全屏资料查看器
+     女士详情 Modal
 ================================================== -->
 
 <div
-  id="profileViewer"
-  class="viewer hidden"
+  id="profileModal"
+  class="profile-modal"
 >
 
-
-  <!-- Header -->
-
-  <div class="viewer-header">
-
-
-    <div class="viewer-title">
-
-      <h2 id="viewerName">
-        女士资料
-      </h2>
-
-      <p id="viewerInfo">
-        -
-      </p>
-
-    </div>
-
-
-    <div
-      id="viewerCounter"
-      class="viewer-counter"
-    >
-      1 / 1
-    </div>
+  <div class="profile-modal-box">
 
 
     <button
-      id="closeViewer"
-      class="close-viewer"
+      id="profileClose"
+      class="profile-close"
       type="button"
-      aria-label="关闭"
     >
       ×
     </button>
 
-  </div>
+
+    <div class="profile-gallery">
+
+      <div
+        id="galleryTrack"
+        class="gallery-track"
+      ></div>
 
 
-  <!-- Content -->
+      <button
+        id="galleryPrev"
+        class="gallery-arrow gallery-prev"
+        type="button"
+      >
+        ‹
+      </button>
 
-  <div class="viewer-content">
+
+      <button
+        id="galleryNext"
+        class="gallery-arrow gallery-next"
+        type="button"
+      >
+        ›
+      </button>
 
 
-    <button
-      id="prevMedia"
-      class="viewer-arrow left"
-      type="button"
-      aria-label="上一张"
-    >
-      ‹
-    </button>
+      <div
+        id="galleryCounter"
+        class="gallery-counter"
+      >
+        1 / 1
+      </div>
+
+
+      <div class="gallery-hint">
+        ← 左右滑动查看 →
+      </div>
+
+    </div>
 
 
     <div
-      id="viewerTrack"
-      class="viewer-track"
+      id="profileInfo"
+      class="profile-info"
     ></div>
-
-
-    <button
-      id="nextMedia"
-      class="viewer-arrow right"
-      type="button"
-      aria-label="下一张"
-    >
-      ›
-    </button>
-
-
-    <div class="swipe-hint">
-      左右滑动查看更多
-    </div>
-
-  </div>
-
-
-  <!-- Bottom -->
-
-  <div class="viewer-bottom">
-
-    <button
-      id="viewerWhatsapp"
-      class="viewer-contact viewer-whatsapp"
-      type="button"
-    >
-      WhatsApp
-    </button>
-
-
-    <button
-      id="viewerTelegram"
-      class="viewer-contact viewer-telegram"
-      type="button"
-    >
-      Telegram
-    </button>
 
   </div>
 
@@ -1473,6 +1271,7 @@ footer{
 
 
 <script>
+
 
 /* ==================================================
    Supabase
@@ -1486,17 +1285,22 @@ const SUPABASE_KEY =
 "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
 
-/* ==================================================
-   全局变量
-================================================== */
+const STORAGE_BUCKET =
+"women-photos";
+
 
 let women = [];
 
-let currentViewerWoman = null;
 
-let currentMedia = [];
+let joinSettings = {
+  whatsapp:"",
+  telegram:""
+};
 
-let currentMediaIndex = 0;
+
+let currentGalleryIndex = 0;
+
+let currentGalleryItems = [];
 
 
 /* ==================================================
@@ -1531,15 +1335,85 @@ function escapeHtml(value){
 
 
 /* ==================================================
+   Media Normalize
+================================================== */
+
+function normalizeMedia(value){
+
+  if(!value){
+    return [];
+  }
+
+
+  if(Array.isArray(value)){
+
+    return value
+      .flat(Infinity)
+      .filter(Boolean)
+      .map(v => String(v).trim())
+      .filter(Boolean);
+
+  }
+
+
+  if(typeof value === "string"){
+
+    const text =
+      value.trim();
+
+
+    if(!text){
+      return [];
+    }
+
+
+    try{
+
+      const parsed =
+        JSON.parse(text);
+
+
+      if(Array.isArray(parsed)){
+
+        return parsed
+          .flat(Infinity)
+          .filter(Boolean)
+          .map(v => String(v).trim())
+          .filter(Boolean);
+
+      }
+
+    }catch(e){}
+
+
+    if(text.includes(",")){
+
+      return text
+        .split(",")
+        .map(v => v.trim())
+        .filter(Boolean);
+
+    }
+
+
+    return [text];
+
+  }
+
+
+  return [];
+
+}
+
+
+/* ==================================================
    Storage URL
 ================================================== */
 
 function convertStorageUrl(path){
 
   if(!path){
-
     return "";
-
   }
 
 
@@ -1559,126 +1433,24 @@ function convertStorageUrl(path){
 
 
   return (
-
     SUPABASE_URL +
-
-    "/storage/v1/object/public/women-photos/" +
-
+    "/storage/v1/object/public/" +
+    STORAGE_BUCKET +
+    "/" +
     value.replace(/^\/+/,"")
-
   );
 
 }
 
 
 /* ==================================================
-   数组转换
-================================================== */
-
-function normalizeMedia(value){
-
-  if(!value){
-
-    return [];
-
-  }
-
-
-  if(Array.isArray(value)){
-
-    return value
-
-      .flat(Infinity)
-
-      .filter(Boolean)
-
-      .map(
-        v =>
-          String(v).trim()
-      )
-
-      .filter(Boolean);
-
-  }
-
-
-  if(typeof value === "string"){
-
-    const text =
-      value.trim();
-
-
-    if(!text){
-
-      return [];
-
-    }
-
-
-    try{
-
-      const parsed =
-        JSON.parse(text);
-
-
-      if(Array.isArray(parsed)){
-
-        return parsed
-
-          .flat(Infinity)
-
-          .filter(Boolean)
-
-          .map(
-            v =>
-              String(v).trim()
-          )
-
-          .filter(Boolean);
-
-      }
-
-    }catch(error){}
-
-
-    if(text.includes(",")){
-
-      return text
-
-        .split(",")
-
-        .map(
-          v =>
-            v.trim()
-        )
-
-        .filter(Boolean);
-
-    }
-
-
-    return [text];
-
-  }
-
-
-  return [];
-
-}
-
-
-/* ==================================================
-   获取照片
+   Photos
 ================================================== */
 
 function getPhotos(woman){
 
   let photos = [];
 
-
-  /*
-    兼容旧 image_url
-  */
 
   if(woman.image_url){
 
@@ -1689,39 +1461,21 @@ function getPhotos(woman){
   }
 
 
-  /*
-    新 photos
-  */
-
-  const extra =
-    normalizeMedia(
-      woman.photos
-    );
-
-
   photos =
     photos.concat(
-      extra
+      normalizeMedia(
+        woman.photos
+      )
     );
 
-
-  /*
-    去重 + URL
-  */
 
   return [
     ...new Set(
-
       photos
-
         .filter(Boolean)
-
         .map(
           convertStorageUrl
         )
-
-        .filter(Boolean)
-
     )
   ];
 
@@ -1729,29 +1483,25 @@ function getPhotos(woman){
 
 
 /* ==================================================
-   获取视频
+   Videos
 ================================================== */
 
 function getVideos(woman){
 
   return [
-
     ...new Set(
 
       normalizeMedia(
         woman.videos
       )
 
-        .filter(Boolean)
+      .filter(Boolean)
 
-        .map(
-          convertStorageUrl
-        )
-
-        .filter(Boolean)
+      .map(
+        convertStorageUrl
+      )
 
     )
-
   ];
 
 }
@@ -1764,7 +1514,6 @@ function getVideos(woman){
 function getDefaultImage(){
 
   return (
-
     "data:image/svg+xml;charset=UTF-8," +
 
     encodeURIComponent(`
@@ -1801,59 +1550,7 @@ function getDefaultImage(){
 
 
 /* ==================================================
-   获取全部媒体
-================================================== */
-
-function getAllMedia(woman){
-
-  const photos =
-    getPhotos(woman);
-
-
-  const videos =
-    getVideos(woman);
-
-
-  const media = [];
-
-
-  photos.forEach(
-    url => {
-
-      media.push({
-
-        type:"image",
-
-        url:url
-
-      });
-
-    }
-  );
-
-
-  videos.forEach(
-    url => {
-
-      media.push({
-
-        type:"video",
-
-        url:url
-
-      });
-
-    }
-  );
-
-
-  return media;
-
-}
-
-
-/* ==================================================
-   加载数据库
+   加载女士
 ================================================== */
 
 async function loadWomen(){
@@ -1875,24 +1572,17 @@ async function loadWomen(){
     grid.innerHTML = `
 
       <div class="loading">
-
         正在连接数据库……
-
       </div>
 
     `;
 
 
     const url =
-
       SUPABASE_URL +
-
       "/rest/v1/women" +
-
       "?select=*" +
-
       "&is_published=eq.true" +
-
       "&order=created_at.desc";
 
 
@@ -1928,40 +1618,23 @@ async function loadWomen(){
     if(!response.ok){
 
       throw new Error(
-
-        "Supabase 错误 " +
-
+        "Supabase " +
         response.status +
-
         ": " +
-
         text
-
-      );
-
-    }
-
-
-    let data;
-
-
-    try{
-
-      data =
-        JSON.parse(text);
-
-    }catch(error){
-
-      throw new Error(
-        "Supabase 返回的数据不是 JSON"
       );
 
     }
 
 
     women =
-      data || [];
+      JSON.parse(text) || [];
 
+
+    /*
+      这里只显示实际女士数量，
+      “更多女士”不计入数量。
+    */
 
     count.textContent =
       `共 ${women.length} 位`;
@@ -2010,7 +1683,7 @@ async function loadWomen(){
 
 
 /* ==================================================
-   城市筛选
+   城市
 ================================================== */
 
 function createCityFilter(){
@@ -2019,10 +1692,6 @@ function createCityFilter(){
     document.getElementById(
       "cityFilter"
     );
-
-
-  const currentValue =
-    select.value;
 
 
   const cities = [
@@ -2080,23 +1749,11 @@ function createCityFilter(){
     }
   );
 
-
-  if(
-    cities.includes(
-      currentValue
-    )
-  ){
-
-    select.value =
-      currentValue;
-
-  }
-
 }
 
 
 /* ==================================================
-   渲染首页
+   渲染女士
 ================================================== */
 
 function renderWomen(list){
@@ -2105,6 +1762,9 @@ function renderWomen(list){
     document.getElementById(
       "womenGrid"
     );
+
+
+  grid.innerHTML = "";
 
 
   if(
@@ -2128,18 +1788,11 @@ function renderWomen(list){
 
     `;
 
-    return;
-
   }
 
 
-  grid.innerHTML =
-    "";
-
-
   list.forEach(
-    (woman,index) => {
-
+    woman => {
 
       const card =
         document.createElement(
@@ -2157,90 +1810,32 @@ function renderWomen(list){
         );
 
 
-      const videos =
-        getVideos(
-          woman
-        );
-
-
-      const allMedia =
-        getAllMedia(
-          woman
-        );
-
-
       const firstPhoto =
-
-        photos.length > 0
-
+        photos.length
         ?
-
         photos[0]
-
         :
-
         getDefaultImage();
-
-
-      let mediaBadge = "";
-
-
-      if(
-        allMedia.length > 1
-      ){
-
-        mediaBadge = `
-
-          <div class="media-badge">
-
-            📷
-            ${allMedia.length}
-
-          </div>
-
-        `;
-
-      }
-
-
-      let videoBadge = "";
-
-
-      if(
-        videos.length > 0
-      ){
-
-        videoBadge = `
-
-          <div class="video-badge">
-
-            ▶ 有视频
-
-          </div>
-
-        `;
-
-      }
 
 
       card.innerHTML = `
 
-        <div class="woman-image">
+        <div class="media-gallery">
 
-          <img
-            src="${escapeHtml(
-              firstPhoto
-            )}"
-            alt="${escapeHtml(
-              woman.name ||
-              "女士"
-            )}"
-            loading="lazy"
-          >
+          <div class="woman-image">
 
-          ${mediaBadge}
+            <img
+              src="${escapeHtml(
+                firstPhoto
+              )}"
+              alt="${escapeHtml(
+                woman.name ||
+                "女士"
+              )}"
+              loading="lazy"
+            >
 
-          ${videoBadge}
+          </div>
 
         </div>
 
@@ -2248,7 +1843,6 @@ function renderWomen(list){
         <div class="woman-info">
 
           <h2>
-
             ${escapeHtml(
               woman.name ||
               "未填写姓名"
@@ -2257,131 +1851,76 @@ function renderWomen(list){
             ${
               woman.age
               ?
-
-              " · " +
+              "，" +
               escapeHtml(
                 woman.age
               ) +
               "岁"
-
               :
-
               ""
             }
-
           </h2>
 
 
           ${
             woman.city
-
             ?
-
             `
-
               <p class="city">
-
                 ${escapeHtml(
                   woman.city
                 )}
-
               </p>
-
             `
-
             :
-
             ""
           }
 
 
           ${
             woman.occupation
-
             ?
-
             `
-
               <p>
-
                 ${escapeHtml(
                   woman.occupation
                 )}
-
               </p>
-
             `
-
             :
-
             ""
           }
 
 
           ${
             woman.description
-
             ?
-
             `
-
               <p class="description">
-
                 ${escapeHtml(
                   woman.description
                 )}
-
               </p>
-
             `
-
             :
-
             ""
           }
-
-
-          <div class="view-profile">
-
-            查看资料
-
-            <span>
-              →
-            </span>
-
-          </div>
 
         </div>
 
       `;
 
 
-      const image =
-        card.querySelector(
-          "img"
-        );
-
-
-      image.addEventListener(
-        "error",
-        function(){
-
-          this.src =
-            getDefaultImage();
-
-        }
-      );
-
-
       /*
-        点击整个卡片
+        点击整张资料卡，
+        打开详情
       */
 
       card.addEventListener(
         "click",
-        function(){
+        () => {
 
-          openViewer(
+          openProfile(
             woman
           );
 
@@ -2396,45 +1935,152 @@ function renderWomen(list){
     }
   );
 
+
+  /*
+    最后固定添加“更多女士”
+  */
+
+  addMoreCard(
+    grid
+  );
+
 }
 
 
 /* ==================================================
-   打开资料查看器
+   更多女士卡片
 ================================================== */
 
-function openViewer(
-  woman
-){
+function addMoreCard(grid){
 
-  currentViewerWoman =
-    woman;
+  const card =
+    document.createElement(
+      "article"
+    );
 
 
-  currentMedia =
-    getAllMedia(
+  card.className =
+    "more-card";
+
+
+  card.innerHTML = `
+
+    <div class="more-card-content">
+
+      <div class="more-icon">
+        ♡
+      </div>
+
+      <h2>
+        更多女士正在加入中
+      </h2>
+
+      <p>
+        这里会持续添加新的女士资料。
+        如果你也希望出现在这里，
+        欢迎申请加入。
+      </p>
+
+      <span class="join-button">
+        申请加入
+      </span>
+
+    </div>
+
+  `;
+
+
+  card.addEventListener(
+    "click",
+    () => {
+
+      document
+        .querySelector(
+          ".join-section"
+        )
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+    }
+  );
+
+
+  grid.appendChild(
+    card
+  );
+
+}
+
+
+/* ==================================================
+   打开女士详情
+================================================== */
+
+function openProfile(woman){
+
+  const modal =
+    document.getElementById(
+      "profileModal"
+    );
+
+
+  const track =
+    document.getElementById(
+      "galleryTrack"
+    );
+
+
+  const info =
+    document.getElementById(
+      "profileInfo"
+    );
+
+
+  const photos =
+    getPhotos(
       woman
     );
 
 
+  const videos =
+    getVideos(
+      woman
+    );
+
+
+  currentGalleryItems = [
+
+    ...photos.map(
+      url => ({
+        type:"image",
+        url
+      })
+    ),
+
+    ...videos.map(
+      url => ({
+        type:"video",
+        url
+      })
+    )
+
+  ];
+
+
   /*
-    如果没有媒体，
-    也创建一个默认图片
+    没有媒体时显示默认图片
   */
 
   if(
-    currentMedia.length === 0
+    currentGalleryItems.length === 0
   ){
 
-    currentMedia = [
+    currentGalleryItems = [
 
       {
-
         type:"image",
-
-        url:
-          getDefaultImage()
-
+        url:getDefaultImage()
       }
 
     ];
@@ -2442,309 +2088,368 @@ function openViewer(
   }
 
 
-  currentMediaIndex =
+  currentGalleryIndex =
     0;
 
 
   /*
-    标题
+    生成左右滑动内容
   */
 
-  document
-    .getElementById(
-      "viewerName"
-    )
-    .textContent =
+  track.innerHTML =
+    currentGalleryItems
+      .map(
+        (item,index) => {
 
-    (
-      woman.name ||
-      "女士"
-    ) +
+          if(
+            item.type === "video"
+          ){
 
-    (
-      woman.age
+            return `
+
+              <div
+                class="gallery-slide"
+                data-index="${index}"
+              >
+
+                <video
+                  controls
+                  playsinline
+                  preload="metadata"
+                >
+
+                  <source
+                    src="${escapeHtml(
+                      item.url
+                    )}"
+                  >
+
+                  您的浏览器不支持视频播放。
+
+                </video>
+
+              </div>
+
+            `;
+
+          }
+
+
+          return `
+
+            <div
+              class="gallery-slide"
+              data-index="${index}"
+            >
+
+              <img
+                src="${escapeHtml(
+                  item.url
+                )}"
+                alt="${escapeHtml(
+                  woman.name ||
+                  "女士"
+                )}"
+              >
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  /*
+    资料
+  */
+
+  info.innerHTML = `
+
+    <h2>
+
+      ${escapeHtml(
+        woman.name ||
+        "未填写姓名"
+      )}
+
+      ${
+        woman.age
+        ?
+        "，" +
+        escapeHtml(
+          woman.age
+        ) +
+        "岁"
+        :
+        ""
+      }
+
+    </h2>
+
+
+    ${
+      woman.city
       ?
-      " · " +
-      woman.age +
-      "岁"
+      `
+        <div class="profile-city">
+          ${escapeHtml(
+            woman.city
+          )}
+        </div>
+      `
       :
       ""
+    }
+
+
+    <div class="profile-meta">
+
+      ${
+        woman.occupation
+        ?
+        `
+          <div>
+            职业：${escapeHtml(
+              woman.occupation
+            )}
+          </div>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+
+    ${
+      woman.description
+      ?
+      `
+        <div class="profile-description">
+          ${escapeHtml(
+            woman.description
+          )}
+        </div>
+      `
+      :
+      ""
+    }
+
+
+    <div class="profile-contact">
+
+      ${
+        woman.whatsapp
+        ?
+        `
+          <button
+            class="profile-whatsapp"
+            type="button"
+            data-whatsapp="${escapeHtml(
+              woman.whatsapp
+            )}"
+          >
+            WhatsApp 联系
+          </button>
+        `
+        :
+        ""
+      }
+
+
+      ${
+        woman.telegram
+        ?
+        `
+          <button
+            class="profile-telegram"
+            type="button"
+            data-telegram="${escapeHtml(
+              woman.telegram
+            )}"
+          >
+            Telegram 联系
+          </button>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  `;
+
+
+  const whatsapp =
+    info.querySelector(
+      "[data-whatsapp]"
     );
 
 
-  const infoParts = [];
+  if(whatsapp){
 
+    whatsapp.addEventListener(
+      "click",
+      () => {
 
-  if(woman.city){
+        openWhatsApp(
+          whatsapp.dataset.whatsapp
+        );
 
-    infoParts.push(
-      woman.city
+      }
     );
 
   }
 
 
-  if(woman.occupation){
+  const telegram =
+    info.querySelector(
+      "[data-telegram]"
+    );
 
-    infoParts.push(
-      woman.occupation
+
+  if(telegram){
+
+    telegram.addEventListener(
+      "click",
+      () => {
+
+        openTelegram(
+          telegram.dataset.telegram
+        );
+
+      }
     );
 
   }
 
 
-  document
-    .getElementById(
-      "viewerInfo"
-    )
-    .textContent =
-
-    infoParts.join(
-      " · "
-    );
-
-
-  /*
-    创建媒体
-  */
-
-  renderViewerMedia();
-
-
-  /*
-    联系按钮
-  */
-
-  const whatsappButton =
-    document.getElementById(
-      "viewerWhatsapp"
-    );
-
-
-  const telegramButton =
-    document.getElementById(
-      "viewerTelegram"
-    );
-
-
-  whatsappButton.style.display =
-    woman.whatsapp
-    ?
-    "block"
-    :
-    "none";
-
-
-  telegramButton.style.display =
-    woman.telegram
-    ?
-    "block"
-    :
-    "none";
-
-
-  /*
-    打开
-  */
-
-  const viewer =
-    document.getElementById(
-      "profileViewer"
-    );
-
-
-  viewer.classList.remove(
-    "hidden"
+  modal.classList.add(
+    "show"
   );
 
 
-  viewer.classList.add(
-    "first-open"
-  );
+  document.body.style.overflow =
+    "hidden";
 
-
-  document.body.classList.add(
-    "viewer-open"
-  );
-
-
-  /*
-    3秒后隐藏提示
-  */
 
   setTimeout(
     () => {
 
-      viewer.classList.remove(
-        "first-open"
-      );
+      updateGallery();
 
     },
-    3000
+    50
   );
 
 }
 
 
 /* ==================================================
-   创建 Viewer 媒体
+   关闭详情
 ================================================== */
 
-function renderViewerMedia(){
+function closeProfile(){
 
-  const track =
+  const modal =
     document.getElementById(
-      "viewerTrack"
+      "profileModal"
     );
 
 
-  track.innerHTML =
+  modal.classList.remove(
+    "show"
+  );
+
+
+  document.body.style.overflow =
     "";
 
 
-  currentMedia.forEach(
-    (media,index) => {
-
-      const slide =
-        document.createElement(
-          "div"
-        );
-
-
-      slide.className =
-        "viewer-slide";
-
-
-      if(
-        media.type === "video"
-      ){
-
-        slide.innerHTML = `
-
-          <video
-            controls
-            playsinline
-            preload="metadata"
-          >
-
-            <source
-              src="${escapeHtml(
-                media.url
-              )}"
-            >
-
-            您的浏览器不支持视频播放。
-
-          </video>
-
-        `;
-
-      }else{
-
-        slide.innerHTML = `
-
-          <img
-            src="${escapeHtml(
-              media.url
-            )}"
-            alt="资料照片"
-            draggable="false"
-          >
-
-        `;
-
-      }
-
-
-      track.appendChild(
-        slide
-      );
-
-    }
-  );
-
-
   /*
-    图片加载失败处理
+    停止视频播放
   */
 
-  track
+  document
     .querySelectorAll(
-      "img"
+      "#galleryTrack video"
     )
     .forEach(
-      img => {
+      video => {
 
-        img.addEventListener(
-          "error",
-          function(){
-
-            this.src =
-              getDefaultImage();
-
-          }
-        );
+        video.pause();
 
       }
     );
-
-
-  /*
-    当前定位到第一张
-  */
-
-  requestAnimationFrame(
-    () => {
-
-      scrollViewerTo(
-        0,
-        false
-      );
-
-    }
-  );
-
-
-  updateViewerCounter();
 
 }
 
 
+document
+  .getElementById(
+    "profileClose"
+  )
+  .addEventListener(
+    "click",
+    closeProfile
+  );
+
+
+document
+  .getElementById(
+    "profileModal"
+  )
+  .addEventListener(
+    "click",
+    event => {
+
+      if(
+        event.target.id ===
+        "profileModal"
+      ){
+
+        closeProfile();
+
+      }
+
+    }
+  );
+
+
+document
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if(
+        event.key === "Escape"
+      ){
+
+        closeProfile();
+
+      }
+
+    }
+  );
+
+
 /* ==================================================
-   滑动到指定媒体
+   Gallery
 ================================================== */
 
-function scrollViewerTo(
-  index,
-  smooth=true
-){
-
-  if(
-    !currentMedia.length
-  ){
-
-    return;
-
-  }
-
-
-  index =
-    Math.max(
-      0,
-      Math.min(
-        index,
-        currentMedia.length - 1
-      )
-    );
-
-
-  currentMediaIndex =
-    index;
-
+function updateGallery(){
 
   const track =
     document.getElementById(
-      "viewerTrack"
+      "galleryTrack"
+    );
+
+
+  const counter =
+    document.getElementById(
+      "galleryCounter"
     );
 
 
@@ -2755,41 +2460,16 @@ function scrollViewerTo(
   track.scrollTo({
 
     left:
-      width * index,
+      width *
+      currentGalleryIndex,
 
-    behavior:
-      smooth
-      ?
-      "smooth"
-      :
-      "auto"
+    behavior:"smooth"
 
   });
 
 
-  updateViewerCounter();
-
-}
-
-
-/* ==================================================
-   上一张
-================================================== */
-
-function previousMedia(){
-
-  if(
-    currentMediaIndex <= 0
-  ){
-
-    return;
-
-  }
-
-
-  scrollViewerTo(
-    currentMediaIndex - 1
-  );
+  counter.textContent =
+    `${currentGalleryIndex + 1} / ${currentGalleryItems.length}`;
 
 }
 
@@ -2798,359 +2478,140 @@ function previousMedia(){
    下一张
 ================================================== */
 
-function nextMedia(){
+function nextGallery(){
 
   if(
-    currentMediaIndex >=
-    currentMedia.length - 1
+    currentGalleryIndex <
+    currentGalleryItems.length - 1
   ){
 
-    return;
+    currentGalleryIndex++;
+
+  }else{
+
+    currentGalleryIndex = 0;
 
   }
 
 
-  scrollViewerTo(
-    currentMediaIndex + 1
-  );
+  updateGallery();
 
 }
 
 
 /* ==================================================
-   Counter
+   上一张
 ================================================== */
 
-function updateViewerCounter(){
+function prevGallery(){
 
-  const counter =
-    document.getElementById(
-      "viewerCounter"
-    );
+  if(
+    currentGalleryIndex > 0
+  ){
+
+    currentGalleryIndex--;
+
+  }else{
+
+    currentGalleryIndex =
+      currentGalleryItems.length - 1;
+
+  }
 
 
-  counter.textContent =
-
-    (
-      currentMediaIndex + 1
-    ) +
-
-    " / " +
-
-    currentMedia.length;
+  updateGallery();
 
 }
-
-
-/* ==================================================
-   监听手动左右滑动
-================================================== */
-
-let scrollTimer = null;
 
 
 document
   .getElementById(
-    "viewerTrack"
+    "galleryNext"
+  )
+  .addEventListener(
+    "click",
+    nextGallery
+  );
+
+
+document
+  .getElementById(
+    "galleryPrev"
+  )
+  .addEventListener(
+    "click",
+    prevGallery
+  );
+
+
+/*
+  用户手指左右滑动时，
+  自动计算当前第几张
+*/
+
+document
+  .getElementById(
+    "galleryTrack"
   )
   .addEventListener(
     "scroll",
     function(){
 
-      clearTimeout(
-        scrollTimer
-      );
+      const width =
+        this.clientWidth;
 
 
-      scrollTimer =
-        setTimeout(
-          () => {
-
-            const width =
-              this.clientWidth;
+      if(!width){
+        return;
+      }
 
 
-            if(!width){
-
-              return;
-
-            }
-
-
-            let index =
-              Math.round(
-                this.scrollLeft /
-                width
-              );
-
-
-            index =
-              Math.max(
-                0,
-                Math.min(
-                  index,
-                  currentMedia.length - 1
-                )
-              );
-
-
-            currentMediaIndex =
-              index;
-
-
-            updateViewerCounter();
-
-
-            /*
-              如果滑到了视频，
-              其他视频暂停
-            */
-
-            this
-              .querySelectorAll(
-                "video"
-              )
-              .forEach(
-                (video,videoIndex) => {
-
-                  /*
-                    找到这个 video 所属 slide
-                  */
-
-                  const slide =
-                    video.closest(
-                      ".viewer-slide"
-                    );
-
-
-                  if(!slide){
-
-                    return;
-
-                  }
-
-
-                  const slides =
-                    Array.from(
-                      this.children
-                    );
-
-
-                  const slideIndex =
-                    slides.indexOf(
-                      slide
-                    );
-
-
-                  if(
-                    slideIndex !==
-                    currentMediaIndex
-                  ){
-
-                    video.pause();
-
-                  }
-
-                }
-              );
-
-          },
-          80
+      const index =
+        Math.round(
+          this.scrollLeft /
+          width
         );
 
-    }
-  );
-
-
-/* ==================================================
-   关闭 Viewer
-================================================== */
-
-function closeViewer(){
-
-  const viewer =
-    document.getElementById(
-      "profileViewer"
-    );
-
-
-  /*
-    暂停视频
-  */
-
-  viewer
-    .querySelectorAll(
-      "video"
-    )
-    .forEach(
-      video => {
-
-        video.pause();
-
-      }
-    );
-
-
-  viewer.classList.add(
-    "hidden"
-  );
-
-
-  document.body.classList.remove(
-    "viewer-open"
-  );
-
-
-  currentViewerWoman =
-    null;
-
-}
-
-
-document
-  .getElementById(
-    "closeViewer"
-  )
-  .addEventListener(
-    "click",
-    closeViewer
-  );
-
-
-/* ==================================================
-   点击黑色背景关闭
-================================================== */
-
-document
-  .getElementById(
-    "profileViewer"
-  )
-  .addEventListener(
-    "click",
-    function(event){
-
-      /*
-        只有点击最外层背景才关闭
-
-        点击图片 / 视频 / 按钮
-        不关闭
-      */
 
       if(
-        event.target === this
+        index !==
+        currentGalleryIndex
       ){
 
-        closeViewer();
+        currentGalleryIndex =
+          Math.max(
+            0,
+            Math.min(
+              index,
+              currentGalleryItems.length - 1
+            )
+          );
+
+
+        document
+          .getElementById(
+            "galleryCounter"
+          )
+          .textContent =
+          `${currentGalleryIndex + 1} / ${currentGalleryItems.length}`;
 
       }
 
     }
   );
-
-
-/* ==================================================
-   左右按钮
-================================================== */
-
-document
-  .getElementById(
-    "prevMedia"
-  )
-  .addEventListener(
-    "click",
-    previousMedia
-  );
-
-
-document
-  .getElementById(
-    "nextMedia"
-  )
-  .addEventListener(
-    "click",
-    nextMedia
-  );
-
-
-/* ==================================================
-   键盘
-================================================== */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    const viewer =
-      document.getElementById(
-        "profileViewer"
-      );
-
-
-    if(
-      viewer.classList.contains(
-        "hidden"
-      )
-    ){
-
-      return;
-
-    }
-
-
-    if(
-      event.key ===
-      "Escape"
-    ){
-
-      closeViewer();
-
-      return;
-
-    }
-
-
-    if(
-      event.key ===
-      "ArrowLeft"
-    ){
-
-      previousMedia();
-
-      return;
-
-    }
-
-
-    if(
-      event.key ===
-      "ArrowRight"
-    ){
-
-      nextMedia();
-
-      return;
-
-    }
-
-  }
-);
 
 
 /* ==================================================
    WhatsApp
 ================================================== */
 
-function openWhatsApp(
-  phone
-){
+function openWhatsApp(phone){
 
   let number =
     String(
       phone || ""
     )
-
     .trim()
-
     .replace(
       /[^\d]/g,
       ""
@@ -3179,15 +2640,12 @@ function openWhatsApp(
    Telegram
 ================================================== */
 
-function openTelegram(
-  username
-){
+function openTelegram(username){
 
   let value =
     String(
       username || ""
     )
-
     .trim();
 
 
@@ -3195,7 +2653,6 @@ function openTelegram(
     value.startsWith(
       "https://t.me/"
     ) ||
-
     value.startsWith(
       "http://t.me/"
     )
@@ -3235,63 +2692,223 @@ function openTelegram(
 
 
 /* ==================================================
-   Viewer WhatsApp
+   读取申请加入联系方式
 ================================================== */
 
-document
-  .getElementById(
-    "viewerWhatsapp"
-  )
-  .addEventListener(
-    "click",
-    function(event){
+async function loadJoinSettings(){
 
-      event.stopPropagation();
+  const box =
+    document.getElementById(
+      "joinActions"
+    );
 
 
-      if(
-        currentViewerWoman &&
-        currentViewerWoman.whatsapp
-      ){
+  try{
 
-        openWhatsApp(
-          currentViewerWoman.whatsapp
-        );
+    const url =
+      SUPABASE_URL +
+      "/rest/v1/site_settings" +
+      "?select=whatsapp,telegram" +
+      "&setting_key=eq.join_contact" +
+      "&limit=1";
 
-      }
+
+    const response =
+      await fetch(
+        url,
+        {
+
+          headers:{
+
+            "apikey":
+              SUPABASE_KEY,
+
+            "Authorization":
+              "Bearer " +
+              SUPABASE_KEY
+
+          }
+
+        }
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        await response.text()
+      );
 
     }
-  );
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      data &&
+      data.length > 0
+    ){
+
+      joinSettings =
+        {
+
+          whatsapp:
+            data[0].whatsapp || "",
+
+          telegram:
+            data[0].telegram || ""
+
+        };
+
+    }
+
+
+    renderJoinButtons();
+
+
+  }catch(error){
+
+    console.error(
+      "申请加入联系方式加载失败：",
+      error
+    );
+
+
+    box.innerHTML = `
+
+      <div style="
+        color:#999;
+        font-size:13px;
+      ">
+        暂无联系方式
+      </div>
+
+    `;
+
+  }
+
+}
 
 
 /* ==================================================
-   Viewer Telegram
+   渲染申请加入按钮
 ================================================== */
 
-document
-  .getElementById(
-    "viewerTelegram"
-  )
-  .addEventListener(
-    "click",
-    function(event){
+function renderJoinButtons(){
 
-      event.stopPropagation();
+  const box =
+    document.getElementById(
+      "joinActions"
+    );
 
 
-      if(
-        currentViewerWoman &&
-        currentViewerWoman.telegram
-      ){
+  box.innerHTML =
+    "";
 
-        openTelegram(
-          currentViewerWoman.telegram
+
+  if(
+    joinSettings.whatsapp
+  ){
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "join-contact-btn join-whatsapp";
+
+
+    button.type =
+      "button";
+
+
+    button.textContent =
+      "WhatsApp 申请加入";
+
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        openWhatsApp(
+          joinSettings.whatsapp
         );
 
       }
+    );
 
-    }
-  );
+
+    box.appendChild(
+      button
+    );
+
+  }
+
+
+  if(
+    joinSettings.telegram
+  ){
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "join-contact-btn join-telegram";
+
+
+    button.type =
+      "button";
+
+
+    button.textContent =
+      "Telegram 申请加入";
+
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        openTelegram(
+          joinSettings.telegram
+        );
+
+      }
+    );
+
+
+    box.appendChild(
+      button
+    );
+
+  }
+
+
+  if(
+    !joinSettings.whatsapp &&
+    !joinSettings.telegram
+  ){
+
+    box.innerHTML = `
+
+      <div style="
+        color:#999;
+        font-size:13px;
+      ">
+        联系方式暂未设置
+      </div>
+
+    `;
+
+  }
+
+}
 
 
 /* ==================================================
@@ -3301,25 +2918,24 @@ document
 function filterWomen(){
 
   const city =
-    document.getElementById(
-      "cityFilter"
-    ).value;
+    document
+      .getElementById(
+        "cityFilter"
+      )
+      .value;
 
 
   const age =
-    document.getElementById(
-      "ageFilter"
-    ).value;
+    document
+      .getElementById(
+        "ageFilter"
+      )
+      .value;
 
 
   const filtered =
     women.filter(
       woman => {
-
-
-        /*
-          城市
-        */
 
         if(
           city &&
@@ -3330,10 +2946,6 @@ function filterWomen(){
 
         }
 
-
-        /*
-          年龄
-        */
 
         const womanAge =
           Number(
@@ -3346,11 +2958,8 @@ function filterWomen(){
         ){
 
           return (
-
             womanAge >= 18 &&
-
             womanAge <= 25
-
           );
 
         }
@@ -3361,11 +2970,8 @@ function filterWomen(){
         ){
 
           return (
-
             womanAge >= 26 &&
-
             womanAge <= 35
-
           );
 
         }
@@ -3376,11 +2982,8 @@ function filterWomen(){
         ){
 
           return (
-
             womanAge >= 36 &&
-
             womanAge <= 45
-
           );
 
         }
@@ -3399,6 +3002,18 @@ function filterWomen(){
 
       }
     );
+
+
+  /*
+    筛选后的数量
+  */
+
+  document
+    .getElementById(
+      "count"
+    )
+    .textContent =
+    `共 ${filtered.length} 位`;
 
 
   renderWomen(
@@ -3437,6 +3052,9 @@ document
 ================================================== */
 
 loadWomen();
+
+loadJoinSettings();
+
 
 </script>
 
