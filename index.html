@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="auto">
 
 <head>
 
@@ -13,8 +13,9 @@
 <title>缘分·相遇</title>
 
 <meta
+  id="metaDescription"
   name="description"
-  content="认真认识一个人，从一次相遇开始。"
+  content=""
 >
 
 <style>
@@ -2149,6 +2150,7 @@ footer span{
   <a
     class="brand"
     href="./"
+    data-i18n="brand"
   >
     缘分<span>·</span>相遇
   </a>
@@ -2160,21 +2162,27 @@ footer span{
 
   <div>
 
-    <p class="eyebrow">
+    <p
+      class="eyebrow"
+      data-i18n="eyebrow"
+    >
       MEET SOMEONE SPECIAL
     </p>
 
-    <h1>
+    <h1 data-i18n-html="heroTitle">
       认真认识一个人，<br>
       从一次相遇开始。
     </h1>
 
-    <p>
+    <p data-i18n="heroDescription">
       浏览真实资料，了解彼此，再决定是否联系。
       有些缘分，不需要刻意寻找，只需要一次恰好的相遇。
     </p>
 
-    <div class="hero-label">
+    <div
+      class="hero-label"
+      data-i18n="heroLabel"
+    >
       每一次相遇，都可能成为故事的开始
     </div>
 
@@ -2193,11 +2201,11 @@ footer span{
 
     <div class="section-title">
 
-      <small>
+      <small data-i18n="discover">
         DISCOVER
       </small>
 
-      <h2>
+      <h2 data-i18n="meetWomen">
         认识她们
       </h2>
 
@@ -2208,7 +2216,10 @@ footer span{
 
       <select id="cityFilter">
 
-        <option value="">
+        <option
+          value=""
+          data-i18n="allCities"
+        >
           全部城市
         </option>
 
@@ -2217,23 +2228,38 @@ footer span{
 
       <select id="ageFilter">
 
-        <option value="">
+        <option
+          value=""
+          data-i18n="allAges"
+        >
           全部年龄
         </option>
 
-        <option value="18-25">
+        <option
+          value="18-25"
+          data-i18n="age18_25"
+        >
           18–25
         </option>
 
-        <option value="26-35">
+        <option
+          value="26-35"
+          data-i18n="age26_35"
+        >
           26–35
         </option>
 
-        <option value="36-45">
+        <option
+          value="36-45"
+          data-i18n="age36_45"
+        >
           36–45
         </option>
 
-        <option value="46+">
+        <option
+          value="46+"
+          data-i18n="age46"
+        >
           46+
         </option>
 
@@ -2249,7 +2275,10 @@ footer span{
     class="women-grid"
   >
 
-    <div class="loading">
+    <div
+      class="loading"
+      data-i18n="loading"
+    >
       正在加载资料……
     </div>
 
@@ -2272,7 +2301,10 @@ footer span{
 
   <div class="romantic-banner-content">
 
-    <div class="romantic-mini">
+    <div
+      class="romantic-mini"
+      data-i18n="romanticMini"
+    >
       ROMANCE · DESTINY · CONNECTION
     </div>
 
@@ -2283,7 +2315,10 @@ footer span{
     </h2>
 
 
-    <div class="romantic-subtitle">
+    <div
+      class="romantic-subtitle"
+      data-i18n="romanticSubtitle"
+    >
       有些心动，不需要解释
     </div>
 
@@ -2308,7 +2343,9 @@ footer span{
 
   ©
   <span id="year"></span>
-  缘分·相遇
+  <span data-i18n="brand">
+    缘分·相遇
+  </span>
 
 </footer>
 
@@ -2329,6 +2366,7 @@ footer span{
       <div
         id="galleryTitle"
         class="gallery-title"
+        data-i18n="womanProfile"
       >
         女士资料
       </div>
@@ -2402,7 +2440,7 @@ footer span{
     </button>
 
 
-    <h2>
+    <h2 data-i18n="contactTitle">
       联系方式
     </h2>
 
@@ -2410,6 +2448,7 @@ footer span{
     <div
       id="contactName"
       class="contact-name"
+      data-i18n="woman"
     >
       女士
     </div>
@@ -2420,7 +2459,10 @@ footer span{
       class="contact-buttons"
     >
 
-      <div class="no-contact">
+      <div
+        class="no-contact"
+        data-i18n="loadingContact"
+      >
         正在加载联系方式……
       </div>
 
@@ -2451,12 +2493,12 @@ footer span{
     </button>
 
 
-    <h2>
+    <h2 data-i18n="joinTitle">
       申请加入
     </h2>
 
 
-    <p>
+    <p data-i18n="joinDescription">
       如果你也希望出现在这里，可以联系我们。
     </p>
 
@@ -2466,7 +2508,10 @@ footer span{
       class="join-contact"
     >
 
-      <div class="no-contact">
+      <div
+        class="no-contact"
+        data-i18n="loadingContact"
+      >
         正在加载联系方式……
       </div>
 
@@ -2478,6 +2523,1021 @@ footer span{
 
 
 <script>
+
+/* =========================================================
+   LANGUAGE SYSTEM
+   =========================================================
+   
+   自动语言逻辑：
+
+   中国大陆       -> 简体中文
+   台湾/香港/澳门  -> 繁体中文
+   日本           -> 日文
+   俄罗斯等       -> 俄文
+   其他国家       -> 英文
+
+   第一优先：
+   IP 地区
+
+   第二优先：
+   浏览器语言
+
+   最终：
+   英文
+========================================================= */
+
+const LANGUAGE_CONFIG = {
+
+  zh_CN: {
+
+    htmlLang:"zh-CN",
+
+    title:"缘分·相遇",
+
+    description:
+      "认真认识一个人，从一次相遇开始。",
+
+    brand:"缘分·相遇",
+
+    eyebrow:
+      "MEET SOMEONE SPECIAL",
+
+    heroTitle:
+      "认真认识一个人，<br>从一次相遇开始。",
+
+    heroDescription:
+      "浏览真实资料，了解彼此，再决定是否联系。有些缘分，不需要刻意寻找，只需要一次恰好的相遇。",
+
+    heroLabel:
+      "每一次相遇，都可能成为故事的开始",
+
+    discover:
+      "DISCOVER",
+
+    meetWomen:
+      "认识她们",
+
+    allCities:
+      "全部城市",
+
+    allAges:
+      "全部年龄",
+
+    age18_25:
+      "18–25",
+
+    age26_35:
+      "26–35",
+
+    age36_45:
+      "36–45",
+
+    age46:
+      "46+",
+
+    loading:
+      "正在加载资料……",
+
+    romanticMini:
+      "ROMANCE · DESTINY · CONNECTION",
+
+    romanticSubtitle:
+      "有些心动，不需要解释",
+
+    womanProfile:
+      "女士资料",
+
+    contactTitle:
+      "联系方式",
+
+    woman:
+      "女士",
+
+    loadingContact:
+      "正在加载联系方式……",
+
+    noContact:
+      "暂无联系方式",
+
+    joinTitle:
+      "申请加入",
+
+    joinDescription:
+      "如果你也希望出现在这里，可以联系我们。",
+
+    joinWhatsApp:
+      "WhatsApp 联系我们",
+
+    joinTelegram:
+      "Telegram 联系我们",
+
+    noJoinContact:
+      "暂无联系方式，请稍后再试。",
+
+    moreTitle:
+      "更多女士正在加入中",
+
+    moreDescription:
+      "如果你也希望认识更多优秀的人，或希望申请加入我们的资料展示，欢迎联系我们。",
+
+    joinButton:
+      "申请加入",
+
+    loadingError:
+      "暂时无法加载资料。",
+
+    galleryCounter:
+      "左右滑动查看"
+
+  },
+
+
+  zh_TW: {
+
+    htmlLang:"zh-TW",
+
+    title:"緣分·相遇",
+
+    description:
+      "認真認識一個人，從一次相遇開始。",
+
+    brand:"緣分·相遇",
+
+    eyebrow:
+      "MEET SOMEONE SPECIAL",
+
+    heroTitle:
+      "認真認識一個人，<br>從一次相遇開始。",
+
+    heroDescription:
+      "瀏覽真實資料，了解彼此，再決定是否聯絡。有些緣分，不需要刻意尋找，只需要一次恰好的相遇。",
+
+    heroLabel:
+      "每一次相遇，都可能成為故事的開始",
+
+    discover:
+      "DISCOVER",
+
+    meetWomen:
+      "認識她們",
+
+    allCities:
+      "全部城市",
+
+    allAges:
+      "全部年齡",
+
+    age18_25:
+      "18–25",
+
+    age26_35:
+      "26–35",
+
+    age36_45:
+      "36–45",
+
+    age46:
+      "46+",
+
+    loading:
+      "正在載入資料……",
+
+    romanticMini:
+      "ROMANCE · DESTINY · CONNECTION",
+
+    romanticSubtitle:
+      "有些心動，不需要解釋",
+
+    womanProfile:
+      "女士資料",
+
+    contactTitle:
+      "聯絡方式",
+
+    woman:
+      "女士",
+
+    loadingContact:
+      "正在載入聯絡方式……",
+
+    noContact:
+      "暫無聯絡方式",
+
+    joinTitle:
+      "申請加入",
+
+    joinDescription:
+      "如果你也希望出現在這裡，可以聯絡我們。",
+
+    joinWhatsApp:
+      "WhatsApp 聯絡我們",
+
+    joinTelegram:
+      "Telegram 聯絡我們",
+
+    noJoinContact:
+      "暫無聯絡方式，請稍後再試。",
+
+    moreTitle:
+      "更多女士正在加入中",
+
+    moreDescription:
+      "如果你也希望認識更多優秀的人，或希望申請加入我們的資料展示，歡迎聯絡我們。",
+
+    joinButton:
+      "申請加入",
+
+    loadingError:
+      "暫時無法載入資料。",
+
+    galleryCounter:
+      "左右滑動查看"
+
+  },
+
+
+  ja: {
+
+    htmlLang:"ja",
+
+    title:"ご縁·出会い",
+
+    description:
+      "一人の人を知ることから、素敵な出会いが始まります。",
+
+    brand:"ご縁·出会い",
+
+    eyebrow:
+      "MEET SOMEONE SPECIAL",
+
+    heroTitle:
+      "一人の人を知ることから、<br>素敵な出会いが始まります。",
+
+    heroDescription:
+      "プロフィールを見て、お互いを知ってから、連絡するかどうかを決めてください。運命の出会いは、思いがけない瞬間から始まります。",
+
+    heroLabel:
+      "すべての出会いが、物語の始まりになるかもしれません",
+
+    discover:
+      "DISCOVER",
+
+    meetWomen:
+      "彼女たちを知る",
+
+    allCities:
+      "すべての都市",
+
+    allAges:
+      "すべての年齢",
+
+    age18_25:
+      "18–25",
+
+    age26_35:
+      "26–35",
+
+    age36_45:
+      "36–45",
+
+    age46:
+      "46+",
+
+    loading:
+      "プロフィールを読み込んでいます……",
+
+    romanticMini:
+      "ROMANCE · DESTINY · CONNECTION",
+
+    romanticSubtitle:
+      "言葉では説明できない、ときめき",
+
+    womanProfile:
+      "プロフィール",
+
+    contactTitle:
+      "連絡先",
+
+    woman:
+      "女性",
+
+    loadingContact:
+      "連絡先を読み込んでいます……",
+
+    noContact:
+      "連絡先はありません",
+
+    joinTitle:
+      "参加を申し込む",
+
+    joinDescription:
+      "あなたもここにプロフィールを掲載したい場合は、お問い合わせください。",
+
+    joinWhatsApp:
+      "WhatsAppでお問い合わせ",
+
+    joinTelegram:
+      "Telegramでお問い合わせ",
+
+    noJoinContact:
+      "現在、連絡先はありません。後でもう一度お試しください。",
+
+    moreTitle:
+      "新しい女性が続々参加しています",
+
+    moreDescription:
+      "もっと素敵な人と出会いたい方、またはプロフィール掲載を希望される方は、お気軽にお問い合わせください。",
+
+    joinButton:
+      "参加を申し込む",
+
+    loadingError:
+      "プロフィールを読み込めませんでした。",
+
+    galleryCounter:
+      "左右にスワイプして表示"
+
+  },
+
+
+  ru: {
+
+    htmlLang:"ru",
+
+    title:"Судьба·Встреча",
+
+    description:
+      "Познакомьтесь с человеком по-настоящему. Всё начинается с одной встречи.",
+
+    brand:"Судьба·Встреча",
+
+    eyebrow:
+      "MEET SOMEONE SPECIAL",
+
+    heroTitle:
+      "Узнать человека по-настоящему,<br>начав с одной встречи.",
+
+    heroDescription:
+      "Просмотрите реальные анкеты, узнайте друг друга и только потом решите, хотите ли вы связаться. Иногда судьбу не нужно искать — достаточно одной подходящей встречи.",
+
+    heroLabel:
+      "Каждая встреча может стать началом новой истории",
+
+    discover:
+      "DISCOVER",
+
+    meetWomen:
+      "Познакомьтесь с ними",
+
+    allCities:
+      "Все города",
+
+    allAges:
+      "Все возраста",
+
+    age18_25:
+      "18–25",
+
+    age26_35:
+      "26–35",
+
+    age36_45:
+      "36–45",
+
+    age46:
+      "46+",
+
+    loading:
+      "Загрузка анкет……",
+
+    romanticMini:
+      "ROMANCE · DESTINY · CONNECTION",
+
+    romanticSubtitle:
+      "Некоторые чувства не нуждаются в объяснениях",
+
+    womanProfile:
+      "Профиль",
+
+    contactTitle:
+      "Контакты",
+
+    woman:
+      "Девушка",
+
+    loadingContact:
+      "Загрузка контактов……",
+
+    noContact:
+      "Контактная информация отсутствует",
+
+    joinTitle:
+      "Подать заявку",
+
+    joinDescription:
+      "Если вы тоже хотите разместить здесь свою анкету, свяжитесь с нами.",
+
+    joinWhatsApp:
+      "Связаться через WhatsApp",
+
+    joinTelegram:
+      "Связаться через Telegram",
+
+    noJoinContact:
+      "Контактная информация отсутствует. Попробуйте позже.",
+
+    moreTitle:
+      "Новые анкеты скоро появятся",
+
+    moreDescription:
+      "Если вы хотите познакомиться с новыми людьми или разместить свою анкету, свяжитесь с нами.",
+
+    joinButton:
+      "Подать заявку",
+
+    loadingError:
+      "Не удалось загрузить анкеты.",
+
+    galleryCounter:
+      "Проведите влево или вправо"
+
+  },
+
+
+  en: {
+
+    htmlLang:"en",
+
+    title:"Fate·Meeting",
+
+    description:
+      "Get to know someone genuinely. Every connection begins with a meeting.",
+
+    brand:"Fate·Meeting",
+
+    eyebrow:
+      "MEET SOMEONE SPECIAL",
+
+    heroTitle:
+      "Get to know someone genuinely,<br>starting with a single meeting.",
+
+    heroDescription:
+      "Browse real profiles, get to know each other, and then decide whether you would like to connect. Some connections do not need to be searched for — they simply begin at the right moment.",
+
+    heroLabel:
+      "Every meeting could be the beginning of a story",
+
+    discover:
+      "DISCOVER",
+
+    meetWomen:
+      "Meet Them",
+
+    allCities:
+      "All Cities",
+
+    allAges:
+      "All Ages",
+
+    age18_25:
+      "18–25",
+
+    age26_35:
+      "26–35",
+
+    age36_45:
+      "36–45",
+
+    age46:
+      "46+",
+
+    loading:
+      "Loading profiles……",
+
+    romanticMini:
+      "ROMANCE · DESTINY · CONNECTION",
+
+    romanticSubtitle:
+      "Some feelings need no explanation",
+
+    womanProfile:
+      "Profile",
+
+    contactTitle:
+      "Contact",
+
+    woman:
+      "Profile",
+
+    loadingContact:
+      "Loading contact information……",
+
+    noContact:
+      "No contact information available",
+
+    joinTitle:
+      "Apply to Join",
+
+    joinDescription:
+      "If you would also like to appear here, feel free to contact us.",
+
+    joinWhatsApp:
+      "Contact us on WhatsApp",
+
+    joinTelegram:
+      "Contact us on Telegram",
+
+    noJoinContact:
+      "No contact information is available. Please try again later.",
+
+    moreTitle:
+      "More women are joining soon",
+
+    moreDescription:
+      "If you would like to meet more interesting people or apply to have your profile displayed here, feel free to contact us.",
+
+    joinButton:
+      "Apply to Join",
+
+    loadingError:
+      "Unable to load profiles.",
+
+    galleryCounter:
+      "Swipe left or right to browse"
+
+  }
+
+};
+
+
+/* =========================================================
+   LANGUAGE STATE
+========================================================= */
+
+let CURRENT_LANGUAGE = "en";
+
+let CURRENT_TRANSLATION =
+  LANGUAGE_CONFIG.en;
+
+
+/* =========================================================
+   BROWSER LANGUAGE FALLBACK
+========================================================= */
+
+function detectBrowserLanguage(){
+
+  const languages =
+    navigator.languages ||
+    [
+      navigator.language ||
+      ""
+    ];
+
+
+  for(
+    const language of languages
+  ){
+
+    const lang =
+      String(language)
+        .toLowerCase();
+
+
+    if(
+      lang === "zh-cn" ||
+      lang === "zh-sg" ||
+      lang.startsWith("zh-cn")
+    ){
+
+      return "zh_CN";
+
+    }
+
+
+    if(
+      lang === "zh-tw" ||
+      lang === "zh-hk" ||
+      lang === "zh-mo" ||
+      lang.startsWith("zh-tw") ||
+      lang.startsWith("zh-hk")
+    ){
+
+      return "zh_TW";
+
+    }
+
+
+    if(
+      lang.startsWith("ja")
+    ){
+
+      return "ja";
+
+    }
+
+
+    if(
+      lang.startsWith("ru")
+    ){
+
+      return "ru";
+
+    }
+
+
+    if(
+      lang.startsWith("zh")
+    ){
+
+      return "zh_CN";
+
+    }
+
+
+    if(
+      lang.startsWith("en")
+    ){
+
+      return "en";
+
+    }
+
+  }
+
+
+  return "en";
+
+}
+
+
+/* =========================================================
+   COUNTRY -> LANGUAGE
+========================================================= */
+
+function languageFromCountry(countryCode){
+
+  const country =
+    String(countryCode || "")
+      .trim()
+      .toUpperCase();
+
+
+  /*
+   * 中国大陆
+   */
+
+  if(
+    country === "CN"
+  ){
+
+    return "zh_CN";
+
+  }
+
+
+  /*
+   * 台湾 / 香港 / 澳门
+   */
+
+  if(
+    country === "TW" ||
+    country === "HK" ||
+    country === "MO"
+  ){
+
+    return "zh_TW";
+
+  }
+
+
+  /*
+   * 日本
+   */
+
+  if(
+    country === "JP"
+  ){
+
+    return "ja";
+
+  }
+
+
+  /*
+   * 俄罗斯及主要俄语国家
+   */
+
+  const russianCountries = [
+
+    "RU",
+    "BY",
+    "KZ",
+    "KG"
+
+  ];
+
+
+  if(
+    russianCountries.includes(
+      country
+    )
+  ){
+
+    return "ru";
+
+  }
+
+
+  /*
+   * 其他国家统一使用英文
+   */
+
+  return "en";
+
+}
+
+
+/* =========================================================
+   APPLY LANGUAGE
+========================================================= */
+
+function applyLanguage(language){
+
+  if(
+    !LANGUAGE_CONFIG[language]
+  ){
+
+    language = "en";
+
+  }
+
+
+  CURRENT_LANGUAGE =
+    language;
+
+
+  CURRENT_TRANSLATION =
+    LANGUAGE_CONFIG[
+      language
+    ];
+
+
+  document.documentElement.lang =
+    CURRENT_TRANSLATION.htmlLang;
+
+
+  document.title =
+    CURRENT_TRANSLATION.title;
+
+
+  const meta =
+    document.getElementById(
+      "metaDescription"
+    );
+
+
+  if(meta){
+
+    meta.setAttribute(
+      "content",
+      CURRENT_TRANSLATION.description
+    );
+
+  }
+
+
+  /*
+   * 普通文字
+   */
+
+  document
+    .querySelectorAll(
+      "[data-i18n]"
+    )
+    .forEach(element => {
+
+      const key =
+        element.getAttribute(
+          "data-i18n"
+        );
+
+
+      if(
+        Object.prototype.hasOwnProperty.call(
+          CURRENT_TRANSLATION,
+          key
+        )
+      ){
+
+        element.textContent =
+          CURRENT_TRANSLATION[key];
+
+      }
+
+    });
+
+
+  /*
+   * HTML 文字
+   *
+   * 用于 hero 标题换行等内容。
+   */
+
+  document
+    .querySelectorAll(
+      "[data-i18n-html]"
+    )
+    .forEach(element => {
+
+      const key =
+        element.getAttribute(
+          "data-i18n-html"
+        );
+
+
+      if(
+        Object.prototype.hasOwnProperty.call(
+          CURRENT_TRANSLATION,
+          key
+        )
+      ){
+
+        element.innerHTML =
+          CURRENT_TRANSLATION[key];
+
+      }
+
+    });
+
+
+  /*
+   * 更新年龄筛选文字
+   */
+
+  updateAgeFilterLanguage();
+
+}
+
+
+/* =========================================================
+   AGE FILTER LANGUAGE
+========================================================= */
+
+function updateAgeFilterLanguage(){
+
+  const select =
+    document.getElementById(
+      "ageFilter"
+    );
+
+
+  if(!select){
+    return;
+  }
+
+
+  const options =
+    select.querySelectorAll(
+      "option"
+    );
+
+
+  options.forEach(option => {
+
+    const key =
+      option.getAttribute(
+        "data-i18n"
+      );
+
+
+    if(
+      key &&
+      CURRENT_TRANSLATION[key]
+    ){
+
+      option.textContent =
+        CURRENT_TRANSLATION[key];
+
+    }
+
+  });
+
+}
+
+
+/* =========================================================
+   IP LANGUAGE DETECTION
+========================================================= */
+
+async function detectLanguageByIP(){
+
+  /*
+   * 第一备用：
+   * 浏览器语言
+   */
+
+  const browserLanguage =
+    detectBrowserLanguage();
+
+
+  try{
+
+    /*
+     * 使用公开 IP 地区接口。
+     *
+     * 如果接口不可用，
+     * 不会影响网站正常运行。
+     */
+
+    const response =
+      await fetch(
+        "https://ipwho.is/",
+        {
+          method:"GET",
+          cache:"no-store"
+        }
+      );
+
+
+    if(
+      !response.ok
+    ){
+
+      throw new Error(
+        "IP detection failed"
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      data &&
+      data.success &&
+      data.country_code
+    ){
+
+      const language =
+        languageFromCountry(
+          data.country_code
+        );
+
+
+      applyLanguage(
+        language
+      );
+
+
+      return;
+
+    }
+
+
+  }catch(error){
+
+    console.warn(
+      "IP语言识别失败，使用浏览器语言：",
+      error
+    );
+
+  }
+
+
+  /*
+   * IP 获取失败：
+   * 使用浏览器语言。
+   */
+
+  applyLanguage(
+    browserLanguage
+  );
+
+}
+
+
+/* =========================================================
+   START LANGUAGE DETECTION
+========================================================= */
+
+/*
+ * 先立即使用浏览器语言，
+ * 防止 IP API 加载期间页面一直保持中文。
+ */
+
+applyLanguage(
+  detectBrowserLanguage()
+);
+
+
+/*
+ * 再异步根据 IP 修正语言。
+ */
+
+detectLanguageByIP();
+
 
 /* =========================================================
    SUPABASE
@@ -2498,10 +3558,6 @@ const STORAGE_BUCKET =
 /*
  * women = 原始资料
  * shuffledWomen = 随机后的固定顺序
- *
- * 重要：
- * 页面加载时只随机一次。
- * 后面的城市/年龄筛选都基于这个顺序。
  */
 
 let women = [];
@@ -2542,22 +3598,6 @@ function escapeHtml(value){
 /* =========================================================
    RANDOM SHUFFLE
 ========================================================= */
-
-/*
- * Fisher-Yates 洗牌算法
- *
- * 每次网页刷新后：
- *
- * 数据库返回女士资料
- * ↓
- * 复制一份
- * ↓
- * 随机打乱
- * ↓
- * 保存到 shuffledWomen
- *
- * 因此不会影响数据库中的资料顺序。
- */
 
 function shuffleWomen(list){
 
@@ -2781,22 +3821,6 @@ function getVideos(woman){
    WOMAN CONTACT
 ========================================================= */
 
-/*
- * 这里专门读取女士自己的联系方式。
- *
- * 优先读取：
- *
- * woman.whatsapp
- * woman.telegram
- *
- * 同时兼容后台可能使用的字段：
- *
- * whatsapp_number
- * whatsapp_url
- * telegram_username
- * telegram_url
- */
-
 function getWomanWhatsApp(woman){
 
   return (
@@ -2847,11 +3871,6 @@ function makeWhatsAppUrl(value){
       .trim();
 
 
-  /*
-   * 如果后台已经填写完整 WhatsApp 链接，
-   * 直接使用。
-   */
-
   if(
     text.startsWith("https://wa.me/") ||
     text.startsWith("http://wa.me/") ||
@@ -2862,16 +3881,6 @@ function makeWhatsAppUrl(value){
 
   }
 
-
-  /*
-   * 普通电话号码：
-   *
-   * +52 55 1234 5678
-   * 52-55-1234-5678
-   * 525512345678
-   *
-   * 最终只保留数字。
-   */
 
   const number =
     text.replace(/[^\d]/g,"");
@@ -2910,10 +3919,6 @@ function makeTelegramUrl(value){
     return "";
   }
 
-
-  /*
-   * 已经是完整 Telegram 链接
-   */
 
   if(
 
@@ -2980,14 +3985,6 @@ async function loadWomen(){
 
   try{
 
-    /*
-     * 不再使用：
-     *
-     * &order=created_at.desc
-     *
-     * 因为我们要由前端每次随机排序。
-     */
-
     const url =
 
       SUPABASE_URL +
@@ -3034,22 +4031,6 @@ async function loadWomen(){
       JSON.parse(text) || [];
 
 
-    /*
-     * =====================================================
-     * 核心修复
-     *
-     * 每次网页重新加载：
-     *
-     * women
-     * ↓
-     * shuffleWomen()
-     * ↓
-     * shuffledWomen
-     *
-     * 所以每次刷新都会重新排序。
-     * =====================================================
-     */
-
     shuffledWomen =
       shuffleWomen(
         women
@@ -3058,10 +4039,6 @@ async function loadWomen(){
 
     createCityFilter();
 
-
-    /*
-     * 第一次渲染使用随机后的数组。
-     */
 
     renderWomen(
       shuffledWomen
@@ -3079,7 +4056,9 @@ async function loadWomen(){
     grid.innerHTML = `
 
       <div class="loading">
-        暂时无法加载资料。
+        ${escapeHtml(
+          CURRENT_TRANSLATION.loadingError
+        )}
       </div>
 
     `;
@@ -3117,7 +4096,9 @@ function createCityFilter(){
   select.innerHTML = `
 
     <option value="">
-      全部城市
+      ${escapeHtml(
+        CURRENT_TRANSLATION.allCities
+      )}
     </option>
 
   `;
@@ -3195,7 +4176,7 @@ function renderWomen(list){
             font-size="28"
             fill="#d6b9c1"
           >
-            暂无照片
+            ${CURRENT_TRANSLATION.woman}
           </text>
 
         </svg>
@@ -3212,10 +4193,6 @@ function renderWomen(list){
     card.className =
       "woman-card";
 
-
-    /*
-     * 检查这位女士是否有联系方式。
-     */
 
     const whatsappUrl =
       makeWhatsAppUrl(
@@ -3241,7 +4218,8 @@ function renderWomen(list){
         <img
           src="${escapeHtml(cover)}"
           alt="${escapeHtml(
-            woman.name || "女士"
+            woman.name ||
+            CURRENT_TRANSLATION.woman
           )}"
           loading="lazy"
         >
@@ -3255,14 +4233,15 @@ function renderWomen(list){
 
           ${escapeHtml(
             woman.name ||
-            "未填写姓名"
+            CURRENT_TRANSLATION.woman
           )}
 
           ${
             woman.age
               ? " · " +
                 escapeHtml(woman.age) +
-                "岁"
+                " " +
+                getAgeSuffix()
               : ""
           }
 
@@ -3325,7 +4304,9 @@ function renderWomen(list){
               type="button"
               class="woman-contact-button"
             >
-              联系方式
+              ${escapeHtml(
+                CURRENT_TRANSLATION.contactTitle
+              )}
             </button>
 
           `
@@ -3337,24 +4318,11 @@ function renderWomen(list){
     `;
 
 
-    /*
-     * 整张卡片点击：
-     * 打开照片。
-     */
-
     card.addEventListener(
       "click",
       () => openGallery(woman)
     );
 
-
-    /*
-     * 联系方式按钮：
-     * 必须阻止事件冒泡。
-     *
-     * 否则点击联系方式时，
-     * 会同时触发资料卡的照片弹窗。
-     */
 
     const contactButton =
       card.querySelector(
@@ -3391,8 +4359,6 @@ function renderWomen(list){
 
   /* =====================================================
      MORE CARD
-     永远放在最后
-     不参与随机排序
   ===================================================== */
 
   const moreCard =
@@ -3412,17 +4378,21 @@ function renderWomen(list){
     <div class="more-card-content">
 
       <h2>
-        更多女士正在加入中
+        ${escapeHtml(
+          CURRENT_TRANSLATION.moreTitle
+        )}
       </h2>
 
       <p>
-        如果你也希望认识更多优秀的人，
-        或希望申请加入我们的资料展示，
-        欢迎联系我们。
+        ${escapeHtml(
+          CURRENT_TRANSLATION.moreDescription
+        )}
       </p>
 
       <div class="join-button">
-        申请加入
+        ${escapeHtml(
+          CURRENT_TRANSLATION.joinButton
+        )}
       </div>
 
     </div>
@@ -3439,6 +4409,45 @@ function renderWomen(list){
   grid.appendChild(
     moreCard
   );
+
+}
+
+
+/* =========================================================
+   AGE SUFFIX
+========================================================= */
+
+function getAgeSuffix(){
+
+  if(
+    CURRENT_LANGUAGE === "zh_CN" ||
+    CURRENT_LANGUAGE === "zh_TW"
+  ){
+
+    return "岁";
+
+  }
+
+
+  if(
+    CURRENT_LANGUAGE === "ja"
+  ){
+
+    return "歳";
+
+  }
+
+
+  if(
+    CURRENT_LANGUAGE === "ru"
+  ){
+
+    return "лет";
+
+  }
+
+
+  return "years";
 
 }
 
@@ -3469,8 +4478,12 @@ function openWomanContact(woman){
 
   name.textContent =
     woman.name
-      ? woman.name + " 的联系方式"
-      : "女士联系方式";
+      ? woman.name +
+        " · " +
+        CURRENT_TRANSLATION.contactTitle
+      : CURRENT_TRANSLATION.woman +
+        " · " +
+        CURRENT_TRANSLATION.contactTitle;
 
 
   buttons.innerHTML = "";
@@ -3487,10 +4500,6 @@ function openWomanContact(woman){
       getWomanTelegram(woman)
     );
 
-
-  /*
-   * WhatsApp
-   */
 
   if(whatsappUrl){
 
@@ -3521,10 +4530,6 @@ function openWomanContact(woman){
   }
 
 
-  /*
-   * Telegram
-   */
-
   if(telegramUrl){
 
     const a =
@@ -3554,10 +4559,6 @@ function openWomanContact(woman){
   }
 
 
-  /*
-   * 两个都没有
-   */
-
   if(
     !whatsappUrl &&
     !telegramUrl
@@ -3566,7 +4567,9 @@ function openWomanContact(woman){
     buttons.innerHTML = `
 
       <div class="no-contact">
-        暂无联系方式
+        ${escapeHtml(
+          CURRENT_TRANSLATION.noContact
+        )}
       </div>
 
     `;
@@ -3599,11 +4602,6 @@ function closeWomanContact(){
       "show"
     );
 
-
-  /*
-   * 如果照片弹窗没有打开，
-   * 才恢复页面滚动。
-   */
 
   if(
     !document
@@ -3711,7 +4709,7 @@ function openGallery(woman){
     .getElementById("galleryTitle")
     .textContent =
     woman.name ||
-    "女士资料";
+    CURRENT_TRANSLATION.womanProfile;
 
 
   renderGallery();
@@ -3824,7 +4822,7 @@ function updateGalleryCounter(){
 
     counter.textContent =
 
-      `${galleryIndex + 1} / ${galleryMedia.length} · 左右滑动查看`;
+      `${galleryIndex + 1} / ${galleryMedia.length} · ${CURRENT_TRANSLATION.galleryCounter}`;
 
   }
 
@@ -4098,7 +5096,7 @@ function openJoinModal(){
       "join-whatsapp";
 
     a.textContent =
-      "WhatsApp 联系我们";
+      CURRENT_TRANSLATION.joinWhatsApp;
 
 
     box.appendChild(a);
@@ -4127,7 +5125,7 @@ function openJoinModal(){
       "join-telegram";
 
     a.textContent =
-      "Telegram 联系我们";
+      CURRENT_TRANSLATION.joinTelegram;
 
 
     box.appendChild(a);
@@ -4143,7 +5141,9 @@ function openJoinModal(){
     box.innerHTML = `
 
       <div class="no-contact">
-        暂无联系方式，请稍后再试。
+        ${escapeHtml(
+          CURRENT_TRANSLATION.noJoinContact
+        )}
       </div>
 
     `;
@@ -4259,15 +5259,6 @@ function filterWomen(){
       .getElementById("ageFilter")
       .value;
 
-
-  /*
-   * 注意：
-   *
-   * 这里必须使用 shuffledWomen，
-   * 不能重新从 women 排序。
-   *
-   * 这样筛选后仍然保持当前随机顺序。
-   */
 
   const filtered =
     shuffledWomen.filter(
