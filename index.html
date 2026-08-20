@@ -78,7 +78,8 @@ a{
 
 /* =========================================================
    全站动态 CANVAS
-   一定高于页面背景，低于所有实际内容
+   ★ 注意：
+   Canvas 低于资料卡区域
 ========================================================= */
 
 #romanceCanvas{
@@ -91,6 +92,11 @@ a{
 
   height:100vh;
 
+  /*
+    全站特效层
+    高于普通页面背景
+    低于 profiles-area
+  */
   z-index:20;
 
   pointer-events:none;
@@ -102,6 +108,7 @@ a{
 
 /* =========================================================
    全站动态光晕
+   最底层背景
 ========================================================= */
 
 .romance-glow{
@@ -522,7 +529,11 @@ a{
 
   z-index:2;
 
-  overflow:hidden;
+  /*
+    ★ 从 hidden 改为 visible
+    避免父层裁切资料卡区域
+  */
+  overflow:visible;
 
   padding-top:1px;
 
@@ -557,8 +568,28 @@ a{
 
 
 /* =========================================================
+   ★★★★★
    资料卡区域
-   这里是本次最重要的修改
+   ★★★★★
+
+   这里是本次修改的核心。
+
+   Canvas：
+   z-index:20
+
+   profiles-area：
+   z-index:30
+
+   所以 Canvas 永远无法覆盖资料卡区域。
+
+   资料卡区域内部：
+
+   背景       z-index:0
+   氛围       z-index:1
+   装饰       z-index:2
+   Toolbar    z-index:5
+   Grid       z-index:6
+   Card       z-index:7
 ========================================================= */
 
 .profiles-area{
@@ -567,20 +598,66 @@ a{
 
   position:relative;
 
+  /*
+    ★★★★★
+    整个资料卡区域提升到 Canvas 上方
+  */
+  z-index:30;
+
+  /*
+    独立层叠上下文
+  */
+  isolation:isolate;
+
   overflow:hidden;
 
   padding-bottom:70px;
 
-  isolation:isolate;
+  /*
+    ★ 直接给整个区域主题背景
+    防止资料卡之间出现白色空洞
+  */
+  background:
+
+    radial-gradient(
+      ellipse at 8% 12%,
+      rgba(225,150,174,.30),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      ellipse at 92% 22%,
+      rgba(240,194,157,.27),
+      transparent 31%
+    ),
+
+    radial-gradient(
+      ellipse at 18% 65%,
+      rgba(215,137,163,.22),
+      transparent 34%
+    ),
+
+    radial-gradient(
+      ellipse at 82% 76%,
+      rgba(237,181,150,.22),
+      transparent 35%
+    ),
+
+    linear-gradient(
+      180deg,
+      #faf4f6 0%,
+      #f7e9ee 30%,
+      #f3e1e7 65%,
+      #eed9e1 100%
+    );
 
 }
 
 
-/*
-  恋爱主题背景层
-
-  不再让资料卡下面只是单纯的白色。
-*/
+/* =========================================================
+   资料卡区域主题背景
+   第一层
+========================================================= */
 
 .profiles-area::before{
 
@@ -590,47 +667,49 @@ a{
 
   inset:0;
 
-  z-index:-3;
+  z-index:0;
 
-  background-image:
+  pointer-events:none;
 
-    linear-gradient(
-      180deg,
-      rgba(250,244,246,.68),
-      rgba(246,230,236,.55) 48%,
-      rgba(239,215,224,.68)
+  background:
+
+    radial-gradient(
+      ellipse 45% 35% at 12% 18%,
+      rgba(221,137,163,.28),
+      transparent 70%
     ),
 
     radial-gradient(
-      ellipse at 20% 25%,
-      rgba(219,135,160,.28),
-      transparent 32%
+      ellipse 50% 40% at 88% 20%,
+      rgba(239,188,151,.25),
+      transparent 72%
     ),
 
     radial-gradient(
-      ellipse at 80% 55%,
-      rgba(238,187,148,.25),
-      transparent 34%
+      ellipse 55% 45% at 50% 58%,
+      rgba(255,255,255,.62),
+      transparent 72%
     ),
 
     radial-gradient(
-      ellipse at 45% 95%,
-      rgba(201,124,151,.20),
-      transparent 38%
+      ellipse 48% 38% at 15% 88%,
+      rgba(211,128,156,.24),
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 50% 42% at 88% 88%,
+      rgba(232,175,145,.23),
+      transparent 72%
     );
-
-  background-size:
-    cover,
-    100% 100%,
-    100% 100%,
-    100% 100%;
 
 }
 
 
-/*
-  梦幻丝绸/樱花氛围层
-*/
+/* =========================================================
+   资料卡区域梦幻光晕
+   第二层
+========================================================= */
 
 .profiles-area::after{
 
@@ -638,31 +717,47 @@ a{
 
   position:absolute;
 
-  inset:-20%;
+  inset:-10%;
 
-  z-index:-2;
+  z-index:1;
+
+  pointer-events:none;
 
   background:
 
     radial-gradient(
-      circle at 15% 30%,
+      circle at 20% 20%,
       rgba(255,255,255,.72),
-      transparent 14%
+      transparent 15%
     ),
 
     radial-gradient(
-      circle at 84% 20%,
-      rgba(255,232,220,.62),
-      transparent 17%
+      circle at 80% 18%,
+      rgba(255,226,218,.62),
+      transparent 18%
     ),
 
     radial-gradient(
-      circle at 50% 65%,
-      rgba(255,255,255,.45),
+      circle at 50% 48%,
+      rgba(255,255,255,.42),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 30% 82%,
+      rgba(255,219,229,.36),
       transparent 22%
+    ),
+
+    radial-gradient(
+      circle at 76% 84%,
+      rgba(255,224,202,.34),
+      transparent 23%
     );
 
-  filter:blur(30px);
+  filter:blur(28px);
+
+  opacity:.9;
 
   animation:
     profileAmbient 15s ease-in-out infinite alternate;
@@ -672,16 +767,34 @@ a{
 
 @keyframes profileAmbient{
 
-  from{
+  0%{
+
     transform:
-      translate3d(-2%,0,0)
+      translate3d(-1.5%,0,0)
       scale(1);
+
+    opacity:.72;
+
   }
 
-  to{
+  50%{
+
     transform:
-      translate3d(2%,2%,0)
-      scale(1.08);
+      translate3d(0,1%,0)
+      scale(1.035);
+
+    opacity:.92;
+
+  }
+
+  100%{
+
+    transform:
+      translate3d(1.5%,2%,0)
+      scale(1.07);
+
+    opacity:.78;
+
   }
 
 }
@@ -689,6 +802,7 @@ a{
 
 /* =========================================================
    背景装饰花瓣
+   第三层
 ========================================================= */
 
 .profile-decoration{
@@ -697,7 +811,7 @@ a{
 
   inset:0;
 
-  z-index:-1;
+  z-index:2;
 
   pointer-events:none;
 
@@ -723,15 +837,14 @@ a{
 
     linear-gradient(
       135deg,
-      rgba(226,153,176,.18),
-      rgba(247,190,198,.08),
+      rgba(226,153,176,.22),
+      rgba(247,190,198,.10),
       transparent
     );
 
   filter:blur(1px);
 
-  transform:
-    rotate(25deg);
+  opacity:.5;
 
   animation:
     decorationFloat 12s ease-in-out infinite;
@@ -742,7 +855,9 @@ a{
 .profile-decoration span:nth-child(1){
 
   left:-35px;
+
   top:9%;
+
   animation-delay:-2s;
 
 }
@@ -751,8 +866,11 @@ a{
 .profile-decoration span:nth-child(2){
 
   right:-45px;
+
   top:25%;
+
   transform:rotate(130deg);
+
   animation-delay:-6s;
 
 }
@@ -761,8 +879,11 @@ a{
 .profile-decoration span:nth-child(3){
 
   left:8%;
+
   bottom:2%;
+
   transform:rotate(210deg);
+
   animation-delay:-9s;
 
 }
@@ -771,8 +892,11 @@ a{
 .profile-decoration span:nth-child(4){
 
   right:12%;
+
   bottom:8%;
+
   transform:rotate(60deg);
+
   animation-delay:-4s;
 
 }
@@ -782,17 +906,23 @@ a{
 
   0%,
   100%{
+
     transform:
       translate3d(0,0,0)
       rotate(25deg);
-    opacity:.35;
+
+    opacity:.32;
+
   }
 
   50%{
+
     transform:
       translate3d(30px,-35px,0)
       rotate(48deg);
-    opacity:.75;
+
+    opacity:.72;
+
   }
 
 }
@@ -822,7 +952,10 @@ a{
 
   position:relative;
 
-  z-index:30;
+  /*
+    高于资料卡背景
+  */
+  z-index:5;
 
 }
 
@@ -871,7 +1004,7 @@ a{
     #dfcbd2;
 
   background:
-    rgba(255,255,255,.84);
+    rgba(255,255,255,.90);
 
   padding:
     11px 40px 11px 15px;
@@ -907,8 +1040,7 @@ a{
 
   max-width:1400px;
 
-  margin:
-    0 auto;
+  margin:0 auto;
 
   display:grid;
 
@@ -919,7 +1051,10 @@ a{
 
   position:relative;
 
-  z-index:30;
+  /*
+    资料卡内容层
+  */
+  z-index:6;
 
 }
 
@@ -930,8 +1065,15 @@ a{
 
 .woman-card{
 
+  position:relative;
+
+  /*
+    ★ 卡片本身最高层
+  */
+  z-index:7;
+
   background:
-    rgba(255,255,255,.90);
+    rgba(255,255,255,.94);
 
   border-radius:18px;
 
@@ -939,7 +1081,7 @@ a{
 
   border:
     1px solid
-    rgba(255,255,255,.78);
+    rgba(255,255,255,.88);
 
   transition:
     transform .35s ease,
@@ -957,6 +1099,12 @@ a{
 
   backdrop-filter:
     blur(10px);
+
+  /*
+    卡片自己成为独立层
+    防止内部出现异常穿透
+  */
+  isolation:isolate;
 
 }
 
@@ -1004,6 +1152,8 @@ a{
   inset:0;
 
   pointer-events:none;
+
+  z-index:2;
 
   background:
     linear-gradient(
@@ -1086,6 +1236,13 @@ a{
   padding:
     18px 18px 20px;
 
+  position:relative;
+
+  z-index:3;
+
+  background:
+    rgba(255,255,255,.94);
+
 }
 
 .woman-info h2{
@@ -1143,6 +1300,11 @@ a{
 
   position:relative;
 
+  /*
+    和资料卡保持同一最高层
+  */
+  z-index:7;
+
   min-height:100%;
 
   overflow:hidden;
@@ -1159,6 +1321,8 @@ a{
     0 15px 45px
     rgba(58,34,42,.16);
 
+  isolation:isolate;
+
 }
 
 .more-card-bg{
@@ -1166,6 +1330,8 @@ a{
   position:absolute;
 
   inset:0;
+
+  z-index:0;
 
   background-image:
 
@@ -1284,12 +1450,15 @@ a{
 
   color:#9a898e;
 
+  position:relative;
+
+  z-index:6;
+
 }
 
 
 /* =========================================================
    ROMANTIC BANNER
-   已经移动到资料卡下面
 ========================================================= */
 
 .romantic-banner{
@@ -1304,6 +1473,9 @@ a{
 
   position:relative;
 
+  /*
+    Banner 也位于 Canvas 上方
+  */
   z-index:30;
 
   overflow:hidden;
@@ -2191,7 +2363,12 @@ footer span{
 
 
   .profiles-area{
+
+    /*
+      移动端继续保持主题背景
+    */
     padding-bottom:40px;
+
   }
 
 
@@ -2265,8 +2442,6 @@ footer span{
     font-size:12px;
   }
 
-
-  /* Banner 现在位于资料卡之后 */
 
   .romantic-banner{
 
@@ -2388,7 +2563,9 @@ footer span{
 <body>
 
 
-<!-- 全站动态背景 -->
+<!-- =========================================================
+     全站动态背景
+========================================================= -->
 
 <div
   class="romance-glow"
@@ -2404,7 +2581,6 @@ footer span{
 
 <!-- =========================================================
      HEADER
-     已删除管理入口
 ========================================================= -->
 
 <header class="site-header">
@@ -2466,7 +2642,9 @@ footer span{
 <section class="profiles-area">
 
 
-  <!-- 背景装饰 -->
+  <!-- =======================================================
+       背景装饰
+  ======================================================== -->
 
   <div
     class="profile-decoration"
@@ -2481,7 +2659,9 @@ footer span{
   </div>
 
 
-  <!-- TOOLBAR -->
+  <!-- =======================================================
+       TOOLBAR
+  ======================================================== -->
 
   <section class="toolbar">
 
@@ -2539,7 +2719,9 @@ footer span{
 
 
 
-  <!-- WOMEN GRID -->
+  <!-- =======================================================
+       WOMEN GRID
+  ======================================================== -->
 
   <section
     id="womenGrid"
@@ -2559,7 +2741,6 @@ footer span{
 
 <!-- =========================================================
      ROMANTIC BANNER
-     现在位于所有资料卡下面
 ========================================================= -->
 
 <section class="romantic-banner">
@@ -2744,6 +2925,10 @@ footer span{
 /* =========================================================
    ROMANTIC CANVAS
    樱花 + 爱心 + 香槟 + 星芒
+
+   ★ Canvas 仍然是全站特效
+   ★ 但是 profiles-area 的 z-index:30
+   ★ 所以不会盖住资料卡
 ========================================================= */
 
 const romanceCanvas =
@@ -2954,6 +3139,7 @@ class RomanceParticle{
 
     const value =
       Math.random();
+
 
     /*
       43% 樱花
@@ -3245,8 +3431,7 @@ class RomanceParticle{
 
 
     /* =====================================================
-       新版星芒
-       不再是“十字”
+       星芒
     ===================================================== */
 
     else{
@@ -3265,12 +3450,6 @@ class RomanceParticle{
       ctx.fillStyle =
         "rgba(255,231,196,.92)";
 
-
-      /*
-        四瓣菱形星芒
-        视觉上是 ✦ / ✧
-        不再画横线+竖线
-      */
 
       ctx.beginPath();
 
@@ -3397,7 +3576,6 @@ function animateRomance(){
 animateRomance();
 
 
-
 /* =========================================================
    SUPABASE
 ========================================================= */
@@ -3423,7 +3601,6 @@ let joinContact = {
 };
 
 
-
 /* =========================================================
    BASIC
 ========================================================= */
@@ -3444,7 +3621,6 @@ function escapeHtml(value){
     .replace(/'/g,"&#039;");
 
 }
-
 
 
 /* =========================================================
@@ -3519,7 +3695,6 @@ function normalizeMedia(value){
 }
 
 
-
 /* =========================================================
    STORAGE URL
 ========================================================= */
@@ -3567,7 +3742,6 @@ function getStorageUrl(path){
 }
 
 
-
 /* =========================================================
    PHOTOS
 ========================================================= */
@@ -3609,7 +3783,6 @@ function getPhotos(woman){
 }
 
 
-
 /* =========================================================
    VIDEOS
 ========================================================= */
@@ -3631,7 +3804,6 @@ function getVideos(woman){
   ];
 
 }
-
 
 
 /* =========================================================
@@ -3717,7 +3889,6 @@ async function loadWomen(){
 }
 
 
-
 /* =========================================================
    CITY FILTER
 ========================================================= */
@@ -3774,7 +3945,6 @@ function createCityFilter(){
   });
 
 }
-
 
 
 /* =========================================================
@@ -3980,10 +4150,7 @@ function renderWomen(list){
   );
 
 }
-
-
-
-/* =========================================================
+  /* =========================================================
    GALLERY
 ========================================================= */
 
@@ -4053,6 +4220,9 @@ function openGallery(woman){
 }
 
 
+/* =========================================================
+   RENDER GALLERY
+========================================================= */
 
 function renderGallery(){
 
@@ -4128,6 +4298,9 @@ function renderGallery(){
 }
 
 
+/* =========================================================
+   GALLERY COUNTER
+========================================================= */
 
 function updateGalleryCounter(){
 
@@ -4148,6 +4321,9 @@ function updateGalleryCounter(){
 }
 
 
+/* =========================================================
+   GALLERY GO TO
+========================================================= */
 
 function galleryGoTo(index){
 
@@ -4157,13 +4333,17 @@ function galleryGoTo(index){
 
 
   if(index < 0){
+
     index =
       galleryMedia.length - 1;
+
   }
 
 
   if(index >= galleryMedia.length){
+
     index = 0;
+
   }
 
 
@@ -4191,7 +4371,6 @@ function galleryGoTo(index){
   updateGalleryCounter();
 
 }
-
 
 
 /* =========================================================
@@ -4232,6 +4411,10 @@ document
     }
   );
 
+
+/* =========================================================
+   GALLERY BUTTONS
+========================================================= */
 
 document
   .getElementById("galleryPrev")
@@ -4283,7 +4466,6 @@ function closeGallery(){
     );
 
 }
-
 
 
 /* =========================================================
@@ -4356,7 +4538,6 @@ async function loadJoinContact(){
 }
 
 
-
 /* =========================================================
    WHATSAPP
 ========================================================= */
@@ -4379,7 +4560,6 @@ function makeWhatsAppUrl(value){
   );
 
 }
-
 
 
 /* =========================================================
@@ -4430,7 +4610,6 @@ function makeTelegramUrl(value){
   );
 
 }
-
 
 
 /* =========================================================
@@ -4541,6 +4720,9 @@ function openJoinModal(){
 }
 
 
+/* =========================================================
+   CLOSE JOIN MODAL
+========================================================= */
 
 function closeJoinModal(){
 
@@ -4549,7 +4731,6 @@ function closeJoinModal(){
     .classList.remove("show");
 
 }
-
 
 
 document
@@ -4574,7 +4755,6 @@ document
 
     }
   );
-
 
 
 /* =========================================================
@@ -4624,7 +4804,6 @@ document.addEventListener(
 
   }
 );
-
 
 
 /* =========================================================
@@ -4709,6 +4888,9 @@ function filterWomen(){
 }
 
 
+/* =========================================================
+   FILTER EVENTS
+========================================================= */
 
 document
   .getElementById("cityFilter")
@@ -4724,7 +4906,6 @@ document
     "change",
     filterWomen
   );
-
 
 
 /* =========================================================
