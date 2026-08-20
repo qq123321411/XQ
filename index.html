@@ -2555,111 +2555,764 @@ footer span{
 
 }
 
+/* =========================================================
+   FINAL SEAMLESS THEME
+   整个页面统一背景
+   ========================================================= */
+
+/*
+  核心设计：
+
+  ① body = 全站统一底色
+  ② content-section = 不再重新切换背景
+  ③ profiles-area = 透明，让全站背景连续穿过
+  ④ romantic-banner = 独立内容卡，但与背景自然融合
+  ⑤ footer = 不再突然变成另一种黑色
+  ⑥ 所有光晕都建立在同一套酒红 / 玫瑰金体系上
+*/
+
+:root{
+
+  --page-bg-1:#171014;
+  --page-bg-2:#21151b;
+  --page-bg-3:#291923;
+  --page-bg-4:#21141b;
+
+  --rose:
+    rgba(213,128,151,.18);
+
+  --gold:
+    rgba(232,181,145,.13);
+
+  --purple:
+    rgba(108,55,76,.16);
+
+}
+
 
 /* =========================================================
-   FINAL THEME UNIFICATION OVERRIDE
-   Hero / Profiles / Banner / Footer统一为深酒红+玫瑰金主题
+   1. 整个页面统一底色
 ========================================================= */
 
+html,
 body{
+
+  min-height:100%;
+
   background:
-    linear-gradient(180deg,#171014 0%,#24171d 48%,#1b1217 100%);
+
+    radial-gradient(
+      ellipse 75% 38% at 5% 8%,
+      rgba(213,128,151,.16),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 70% 40% at 95% 22%,
+      rgba(232,181,145,.12),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 80% 55% at 50% 58%,
+      rgba(108,55,76,.15),
+      transparent 75%
+    ),
+
+    radial-gradient(
+      ellipse 70% 40% at 15% 90%,
+      rgba(194,105,136,.12),
+      transparent 72%
+    ),
+
+    linear-gradient(
+      180deg,
+      var(--page-bg-1) 0%,
+      var(--page-bg-2) 32%,
+      var(--page-bg-3) 65%,
+      var(--page-bg-4) 100%
+    );
+
 }
+
+
+/*
+  防止 body 与 html 在页面底部出现颜色断层
+*/
+
+body{
+  background-attachment:fixed;
+}
+
+
+/* =========================================================
+   2. 全站背景光晕
+   与页面背景保持同一色系
+========================================================= */
+
+.romance-glow{
+
+  background:
+
+    radial-gradient(
+      circle at 8% 12%,
+      rgba(222,139,162,.13),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 91% 17%,
+      rgba(240,193,151,.11),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 8% 70%,
+      rgba(205,126,151,.10),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 92% 78%,
+      rgba(235,181,145,.09),
+      transparent 27%
+    );
+
+}
+
+
+/* =========================================================
+   3. CONTENT
+   ★ 不再单独创建一块背景
+========================================================= */
 
 .content-section{
-  background:
-    radial-gradient(circle at 8% 10%,rgba(213,128,151,.16),transparent 27%),
-    radial-gradient(circle at 92% 24%,rgba(232,181,145,.13),transparent 29%),
-    radial-gradient(circle at 50% 68%,rgba(104,53,70,.18),transparent 38%),
-    linear-gradient(180deg,#24171d 0%,#2b1b23 48%,#24161d 100%);
+
+  position:relative;
+
+  z-index:2;
+
+  overflow:visible;
+
+  padding-top:1px;
+
+  /*
+    关键：
+    完全透明，让 body 的背景连续穿过整个内容区域
+  */
+
+  background:transparent;
+
 }
+
+
+/* =========================================================
+   4. 资料卡区域
+   ★ 与整个页面使用同一个背景
+========================================================= */
 
 .profiles-area{
+
+  width:100%;
+
+  position:relative;
+
+  z-index:30;
+
+  isolation:isolate;
+
+  overflow:hidden;
+
+  padding-bottom:70px;
+
+  /*
+    不再使用独立的浅色背景
+  */
+
   background:
-    radial-gradient(ellipse 70% 45% at 8% 12%,rgba(213,128,151,.22),transparent 70%),
-    radial-gradient(ellipse 65% 45% at 92% 18%,rgba(232,181,145,.18),transparent 70%),
-    radial-gradient(ellipse 75% 55% at 50% 55%,rgba(96,50,66,.20),transparent 75%),
-    radial-gradient(ellipse 65% 45% at 15% 90%,rgba(194,105,136,.16),transparent 72%),
-    radial-gradient(ellipse 65% 45% at 88% 88%,rgba(224,165,130,.14),transparent 72%),
-    linear-gradient(180deg,#26191f 0%,#302027 28%,#34212a 58%,#291a21 100%);
+
+    radial-gradient(
+      ellipse 70% 38% at 8% 12%,
+      rgba(213,128,151,.17),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 65% 40% at 92% 20%,
+      rgba(232,181,145,.13),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 75% 55% at 50% 52%,
+      rgba(108,55,76,.13),
+      transparent 75%
+    ),
+
+    transparent;
+
 }
+
+
+/* =========================================================
+   5. 资料卡第一层光晕
+========================================================= */
 
 .profiles-area::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:0;
+
+  pointer-events:none;
+
   background:
-    radial-gradient(ellipse 45% 35% at 12% 18%,rgba(219,133,158,.24),transparent 70%),
-    radial-gradient(ellipse 50% 40% at 88% 20%,rgba(236,179,139,.18),transparent 72%),
-    radial-gradient(ellipse 55% 45% at 50% 52%,rgba(111,57,76,.18),transparent 72%),
-    radial-gradient(ellipse 48% 38% at 15% 88%,rgba(207,116,148,.16),transparent 72%),
-    radial-gradient(ellipse 50% 42% at 88% 88%,rgba(228,166,132,.14),transparent 72%);
+
+    radial-gradient(
+      ellipse 45% 35% at 12% 18%,
+      rgba(219,133,158,.18),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 50% 40% at 88% 20%,
+      rgba(236,179,139,.14),
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 55% 45% at 50% 52%,
+      rgba(111,57,76,.14),
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 48% 38% at 15% 88%,
+      rgba(207,116,148,.12),
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 50% 42% at 88% 88%,
+      rgba(228,166,132,.11),
+      transparent 72%
+    );
+
 }
+
+
+/* =========================================================
+   6. 资料卡第二层梦幻光晕
+========================================================= */
 
 .profiles-area::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:-10%;
+
+  z-index:1;
+
+  pointer-events:none;
+
   background:
-    radial-gradient(circle at 18% 18%,rgba(225,145,169,.18),transparent 17%),
-    radial-gradient(circle at 82% 18%,rgba(241,193,158,.15),transparent 20%),
-    radial-gradient(circle at 50% 48%,rgba(213,132,157,.10),transparent 28%),
-    radial-gradient(circle at 28% 82%,rgba(225,146,171,.10),transparent 22%),
-    radial-gradient(circle at 76% 84%,rgba(232,180,145,.10),transparent 23%);
+
+    radial-gradient(
+      circle at 18% 18%,
+      rgba(225,145,169,.13),
+      transparent 17%
+    ),
+
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(241,193,158,.11),
+      transparent 20%
+    ),
+
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(213,132,157,.08),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 28% 82%,
+      rgba(225,146,171,.08),
+      transparent 22%
+    ),
+
+    radial-gradient(
+      circle at 76% 84%,
+      rgba(232,180,145,.08),
+      transparent 23%
+    );
+
   filter:blur(38px);
-  opacity:.9;
-  animation:profileAmbient 15s ease-in-out infinite alternate;
+
+  opacity:.85;
+
+  animation:
+    profileAmbient 15s ease-in-out infinite alternate;
+
 }
+
 
 @keyframes profileAmbient{
-  0%,100%{transform:translate3d(0,0,0) scale(.96);opacity:.68}
-  50%{transform:translate3d(0,-18px,0) scale(1.04);opacity:1}
+
+  0%,
+  100%{
+
+    transform:
+      translate3d(0,0,0)
+      scale(.97);
+
+    opacity:.62;
+
+  }
+
+  50%{
+
+    transform:
+      translate3d(0,-15px,0)
+      scale(1.035);
+
+    opacity:.95;
+
+  }
+
 }
 
-.toolbar .section-title{
-  color:#fff;
-}
 
-.section-title small{
-  color:#e0a0b2;
-}
-
-.filters select{
-  color:#f8e9ee;
-  background:rgba(42,25,32,.78);
-  border:1px solid rgba(235,185,197,.24);
-  box-shadow:0 8px 28px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.07);
-  backdrop-filter:blur(12px);
-}
-
-.filters select:focus{
-  border-color:#d69aaa;
-}
-
-.loading{
-  color:rgba(255,255,255,.72);
-}
+/* =========================================================
+   7. 资料卡装饰
+========================================================= */
 
 .profile-decoration{
-  opacity:.65;
+
+  opacity:.58;
+
 }
+
+
+/* =========================================================
+   8. TOOLBAR
+========================================================= */
+
+.toolbar .section-title{
+
+  color:#fff;
+
+}
+
+
+.section-title small{
+
+  color:#e0a0b2;
+
+}
+
+
+.section-title h2{
+
+  color:#fff;
+
+}
+
+
+/* =========================================================
+   9. FILTER
+========================================================= */
+
+.filters select{
+
+  color:#f8e9ee;
+
+  background:
+    rgba(42,25,32,.72);
+
+  border:
+    1px solid
+    rgba(235,185,197,.22);
+
+  box-shadow:
+
+    0 8px 28px
+    rgba(0,0,0,.14),
+
+    inset 0 1px 0
+    rgba(255,255,255,.06);
+
+  backdrop-filter:
+    blur(14px);
+
+}
+
+
+.filters select:focus{
+
+  border-color:
+    rgba(214,154,170,.75);
+
+}
+
+
+/* =========================================================
+   10. Loading
+========================================================= */
+
+.loading{
+
+  color:
+    rgba(255,255,255,.70);
+
+}
+
+
+/* =========================================================
+   11. Banner
+   ★ 保持独立内容感
+   ★ 但颜色与页面背景完全统一
+========================================================= */
 
 .romantic-banner{
+
   background:
-    linear-gradient(115deg,rgba(36,20,27,.98),rgba(75,42,51,.96),rgba(50,29,35,.98));
-  box-shadow:0 28px 75px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.12);
+
+    linear-gradient(
+      115deg,
+      rgba(35,20,27,.96),
+      rgba(72,40,50,.94),
+      rgba(48,28,35,.97)
+    );
+
+  box-shadow:
+
+    0 28px 75px
+    rgba(0,0,0,.23),
+
+    inset 0 1px 0
+    rgba(255,255,255,.10);
+
 }
+
+
+/*
+  资料卡结束后不再出现突兀的空白
+*/
+
+.profiles-area + .romantic-banner{
+
+  margin-top:0;
+
+}
+
+
+/* =========================================================
+   12. Footer
+   ★ 不再突然切换成另一块黑色
+========================================================= */
 
 footer{
+
+  position:relative;
+
+  z-index:2;
+
+  overflow:hidden;
+
+  isolation:isolate;
+
+  text-align:center;
+
+  padding:
+    70px 20px 75px;
+
+  color:
+    rgba(255,255,255,.68);
+
   background:
-    radial-gradient(circle at 15% 20%,rgba(211,137,157,.22),transparent 32%),
-    radial-gradient(circle at 85% 70%,rgba(221,166,139,.17),transparent 35%),
-    linear-gradient(135deg,#24171c 0%,#352128 45%,#24171c 100%);
+
+    radial-gradient(
+      ellipse 65% 45% at 15% 20%,
+      rgba(211,137,157,.15),
+      transparent 70%
+    ),
+
+    radial-gradient(
+      ellipse 65% 45% at 85% 70%,
+      rgba(221,166,139,.11),
+      transparent 70%
+    ),
+
+    /*
+      与 body 完全相同的底色体系
+    */
+
+    linear-gradient(
+      180deg,
+      #21151b 0%,
+      #24171e 50%,
+      #1b1217 100%
+    );
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.06);
+
 }
 
-/* 让资料卡区域与前后区域视觉连续，避免白色断层 */
-.profiles-area + .romantic-banner{
-  margin-top:0;
+
+/* =========================================================
+   13. Footer 光晕
+========================================================= */
+
+footer::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:380px;
+
+  height:380px;
+
+  left:-180px;
+
+  bottom:-260px;
+
+  border-radius:50%;
+
+  background:
+    rgba(212,132,153,.15);
+
+  filter:blur(80px);
+
+  pointer-events:none;
+
+  animation:
+    footerGlow 11s ease-in-out infinite;
+
 }
+
+
+footer::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:320px;
+
+  height:320px;
+
+  right:-140px;
+
+  top:-200px;
+
+  border-radius:50%;
+
+  background:
+    rgba(224,174,145,.11);
+
+  filter:blur(75px);
+
+  pointer-events:none;
+
+  animation:
+    footerGlow 15s ease-in-out infinite reverse;
+
+}
+
+
+/* =========================================================
+   14. Header
+   ★ 保持高级深色，不与背景脱节
+========================================================= */
+
+.site-header{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      rgba(23,15,20,.97),
+      rgba(48,28,36,.94)
+    );
+
+  backdrop-filter:
+    blur(16px);
+
+}
+
+
+/* =========================================================
+   15. Hero
+   ★ 图片保留
+   ★ 底部渐变与页面背景连接
+========================================================= */
+
+.hero{
+
+  background-image:
+
+    linear-gradient(
+      90deg,
+      rgba(20,13,17,.92) 0%,
+      rgba(28,18,22,.74) 38%,
+      rgba(30,20,24,.48) 70%,
+      rgba(20,14,18,.34) 100%
+    ),
+
+    url(
+      "https://yutraouosffjteivvlfx.supabase.co/storage/v1/object/public/women-photos/12121.png"
+    );
+
+}
+
+
+/*
+  Hero 底部增加非常柔和的酒红过渡，
+  避免照片区域突然切到资料卡区域
+*/
+
+.hero{
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 90%,
+      rgba(0,0,0,.96) 96%,
+      transparent 100%
+    );
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 90%,
+      rgba(0,0,0,.96) 96%,
+      transparent 100%
+    );
+
+}
+
+
+/* =========================================================
+   16. 内容区顶部衔接
+========================================================= */
+
+.content-section::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:0;
+
+  right:0;
+
+  top:-90px;
+
+  height:90px;
+
+  pointer-events:none;
+
+  z-index:0;
+
+  background:
+
+    linear-gradient(
+      to bottom,
+      transparent,
+      rgba(33,21,27,.65)
+    );
+
+}
+
+
+/* =========================================================
+   17. Banner 上下衔接
+========================================================= */
+
+.romantic-banner{
+
+  margin-bottom:0;
+
+}
+
+
+/* =========================================================
+   18. Banner 到 Footer 的过渡
+========================================================= */
+
+.romantic-banner::after{
+
+  /*
+    保留原来的 Banner 光晕，
+    不覆盖页面结构
+  */
+
+}
+
+
+/* =========================================================
+   19. 移动端
+========================================================= */
 
 @media(max-width:700px){
-  .profiles-area{
-    padding-bottom:55px;
+
+  body{
+
+    background-attachment:
+      scroll;
+
   }
+
+
+  .profiles-area{
+
+    padding-bottom:
+      55px;
+
+  }
+
+
+  .content-section::before{
+
+    top:-55px;
+
+    height:55px;
+
+  }
+
+
+  .hero{
+
+    -webkit-mask-image:
+      linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 91%,
+        transparent 100%
+      );
+
+    mask-image:
+      linear-gradient(
+        to bottom,
+        #000 0%,
+        #000 91%,
+        transparent 100%
+      );
+
+  }
+
 }
 
 </style>
