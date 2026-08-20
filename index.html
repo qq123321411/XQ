@@ -45,13 +45,19 @@ body{
     Arial,
     sans-serif;
 
-  background:#f7f1f3;
-
   color:#30272a;
 
   line-height:1.6;
 
   overflow-x:hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f7f1f3 0%,
+      #f5e9ed 48%,
+      #f2e3e8 100%
+    );
 
 }
 
@@ -71,7 +77,8 @@ a{
 
 
 /* =========================================================
-   全首页动态恋爱粒子
+   全站动态 CANVAS
+   一定高于页面背景，低于所有实际内容
 ========================================================= */
 
 #romanceCanvas{
@@ -80,15 +87,13 @@ a{
 
   inset:0;
 
-  width:100%;
+  width:100vw;
 
-  height:100%;
+  height:100vh;
 
-  z-index:1;
+  z-index:20;
 
   pointer-events:none;
-
-  overflow:hidden;
 
   opacity:.95;
 
@@ -96,7 +101,7 @@ a{
 
 
 /* =========================================================
-   全页面动态背景光晕
+   全站动态光晕
 ========================================================= */
 
 .romance-glow{
@@ -114,27 +119,27 @@ a{
   background:
 
     radial-gradient(
-      circle at 12% 18%,
-      rgba(211,126,151,.11),
-      transparent 24%
-    ),
-
-    radial-gradient(
-      circle at 88% 24%,
-      rgba(236,181,139,.10),
+      circle at 8% 12%,
+      rgba(222,139,162,.16),
       transparent 25%
     ),
 
     radial-gradient(
-      circle at 50% 65%,
-      rgba(177,103,128,.07),
-      transparent 30%
+      circle at 91% 17%,
+      rgba(240,193,151,.15),
+      transparent 25%
     ),
 
     radial-gradient(
-      circle at 15% 88%,
-      rgba(236,183,143,.08),
-      transparent 23%
+      circle at 8% 70%,
+      rgba(205,126,151,.12),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 92% 78%,
+      rgba(235,181,145,.12),
+      transparent 27%
     );
 
 }
@@ -146,29 +151,28 @@ a{
 
   position:absolute;
 
-  width:480px;
+  width:620px;
 
-  height:480px;
+  height:620px;
 
-  left:-180px;
+  left:-260px;
 
-  top:15%;
+  top:20%;
 
   border-radius:50%;
 
   background:
-
     radial-gradient(
       circle,
-      rgba(224,133,158,.17) 0%,
-      rgba(224,133,158,.06) 35%,
-      transparent 70%
+      rgba(222,130,157,.22),
+      rgba(222,130,157,.06) 42%,
+      transparent 72%
     );
 
-  filter:blur(35px);
+  filter:blur(45px);
 
   animation:
-    glowFloatOne 14s ease-in-out infinite;
+    globalGlowOne 14s ease-in-out infinite;
 
 }
 
@@ -179,98 +183,67 @@ a{
 
   position:absolute;
 
-  width:520px;
+  width:650px;
 
-  height:520px;
+  height:650px;
 
-  right:-220px;
+  right:-280px;
 
   top:48%;
 
   border-radius:50%;
 
   background:
-
     radial-gradient(
       circle,
-      rgba(229,178,138,.15) 0%,
-      rgba(229,178,138,.05) 38%,
-      transparent 72%
+      rgba(239,190,145,.20),
+      rgba(239,190,145,.05) 45%,
+      transparent 73%
     );
 
-  filter:blur(40px);
+  filter:blur(50px);
 
   animation:
-    glowFloatTwo 18s ease-in-out infinite;
+    globalGlowTwo 18s ease-in-out infinite;
 
 }
 
 
-@keyframes glowFloatOne{
+@keyframes globalGlowOne{
 
-  0%{
-
+  0%,
+  100%{
     transform:
       translate3d(0,0,0)
-      scale(.9);
-
+      scale(.85);
     opacity:.45;
-
   }
 
   50%{
-
     transform:
-      translate3d(180px,80px,0)
-      scale(1.18);
-
+      translate3d(260px,100px,0)
+      scale(1.25);
     opacity:1;
-
-  }
-
-  100%{
-
-    transform:
-      translate3d(0,0,0)
-      scale(.9);
-
-    opacity:.45;
-
   }
 
 }
 
 
-@keyframes glowFloatTwo{
+@keyframes globalGlowTwo{
 
-  0%{
-
+  0%,
+  100%{
     transform:
       translate3d(0,0,0)
-      scale(1);
-
+      scale(.9);
     opacity:.4;
-
   }
 
   50%{
-
     transform:
-      translate3d(-160px,-100px,0)
-      scale(1.22);
-
-    opacity:.9;
-
-  }
-
-  100%{
-
-    transform:
-      translate3d(0,0,0)
-      scale(1);
-
-    opacity:.4;
-
+      translate3d(-230px,-130px,0)
+      scale(1.25);
+    opacity:1;
   }
 
 }
@@ -288,6 +261,8 @@ a{
 
   align-items:center;
 
+  justify-content:flex-start;
+
   padding:0 6%;
 
   position:sticky;
@@ -299,7 +274,6 @@ a{
   color:#fff;
 
   background:
-
     linear-gradient(
       90deg,
       rgba(27,18,22,.98),
@@ -363,13 +337,15 @@ a{
 
     linear-gradient(
       90deg,
-      rgba(20,13,17,.88) 0%,
-      rgba(28,18,22,.70) 38%,
-      rgba(30,20,24,.42) 70%,
+      rgba(20,13,17,.90) 0%,
+      rgba(28,18,22,.72) 38%,
+      rgba(30,20,24,.44) 70%,
       rgba(20,14,18,.28) 100%
     ),
 
-    url("https://yutraouosffjteivvlfx.supabase.co/storage/v1/object/public/women-photos/12121.png");
+    url(
+      "https://yutraouosffjteivvlfx.supabase.co/storage/v1/object/public/women-photos/12121.png"
+    );
 
   background-size:cover;
 
@@ -386,22 +362,20 @@ a{
 
   position:absolute;
 
-  width:520px;
+  width:600px;
 
-  height:520px;
+  height:600px;
 
-  left:-200px;
+  left:-250px;
 
-  bottom:-270px;
+  bottom:-300px;
 
   border-radius:50%;
 
   background:
-    rgba(213,128,151,.20);
+    rgba(213,128,151,.22);
 
   filter:blur(105px);
-
-  pointer-events:none;
 
   animation:
     heroGlow 12s ease-in-out infinite;
@@ -415,22 +389,20 @@ a{
 
   position:absolute;
 
-  width:430px;
+  width:480px;
 
-  height:430px;
+  height:480px;
 
-  right:-170px;
+  right:-180px;
 
-  top:-170px;
+  top:-190px;
 
   border-radius:50%;
 
   background:
-    rgba(239,179,155,.14);
+    rgba(239,179,155,.17);
 
   filter:blur(100px);
-
-  pointer-events:none;
 
   animation:
     heroGlow 15s ease-in-out infinite reverse;
@@ -442,19 +414,13 @@ a{
 
   0%,
   100%{
-
-    transform:scale(.9);
-
-    opacity:.45;
-
+    transform:scale(.88);
+    opacity:.4;
   }
 
   50%{
-
-    transform:scale(1.25);
-
+    transform:scale(1.28);
     opacity:1;
-
   }
 
 }
@@ -547,7 +513,7 @@ a{
 
 
 /* =========================================================
-   内容区域
+   CONTENT
 ========================================================= */
 
 .content-section{
@@ -563,29 +529,271 @@ a{
   background:
 
     radial-gradient(
-      circle at 5% 8%,
-      rgba(215,153,167,.16),
-      transparent 27%
+      circle at 5% 10%,
+      rgba(218,143,164,.18),
+      transparent 30%
     ),
 
     radial-gradient(
-      circle at 94% 30%,
-      rgba(220,180,160,.13),
-      transparent 28%
+      circle at 95% 30%,
+      rgba(229,181,149,.16),
+      transparent 31%
     ),
 
     radial-gradient(
-      circle at 50% 90%,
-      rgba(201,142,159,.08),
-      transparent 32%
+      circle at 50% 82%,
+      rgba(205,132,155,.12),
+      transparent 35%
     ),
 
     linear-gradient(
       180deg,
-      rgba(248,242,244,.94) 0%,
-      rgba(247,240,242,.94) 55%,
-      rgba(244,233,237,.96) 100%
+      rgba(249,243,245,.80),
+      rgba(246,235,239,.72),
+      rgba(240,221,228,.78)
     );
+
+}
+
+
+/* =========================================================
+   资料卡区域
+   这里是本次最重要的修改
+========================================================= */
+
+.profiles-area{
+
+  width:100%;
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding-bottom:70px;
+
+  isolation:isolate;
+
+}
+
+
+/*
+  恋爱主题背景层
+
+  不再让资料卡下面只是单纯的白色。
+*/
+
+.profiles-area::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:-3;
+
+  background-image:
+
+    linear-gradient(
+      180deg,
+      rgba(250,244,246,.68),
+      rgba(246,230,236,.55) 48%,
+      rgba(239,215,224,.68)
+    ),
+
+    radial-gradient(
+      ellipse at 20% 25%,
+      rgba(219,135,160,.28),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      ellipse at 80% 55%,
+      rgba(238,187,148,.25),
+      transparent 34%
+    ),
+
+    radial-gradient(
+      ellipse at 45% 95%,
+      rgba(201,124,151,.20),
+      transparent 38%
+    );
+
+  background-size:
+    cover,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+
+}
+
+
+/*
+  梦幻丝绸/樱花氛围层
+*/
+
+.profiles-area::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:-20%;
+
+  z-index:-2;
+
+  background:
+
+    radial-gradient(
+      circle at 15% 30%,
+      rgba(255,255,255,.72),
+      transparent 14%
+    ),
+
+    radial-gradient(
+      circle at 84% 20%,
+      rgba(255,232,220,.62),
+      transparent 17%
+    ),
+
+    radial-gradient(
+      circle at 50% 65%,
+      rgba(255,255,255,.45),
+      transparent 22%
+    );
+
+  filter:blur(30px);
+
+  animation:
+    profileAmbient 15s ease-in-out infinite alternate;
+
+}
+
+
+@keyframes profileAmbient{
+
+  from{
+    transform:
+      translate3d(-2%,0,0)
+      scale(1);
+  }
+
+  to{
+    transform:
+      translate3d(2%,2%,0)
+      scale(1.08);
+  }
+
+}
+
+
+/* =========================================================
+   背景装饰花瓣
+========================================================= */
+
+.profile-decoration{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:-1;
+
+  pointer-events:none;
+
+  overflow:hidden;
+
+}
+
+
+.profile-decoration span{
+
+  position:absolute;
+
+  display:block;
+
+  width:120px;
+
+  height:170px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(226,153,176,.18),
+      rgba(247,190,198,.08),
+      transparent
+    );
+
+  filter:blur(1px);
+
+  transform:
+    rotate(25deg);
+
+  animation:
+    decorationFloat 12s ease-in-out infinite;
+
+}
+
+
+.profile-decoration span:nth-child(1){
+
+  left:-35px;
+  top:9%;
+  animation-delay:-2s;
+
+}
+
+
+.profile-decoration span:nth-child(2){
+
+  right:-45px;
+  top:25%;
+  transform:rotate(130deg);
+  animation-delay:-6s;
+
+}
+
+
+.profile-decoration span:nth-child(3){
+
+  left:8%;
+  bottom:2%;
+  transform:rotate(210deg);
+  animation-delay:-9s;
+
+}
+
+
+.profile-decoration span:nth-child(4){
+
+  right:12%;
+  bottom:8%;
+  transform:rotate(60deg);
+  animation-delay:-4s;
+
+}
+
+
+@keyframes decorationFloat{
+
+  0%,
+  100%{
+    transform:
+      translate3d(0,0,0)
+      rotate(25deg);
+    opacity:.35;
+  }
+
+  50%{
+    transform:
+      translate3d(30px,-35px,0)
+      rotate(48deg);
+    opacity:.75;
+  }
 
 }
 
@@ -600,7 +808,7 @@ a{
 
   max-width:1400px;
 
-  margin:55px auto 25px;
+  margin:35px auto 25px;
 
   display:flex;
 
@@ -614,7 +822,7 @@ a{
 
   position:relative;
 
-  z-index:4;
+  z-index:30;
 
 }
 
@@ -660,10 +868,10 @@ a{
 
   border:
     1px solid
-    #e1d2d7;
+    #dfcbd2;
 
   background:
-    rgba(255,255,255,.82);
+    rgba(255,255,255,.84);
 
   padding:
     11px 40px 11px 15px;
@@ -678,7 +886,7 @@ a{
 
   box-shadow:
     0 5px 20px
-    rgba(72,42,50,.05);
+    rgba(72,42,50,.06);
 
 }
 
@@ -700,7 +908,7 @@ a{
   max-width:1400px;
 
   margin:
-    0 auto 0;
+    0 auto;
 
   display:grid;
 
@@ -711,7 +919,7 @@ a{
 
   position:relative;
 
-  z-index:4;
+  z-index:30;
 
 }
 
@@ -723,39 +931,48 @@ a{
 .woman-card{
 
   background:
-    rgba(255,255,255,.92);
+    rgba(255,255,255,.90);
 
-  border-radius:16px;
+  border-radius:18px;
 
   overflow:hidden;
 
   border:
     1px solid
-    rgba(219,201,205,.85);
+    rgba(255,255,255,.78);
 
   transition:
-    transform .3s ease,
-    box-shadow .3s ease;
+    transform .35s ease,
+    box-shadow .35s ease;
 
   cursor:pointer;
 
   box-shadow:
-    0 8px 30px
-    rgba(58,37,43,.07);
+
+    0 12px 40px
+    rgba(73,40,51,.12),
+
+    0 2px 8px
+    rgba(73,40,51,.05);
 
   backdrop-filter:
-    blur(5px);
+    blur(10px);
 
 }
+
 
 .woman-card:hover{
 
   transform:
-    translateY(-6px);
+    translateY(-7px);
 
   box-shadow:
-    0 20px 50px
-    rgba(63,38,47,.15);
+
+    0 25px 65px
+    rgba(73,40,51,.18),
+
+    0 4px 15px
+    rgba(73,40,51,.08);
 
 }
 
@@ -791,11 +1008,50 @@ a{
   background:
     linear-gradient(
       to bottom,
-      transparent 52%,
-      rgba(30,20,24,.12)
+      transparent 48%,
+      rgba(30,20,24,.16)
     );
 
 }
+
+.woman-image::before{
+
+  content:"♥";
+
+  position:absolute;
+
+  right:12px;
+
+  top:12px;
+
+  z-index:3;
+
+  width:32px;
+
+  height:32px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  color:rgba(255,255,255,.92);
+
+  background:
+    rgba(60,30,42,.24);
+
+  backdrop-filter:
+    blur(5px);
+
+  font-size:14px;
+
+  opacity:.85;
+
+}
+
 
 .woman-image img{
 
@@ -891,7 +1147,7 @@ a{
 
   overflow:hidden;
 
-  border-radius:16px;
+  border-radius:18px;
 
   cursor:pointer;
 
@@ -900,8 +1156,8 @@ a{
   min-height:400px;
 
   box-shadow:
-    0 10px 35px
-    rgba(58,34,42,.14);
+    0 15px 45px
+    rgba(58,34,42,.16);
 
 }
 
@@ -915,10 +1171,12 @@ a{
 
     linear-gradient(
       rgba(30,17,22,.20),
-      rgba(27,16,21,.84)
+      rgba(27,16,21,.86)
     ),
 
-    url("https://yutraouosffjteivvlfx.supabase.co/storage/v1/object/public/women-photos/12121.png");
+    url(
+      "https://yutraouosffjteivvlfx.supabase.co/storage/v1/object/public/women-photos/12121.png"
+    );
 
   background-size:cover;
 
@@ -1013,251 +1271,211 @@ a{
 
 
 /* =========================================================
-   资料卡下面的完整恋爱主题区域
+   LOADING
 ========================================================= */
 
-.romantic-section{
+.loading{
 
-  position:relative;
+  grid-column:1 / -1;
 
-  width:100%;
+  text-align:center;
 
-  min-height:430px;
+  padding:80px 20px;
 
-  margin-top:80px;
-
-  overflow:hidden;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  isolation:isolate;
-
-  background:
-
-    radial-gradient(
-      circle at 15% 35%,
-      rgba(225,140,163,.42),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 85% 65%,
-      rgba(238,194,150,.35),
-      transparent 30%
-    ),
-
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(130,69,87,.35),
-      transparent 45%
-    ),
-
-    linear-gradient(
-      135deg,
-      #24171d 0%,
-      #4b2937 35%,
-      #39212c 65%,
-      #21151b 100%
-    );
-
-}
-
-
-/* 大面积动态光 */
-
-.romantic-section::before{
-
-  content:"";
-
-  position:absolute;
-
-  width:650px;
-
-  height:650px;
-
-  left:-260px;
-
-  top:-280px;
-
-  border-radius:50%;
-
-  background:
-
-    radial-gradient(
-      circle,
-      rgba(234,151,175,.42),
-      rgba(224,137,161,.12) 45%,
-      transparent 72%
-    );
-
-  filter:blur(20px);
-
-  animation:
-    romanticLightOne 11s ease-in-out infinite;
-
-}
-
-
-.romantic-section::after{
-
-  content:"";
-
-  position:absolute;
-
-  width:650px;
-
-  height:650px;
-
-  right:-260px;
-
-  bottom:-330px;
-
-  border-radius:50%;
-
-  background:
-
-    radial-gradient(
-      circle,
-      rgba(245,205,160,.38),
-      rgba(231,181,143,.10) 45%,
-      transparent 73%
-    );
-
-  filter:blur(20px);
-
-  animation:
-    romanticLightTwo 14s ease-in-out infinite;
-
-}
-
-
-@keyframes romanticLightOne{
-
-  0%,
-  100%{
-
-    transform:
-      translate3d(0,0,0)
-      scale(.8);
-
-    opacity:.45;
-
-  }
-
-  50%{
-
-    transform:
-      translate3d(260px,130px,0)
-      scale(1.25);
-
-    opacity:1;
-
-  }
-
-}
-
-
-@keyframes romanticLightTwo{
-
-  0%,
-  100%{
-
-    transform:
-      translate3d(0,0,0)
-      scale(.85);
-
-    opacity:.4;
-
-  }
-
-  50%{
-
-    transform:
-      translate3d(-220px,-150px,0)
-      scale(1.3);
-
-    opacity:1;
-
-  }
+  color:#9a898e;
 
 }
 
 
 /* =========================================================
-   Banner 内容
+   ROMANTIC BANNER
+   已经移动到资料卡下面
 ========================================================= */
 
 .romantic-banner{
 
-  width:100%;
+  width:88%;
 
-  min-height:430px;
+  max-width:1400px;
+
+  min-height:235px;
+
+  margin:55px auto 70px;
 
   position:relative;
 
-  z-index:3;
+  z-index:30;
 
-  display:flex;
+  overflow:hidden;
 
-  align-items:center;
+  border-radius:25px;
 
-  justify-content:center;
+  border:
+    1px solid
+    rgba(255,255,255,.24);
 
-  text-align:center;
+  background:
 
-  padding:60px 25px;
+    linear-gradient(
+      115deg,
+      rgba(36,20,27,.97),
+      rgba(75,42,51,.94),
+      rgba(50,29,35,.96)
+    );
+
+  box-shadow:
+
+    0 28px 75px
+    rgba(57,31,40,.22),
+
+    inset 0 1px 0
+    rgba(255,255,255,.12);
+
+  isolation:isolate;
+
+}
+
+
+.romantic-banner::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:520px;
+
+  height:520px;
+
+  left:-200px;
+
+  top:-290px;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(225,144,164,.42),
+      rgba(225,144,164,.06) 50%,
+      transparent 72%
+    );
+
+  filter:blur(18px);
+
+  animation:
+    bannerLight 10s ease-in-out infinite;
+
+}
+
+
+.romantic-banner::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:540px;
+
+  height:540px;
+
+  right:-240px;
+
+  bottom:-350px;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(232,190,146,.38),
+      rgba(232,190,146,.05) 50%,
+      transparent 73%
+    );
+
+  filter:blur(18px);
+
+  animation:
+    bannerLightTwo 13s ease-in-out infinite;
+
+}
+
+
+@keyframes bannerLight{
+
+  0%,
+  100%{
+    transform:
+      translate3d(0,0,0)
+      scale(.9);
+    opacity:.5;
+  }
+
+  50%{
+    transform:
+      translate3d(180px,100px,0)
+      scale(1.25);
+    opacity:1;
+  }
+
+}
+
+
+@keyframes bannerLightTwo{
+
+  0%,
+  100%{
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+    opacity:.45;
+  }
+
+  50%{
+    transform:
+      translate3d(-150px,-100px,0)
+      scale(1.22);
+    opacity:.95;
+  }
 
 }
 
 
 .romantic-banner-content{
 
+  min-height:235px;
+
   position:relative;
 
-  z-index:8;
+  z-index:5;
 
-  width:min(900px,90%);
+  display:flex;
 
-  padding:55px 30px;
+  align-items:center;
 
-  border:
-    1px solid
-    rgba(255,255,255,.16);
+  justify-content:center;
 
-  border-radius:30px;
+  flex-direction:column;
 
-  background:
-    rgba(38,20,28,.30);
+  text-align:center;
 
-  backdrop-filter:
-    blur(12px);
-
-  box-shadow:
-
-    0 30px 100px
-    rgba(0,0,0,.20),
-
-    inset 0 1px 0
-    rgba(255,255,255,.12);
+  padding:30px;
 
 }
 
 
 .romantic-mini{
 
-  font-size:11px;
+  font-size:10px;
 
-  letter-spacing:7px;
+  letter-spacing:6px;
 
-  color:#edc39f;
+  color:#e8bd9f;
 
-  margin-bottom:18px;
+  margin-bottom:8px;
 
-  opacity:.95;
+  opacity:.9;
 
 }
 
@@ -1274,58 +1492,55 @@ a{
   font-weight:400;
 
   font-size:
-    clamp(32px,5vw,64px);
+    clamp(28px,4vw,47px);
 
   letter-spacing:2px;
 
   line-height:1.25;
 
   text-shadow:
-    0 8px 40px
-    rgba(0,0,0,.45);
+    0 5px 30px
+    rgba(0,0,0,.35);
 
 }
 
 
 .romantic-banner h2 span{
 
-  display:block;
-
-  color:#e9aabc;
+  color:#e6aabd;
 
 }
 
 
 .romantic-subtitle{
 
-  margin-top:20px;
+  margin-top:10px;
 
   color:
-    rgba(255,255,255,.78);
+    rgba(255,255,255,.73);
 
-  font-size:15px;
+  font-size:14px;
 
-  letter-spacing:3px;
+  letter-spacing:2px;
 
 }
 
 
 .romantic-line{
 
-  width:140px;
+  width:100px;
 
   height:1px;
 
-  margin:28px auto 0;
+  margin-top:19px;
 
   position:relative;
 
   background:
-
     linear-gradient(
       90deg,
       transparent,
-      rgba(240,199,164,.95),
+      rgba(230,176,145,.85),
       transparent
     );
 
@@ -1343,104 +1558,60 @@ a{
   transform:
     translate(-50%,-50%);
 
-  color:#f0adbf;
+  color:#e6a8ba;
 
-  font-size:17px;
+  font-size:14px;
 
-  background:#492836;
+  background:#4c2b35;
 
-  padding:0 12px;
-
-  text-shadow:
-    0 0 20px
-    rgba(241,163,187,.8);
+  padding:0 8px;
 
 }
 
 
-/* =========================================================
-   装饰线
-========================================================= */
-
-.romantic-decoration{
+.banner-corner{
 
   position:absolute;
 
-  inset:25px;
+  width:70px;
 
-  border:
-    1px solid
-    rgba(255,255,255,.08);
+  height:70px;
 
-  border-radius:25px;
+  border-color:
+    rgba(233,185,160,.32);
 
-  pointer-events:none;
+  border-style:solid;
 
-}
-
-
-.romantic-decoration::before,
-.romantic-decoration::after{
-
-  content:"";
-
-  position:absolute;
-
-  width:80px;
-
-  height:80px;
-
-  border:
-    1px solid
-    rgba(239,195,169,.25);
+  z-index:4;
 
 }
 
-
-.romantic-decoration::before{
-
-  left:20px;
-
-  top:20px;
-
-  border-right:0;
-
-  border-bottom:0;
-
-  border-radius:18px 0 0 0;
-
+.banner-corner.left-top{
+  left:18px;
+  top:18px;
+  border-width:1px 0 0 1px;
+  border-radius:15px 0 0 0;
 }
 
-
-.romantic-decoration::after{
-
-  right:20px;
-
-  bottom:20px;
-
-  border-left:0;
-
-  border-top:0;
-
-  border-radius:0 0 18px 0;
-
+.banner-corner.right-top{
+  right:18px;
+  top:18px;
+  border-width:1px 1px 0 0;
+  border-radius:0 15px 0 0;
 }
 
+.banner-corner.left-bottom{
+  left:18px;
+  bottom:18px;
+  border-width:0 0 1px 1px;
+  border-radius:0 0 0 15px;
+}
 
-/* =========================================================
-   Loading
-========================================================= */
-
-.loading{
-
-  grid-column:1 / -1;
-
-  text-align:center;
-
-  padding:80px 20px;
-
-  color:#9a898e;
-
+.banner-corner.right-bottom{
+  right:18px;
+  bottom:18px;
+  border-width:0 1px 1px 0;
+  border-radius:0 0 15px 0;
 }
 
 
@@ -1558,21 +1729,13 @@ footer::after{
 
   0%,
   100%{
-
-    transform:
-      scale(.85);
-
+    transform:scale(.85);
     opacity:.4;
-
   }
 
   50%{
-
-    transform:
-      scale(1.25);
-
+    transform:scale(1.25);
     opacity:1;
-
   }
 
 }
@@ -1716,9 +1879,7 @@ footer span{
 }
 
 .gallery-track::-webkit-scrollbar{
-
   display:none;
-
 }
 
 .gallery-slide{
@@ -1801,15 +1962,11 @@ footer span{
 }
 
 .gallery-prev{
-
   left:15px;
-
 }
 
 .gallery-next{
-
   right:15px;
-
 }
 
 .gallery-counter{
@@ -1858,9 +2015,7 @@ footer span{
 }
 
 .join-modal.show{
-
   display:flex;
-
 }
 
 .join-box{
@@ -1870,7 +2025,6 @@ footer span{
   max-width:410px;
 
   background:
-
     linear-gradient(
       145deg,
       #fff,
@@ -1966,34 +2120,22 @@ footer span{
 }
 
 .join-contact a:hover{
-
-  transform:
-    translateY(-2px);
-
+  transform:translateY(-2px);
 }
 
 .join-whatsapp{
-
   background:#e7f6ec;
-
   color:#168743;
-
 }
 
 .join-telegram{
-
   background:#e7f1f9;
-
   color:#2480c5;
-
 }
 
 .no-contact{
-
   color:#999;
-
   font-size:13px;
-
 }
 
 
@@ -2004,10 +2146,8 @@ footer span{
 @media(max-width:1000px){
 
   .women-grid{
-
     grid-template-columns:
       repeat(3,minmax(0,1fr));
-
   }
 
 }
@@ -2016,23 +2156,16 @@ footer span{
 @media(max-width:700px){
 
   #romanceCanvas{
-
-    opacity:.82;
-
+    opacity:.9;
   }
 
   .site-header{
-
     height:62px;
-
     padding:0 20px;
-
   }
 
   .brand{
-
     font-size:19px;
-
   }
 
 
@@ -2048,24 +2181,17 @@ footer span{
   }
 
   .hero h1{
-
     font-size:40px;
-
   }
 
   .hero p:not(.eyebrow){
-
     font-size:15px;
-
     line-height:1.8;
-
   }
 
 
-  .hero-label{
-
-    font-size:12px;
-
+  .profiles-area{
+    padding-bottom:40px;
   }
 
 
@@ -2074,7 +2200,7 @@ footer span{
     width:
       calc(100% - 30px);
 
-    margin-top:40px;
+    margin-top:30px;
 
     align-items:flex-start;
 
@@ -2083,24 +2209,17 @@ footer span{
   }
 
   .section-title h2{
-
     font-size:23px;
-
   }
 
 
   .filters{
-
     width:100%;
-
   }
 
   .filters select{
-
     flex:1;
-
     width:50%;
-
   }
 
 
@@ -2118,76 +2237,57 @@ footer span{
 
 
   .woman-info{
-
     padding:13px;
-
   }
 
   .woman-info h2{
-
     font-size:17px;
-
   }
 
   .woman-info p{
-
     font-size:12px;
-
   }
 
 
   .more-card{
-
     min-height:360px;
-
   }
 
   .more-card-content{
-
     padding:18px;
-
   }
 
   .more-card-content h2{
-
     font-size:20px;
-
   }
 
   .more-card-content p{
-
     font-size:12px;
-
   }
 
 
-  /* 手机端资料卡下面的恋爱区 */
-
-  .romantic-section{
-
-    min-height:390px;
-
-    margin-top:55px;
-
-  }
-
+  /* Banner 现在位于资料卡之后 */
 
   .romantic-banner{
 
-    min-height:390px;
+    width:
+      calc(100% - 30px);
 
-    padding:45px 15px;
+    min-height:210px;
+
+    margin:
+      25px auto 45px;
+
+    border-radius:20px;
 
   }
 
 
   .romantic-banner-content{
 
-    width:100%;
+    min-height:210px;
 
-    padding:42px 18px;
-
-    border-radius:22px;
+    padding:25px 18px;
 
   }
 
@@ -2203,7 +2303,7 @@ footer span{
 
   .romantic-banner h2{
 
-    font-size:30px;
+    font-size:28px;
 
     letter-spacing:1px;
 
@@ -2219,29 +2319,8 @@ footer span{
   }
 
 
-  .romantic-decoration{
-
-    inset:15px;
-
-    border-radius:18px;
-
-  }
-
-
-  .romantic-decoration::before,
-  .romantic-decoration::after{
-
-    width:50px;
-
-    height:50px;
-
-  }
-
-
   .gallery-slide{
-
     padding:10px 15px;
-
   }
 
   .gallery-arrow{
@@ -2255,23 +2334,17 @@ footer span{
   }
 
   .gallery-prev{
-
     left:5px;
-
   }
 
   .gallery-next{
-
     right:5px;
-
   }
 
 
   footer{
-
     padding:
       55px 20px 60px;
-
   }
 
 }
@@ -2280,9 +2353,7 @@ footer span{
 @media(max-width:400px){
 
   .women-grid{
-
     grid-template-columns:1fr;
-
   }
 
 }
@@ -2295,23 +2366,16 @@ footer span{
 @media(prefers-reduced-motion:reduce){
 
   html{
-
     scroll-behavior:auto !important;
-
   }
 
   *{
-
     transition:none !important;
-
     animation:none !important;
-
   }
 
   #romanceCanvas{
-
     display:none;
-
   }
 
 }
@@ -2323,6 +2387,8 @@ footer span{
 
 <body>
 
+
+<!-- 全站动态背景 -->
 
 <div
   class="romance-glow"
@@ -2336,9 +2402,9 @@ footer span{
 ></canvas>
 
 
-
 <!-- =========================================================
      HEADER
+     已删除管理入口
 ========================================================= -->
 
 <header class="site-header">
@@ -2366,18 +2432,15 @@ footer span{
       MEET SOMEONE SPECIAL
     </p>
 
-
     <h1>
       认真认识一个人，<br>
       从一次相遇开始。
     </h1>
 
-
     <p>
       浏览真实资料，了解彼此，再决定是否联系。
       有些缘分，不需要刻意寻找，只需要一次恰好的相遇。
     </p>
-
 
     <div class="hero-label">
       每一次相遇，都可能成为故事的开始
@@ -2397,128 +2460,142 @@ footer span{
 
 
 <!-- =========================================================
-     TOOLBAR
-     注意：ROMANCE Banner 已经移到资料卡后面
+     资料卡区域
 ========================================================= -->
 
-<section class="toolbar">
-
-  <div class="section-title">
-
-    <small>
-      DISCOVER
-    </small>
-
-    <h2>
-      认识她们
-    </h2>
-
-  </div>
+<section class="profiles-area">
 
 
-  <div class="filters">
-
-    <select id="cityFilter">
-
-      <option value="">
-        全部城市
-      </option>
-
-    </select>
-
-
-    <select id="ageFilter">
-
-      <option value="">
-        全部年龄
-      </option>
-
-      <option value="18-25">
-        18–25
-      </option>
-
-      <option value="26-35">
-        26–35
-      </option>
-
-      <option value="36-45">
-        36–45
-      </option>
-
-      <option value="46+">
-        46+
-      </option>
-
-    </select>
-
-  </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     WOMEN GRID
-========================================================= -->
-
-<section
-  id="womenGrid"
-  class="women-grid"
->
-
-  <div class="loading">
-    正在加载资料……
-  </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     ROMANTIC SECTION
-     ★ 现在位于资料卡下面
-========================================================= -->
-
-<section class="romantic-section">
+  <!-- 背景装饰 -->
 
   <div
-    class="romantic-decoration"
+    class="profile-decoration"
     aria-hidden="true"
-  ></div>
+  >
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </div>
 
 
-  <div class="romantic-banner">
+  <!-- TOOLBAR -->
 
-    <div class="romantic-banner-content">
+  <section class="toolbar">
 
-      <div class="romantic-mini">
-        ROMANCE · DESTINY · CONNECTION
-      </div>
+    <div class="section-title">
 
+      <small>
+        DISCOVER
+      </small>
 
       <h2>
-
-        Somewhere Between
-
-        <span>
-          Us &amp; Destiny
-        </span>
-
+        认识她们
       </h2>
 
-
-      <div class="romantic-subtitle">
-        有些心动，不需要解释
-      </div>
+    </div>
 
 
-      <div class="romantic-line">
+    <div class="filters">
 
-        <span class="romantic-heart">
-          ♥
-        </span>
+      <select id="cityFilter">
 
-      </div>
+        <option value="">
+          全部城市
+        </option>
+
+      </select>
+
+
+      <select id="ageFilter">
+
+        <option value="">
+          全部年龄
+        </option>
+
+        <option value="18-25">
+          18–25
+        </option>
+
+        <option value="26-35">
+          26–35
+        </option>
+
+        <option value="36-45">
+          36–45
+        </option>
+
+        <option value="46+">
+          46+
+        </option>
+
+      </select>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- WOMEN GRID -->
+
+  <section
+    id="womenGrid"
+    class="women-grid"
+  >
+
+    <div class="loading">
+      正在加载资料……
+    </div>
+
+  </section>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     ROMANTIC BANNER
+     现在位于所有资料卡下面
+========================================================= -->
+
+<section class="romantic-banner">
+
+  <div class="banner-corner left-top"></div>
+
+  <div class="banner-corner right-top"></div>
+
+  <div class="banner-corner left-bottom"></div>
+
+  <div class="banner-corner right-bottom"></div>
+
+
+  <div class="romantic-banner-content">
+
+    <div class="romantic-mini">
+      ROMANCE · DESTINY · CONNECTION
+    </div>
+
+
+    <h2>
+      Somewhere Between
+      <span>Us & Destiny</span>
+    </h2>
+
+
+    <div class="romantic-subtitle">
+      有些心动，不需要解释
+    </div>
+
+
+    <div class="romantic-line">
+
+      <span class="romantic-heart">
+        ♥
+      </span>
 
     </div>
 
@@ -2556,7 +2633,6 @@ footer span{
 
   <div class="gallery-container">
 
-
     <div class="gallery-header">
 
       <div
@@ -2565,7 +2641,6 @@ footer span{
       >
         女士资料
       </div>
-
 
       <button
         id="galleryClose"
@@ -2578,9 +2653,7 @@ footer span{
     </div>
 
 
-
     <div class="gallery-body">
-
 
       <button
         id="galleryPrev"
@@ -2608,12 +2681,10 @@ footer span{
     </div>
 
 
-
     <div
       id="galleryCounter"
       class="gallery-counter"
     ></div>
-
 
   </div>
 
@@ -2622,7 +2693,7 @@ footer span{
 
 
 <!-- =========================================================
-     JOIN
+     JOIN MODAL
 ========================================================= -->
 
 <div
@@ -2631,7 +2702,6 @@ footer span{
 >
 
   <div class="join-box">
-
 
     <button
       id="joinClose"
@@ -2663,7 +2733,6 @@ footer span{
 
     </div>
 
-
   </div>
 
 </div>
@@ -2672,30 +2741,22 @@ footer span{
 
 <script>
 
-
 /* =========================================================
    ROMANTIC CANVAS
+   樱花 + 爱心 + 香槟 + 星芒
 ========================================================= */
 
 const romanceCanvas =
-  document.getElementById(
-    "romanceCanvas"
-  );
-
+  document.getElementById("romanceCanvas");
 
 const romanceCtx =
-  romanceCanvas.getContext(
-    "2d"
-  );
-
+  romanceCanvas.getContext("2d");
 
 let romanceParticles = [];
-
 
 let romanceWidth = 0;
 
 let romanceHeight = 0;
-
 
 let romanceDpr =
   Math.min(
@@ -2709,10 +2770,8 @@ function resizeRomanceCanvas(){
   romanceWidth =
     window.innerWidth;
 
-
   romanceHeight =
     window.innerHeight;
-
 
   romanceDpr =
     Math.min(
@@ -2720,24 +2779,17 @@ function resizeRomanceCanvas(){
       2
     );
 
-
   romanceCanvas.width =
-    romanceWidth *
-    romanceDpr;
-
+    romanceWidth * romanceDpr;
 
   romanceCanvas.height =
-    romanceHeight *
-    romanceDpr;
-
+    romanceHeight * romanceDpr;
 
   romanceCanvas.style.width =
     romanceWidth + "px";
 
-
   romanceCanvas.style.height =
     romanceHeight + "px";
-
 
   romanceCtx.setTransform(
     romanceDpr,
@@ -2760,7 +2812,6 @@ window.addEventListener(
 );
 
 
-
 /* =========================================================
    PARTICLE
 ========================================================= */
@@ -2779,11 +2830,9 @@ class RomanceParticle{
     this.type =
       this.randomType();
 
-
     this.x =
       Math.random() *
       romanceWidth;
-
 
     this.y =
 
@@ -2791,12 +2840,12 @@ class RomanceParticle{
 
         ?
 
-        Math.random() *
-        romanceHeight
+      Math.random() *
+      romanceHeight
 
         :
 
-        -30;
+      -40;
 
 
     this.size =
@@ -2805,8 +2854,8 @@ class RomanceParticle{
 
         ?
 
-        5 +
-        Math.random() * 8
+      5 +
+      Math.random() * 8
 
         :
 
@@ -2814,13 +2863,22 @@ class RomanceParticle{
 
         ?
 
-        6 +
-        Math.random() * 9
+      5 +
+      Math.random() * 8
 
         :
 
-        1 +
-        Math.random() * 3;
+      this.type === "star"
+
+        ?
+
+      2 +
+      Math.random() * 4
+
+        :
+
+      1 +
+      Math.random() * 3;
 
 
     this.speedY =
@@ -2829,8 +2887,8 @@ class RomanceParticle{
 
         ?
 
-        .25 +
-        Math.random() * .65
+      .25 +
+      Math.random() * .65
 
         :
 
@@ -2838,17 +2896,16 @@ class RomanceParticle{
 
         ?
 
-        .15 +
-        Math.random() * .35
+      .12 +
+      Math.random() * .35
 
         :
 
-        .08 +
-        Math.random() * .30;
+      .08 +
+      Math.random() * .30;
 
 
     this.speedX =
-
       -.25 +
       Math.random() * .5;
 
@@ -2860,10 +2917,8 @@ class RomanceParticle{
 
 
     this.rotationSpeed =
-
       -.012 +
-      Math.random() *
-      .024;
+      Math.random() * .024;
 
 
     this.wave =
@@ -2873,17 +2928,13 @@ class RomanceParticle{
 
 
     this.waveSpeed =
-
       .008 +
-      Math.random() *
-      .018;
+      Math.random() * .018;
 
 
     this.opacity =
-
-      .12 +
-      Math.random() *
-      .50;
+      .14 +
+      Math.random() * .52;
 
 
     this.life =
@@ -2893,10 +2944,8 @@ class RomanceParticle{
 
 
     this.lifeSpeed =
-
       .008 +
-      Math.random() *
-      .015;
+      Math.random() * .018;
 
   }
 
@@ -2906,29 +2955,26 @@ class RomanceParticle{
     const value =
       Math.random();
 
+    /*
+      43% 樱花
+      20% 爱心
+      20% 香槟
+      17% 星芒
+    */
 
-    if(value < .47){
-
+    if(value < .43){
       return "petal";
-
     }
 
-
-    if(value < .67){
-
+    if(value < .63){
       return "heart";
-
     }
 
-
-    if(value < .86){
-
+    if(value < .83){
       return "champagne";
-
     }
 
-
-    return "sparkle";
+    return "star";
 
   }
 
@@ -2938,10 +2984,8 @@ class RomanceParticle{
     this.y +=
       this.speedY;
 
-
     this.wave +=
       this.waveSpeed;
-
 
     this.x +=
 
@@ -2949,13 +2993,10 @@ class RomanceParticle{
 
       Math.sin(
         this.wave
-      ) *
-      .22;
-
+      ) * .22;
 
     this.rotation +=
       this.rotationSpeed;
-
 
     this.life +=
       this.lifeSpeed;
@@ -2963,7 +3004,7 @@ class RomanceParticle{
 
     if(
       this.y >
-      romanceHeight + 40
+      romanceHeight + 50
     ){
 
       this.reset(false);
@@ -2972,7 +3013,8 @@ class RomanceParticle{
 
 
     if(
-      this.x < -50
+      this.x <
+      -50
     ){
 
       this.x =
@@ -3001,33 +3043,30 @@ class RomanceParticle{
 
 
     const pulse =
-
-      .72 +
-
+      .68 +
       Math.sin(
         this.life
-      ) *
-      .28;
+      ) * .32;
 
 
     ctx.save();
-
 
     ctx.translate(
       this.x,
       this.y
     );
 
-
     ctx.rotate(
       this.rotation
     );
 
-
     ctx.globalAlpha =
-      this.opacity *
-      pulse;
+      this.opacity * pulse;
 
+
+    /* =====================================================
+       樱花
+    ===================================================== */
 
     if(
       this.type === "petal"
@@ -3035,40 +3074,28 @@ class RomanceParticle{
 
       ctx.beginPath();
 
-
       ctx.moveTo(
         0,
         -this.size
       );
 
-
       ctx.bezierCurveTo(
-
         this.size * 1.4,
         -this.size * .7,
-
         this.size * 1.25,
         this.size * .9,
-
         0,
         this.size
-
       );
-
 
       ctx.bezierCurveTo(
-
         -this.size * 1.25,
         this.size * .9,
-
         -this.size * 1.4,
         -this.size * .7,
-
         0,
         -this.size
-
       );
-
 
       ctx.closePath();
 
@@ -3084,30 +3111,31 @@ class RomanceParticle{
 
       gradient.addColorStop(
         0,
-        "rgba(255,220,228,.85)"
+        "rgba(255,225,233,.95)"
       );
-
 
       gradient.addColorStop(
-        .55,
-        "rgba(232,153,176,.62)"
+        .5,
+        "rgba(232,153,176,.72)"
       );
-
 
       gradient.addColorStop(
         1,
-        "rgba(194,111,138,.32)"
+        "rgba(194,111,138,.34)"
       );
 
 
       ctx.fillStyle =
         gradient;
 
-
       ctx.fill();
 
     }
 
+
+    /* =====================================================
+       爱心
+    ===================================================== */
 
     else if(
       this.type === "heart"
@@ -3119,12 +3147,10 @@ class RomanceParticle{
 
       ctx.beginPath();
 
-
       ctx.moveTo(
         0,
         s * .9
       );
-
 
       ctx.bezierCurveTo(
         -s * 1.7,
@@ -3135,7 +3161,6 @@ class RomanceParticle{
         -s * .65
       );
 
-
       ctx.bezierCurveTo(
         s * .9,
         -s * 1.5,
@@ -3145,30 +3170,34 @@ class RomanceParticle{
         s * .9
       );
 
-
       ctx.closePath();
 
 
       ctx.fillStyle =
-        "rgba(224,137,163,.65)";
-
+        "rgba(224,137,163,.70)";
 
       ctx.shadowBlur =
-        15;
-
+        16;
 
       ctx.shadowColor =
-        "rgba(227,148,173,.65)";
-
+        "rgba(227,148,173,.72)";
 
       ctx.fill();
 
     }
 
 
+    /* =====================================================
+       香槟光点
+    ===================================================== */
+
     else if(
       this.type === "champagne"
     ){
+
+      const radius =
+        this.size * 4;
+
 
       const gradient =
         ctx.createRadialGradient(
@@ -3177,21 +3206,19 @@ class RomanceParticle{
           0,
           0,
           0,
-          this.size * 4
+          radius
         );
 
 
       gradient.addColorStop(
         0,
-        "rgba(255,224,178,.95)"
+        "rgba(255,232,192,1)"
       );
-
 
       gradient.addColorStop(
         .25,
-        "rgba(245,201,155,.62)"
+        "rgba(245,201,155,.70)"
       );
-
 
       gradient.addColorStop(
         1,
@@ -3202,66 +3229,87 @@ class RomanceParticle{
       ctx.fillStyle =
         gradient;
 
-
       ctx.beginPath();
-
 
       ctx.arc(
         0,
         0,
-        this.size * 4,
+        radius,
         0,
         Math.PI * 2
       );
-
 
       ctx.fill();
 
     }
 
 
+    /* =====================================================
+       新版星芒
+       不再是“十字”
+    ===================================================== */
+
     else{
 
-      ctx.strokeStyle =
-        "rgba(255,222,184,.78)";
+      const s =
+        this.size * 3;
 
 
-      ctx.lineWidth =
-        1;
+      ctx.shadowBlur =
+        12;
+
+      ctx.shadowColor =
+        "rgba(255,224,184,.75)";
 
 
-      const length =
-        this.size * 4;
+      ctx.fillStyle =
+        "rgba(255,231,196,.92)";
 
+
+      /*
+        四瓣菱形星芒
+        视觉上是 ✦ / ✧
+        不再画横线+竖线
+      */
 
       ctx.beginPath();
 
-
       ctx.moveTo(
-        -length,
+        0,
+        -s * 2.2
+      );
+
+      ctx.quadraticCurveTo(
+        s * .35,
+        -s * .45,
+        s * 2.2,
         0
       );
 
+      ctx.quadraticCurveTo(
+        s * .35,
+        s * .45,
+        0,
+        s * 2.2
+      );
 
-      ctx.lineTo(
-        length,
+      ctx.quadraticCurveTo(
+        -s * .35,
+        s * .45,
+        -s * 2.2,
         0
       );
 
-
-      ctx.moveTo(
+      ctx.quadraticCurveTo(
+        -s * .35,
+        -s * .45,
         0,
-        -length
+        -s * 2.2
       );
 
+      ctx.closePath();
 
-      ctx.lineTo(
-        0,
-        length
-      );
-
-
-      ctx.stroke();
+      ctx.fill();
 
     }
 
@@ -3273,7 +3321,6 @@ class RomanceParticle{
 }
 
 
-
 /* =========================================================
    创建粒子
 ========================================================= */
@@ -3282,15 +3329,13 @@ function createRomanceParticles(){
 
   romanceParticles = [];
 
-
   const isMobile =
     window.innerWidth <= 700;
 
-
   const count =
     isMobile
-      ? 42
-      : 95;
+      ? 55
+      : 125;
 
 
   for(
@@ -3315,7 +3360,6 @@ window.addEventListener(
   "resize",
   createRomanceParticles
 );
-
 
 
 /* =========================================================
@@ -3359,25 +3403,23 @@ animateRomance();
 ========================================================= */
 
 const SUPABASE_URL =
-"https://yutraouosffjteivvlfx.supabase.co";
+  "https://yutraouosffjteivvlfx.supabase.co";
 
 
 const SUPABASE_KEY =
-"sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
+  "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
 
 const STORAGE_BUCKET =
-"women-photos";
+  "women-photos";
 
 
 let women = [];
 
 
 let joinContact = {
-
   whatsapp:"",
   telegram:""
-
 };
 
 
@@ -3392,19 +3434,13 @@ document
   new Date().getFullYear();
 
 
-
 function escapeHtml(value){
 
   return String(value ?? "")
-
     .replace(/&/g,"&amp;")
-
     .replace(/</g,"&lt;")
-
     .replace(/>/g,"&gt;")
-
     .replace(/"/g,"&quot;")
-
     .replace(/'/g,"&#039;");
 
 }
@@ -3418,24 +3454,16 @@ function escapeHtml(value){
 function normalizeMedia(value){
 
   if(!value){
-
     return [];
-
   }
 
 
   if(Array.isArray(value)){
 
     return value
-
       .flat(Infinity)
-
       .filter(Boolean)
-
-      .map(v =>
-        String(v).trim()
-      )
-
+      .map(v => String(v).trim())
       .filter(Boolean);
 
   }
@@ -3448,9 +3476,7 @@ function normalizeMedia(value){
 
 
     if(!text){
-
       return [];
-
     }
 
 
@@ -3463,15 +3489,9 @@ function normalizeMedia(value){
       if(Array.isArray(parsed)){
 
         return parsed
-
           .flat(Infinity)
-
           .filter(Boolean)
-
-          .map(v =>
-            String(v).trim()
-          )
-
+          .map(v => String(v).trim())
           .filter(Boolean);
 
       }
@@ -3482,13 +3502,8 @@ function normalizeMedia(value){
     if(text.includes(",")){
 
       return text
-
         .split(",")
-
-        .map(v =>
-          v.trim()
-        )
-
+        .map(v => v.trim())
         .filter(Boolean);
 
     }
@@ -3506,15 +3521,13 @@ function normalizeMedia(value){
 
 
 /* =========================================================
-   STORAGE
+   STORAGE URL
 ========================================================= */
 
 function getStorageUrl(path){
 
   if(!path){
-
     return "";
-
   }
 
 
@@ -3586,12 +3599,8 @@ function getPhotos(woman){
     ...new Set(
 
       photos
-
         .filter(Boolean)
-
-        .map(
-          getStorageUrl
-        )
+        .map(getStorageUrl)
 
     )
 
@@ -3614,12 +3623,8 @@ function getVideos(woman){
       normalizeMedia(
         woman.videos
       )
-
       .filter(Boolean)
-
-      .map(
-        getStorageUrl
-      )
+      .map(getStorageUrl)
 
     )
 
@@ -3658,24 +3663,17 @@ async function loadWomen(){
 
     const response =
       await fetch(
-
         url,
-
         {
-
           headers:{
-
             apikey:
               SUPABASE_KEY,
 
             Authorization:
               "Bearer " +
               SUPABASE_KEY
-
           }
-
         }
-
       );
 
 
@@ -3698,25 +3696,18 @@ async function loadWomen(){
 
     createCityFilter();
 
-
-    renderWomen(
-      women
-    );
+    renderWomen(women);
 
 
   }catch(error){
 
-    console.error(
-      error
-    );
+    console.error(error);
 
 
     grid.innerHTML = `
 
       <div class="loading">
-
         暂时无法加载资料。
-
       </div>
 
     `;
@@ -3739,23 +3730,17 @@ function createCityFilter(){
     );
 
 
-  const cities =
+  const cities = [
 
-    [
+    ...new Set(
 
-      ...new Set(
+      women
+        .map(w => w.city)
+        .filter(Boolean)
 
-        women
+    )
 
-          .map(
-            w => w.city
-          )
-
-          .filter(Boolean)
-
-      )
-
-    ];
+  ];
 
 
   select.innerHTML = `
@@ -3767,31 +3752,26 @@ function createCityFilter(){
   `;
 
 
-  cities.forEach(
+  cities.forEach(city => {
 
-    city => {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-
-      option.value =
-        city;
-
-
-      option.textContent =
-        city;
-
-
-      select.appendChild(
-        option
+    const option =
+      document.createElement(
+        "option"
       );
 
-    }
 
-  );
+    option.value =
+      city;
+
+    option.textContent =
+      city;
+
+
+    select.appendChild(
+      option
+    );
+
+  });
 
 }
 
@@ -3812,225 +3792,147 @@ function renderWomen(list){
   grid.innerHTML = "";
 
 
-  list.forEach(
+  list.forEach(woman => {
 
-    woman => {
-
-      const photos =
-        getPhotos(
-          woman
-        );
+    const photos =
+      getPhotos(woman);
 
 
-      const cover =
+    const cover =
 
-        photos[0] ||
+      photos[0] ||
 
-        "data:image/svg+xml;charset=UTF-8," +
+      "data:image/svg+xml;charset=UTF-8," +
 
-        encodeURIComponent(`
+      encodeURIComponent(`
 
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="600"
+          height="800"
+        >
+
+          <rect
             width="600"
             height="800"
+            fill="#eee6e8"
+          />
+
+          <text
+            x="300"
+            y="400"
+            text-anchor="middle"
+            font-size="28"
+            fill="#999"
           >
+            暂无照片
+          </text>
 
-            <rect
-              width="600"
-              height="800"
-              fill="#eee6e8"
-            />
+        </svg>
 
-            <text
-              x="300"
-              y="400"
-              text-anchor="middle"
-              font-size="28"
-              fill="#999"
-            >
-              暂无照片
-            </text>
-
-          </svg>
-
-        `);
+      `);
 
 
-
-      const card =
-        document.createElement(
-          "article"
-        );
-
-
-      card.className =
-        "woman-card";
+    const card =
+      document.createElement(
+        "article"
+      );
 
 
-      card.innerHTML = `
-
-        <div class="woman-image">
-
-          <img
-
-            src="${escapeHtml(
-              cover
-            )}"
-
-            alt="${escapeHtml(
-              woman.name ||
-              "女士"
-            )}"
-
-            loading="lazy"
-
-          >
-
-        </div>
+    card.className =
+      "woman-card";
 
 
-        <div class="woman-info">
+    card.innerHTML = `
+
+      <div class="woman-image">
+
+        <img
+          src="${escapeHtml(cover)}"
+          alt="${escapeHtml(
+            woman.name || "女士"
+          )}"
+          loading="lazy"
+        >
+
+      </div>
 
 
-          <h2>
+      <div class="woman-info">
 
-            ${escapeHtml(
-              woman.name ||
-              "未填写姓名"
-            )}
+        <h2>
 
-            ${
-
-              woman.age
-
-              ?
-
-              " · " +
-
-              escapeHtml(
-                woman.age
-              ) +
-
-              "岁"
-
-              :
-
-              ""
-
-            }
-
-          </h2>
-
+          ${escapeHtml(
+            woman.name ||
+            "未填写姓名"
+          )}
 
           ${
-
-            woman.city
-
-            ?
-
-            `
-
-              <p class="city">
-
-                ${escapeHtml(
-                  woman.city
-                )}
-
-              </p>
-
-            `
-
-            :
-
-            ""
-
+            woman.age
+              ? " · " +
+                escapeHtml(woman.age) +
+                "岁"
+              : ""
           }
 
+        </h2>
 
-          ${
 
-            woman.occupation
-
-            ?
-
+        ${
+          woman.city
+            ? `
+              <p class="city">
+                ${escapeHtml(woman.city)}
+              </p>
             `
+            : ""
+        }
 
+
+        ${
+          woman.occupation
+            ? `
               <p>
-
                 ${escapeHtml(
                   woman.occupation
                 )}
-
               </p>
-
             `
-
-            :
-
-            ""
-
-          }
+            : ""
+        }
 
 
-          ${
-
-            woman.description
-
-            ?
-
-            `
-
+        ${
+          woman.description
+            ? `
               <p class="description">
-
                 ${escapeHtml(
                   woman.description
                 )}
-
               </p>
-
             `
-
-            :
-
-            ""
-
-          }
-
-
-        </div>
-
-      `;
-
-
-      card.addEventListener(
-
-        "click",
-
-        () => {
-
-          openGallery(
-            woman
-          );
-
+            : ""
         }
 
-      );
+      </div>
+
+    `;
 
 
-      grid.appendChild(
-        card
-      );
-
-    }
-
-  );
+    card.addEventListener(
+      "click",
+      () => openGallery(woman)
+    );
 
 
+    grid.appendChild(card);
 
-  /* ==================================================
+  });
+
+
+  /* =====================================================
      MORE CARD
-  ================================================== */
+  ===================================================== */
 
   const moreCard =
     document.createElement(
@@ -4090,64 +3992,40 @@ let galleryMedia = [];
 let galleryIndex = 0;
 
 
-
 function openGallery(woman){
 
   const photos =
-    getPhotos(
-      woman
-    );
-
+    getPhotos(woman);
 
   const videos =
-    getVideos(
-      woman
-    );
+    getVideos(woman);
 
 
   galleryMedia = [];
 
 
-  photos.forEach(
+  photos.forEach(url => {
 
-    url => {
+    galleryMedia.push({
+      type:"image",
+      url
+    });
 
-      galleryMedia.push({
-
-        type:"image",
-
-        url
-
-      });
-
-    }
-
-  );
+  });
 
 
-  videos.forEach(
+  videos.forEach(url => {
 
-    url => {
+    galleryMedia.push({
+      type:"video",
+      url
+    });
 
-      galleryMedia.push({
-
-        type:"video",
-
-        url
-
-      });
-
-    }
-
-  );
+  });
 
 
-  if(
-    galleryMedia.length === 0
-  ){
-
+  if(!galleryMedia.length){
     return;
-
   }
 
 
@@ -4155,11 +4033,8 @@ function openGallery(woman){
 
 
   document
-    .getElementById(
-      "galleryTitle"
-    )
+    .getElementById("galleryTitle")
     .textContent =
-
     woman.name ||
     "女士资料";
 
@@ -4168,12 +4043,8 @@ function openGallery(woman){
 
 
   document
-    .getElementById(
-      "galleryModal"
-    )
-    .classList.add(
-      "show"
-    );
+    .getElementById("galleryModal")
+    .classList.add("show");
 
 
   document.body.style.overflow =
@@ -4194,92 +4065,65 @@ function renderGallery(){
   track.innerHTML = "";
 
 
-  galleryMedia.forEach(
+  galleryMedia.forEach(media => {
 
-    media => {
-
-      const slide =
-        document.createElement(
-          "div"
-        );
-
-
-      slide.className =
-        "gallery-slide";
-
-
-      if(
-        media.type === "image"
-      ){
-
-        slide.innerHTML = `
-
-          <img
-
-            src="${escapeHtml(
-              media.url
-            )}"
-
-            draggable="false"
-
-          >
-
-        `;
-
-      }else{
-
-        slide.innerHTML = `
-
-          <video
-
-            controls
-
-            playsinline
-
-            preload="metadata"
-
-          >
-
-            <source
-              src="${escapeHtml(
-                media.url
-              )}"
-            >
-
-          </video>
-
-        `;
-
-      }
-
-
-      track.appendChild(
-        slide
+    const slide =
+      document.createElement(
+        "div"
       );
+
+
+    slide.className =
+      "gallery-slide";
+
+
+    if(media.type === "image"){
+
+      slide.innerHTML = `
+
+        <img
+          src="${escapeHtml(media.url)}"
+          draggable="false"
+        >
+
+      `;
+
+    }else{
+
+      slide.innerHTML = `
+
+        <video
+          controls
+          playsinline
+          preload="metadata"
+        >
+
+          <source
+            src="${escapeHtml(media.url)}"
+          >
+
+        </video>
+
+      `;
 
     }
 
-  );
+
+    track.appendChild(slide);
+
+  });
 
 
   updateGalleryCounter();
 
 
-  requestAnimationFrame(
+  requestAnimationFrame(() => {
 
-    () => {
+    track.scrollLeft =
+      track.clientWidth *
+      galleryIndex;
 
-      const width =
-        track.clientWidth;
-
-
-      track.scrollLeft =
-        width *
-        galleryIndex;
-
-    }
-
-  );
+  });
 
 }
 
@@ -4293,9 +4137,7 @@ function updateGalleryCounter(){
     );
 
 
-  if(
-    galleryMedia.length
-  ){
+  if(galleryMedia.length){
 
     counter.textContent =
 
@@ -4309,30 +4151,19 @@ function updateGalleryCounter(){
 
 function galleryGoTo(index){
 
-  if(
-    !galleryMedia.length
-  ){
-
+  if(!galleryMedia.length){
     return;
-
   }
 
 
   if(index < 0){
-
     index =
       galleryMedia.length - 1;
-
   }
 
 
-  if(
-    index >=
-    galleryMedia.length
-  ){
-
+  if(index >= galleryMedia.length){
     index = 0;
-
   }
 
 
@@ -4368,13 +4199,9 @@ function galleryGoTo(index){
 ========================================================= */
 
 document
-  .getElementById(
-    "galleryTrack"
-  )
+  .getElementById("galleryTrack")
   .addEventListener(
-
     "scroll",
-
     function(){
 
       const width =
@@ -4382,102 +4209,65 @@ document
 
 
       if(!width){
-
         return;
-
       }
 
 
       const index =
-
         Math.round(
-
           this.scrollLeft /
           width
-
         );
 
 
-      if(
-        index !==
-        galleryIndex
-      ){
+      if(index !== galleryIndex){
 
         galleryIndex =
           index;
-
 
         updateGalleryCounter();
 
       }
 
     }
-
   );
 
 
-
 document
-  .getElementById(
-    "galleryPrev"
-  )
+  .getElementById("galleryPrev")
   .addEventListener(
-
     "click",
-
-    () => {
-
+    () =>
       galleryGoTo(
         galleryIndex - 1
-      );
-
-    }
-
+      )
   );
 
 
 document
-  .getElementById(
-    "galleryNext"
-  )
+  .getElementById("galleryNext")
   .addEventListener(
-
     "click",
-
-    () => {
-
+    () =>
       galleryGoTo(
         galleryIndex + 1
-      );
-
-    }
-
+      )
   );
 
 
 document
-  .getElementById(
-    "galleryClose"
-  )
+  .getElementById("galleryClose")
   .addEventListener(
-
     "click",
-
     closeGallery
-
   );
-
 
 
 function closeGallery(){
 
   document
-    .getElementById(
-      "galleryModal"
-    )
-    .classList.remove(
-      "show"
-    );
+    .getElementById("galleryModal")
+    .classList.remove("show");
 
 
   document.body.style.overflow =
@@ -4489,74 +4279,10 @@ function closeGallery(){
       "#galleryTrack video"
     )
     .forEach(
-
-      video =>
-        video.pause()
-
+      video => video.pause()
     );
 
 }
-
-
-
-/* =========================================================
-   ESC
-========================================================= */
-
-document.addEventListener(
-
-  "keydown",
-
-  event => {
-
-    if(
-      event.key === "Escape"
-    ){
-
-      closeGallery();
-
-      closeJoinModal();
-
-    }
-
-
-    if(
-
-      document
-        .getElementById(
-          "galleryModal"
-        )
-        .classList
-        .contains("show")
-
-    ){
-
-      if(
-        event.key === "ArrowLeft"
-      ){
-
-        galleryGoTo(
-          galleryIndex - 1
-        );
-
-      }
-
-
-      if(
-        event.key === "ArrowRight"
-      ){
-
-        galleryGoTo(
-          galleryIndex + 1
-        );
-
-      }
-
-    }
-
-  }
-
-);
 
 
 
@@ -4583,24 +4309,17 @@ async function loadJoinContact(){
 
     const response =
       await fetch(
-
         url,
-
         {
-
           headers:{
-
             apikey:
               SUPABASE_KEY,
 
             Authorization:
               "Bearer " +
               SUPABASE_KEY
-
           }
-
         }
-
       );
 
 
@@ -4617,9 +4336,7 @@ async function loadJoinContact(){
       await response.json();
 
 
-    if(
-      data.length
-    ){
+    if(data.length){
 
       joinContact =
         data[0];
@@ -4647,21 +4364,12 @@ async function loadJoinContact(){
 function makeWhatsAppUrl(value){
 
   const number =
-
-    String(
-      value || ""
-    )
-
-    .replace(
-      /[^\d]/g,
-      ""
-    );
+    String(value || "")
+      .replace(/[^\d]/g,"");
 
 
   if(!number){
-
     return "";
-
   }
 
 
@@ -4681,18 +4389,12 @@ function makeWhatsAppUrl(value){
 function makeTelegramUrl(value){
 
   let username =
-
-    String(
-      value || ""
-    )
-
-    .trim();
+    String(value || "")
+      .trim();
 
 
   if(!username){
-
     return "";
-
   }
 
 
@@ -4769,26 +4471,20 @@ function openJoinModal(){
     a.href =
       whatsappUrl;
 
-
     a.target =
       "_blank";
-
 
     a.rel =
       "noopener";
 
-
     a.className =
       "join-whatsapp";
-
 
     a.textContent =
       "WhatsApp 联系我们";
 
 
-    box.appendChild(
-      a
-    );
+    box.appendChild(a);
 
   }
 
@@ -4804,43 +4500,33 @@ function openJoinModal(){
     a.href =
       telegramUrl;
 
-
     a.target =
       "_blank";
-
 
     a.rel =
       "noopener";
 
-
     a.className =
       "join-telegram";
-
 
     a.textContent =
       "Telegram 联系我们";
 
 
-    box.appendChild(
-      a
-    );
+    box.appendChild(a);
 
   }
 
 
   if(
-
     !whatsappUrl &&
     !telegramUrl
-
   ){
 
     box.innerHTML = `
 
       <div class="no-contact">
-
         暂无联系方式，请稍后再试。
-
       </div>
 
     `;
@@ -4849,12 +4535,8 @@ function openJoinModal(){
 
 
   document
-    .getElementById(
-      "joinModal"
-    )
-    .classList.add(
-      "show"
-    );
+    .getElementById("joinModal")
+    .classList.add("show");
 
 }
 
@@ -4863,50 +4545,85 @@ function openJoinModal(){
 function closeJoinModal(){
 
   document
-    .getElementById(
-      "joinModal"
-    )
-    .classList.remove(
-      "show"
-    );
+    .getElementById("joinModal")
+    .classList.remove("show");
 
 }
 
 
 
 document
-  .getElementById(
-    "joinClose"
-  )
+  .getElementById("joinClose")
   .addEventListener(
     "click",
     closeJoinModal
   );
 
 
-
 document
-  .getElementById(
-    "joinModal"
-  )
+  .getElementById("joinModal")
   .addEventListener(
-
     "click",
-
     function(event){
 
-      if(
-        event.target ===
-        this
-      ){
+      if(event.target === this){
 
         closeJoinModal();
 
       }
 
     }
-
   );
+
+
+
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key === "Escape"){
+
+      closeGallery();
+
+      closeJoinModal();
+
+    }
+
+
+    if(
+
+      document
+        .getElementById("galleryModal")
+        .classList
+        .contains("show")
+
+    ){
+
+      if(event.key === "ArrowLeft"){
+
+        galleryGoTo(
+          galleryIndex - 1
+        );
+
+      }
+
+
+      if(event.key === "ArrowRight"){
+
+        galleryGoTo(
+          galleryIndex + 1
+        );
+
+      }
+
+    }
+
+  }
+);
 
 
 
@@ -4917,121 +4634,84 @@ document
 function filterWomen(){
 
   const city =
-
     document
-      .getElementById(
-        "cityFilter"
-      )
+      .getElementById("cityFilter")
       .value;
 
 
   const age =
-
     document
-      .getElementById(
-        "ageFilter"
-      )
+      .getElementById("ageFilter")
       .value;
 
 
   const filtered =
+    women.filter(woman => {
 
-    women.filter(
+      if(
+        city &&
+        woman.city !== city
+      ){
 
-      woman => {
-
-
-        if(
-
-          city &&
-          woman.city !== city
-
-        ){
-
-          return false;
-
-        }
-
-
-        const womanAge =
-
-          Number(
-            woman.age
-          );
-
-
-        if(
-          age === "18-25"
-        ){
-
-          return (
-
-            womanAge >= 18 &&
-            womanAge <= 25
-
-          );
-
-        }
-
-
-        if(
-          age === "26-35"
-        ){
-
-          return (
-
-            womanAge >= 26 &&
-            womanAge <= 35
-
-          );
-
-        }
-
-
-        if(
-          age === "36-45"
-        ){
-
-          return (
-
-            womanAge >= 36 &&
-            womanAge <= 45
-
-          );
-
-        }
-
-
-        if(
-          age === "46+"
-        ){
-
-          return (
-            womanAge >= 46
-          );
-
-        }
-
-
-        return true;
+        return false;
 
       }
 
-    );
+
+      const womanAge =
+        Number(woman.age);
 
 
-  renderWomen(
-    filtered
-  );
+      if(age === "18-25"){
+
+        return (
+          womanAge >= 18 &&
+          womanAge <= 25
+        );
+
+      }
+
+
+      if(age === "26-35"){
+
+        return (
+          womanAge >= 26 &&
+          womanAge <= 35
+        );
+
+      }
+
+
+      if(age === "36-45"){
+
+        return (
+          womanAge >= 36 &&
+          womanAge <= 45
+        );
+
+      }
+
+
+      if(age === "46+"){
+
+        return womanAge >= 46;
+
+      }
+
+
+      return true;
+
+    });
+
+
+  renderWomen(filtered);
 
 }
 
 
 
 document
-  .getElementById(
-    "cityFilter"
-  )
+  .getElementById("cityFilter")
   .addEventListener(
     "change",
     filterWomen
@@ -5039,9 +4719,7 @@ document
 
 
 document
-  .getElementById(
-    "ageFilter"
-  )
+  .getElementById("ageFilter")
   .addEventListener(
     "change",
     filterWomen
