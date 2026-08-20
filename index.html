@@ -51,6 +51,8 @@ body{
 
   line-height:1.6;
 
+  overflow-x:hidden;
+
 }
 
 button,
@@ -69,6 +71,216 @@ a{
 
 
 /* =========================================================
+   全首页动态恋爱氛围层
+========================================================= */
+
+#romanceCanvas{
+
+  position:fixed;
+
+  inset:0;
+
+  width:100%;
+
+  height:100%;
+
+  z-index:1;
+
+  pointer-events:none;
+
+  overflow:hidden;
+
+  opacity:.95;
+
+}
+
+
+/* =========================================================
+   动态背景光晕
+========================================================= */
+
+.romance-glow{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:0;
+
+  pointer-events:none;
+
+  overflow:hidden;
+
+  background:
+
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(211,126,151,.11),
+      transparent 24%
+    ),
+
+    radial-gradient(
+      circle at 88% 24%,
+      rgba(236,181,139,.10),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 50% 65%,
+      rgba(177,103,128,.07),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 15% 88%,
+      rgba(236,183,143,.08),
+      transparent 23%
+    );
+
+}
+
+
+/* 第一层呼吸光 */
+
+.romance-glow::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:480px;
+
+  height:480px;
+
+  left:-180px;
+
+  top:15%;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(224,133,158,.17) 0%,
+      rgba(224,133,158,.06) 35%,
+      transparent 70%
+    );
+
+  filter:blur(35px);
+
+  animation:
+    glowFloatOne 14s ease-in-out infinite;
+
+}
+
+
+/* 第二层呼吸光 */
+
+.romance-glow::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:520px;
+
+  height:520px;
+
+  right:-220px;
+
+  top:48%;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(229,178,138,.15) 0%,
+      rgba(229,178,138,.05) 38%,
+      transparent 72%
+    );
+
+  filter:blur(40px);
+
+  animation:
+    glowFloatTwo 18s ease-in-out infinite;
+
+}
+
+
+@keyframes glowFloatOne{
+
+  0%{
+
+    transform:
+      translate3d(0,0,0)
+      scale(.9);
+
+    opacity:.45;
+
+  }
+
+  50%{
+
+    transform:
+      translate3d(180px,80px,0)
+      scale(1.18);
+
+    opacity:1;
+
+  }
+
+  100%{
+
+    transform:
+      translate3d(0,0,0)
+      scale(.9);
+
+    opacity:.45;
+
+  }
+
+}
+
+
+@keyframes glowFloatTwo{
+
+  0%{
+
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+
+    opacity:.4;
+
+  }
+
+  50%{
+
+    transform:
+      translate3d(-160px,-100px,0)
+      scale(1.22);
+
+    opacity:.9;
+
+  }
+
+  100%{
+
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+
+    opacity:.4;
+
+  }
+
+}
+
+
+/* =========================================================
    HEADER
 ========================================================= */
 
@@ -77,12 +289,15 @@ a{
   height:72px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   padding:0 6%;
 
   position:sticky;
+
   top:0;
 
   z-index:100;
@@ -90,6 +305,7 @@ a{
   color:#fff;
 
   background:
+
     linear-gradient(
       90deg,
       rgba(27,18,22,.98),
@@ -171,6 +387,8 @@ a{
 
   position:relative;
 
+  z-index:2;
+
   padding:90px 8%;
 
   overflow:hidden;
@@ -193,10 +411,12 @@ a{
 
   background-position:center;
 
+  isolation:isolate;
+
 }
 
 
-/* Hero 左侧光晕 */
+/* Hero 内部香槟光 */
 
 .hero::before{
 
@@ -221,10 +441,13 @@ a{
 
   pointer-events:none;
 
+  animation:
+    heroGlow 12s ease-in-out infinite;
+
 }
 
 
-/* Hero 右上光晕 */
+/* Hero 右上光 */
 
 .hero::after{
 
@@ -249,6 +472,31 @@ a{
 
   pointer-events:none;
 
+  animation:
+    heroGlow 15s ease-in-out infinite reverse;
+
+}
+
+
+@keyframes heroGlow{
+
+  0%,
+  100%{
+
+    transform:scale(.9);
+
+    opacity:.45;
+
+  }
+
+  50%{
+
+    transform:scale(1.25);
+
+    opacity:1;
+
+  }
+
 }
 
 
@@ -258,7 +506,7 @@ a{
 
   position:relative;
 
-  z-index:2;
+  z-index:5;
 
 }
 
@@ -339,12 +587,14 @@ a{
 
 
 /* =========================================================
-   CONTENT
+   内容区
 ========================================================= */
 
 .content-section{
 
   position:relative;
+
+  z-index:2;
 
   overflow:hidden;
 
@@ -372,399 +622,140 @@ a{
 
     linear-gradient(
       180deg,
-      #f8f2f4 0%,
-      #f7f0f2 55%,
-      #f4e9ed 100%
+      rgba(248,242,244,.94) 0%,
+      rgba(247,240,242,.94) 55%,
+      rgba(244,233,237,.96) 100%
     );
 
 }
 
 
 /* =========================================================
-   ROMANTIC BACKGROUND
-   动态恋爱氛围层
+   新增：高级恋爱动态横幅
 ========================================================= */
 
-.romance-background{
+.romantic-banner{
 
-  position:absolute;
+  width:88%;
 
-  inset:0;
+  max-width:1400px;
+
+  min-height:235px;
+
+  margin:42px auto 35px;
+
+  position:relative;
+
+  z-index:3;
 
   overflow:hidden;
 
-  pointer-events:none;
+  border-radius:24px;
 
-  z-index:0;
-
-}
-
-
-/* 大型柔和光晕 */
-
-.romance-glow{
-
-  position:absolute;
-
-  border-radius:50%;
-
-  filter:blur(70px);
-
-  opacity:.5;
-
-  animation:
-    glowFloat 9s ease-in-out infinite alternate;
-
-}
-
-.romance-glow.one{
-
-  width:380px;
-  height:380px;
-
-  left:-150px;
-  top:160px;
+  border:
+    1px solid
+    rgba(255,255,255,.22);
 
   background:
-    rgba(239,157,181,.22);
 
-}
-
-.romance-glow.two{
-
-  width:430px;
-  height:430px;
-
-  right:-170px;
-  top:520px;
-
-  background:
-    rgba(239,191,165,.20);
-
-  animation-delay:-3s;
-
-}
-
-.romance-glow.three{
-
-  width:300px;
-  height:300px;
-
-  left:42%;
-  top:42%;
-
-  background:
-    rgba(220,157,179,.13);
-
-  animation-delay:-6s;
-
-}
-
-
-@keyframes glowFloat{
-
-  0%{
-
-    transform:
-      translate3d(0,0,0)
-      scale(1);
-
-  }
-
-  100%{
-
-    transform:
-      translate3d(25px,-25px,0)
-      scale(1.12);
-
-  }
-
-}
-
-
-/* =========================================================
-   FLOATING HEART
-========================================================= */
-
-.floating-heart{
-
-  position:absolute;
-
-  color:#d9879d;
-
-  font-size:var(--size,22px);
-
-  opacity:var(--opacity,.35);
-
-  animation:
-    heartFloat
-    var(--duration,9s)
-    ease-in-out
-    infinite;
-
-  filter:
-    drop-shadow(
-      0 5px 12px
-      rgba(194,103,132,.18)
+    linear-gradient(
+      115deg,
+      rgba(36,20,27,.96),
+      rgba(75,42,51,.92),
+      rgba(50,29,35,.94)
     );
 
-  user-select:none;
-
-}
-
-@keyframes heartFloat{
-
-  0%{
-
-    transform:
-      translate3d(0,35px,0)
-      rotate(-8deg)
-      scale(.85);
-
-    opacity:0;
-
-  }
-
-  15%{
-
-    opacity:var(--opacity,.35);
-
-  }
-
-  50%{
-
-    transform:
-      translate3d(
-        var(--moveX,18px),
-        -35px,
-        0
-      )
-      rotate(7deg)
-      scale(1);
-
-  }
-
-  85%{
-
-    opacity:var(--opacity,.35);
-
-  }
-
-  100%{
-
-    transform:
-      translate3d(
-        var(--moveX,-10px),
-        -120px,
-        0
-      )
-      rotate(-5deg)
-      scale(.8);
-
-    opacity:0;
-
-  }
-
-}
-
-
-/* =========================================================
-   HEART PAIR
-========================================================= */
-
-.heart-pair{
-
-  position:absolute;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  width:100px;
-
-  height:70px;
-
-  opacity:.25;
-
-  animation:
-    pairFloat 8s ease-in-out infinite;
-
-}
-
-.heart-pair span{
-
-  position:absolute;
-
-  font-size:28px;
-
-}
-
-.heart-pair span:first-child{
-
-  transform:
-    translateX(-15px)
-    rotate(-15deg);
-
-  color:#d77d96;
-
-}
-
-.heart-pair span:last-child{
-
-  transform:
-    translateX(15px)
-    rotate(15deg);
-
-  color:#e3a08c;
-
-}
-
-@keyframes pairFloat{
-
-  0%,
-  100%{
-
-    transform:
-      translateY(12px)
-      scale(.92);
-
-  }
-
-  50%{
-
-    transform:
-      translateY(-18px)
-      scale(1.06);
-
-  }
-
-}
-
-
-/* =========================================================
-   SPARKLES
-========================================================= */
-
-.sparkle{
-
-  position:absolute;
-
-  width:5px;
-
-  height:5px;
-
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.9);
-
   box-shadow:
-    0 0 8px
-    rgba(255,255,255,.85),
-    0 0 18px
-    rgba(224,137,160,.55);
 
-  animation:
-    sparkle 3s ease-in-out infinite;
+    0 25px 70px
+    rgba(57,31,40,.18),
+
+    inset 0 1px 0
+    rgba(255,255,255,.10);
+
+  isolation:isolate;
 
 }
 
-.sparkle::before,
-.sparkle::after{
+
+/* Banner 背景光 */
+
+.romantic-banner::before{
 
   content:"";
 
   position:absolute;
 
-  left:50%;
-  top:50%;
+  width:480px;
 
-  transform:
-    translate(-50%,-50%);
+  height:480px;
 
-  background:
-    rgba(255,255,255,.65);
+  left:-180px;
 
-}
-
-.sparkle::before{
-
-  width:1px;
-  height:22px;
-
-}
-
-.sparkle::after{
-
-  width:22px;
-  height:1px;
-
-}
-
-@keyframes sparkle{
-
-  0%,
-  100%{
-
-    opacity:.15;
-
-    transform:
-      scale(.55)
-      rotate(0deg);
-
-  }
-
-  50%{
-
-    opacity:1;
-
-    transform:
-      scale(1.25)
-      rotate(45deg);
-
-  }
-
-}
-
-
-/* =========================================================
-   SMALL ROMANTIC DOTS
-========================================================= */
-
-.love-dot{
-
-  position:absolute;
-
-  width:var(--dot-size,7px);
-
-  height:var(--dot-size,7px);
+  top:-280px;
 
   border-radius:50%;
 
   background:
-    rgba(211,132,153,.30);
+
+    radial-gradient(
+      circle,
+      rgba(225,144,164,.40),
+      rgba(225,144,164,.05) 50%,
+      transparent 72%
+    );
+
+  filter:blur(18px);
 
   animation:
-    dotMove
-    var(--dot-duration,12s)
-    linear infinite;
+    bannerLight 10s ease-in-out infinite;
 
 }
 
-@keyframes dotMove{
 
-  0%{
+/* Banner 香槟光 */
+
+.romantic-banner::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:500px;
+
+  height:500px;
+
+  right:-220px;
+
+  bottom:-330px;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(232,190,146,.34),
+      rgba(232,190,146,.05) 50%,
+      transparent 73%
+    );
+
+  filter:blur(18px);
+
+  animation:
+    bannerLightTwo 13s ease-in-out infinite;
+
+}
+
+
+@keyframes bannerLight{
+
+  0%,
+  100%{
 
     transform:
-      translate3d(0,80px,0);
-
-    opacity:0;
-
-  }
-
-  15%{
+      translate3d(0,0,0)
+      scale(.9);
 
     opacity:.5;
 
@@ -773,170 +764,240 @@ a{
   50%{
 
     transform:
-      translate3d(
-        var(--dot-x,30px),
-        -80px,
-        0
-      );
+      translate3d(160px,90px,0)
+      scale(1.25);
 
-    opacity:.8;
+    opacity:1;
 
   }
 
+}
+
+
+@keyframes bannerLightTwo{
+
+  0%,
   100%{
 
     transform:
-      translate3d(
-        var(--dot-x,-20px),
-        -230px,
-        0
-      );
+      translate3d(0,0,0)
+      scale(1);
 
-    opacity:0;
+    opacity:.45;
 
   }
 
-}
-
-
-/* =========================================================
-   ROMANTIC DECORATION LINES
-========================================================= */
-
-.romance-line{
-
-  position:absolute;
-
-  width:180px;
-
-  height:180px;
-
-  border:
-
-    1px solid
-
-    rgba(190,111,136,.12);
-
-  border-radius:50%;
-
-  animation:
-    ringRotate
-    18s
-    linear
-    infinite;
-
-}
-
-.romance-line::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:15px;
-
-  border:
-
-    1px dashed
-
-    rgba(190,111,136,.09);
-
-  border-radius:50%;
-
-}
-
-.romance-line.one{
-
-  left:-90px;
-
-  top:780px;
-
-}
-
-.romance-line.two{
-
-  right:-85px;
-
-  top:280px;
-
-  width:170px;
-
-  height:170px;
-
-  animation-direction:reverse;
-
-}
-
-@keyframes ringRotate{
-
-  from{
+  50%{
 
     transform:
-      rotate(0deg);
+      translate3d(-140px,-90px,0)
+      scale(1.2);
 
-  }
-
-  to{
-
-    transform:
-      rotate(360deg);
+    opacity:.9;
 
   }
 
 }
 
 
-/* =========================================================
-   CONTENT 装饰光晕
-========================================================= */
+.romantic-banner-content{
 
-.content-section::before{
+  min-height:235px;
 
-  content:"";
+  position:relative;
 
-  position:absolute;
+  z-index:5;
 
-  width:450px;
+  display:flex;
 
-  height:450px;
+  align-items:center;
 
-  left:-260px;
+  justify-content:center;
 
-  top:25%;
+  flex-direction:column;
 
-  border-radius:50%;
+  text-align:center;
 
-  background:
-    rgba(213,135,156,.10);
-
-  filter:blur(90px);
-
-  pointer-events:none;
+  padding:30px;
 
 }
 
-.content-section::after{
 
-  content:"";
+.romantic-mini{
+
+  font-size:10px;
+
+  letter-spacing:6px;
+
+  color:#e8bd9f;
+
+  margin-bottom:8px;
+
+  opacity:.9;
+
+}
+
+
+.romantic-banner h2{
+
+  color:#fff;
+
+  font-family:
+
+    Georgia,
+
+    "Times New Roman",
+
+    serif;
+
+  font-weight:400;
+
+  font-size:
+    clamp(28px,4vw,47px);
+
+  letter-spacing:2px;
+
+  line-height:1.25;
+
+  text-shadow:
+    0 5px 30px
+    rgba(0,0,0,.35);
+
+}
+
+
+.romantic-banner h2 span{
+
+  color:#e6aabd;
+
+}
+
+
+.romantic-subtitle{
+
+  margin-top:10px;
+
+  color:
+    rgba(255,255,255,.73);
+
+  font-size:14px;
+
+  letter-spacing:2px;
+
+}
+
+
+.romantic-line{
+
+  width:100px;
+
+  height:1px;
+
+  margin-top:19px;
+
+  position:relative;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(230,176,145,.85),
+      transparent
+    );
+
+}
+
+
+.romantic-heart{
 
   position:absolute;
 
-  width:400px;
+  left:50%;
 
-  height:400px;
+  top:50%;
 
-  right:-240px;
+  transform:
+    translate(-50%,-50%);
 
-  bottom:10%;
+  color:#e6a8ba;
 
-  border-radius:50%;
+  font-size:14px;
 
-  background:
-    rgba(222,168,146,.10);
+  background:#4c2b35;
 
-  filter:blur(90px);
+  padding:0 8px;
 
-  pointer-events:none;
+}
+
+
+/* Banner 四角装饰 */
+
+.banner-corner{
+
+  position:absolute;
+
+  width:70px;
+
+  height:70px;
+
+  border-color:
+    rgba(233,185,160,.32);
+
+  border-style:solid;
+
+  z-index:4;
+
+}
+
+
+.banner-corner.left-top{
+
+  left:18px;
+
+  top:18px;
+
+  border-width:1px 0 0 1px;
+
+  border-radius:15px 0 0 0;
+
+}
+
+
+.banner-corner.right-top{
+
+  right:18px;
+
+  top:18px;
+
+  border-width:1px 1px 0 0;
+
+  border-radius:0 15px 0 0;
+
+}
+
+
+.banner-corner.left-bottom{
+
+  left:18px;
+
+  bottom:18px;
+
+  border-width:0 0 1px 1px;
+
+  border-radius:0 0 0 15px;
+
+}
+
+
+.banner-corner.right-bottom{
+
+  right:18px;
+
+  bottom:18px;
+
+  border-width:0 1px 1px 0;
+
+  border-radius:0 0 15px 0;
 
 }
 
@@ -951,7 +1012,7 @@ a{
 
   max-width:1400px;
 
-  margin:45px auto 25px;
+  margin:35px auto 25px;
 
   display:flex;
 
@@ -965,7 +1026,7 @@ a{
 
   position:relative;
 
-  z-index:2;
+  z-index:4;
 
 }
 
@@ -1062,7 +1123,7 @@ a{
 
   position:relative;
 
-  z-index:2;
+  z-index:4;
 
 }
 
@@ -1074,7 +1135,7 @@ a{
 .woman-card{
 
   background:
-    rgba(255,255,255,.90);
+    rgba(255,255,255,.92);
 
   border-radius:16px;
 
@@ -1388,6 +1449,8 @@ footer{
 
   position:relative;
 
+  z-index:2;
+
   overflow:hidden;
 
   isolation:isolate;
@@ -1429,6 +1492,7 @@ footer{
 
 }
 
+
 footer::before{
 
   content:"";
@@ -1452,7 +1516,11 @@ footer::before{
 
   pointer-events:none;
 
+  animation:
+    footerGlow 11s ease-in-out infinite;
+
 }
+
 
 footer::after{
 
@@ -1477,7 +1545,35 @@ footer::after{
 
   pointer-events:none;
 
+  animation:
+    footerGlow 15s ease-in-out infinite reverse;
+
 }
+
+
+@keyframes footerGlow{
+
+  0%,
+  100%{
+
+    transform:
+      scale(.85);
+
+    opacity:.4;
+
+  }
+
+  50%{
+
+    transform:
+      scale(1.25);
+
+    opacity:1;
+
+  }
+
+}
+
 
 footer span{
 
@@ -1916,6 +2012,12 @@ footer span{
 
 @media(max-width:700px){
 
+  #romanceCanvas{
+
+    opacity:.82;
+
+  }
+
   .site-header{
 
     height:62px;
@@ -1972,12 +2074,65 @@ footer span{
   }
 
 
+  /* 手机端恋爱 Banner */
+
+  .romantic-banner{
+
+    width:
+      calc(100% - 30px);
+
+    min-height:210px;
+
+    margin:
+      25px auto 28px;
+
+    border-radius:20px;
+
+  }
+
+
+  .romantic-banner-content{
+
+    min-height:210px;
+
+    padding:25px 18px;
+
+  }
+
+
+  .romantic-mini{
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+  }
+
+
+  .romantic-banner h2{
+
+    font-size:28px;
+
+    letter-spacing:1px;
+
+  }
+
+
+  .romantic-subtitle{
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+  }
+
+
   .toolbar{
 
     width:
       calc(100% - 30px);
 
-    margin-top:35px;
+    margin-top:30px;
 
     align-items:flex-start;
 
@@ -2100,12 +2255,14 @@ footer span{
 
   }
 
+}
 
-  /* 手机端减少背景装饰数量 */
 
-  .romance-line{
+@media(max-width:400px){
 
-    opacity:.55;
+  .women-grid{
+
+    grid-template-columns:1fr;
 
   }
 
@@ -2118,13 +2275,23 @@ footer span{
 
 @media(prefers-reduced-motion:reduce){
 
-  *{
+  html{
 
     scroll-behavior:auto !important;
+
+  }
+
+  *{
 
     transition:none !important;
 
     animation:none !important;
+
+  }
+
+  #romanceCanvas{
+
+    display:none;
 
   }
 
@@ -2136,6 +2303,23 @@ footer span{
 
 
 <body>
+
+
+<!-- =========================================================
+     全页面动态恋爱背景
+========================================================= -->
+
+<div
+  class="romance-glow"
+  aria-hidden="true"
+></div>
+
+
+<canvas
+  id="romanceCanvas"
+  aria-hidden="true"
+></canvas>
+
 
 
 <!-- =========================================================
@@ -2205,76 +2389,56 @@ footer span{
 <main class="content-section">
 
 
-  <!-- =======================================================
-       动态恋爱背景
-  ======================================================== -->
+<!-- =========================================================
+     ROMANTIC BANNER
+========================================================= -->
 
-  <div
-    id="romanceBackground"
-    class="romance-background"
-    aria-hidden="true"
-  >
+<section class="romantic-banner">
 
-    <div class="romance-glow one"></div>
+  <div class="banner-corner left-top"></div>
 
-    <div class="romance-glow two"></div>
+  <div class="banner-corner right-top"></div>
 
-    <div class="romance-glow three"></div>
+  <div class="banner-corner left-bottom"></div>
+
+  <div class="banner-corner right-bottom"></div>
 
 
-    <div class="romance-line one"></div>
+  <div class="romantic-banner-content">
 
-    <div class="romance-line two"></div>
-
-
-    <div
-      class="heart-pair"
-      style="
-        left:8%;
-        top:360px;
-        animation-delay:-2s;
-      "
-    >
-
-      <span>♥</span>
-      <span>♥</span>
-
+    <div class="romantic-mini">
+      ROMANCE · DESTINY · CONNECTION
     </div>
 
 
-    <div
-      class="heart-pair"
-      style="
-        right:7%;
-        top:960px;
-        animation-delay:-5s;
-      "
-    >
+    <h2>
+      Somewhere Between
+      <span>Us & Destiny</span>
+    </h2>
 
-      <span>♥</span>
-      <span>♥</span>
 
+    <div class="romantic-subtitle">
+      有些心动，不需要解释
     </div>
 
 
-    <div
-      class="heart-pair"
-      style="
-        left:47%;
-        top:1450px;
-        animation-delay:-1s;
-        opacity:.15;
-      "
-    >
+    <div class="romantic-line">
 
-      <span>♥</span>
-      <span>♥</span>
+      <span class="romantic-heart">
+        ♥
+      </span>
 
     </div>
 
   </div>
 
+</section>
 
+
+
+<!-- =========================================================
+     TOOLBAR
+========================================================= -->
 
 <section class="toolbar">
 
@@ -2333,6 +2497,10 @@ footer span{
 </section>
 
 
+
+<!-- =========================================================
+     WOMEN GRID
+========================================================= -->
 
 <section
   id="womenGrid"
@@ -2492,9 +2660,718 @@ footer span{
 <script>
 
 
-/* ==================================================
+/* =========================================================
+   ROMANTIC CANVAS
+   全首页：
+   樱花 + 香槟粒子 + 心形 + 光点
+========================================================= */
+
+const romanceCanvas =
+  document.getElementById(
+    "romanceCanvas"
+  );
+
+
+const romanceCtx =
+  romanceCanvas.getContext(
+    "2d"
+  );
+
+
+let romanceParticles = [];
+
+
+let romanceWidth = 0;
+
+let romanceHeight = 0;
+
+
+let romanceDpr =
+  Math.min(
+    window.devicePixelRatio || 1,
+    2
+  );
+
+
+function resizeRomanceCanvas(){
+
+  romanceWidth =
+    window.innerWidth;
+
+
+  romanceHeight =
+    window.innerHeight;
+
+
+  romanceDpr =
+    Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
+
+
+  romanceCanvas.width =
+    romanceWidth *
+    romanceDpr;
+
+
+  romanceCanvas.height =
+    romanceHeight *
+    romanceDpr;
+
+
+  romanceCanvas.style.width =
+    romanceWidth + "px";
+
+
+  romanceCanvas.style.height =
+    romanceHeight + "px";
+
+
+  romanceCtx.setTransform(
+    romanceDpr,
+    0,
+    0,
+    romanceDpr,
+    0,
+    0
+  );
+
+}
+
+
+resizeRomanceCanvas();
+
+
+window.addEventListener(
+  "resize",
+  resizeRomanceCanvas
+);
+
+
+
+/* =========================================================
+   PARTICLE CLASS
+========================================================= */
+
+class RomanceParticle{
+
+  constructor(){
+
+    this.reset(
+      true
+    );
+
+  }
+
+
+  reset(initial){
+
+    this.type =
+      this.randomType();
+
+
+    this.x =
+      Math.random() *
+      romanceWidth;
+
+
+    this.y =
+      initial
+
+        ?
+
+        Math.random() *
+        romanceHeight
+
+        :
+
+        -30;
+
+
+    this.size =
+
+      this.type === "petal"
+
+        ?
+
+        5 +
+        Math.random() * 8
+
+        :
+
+      this.type === "heart"
+
+        ?
+
+        6 +
+        Math.random() * 9
+
+        :
+
+        1 +
+        Math.random() * 3;
+
+
+    this.speedY =
+
+      this.type === "petal"
+
+        ?
+
+        .25 +
+        Math.random() * .65
+
+        :
+
+      this.type === "heart"
+
+        ?
+
+        .15 +
+        Math.random() * .35
+
+        :
+
+        .08 +
+        Math.random() * .30;
+
+
+    this.speedX =
+
+      -.25 +
+      Math.random() * .5;
+
+
+    this.rotation =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    this.rotationSpeed =
+
+      -.012 +
+      Math.random() *
+      .024;
+
+
+    this.wave =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    this.waveSpeed =
+
+      .008 +
+      Math.random() *
+      .018;
+
+
+    this.opacity =
+
+      .12 +
+      Math.random() *
+      .50;
+
+
+    this.life =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    this.lifeSpeed =
+
+      .008 +
+      Math.random() *
+      .015;
+
+  }
+
+
+  randomType(){
+
+    const value =
+      Math.random();
+
+
+    if(
+      value < .47
+    ){
+
+      return "petal";
+
+    }
+
+
+    if(
+      value < .67
+    ){
+
+      return "heart";
+
+    }
+
+
+    if(
+      value < .86
+    ){
+
+      return "champagne";
+
+    }
+
+
+    return "sparkle";
+
+  }
+
+
+  update(){
+
+    this.y +=
+      this.speedY;
+
+
+    this.wave +=
+      this.waveSpeed;
+
+
+    this.x +=
+
+      this.speedX +
+
+      Math.sin(
+        this.wave
+      ) *
+      .22;
+
+
+    this.rotation +=
+      this.rotationSpeed;
+
+
+    this.life +=
+      this.lifeSpeed;
+
+
+    if(
+      this.y >
+      romanceHeight + 40
+    ){
+
+      this.reset(
+        false
+      );
+
+    }
+
+
+    if(
+      this.x <
+      -50
+    ){
+
+      this.x =
+        romanceWidth + 20;
+
+    }
+
+
+    if(
+      this.x >
+      romanceWidth + 50
+    ){
+
+      this.x =
+        -20;
+
+    }
+
+  }
+
+
+  draw(){
+
+    const ctx =
+      romanceCtx;
+
+
+    let pulse =
+
+      .72 +
+
+      Math.sin(
+        this.life
+      ) *
+      .28;
+
+
+    ctx.save();
+
+
+    ctx.translate(
+      this.x,
+      this.y
+    );
+
+
+    ctx.rotate(
+      this.rotation
+    );
+
+
+    ctx.globalAlpha =
+      this.opacity *
+      pulse;
+
+
+    /* =====================================================
+       樱花花瓣
+    ===================================================== */
+
+    if(
+      this.type === "petal"
+    ){
+
+      ctx.beginPath();
+
+
+      ctx.moveTo(
+        0,
+        -this.size
+      );
+
+
+      ctx.bezierCurveTo(
+
+        this.size * 1.4,
+        -this.size * .7,
+
+        this.size * 1.25,
+        this.size * .9,
+
+        0,
+        this.size
+
+      );
+
+
+      ctx.bezierCurveTo(
+
+        -this.size * 1.25,
+        this.size * .9,
+
+        -this.size * 1.4,
+        -this.size * .7,
+
+        0,
+        -this.size
+
+      );
+
+
+      ctx.closePath();
+
+
+      const gradient =
+        ctx.createLinearGradient(
+          0,
+          -this.size,
+          0,
+          this.size
+        );
+
+
+      gradient.addColorStop(
+        0,
+        "rgba(255,220,228,.85)"
+      );
+
+
+      gradient.addColorStop(
+        .55,
+        "rgba(232,153,176,.62)"
+      );
+
+
+      gradient.addColorStop(
+        1,
+        "rgba(194,111,138,.32)"
+      );
+
+
+      ctx.fillStyle =
+        gradient;
+
+
+      ctx.fill();
+
+    }
+
+
+    /* =====================================================
+       心形
+    ===================================================== */
+
+    else if(
+      this.type === "heart"
+    ){
+
+      const s =
+        this.size;
+
+
+      ctx.beginPath();
+
+
+      ctx.moveTo(
+        0,
+        s * .9
+      );
+
+
+      ctx.bezierCurveTo(
+        -s * 1.7,
+        -s * .1,
+        -s * .9,
+        -s * 1.5,
+        0,
+        -s * .65
+      );
+
+
+      ctx.bezierCurveTo(
+        s * .9,
+        -s * 1.5,
+        s * 1.7,
+        -s * .1,
+        0,
+        s * .9
+      );
+
+
+      ctx.closePath();
+
+
+      ctx.fillStyle =
+        "rgba(224,137,163,.65)";
+
+
+      ctx.shadowBlur =
+        15;
+
+
+      ctx.shadowColor =
+        "rgba(227,148,173,.65)";
+
+
+      ctx.fill();
+
+    }
+
+
+    /* =====================================================
+       香槟粒子
+    ===================================================== */
+
+    else if(
+      this.type === "champagne"
+    ){
+
+      const gradient =
+        ctx.createRadialGradient(
+          0,
+          0,
+          0,
+          0,
+          0,
+          this.size * 4
+        );
+
+
+      gradient.addColorStop(
+        0,
+        "rgba(255,224,178,.95)"
+      );
+
+
+      gradient.addColorStop(
+        .25,
+        "rgba(245,201,155,.62)"
+      );
+
+
+      gradient.addColorStop(
+        1,
+        "rgba(245,201,155,0)"
+      );
+
+
+      ctx.fillStyle =
+        gradient;
+
+
+      ctx.beginPath();
+
+
+      ctx.arc(
+        0,
+        0,
+        this.size * 4,
+        0,
+        Math.PI * 2
+      );
+
+
+      ctx.fill();
+
+    }
+
+
+    /* =====================================================
+       星光
+    ===================================================== */
+
+    else{
+
+      ctx.strokeStyle =
+        "rgba(255,222,184,.78)";
+
+
+      ctx.lineWidth =
+        1;
+
+
+      const length =
+        this.size * 4;
+
+
+      ctx.beginPath();
+
+
+      ctx.moveTo(
+        -length,
+        0
+      );
+
+
+      ctx.lineTo(
+        length,
+        0
+      );
+
+
+      ctx.moveTo(
+        0,
+        -length
+      );
+
+
+      ctx.lineTo(
+        0,
+        length
+      );
+
+
+      ctx.stroke();
+
+    }
+
+
+    ctx.restore();
+
+  }
+
+}
+
+
+
+/* =========================================================
+   创建粒子
+========================================================= */
+
+function createRomanceParticles(){
+
+  romanceParticles = [];
+
+
+  const isMobile =
+    window.innerWidth <= 700;
+
+
+  const count =
+    isMobile
+      ? 42
+      : 95;
+
+
+  for(
+    let i = 0;
+    i < count;
+    i++
+  ){
+
+    romanceParticles.push(
+      new RomanceParticle()
+    );
+
+  }
+
+}
+
+
+createRomanceParticles();
+
+
+window.addEventListener(
+  "resize",
+  createRomanceParticles
+);
+
+
+
+/* =========================================================
+   Canvas 动画
+========================================================= */
+
+function animateRomance(){
+
+  romanceCtx.clearRect(
+    0,
+    0,
+    romanceWidth,
+    romanceHeight
+  );
+
+
+  romanceParticles.forEach(
+    particle => {
+
+      particle.update();
+
+      particle.draw();
+
+    }
+  );
+
+
+  requestAnimationFrame(
+    animateRomance
+  );
+
+}
+
+
+animateRomance();
+
+
+
+/* =========================================================
    SUPABASE
-================================================== */
+========================================================= */
 
 const SUPABASE_URL =
 "https://yutraouosffjteivvlfx.supabase.co";
@@ -2520,9 +3397,9 @@ let joinContact = {
 
 
 
-/* ==================================================
+/* =========================================================
    BASIC
-================================================== */
+========================================================= */
 
 document
   .getElementById("year")
@@ -2549,269 +3426,9 @@ function escapeHtml(value){
 
 
 
-/* ==================================================
-   动态恋爱背景
-================================================== */
-
-function createRomanticDecorations(){
-
-  const container =
-    document.getElementById(
-      "romanceBackground"
-    );
-
-
-  if(!container){
-
-    return;
-
-  }
-
-
-  /*
-   * 爱心
-   */
-
-  const hearts = [
-    "♥",
-    "♡",
-    "❤",
-    "💕",
-    "♡"
-  ];
-
-
-  for(
-    let i = 0;
-    i < 22;
-    i++
-  ){
-
-    const heart =
-      document.createElement(
-        "div"
-      );
-
-
-    heart.className =
-      "floating-heart";
-
-
-    heart.textContent =
-      hearts[
-        Math.floor(
-          Math.random() *
-          hearts.length
-        )
-      ];
-
-
-    heart.style.left =
-      (
-        Math.random() *
-        100
-      ) + "%";
-
-
-    heart.style.top =
-      (
-        80 +
-        Math.random() *
-        180
-      ) + "px";
-
-
-    heart.style.setProperty(
-      "--size",
-      (
-        13 +
-        Math.random() * 22
-      ) + "px"
-    );
-
-
-    heart.style.setProperty(
-      "--opacity",
-      (
-        .12 +
-        Math.random() * .28
-      )
-    );
-
-
-    heart.style.setProperty(
-      "--duration",
-      (
-        7 +
-        Math.random() * 8
-      ) + "s"
-    );
-
-
-    heart.style.setProperty(
-      "--moveX",
-      (
-        -35 +
-        Math.random() * 70
-      ) + "px"
-    );
-
-
-    heart.style.animationDelay =
-      (
-        -Math.random() * 12
-      ) + "s";
-
-
-    container.appendChild(
-      heart
-    );
-
-  }
-
-
-
-  /*
-   * 星光
-   */
-
-  for(
-    let i = 0;
-    i < 18;
-    i++
-  ){
-
-    const sparkle =
-      document.createElement(
-        "div"
-      );
-
-
-    sparkle.className =
-      "sparkle";
-
-
-    sparkle.style.left =
-      (
-        Math.random() *
-        100
-      ) + "%";
-
-
-    sparkle.style.top =
-      (
-        150 +
-        Math.random() *
-        1800
-      ) + "px";
-
-
-    sparkle.style.animationDelay =
-      (
-        -Math.random() * 4
-      ) + "s";
-
-
-    sparkle.style.animationDuration =
-      (
-        2 +
-        Math.random() * 3
-      ) + "s";
-
-
-    container.appendChild(
-      sparkle
-    );
-
-  }
-
-
-
-  /*
-   * 漂浮圆点
-   */
-
-  for(
-    let i = 0;
-    i < 24;
-    i++
-  ){
-
-    const dot =
-      document.createElement(
-        "div"
-      );
-
-
-    dot.className =
-      "love-dot";
-
-
-    dot.style.left =
-      (
-        Math.random() *
-        100
-      ) + "%";
-
-
-    dot.style.top =
-      (
-        300 +
-        Math.random() *
-        1700
-      ) + "px";
-
-
-    dot.style.setProperty(
-      "--dot-size",
-      (
-        4 +
-        Math.random() * 7
-      ) + "px"
-    );
-
-
-    dot.style.setProperty(
-      "--dot-duration",
-      (
-        9 +
-        Math.random() * 9
-      ) + "s"
-    );
-
-
-    dot.style.setProperty(
-      "--dot-x",
-      (
-        -40 +
-        Math.random() * 80
-      ) + "px"
-    );
-
-
-    dot.style.animationDelay =
-      (
-        -Math.random() * 15
-      ) + "s";
-
-
-    container.appendChild(
-      dot
-    );
-
-  }
-
-}
-
-
-
-createRomanticDecorations();
-
-
-
-/* ==================================================
+/* =========================================================
    MEDIA
-================================================== */
+========================================================= */
 
 function normalizeMedia(value){
 
@@ -2903,9 +3520,9 @@ function normalizeMedia(value){
 
 
 
-/* ==================================================
+/* =========================================================
    STORAGE
-================================================== */
+========================================================= */
 
 function getStorageUrl(path){
 
@@ -2953,9 +3570,9 @@ function getStorageUrl(path){
 
 
 
-/* ==================================================
+/* =========================================================
    PHOTOS
-================================================== */
+========================================================= */
 
 function getPhotos(woman){
 
@@ -2999,9 +3616,9 @@ function getPhotos(woman){
 
 
 
-/* ==================================================
+/* =========================================================
    VIDEOS
-================================================== */
+========================================================= */
 
 function getVideos(woman){
 
@@ -3027,9 +3644,9 @@ function getVideos(woman){
 
 
 
-/* ==================================================
+/* =========================================================
    LOAD WOMEN
-================================================== */
+========================================================= */
 
 async function loadWomen(){
 
@@ -3125,9 +3742,9 @@ async function loadWomen(){
 
 
 
-/* ==================================================
+/* =========================================================
    CITY FILTER
-================================================== */
+========================================================= */
 
 function createCityFilter(){
 
@@ -3195,9 +3812,9 @@ function createCityFilter(){
 
 
 
-/* ==================================================
+/* =========================================================
    RENDER WOMEN
-================================================== */
+========================================================= */
 
 function renderWomen(list){
 
@@ -3481,9 +4098,9 @@ function renderWomen(list){
 
 
 
-/* ==================================================
+/* =========================================================
    GALLERY
-================================================== */
+========================================================= */
 
 let galleryMedia = [];
 
@@ -3763,9 +4380,9 @@ function galleryGoTo(index){
 
 
 
-/* ==================================================
+/* =========================================================
    GALLERY SCROLL
-================================================== */
+========================================================= */
 
 document
   .getElementById(
@@ -3899,9 +4516,9 @@ function closeGallery(){
 
 
 
-/* ==================================================
+/* =========================================================
    ESC
-================================================== */
+========================================================= */
 
 document.addEventListener(
 
@@ -3960,9 +4577,9 @@ document.addEventListener(
 
 
 
-/* ==================================================
+/* =========================================================
    JOIN CONTACT
-================================================== */
+========================================================= */
 
 async function loadJoinContact(){
 
@@ -4040,9 +4657,9 @@ async function loadJoinContact(){
 
 
 
-/* ==================================================
+/* =========================================================
    WHATSAPP
-================================================== */
+========================================================= */
 
 function makeWhatsAppUrl(value){
 
@@ -4074,9 +4691,9 @@ function makeWhatsAppUrl(value){
 
 
 
-/* ==================================================
+/* =========================================================
    TELEGRAM
-================================================== */
+========================================================= */
 
 function makeTelegramUrl(value){
 
@@ -4131,9 +4748,9 @@ function makeTelegramUrl(value){
 
 
 
-/* ==================================================
+/* =========================================================
    JOIN MODAL
-================================================== */
+========================================================= */
 
 function openJoinModal(){
 
@@ -4310,9 +4927,9 @@ document
 
 
 
-/* ==================================================
+/* =========================================================
    FILTER
-================================================== */
+========================================================= */
 
 function filterWomen(){
 
@@ -4449,9 +5066,9 @@ document
 
 
 
-/* ==================================================
+/* =========================================================
    START
-================================================== */
+========================================================= */
 
 Promise.all([
 
