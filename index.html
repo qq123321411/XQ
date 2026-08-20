@@ -19,6 +19,10 @@
 
 <style>
 
+/* =========================================================
+   GLOBAL
+========================================================= */
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -36,23 +40,26 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     "PingFang SC",
+    "Hiragino Sans GB",
     "Microsoft YaHei",
     Arial,
     sans-serif;
 
-  background:#faf9f7;
-  color:#2b2927;
+  background:#f7f1f3;
+
+  color:#30272a;
+
   line-height:1.6;
 
-}
-
-button{
-  font-family:inherit;
 }
 
 button,
 a{
   -webkit-tap-highlight-color:transparent;
+}
+
+button{
+  font-family:inherit;
 }
 
 a{
@@ -61,9 +68,9 @@ a{
 }
 
 
-/* =========================
-   Header
-========================= */
+/* =========================================================
+   HEADER
+========================================================= */
 
 .site-header{
 
@@ -75,88 +82,195 @@ a{
 
   padding:0 6%;
 
-  background:rgba(255,255,255,.97);
-
-  border-bottom:1px solid #eee;
-
   position:sticky;
   top:0;
 
   z-index:100;
+
+  color:#fff;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(27,18,22,.98),
+      rgba(52,31,38,.96)
+    );
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.10);
+
+  box-shadow:
+    0 5px 25px
+    rgba(0,0,0,.15);
 
 }
 
 .brand{
 
   font-size:22px;
+
   font-weight:700;
-  letter-spacing:1px;
+
+  letter-spacing:2px;
+
+  color:#fff;
 
 }
 
 .brand span{
 
-  color:#b58b63;
-  margin:0 3px;
+  color:#df9faf;
+
+  margin:0 4px;
 
 }
 
 .admin-link{
 
-  padding:8px 16px;
+  padding:8px 17px;
 
-  border:1px solid #ddd;
-  border-radius:20px;
+  border:
+    1px solid
+    rgba(255,255,255,.25);
 
-  font-size:14px;
-  color:#666;
+  border-radius:22px;
+
+  font-size:13px;
+
+  color:
+    rgba(255,255,255,.85);
+
+  background:
+    rgba(255,255,255,.06);
+
+  transition:.25s ease;
 
 }
 
 .admin-link:hover{
 
-  background:#2b2927;
-  color:#fff;
+  background:#fff;
+
+  color:#30272a;
 
 }
 
 
-/* =========================
-   Hero
-========================= */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
 
-  min-height:420px;
+  min-height:610px;
 
   display:flex;
+
   align-items:center;
 
-  padding:70px 8%;
+  position:relative;
 
-  background:
+  padding:90px 8%;
+
+  overflow:hidden;
+
+  color:#fff;
+
+  background-image:
+
     linear-gradient(
       90deg,
-      #faf9f7 0%,
-      rgba(250,249,247,.94) 55%,
-      rgba(250,249,247,.65) 100%
-    );
+      rgba(20,13,17,.88) 0%,
+      rgba(28,18,22,.70) 38%,
+      rgba(30,20,24,.42) 70%,
+      rgba(20,14,18,.28) 100%
+    ),
+
+    url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=90");
+
+  background-size:cover;
+
+  background-position:center;
 
 }
 
+
+/* Hero 左侧光晕 */
+
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:520px;
+
+  height:520px;
+
+  left:-200px;
+
+  bottom:-270px;
+
+  border-radius:50%;
+
+  background:
+    rgba(213,128,151,.20);
+
+  filter:blur(105px);
+
+  pointer-events:none;
+
+}
+
+
+/* Hero 右上光晕 */
+
+.hero::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:430px;
+
+  height:430px;
+
+  right:-170px;
+
+  top:-170px;
+
+  border-radius:50%;
+
+  background:
+    rgba(239,179,155,.14);
+
+  filter:blur(100px);
+
+  pointer-events:none;
+
+}
+
+
 .hero > div{
 
-  max-width:700px;
+  max-width:720px;
+
+  position:relative;
+
+  z-index:2;
 
 }
 
 .eyebrow{
 
-  font-size:13px;
-  letter-spacing:4px;
-  color:#b58b63;
+  font-size:12px;
 
-  margin-bottom:18px;
+  letter-spacing:5px;
+
+  color:#e8a8b8;
+
+  margin-bottom:20px;
 
   font-weight:600;
 
@@ -164,48 +278,214 @@ a{
 
 .hero h1{
 
-  font-size:clamp(38px,6vw,70px);
+  font-size:
+    clamp(40px,6vw,76px);
 
-  line-height:1.2;
+  line-height:1.16;
 
   font-weight:600;
 
   letter-spacing:1px;
 
-  margin-bottom:24px;
+  margin-bottom:26px;
+
+  text-shadow:
+    0 4px 25px
+    rgba(0,0,0,.28);
 
 }
 
 .hero p:not(.eyebrow){
 
-  color:#777;
+  color:
+    rgba(255,255,255,.84);
 
   font-size:17px;
 
-  max-width:520px;
+  max-width:550px;
+
+  line-height:1.9;
 
 }
 
+.hero-label{
 
-/* =========================
-   Toolbar
-========================= */
-
-.toolbar{
-
-  width:88%;
-  max-width:1400px;
-
-  margin:40px auto 25px;
+  margin-top:35px;
 
   display:flex;
 
   align-items:center;
-  justify-content:flex-end;
+
+  gap:12px;
+
+  color:
+    rgba(255,255,255,.62);
+
+  font-size:13px;
+
+}
+
+.hero-label::before{
+
+  content:"";
+
+  width:34px;
+
+  height:1px;
+
+  background:#d99cac;
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content-section{
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding-top:1px;
+
+  background:
+
+    radial-gradient(
+      circle at 5% 8%,
+      rgba(215,153,167,.16),
+      transparent 27%
+    ),
+
+    radial-gradient(
+      circle at 94% 30%,
+      rgba(220,180,160,.13),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 50% 90%,
+      rgba(201,142,159,.08),
+      transparent 32%
+    ),
+
+    linear-gradient(
+      180deg,
+      #f8f2f4 0%,
+      #f7f0f2 55%,
+      #f4e9ed 100%
+    );
+
+}
+
+
+/* 内容区装饰光晕 */
+
+.content-section::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:450px;
+
+  height:450px;
+
+  left:-260px;
+
+  top:25%;
+
+  border-radius:50%;
+
+  background:
+    rgba(213,135,156,.10);
+
+  filter:blur(90px);
+
+  pointer-events:none;
+
+}
+
+.content-section::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:400px;
+
+  height:400px;
+
+  right:-240px;
+
+  bottom:10%;
+
+  border-radius:50%;
+
+  background:
+    rgba(222,168,146,.10);
+
+  filter:blur(90px);
+
+  pointer-events:none;
+
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar{
+
+  width:88%;
+
+  max-width:1400px;
+
+  margin:45px auto 25px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
 
   gap:20px;
 
   flex-wrap:wrap;
+
+  position:relative;
+
+  z-index:2;
+
+}
+
+.section-title{
+
+  color:#392c30;
+
+}
+
+.section-title small{
+
+  display:block;
+
+  font-size:11px;
+
+  letter-spacing:4px;
+
+  color:#b97889;
+
+  margin-bottom:4px;
+
+}
+
+.section-title h2{
+
+  font-size:27px;
+
+  font-weight:600;
 
 }
 
@@ -221,33 +501,49 @@ a{
 
   appearance:none;
 
-  border:1px solid #ddd;
+  border:
+    1px solid
+    #e1d2d7;
 
-  background:#fff;
+  background:
+    rgba(255,255,255,.82);
 
-  padding:11px 36px 11px 14px;
+  padding:
+    11px 40px 11px 15px;
 
-  border-radius:8px;
+  border-radius:10px;
 
-  color:#444;
+  color:#4b4043;
 
   cursor:pointer;
 
   outline:none;
 
+  box-shadow:
+    0 5px 20px
+    rgba(72,42,50,.05);
+
+}
+
+.filters select:focus{
+
+  border-color:#c58a9a;
+
 }
 
 
-/* =========================
-   Grid
-========================= */
+/* =========================================================
+   GRID
+========================================================= */
 
 .women-grid{
 
   width:88%;
+
   max-width:1400px;
 
-  margin:0 auto 70px;
+  margin:
+    0 auto 85px;
 
   display:grid;
 
@@ -256,44 +552,60 @@ a{
 
   gap:24px;
 
+  position:relative;
+
+  z-index:2;
+
 }
 
 
-/* =========================
-   Card
-========================= */
+/* =========================================================
+   CARD
+========================================================= */
 
 .woman-card{
 
-  background:#fff;
+  background:
+    rgba(255,255,255,.90);
 
-  border-radius:14px;
+  border-radius:16px;
 
   overflow:hidden;
 
-  border:1px solid #eee;
+  border:
+    1px solid
+    rgba(219,201,205,.85);
 
   transition:
-    transform .25s ease,
-    box-shadow .25s ease;
+    transform .3s ease,
+    box-shadow .3s ease;
 
   cursor:pointer;
+
+  box-shadow:
+    0 8px 30px
+    rgba(58,37,43,.07);
+
+  backdrop-filter:
+    blur(5px);
 
 }
 
 .woman-card:hover{
 
-  transform:translateY(-5px);
+  transform:
+    translateY(-6px);
 
   box-shadow:
-    0 15px 40px rgba(0,0,0,.08);
+    0 20px 50px
+    rgba(63,38,47,.15);
 
 }
 
 
-/* =========================
-   Image
-========================= */
+/* =========================================================
+   IMAGE
+========================================================= */
 
 .woman-image{
 
@@ -301,40 +613,65 @@ a{
 
   aspect-ratio:3 / 4;
 
-  background:#eee;
+  background:#eee5e8;
 
   overflow:hidden;
+
+  position:relative;
+
+}
+
+.woman-image::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 52%,
+      rgba(30,20,24,.12)
+    );
 
 }
 
 .woman-image img{
 
   width:100%;
+
   height:100%;
 
   object-fit:cover;
 
   display:block;
 
-  transition:transform .5s ease;
+  transition:
+    transform .6s ease;
 
 }
 
 .woman-card:hover
 .woman-image img{
 
-  transform:scale(1.03);
+  transform:
+    scale(1.045);
 
 }
 
 
-/* =========================
-   Info
-========================= */
+/* =========================================================
+   INFO
+========================================================= */
 
 .woman-info{
 
-  padding:18px;
+  padding:
+    18px 18px 20px;
 
 }
 
@@ -344,15 +681,17 @@ a{
 
   font-weight:600;
 
-  margin-bottom:4px;
+  color:#332a2d;
+
+  margin-bottom:5px;
 
 }
 
 .city{
 
-  color:#b58b63;
+  color:#b77b8b;
 
-  font-size:14px;
+  font-size:13px;
 
   margin-bottom:7px;
 
@@ -360,7 +699,7 @@ a{
 
 .woman-info p{
 
-  color:#777;
+  color:#827579;
 
   font-size:13px;
 
@@ -383,9 +722,9 @@ a{
 }
 
 
-/* =========================
-   More card
-========================= */
+/* =========================================================
+   MORE CARD
+========================================================= */
 
 .more-card{
 
@@ -393,15 +732,19 @@ a{
 
   min-height:100%;
 
-  aspect-ratio:auto;
-
   overflow:hidden;
 
-  border-radius:14px;
+  border-radius:16px;
 
   cursor:pointer;
 
-  background:#222;
+  background:#281c21;
+
+  min-height:400px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(58,34,42,.14);
 
 }
 
@@ -412,23 +755,28 @@ a{
   inset:0;
 
   background-image:
+
     linear-gradient(
-      rgba(0,0,0,.18),
-      rgba(0,0,0,.68)
+      rgba(30,17,22,.20),
+      rgba(27,16,21,.84)
     ),
-    url("https://yutraouosffjteivvlfx.supabase.co/storage/v1/object/public/women-photos/12121.png");
+
+    url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=90");
 
   background-size:cover;
 
   background-position:center;
 
-  transition:transform .5s ease;
+  transition:
+    transform .6s ease;
 
 }
 
-.more-card:hover .more-card-bg{
+.more-card:hover
+.more-card-bg{
 
-  transform:scale(1.04);
+  transform:
+    scale(1.05);
 
 }
 
@@ -454,17 +802,22 @@ a{
 
 .more-card-content h2{
 
-  font-size:25px;
+  font-size:26px;
 
-  margin-bottom:10px;
+  line-height:1.3;
+
+  margin-bottom:12px;
 
 }
 
 .more-card-content p{
 
-  color:rgba(255,255,255,.88);
+  color:
+    rgba(255,255,255,.82);
 
   font-size:14px;
+
+  line-height:1.8;
 
   margin-bottom:20px;
 
@@ -472,7 +825,7 @@ a{
 
 .join-button{
 
-  display:inline-flex;
+  display:flex;
 
   align-items:center;
 
@@ -480,22 +833,31 @@ a{
 
   width:100%;
 
-  padding:12px;
+  padding:13px;
 
   background:#fff;
 
-  color:#2b2927;
+  color:#33282c;
 
-  border-radius:9px;
+  border-radius:10px;
 
   font-weight:600;
+
+  transition:.25s ease;
+
+}
+
+.more-card:hover
+.join-button{
+
+  background:#f3dce2;
 
 }
 
 
-/* =========================
-   Loading
-========================= */
+/* =========================================================
+   LOADING
+========================================================= */
 
 .loading{
 
@@ -505,35 +867,128 @@ a{
 
   padding:80px 20px;
 
-  color:#888;
+  color:#9a898e;
 
 }
 
 
-/* =========================
-   Footer
-========================= */
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
 
+  position:relative;
+
+  overflow:hidden;
+
+  isolation:isolate;
+
   text-align:center;
 
-  padding:35px 20px;
+  padding:
+    70px 20px 75px;
 
-  border-top:1px solid #eee;
-
-  color:#aaa;
+  color:
+    rgba(255,255,255,.68);
 
   font-size:13px;
 
-  background:#fff;
+  background:
+
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(211,137,157,.25),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(221,166,139,.20),
+      transparent 35%
+    ),
+
+    linear-gradient(
+      135deg,
+      #24171c 0%,
+      #352128 45%,
+      #24171c 100%
+    );
+
+  border-top:
+    1px solid
+    rgba(255,255,255,.08);
 
 }
 
 
-/* =========================
-   Gallery Modal
-========================= */
+/* Footer 左下光晕 */
+
+footer::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:380px;
+
+  height:380px;
+
+  left:-180px;
+
+  bottom:-260px;
+
+  border-radius:50%;
+
+  background:
+    rgba(212,132,153,.18);
+
+  filter:blur(80px);
+
+  pointer-events:none;
+
+}
+
+
+/* Footer 右上光晕 */
+
+footer::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:320px;
+
+  height:320px;
+
+  right:-140px;
+
+  top:-200px;
+
+  border-radius:50%;
+
+  background:
+    rgba(224,174,145,.14);
+
+  filter:blur(75px);
+
+  pointer-events:none;
+
+}
+
+footer span{
+
+  position:relative;
+
+  z-index:2;
+
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
 
 .gallery-modal{
 
@@ -543,7 +998,8 @@ footer{
 
   z-index:1000;
 
-  background:rgba(0,0,0,.94);
+  background:
+    rgba(15,10,13,.96);
 
   display:none;
 
@@ -562,6 +1018,7 @@ footer{
 .gallery-container{
 
   width:100%;
+
   height:100%;
 
   display:flex;
@@ -593,6 +1050,7 @@ footer{
 .gallery-title{
 
   font-size:17px;
+
   font-weight:600;
 
 }
@@ -600,12 +1058,15 @@ footer{
 .gallery-close{
 
   width:42px;
+
   height:42px;
 
   border:0;
+
   border-radius:50%;
 
-  background:rgba(255,255,255,.15);
+  background:
+    rgba(255,255,255,.13);
 
   color:#fff;
 
@@ -636,6 +1097,7 @@ footer{
 .gallery-track{
 
   width:100%;
+
   height:100%;
 
   display:flex;
@@ -679,6 +1141,7 @@ footer{
 .gallery-slide img{
 
   max-width:100%;
+
   max-height:100%;
 
   object-fit:contain;
@@ -694,9 +1157,11 @@ footer{
 .gallery-slide video{
 
   max-width:100%;
+
   max-height:100%;
 
   width:auto;
+
   height:auto;
 
   background:#000;
@@ -714,13 +1179,15 @@ footer{
   transform:translateY(-50%);
 
   width:48px;
+
   height:48px;
 
   border:0;
 
   border-radius:50%;
 
-  background:rgba(255,255,255,.15);
+  background:
+    rgba(255,255,255,.13);
 
   color:#fff;
 
@@ -761,9 +1228,9 @@ footer{
 }
 
 
-/* =========================
-   Join Modal
-========================= */
+/* =========================================================
+   JOIN MODAL
+========================================================= */
 
 .join-modal{
 
@@ -773,7 +1240,8 @@ footer{
 
   z-index:1100;
 
-  background:rgba(0,0,0,.55);
+  background:
+    rgba(15,8,12,.68);
 
   display:none;
 
@@ -782,6 +1250,9 @@ footer{
   justify-content:center;
 
   padding:20px;
+
+  backdrop-filter:
+    blur(8px);
 
 }
 
@@ -794,31 +1265,44 @@ footer{
 .join-box{
 
   width:100%;
-  max-width:400px;
 
-  background:#fff;
+  max-width:410px;
 
-  border-radius:18px;
+  background:
 
-  padding:30px;
+    linear-gradient(
+      145deg,
+      #fff,
+      #fdf7f8
+    );
+
+  border-radius:20px;
+
+  padding:32px;
 
   position:relative;
 
   text-align:center;
 
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.25);
+
 }
 
 .join-box h2{
 
-  font-size:25px;
+  font-size:27px;
 
   margin-bottom:8px;
+
+  color:#33272b;
 
 }
 
 .join-box p{
 
-  color:#888;
+  color:#8b7b80;
 
   font-size:14px;
 
@@ -831,18 +1315,24 @@ footer{
   position:absolute;
 
   top:12px;
+
   right:12px;
 
   width:35px;
+
   height:35px;
 
   border:0;
 
   border-radius:50%;
 
-  background:#f1f1f1;
+  background:#f1e8ea;
+
+  color:#66565b;
 
   font-size:20px;
+
+  cursor:pointer;
 
 }
 
@@ -866,23 +1356,34 @@ footer{
 
   padding:13px;
 
-  border-radius:9px;
+  border-radius:10px;
 
   font-weight:600;
+
+  transition:.25s ease;
+
+}
+
+.join-contact a:hover{
+
+  transform:
+    translateY(-2px);
 
 }
 
 .join-whatsapp{
 
-  background:#e8f7ed;
-  color:#168a43;
+  background:#e7f6ec;
+
+  color:#168743;
 
 }
 
 .join-telegram{
 
-  background:#e8f2fb;
-  color:#2481c7;
+  background:#e7f1f9;
+
+  color:#2480c5;
 
 }
 
@@ -895,9 +1396,9 @@ footer{
 }
 
 
-/* =========================
-   Responsive
-========================= */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
 @media(max-width:1000px){
 
@@ -910,11 +1411,13 @@ footer{
 
 }
 
+
 @media(max-width:700px){
 
   .site-header{
 
     height:62px;
+
     padding:0 20px;
 
   }
@@ -928,20 +1431,26 @@ footer{
   .admin-link{
 
     font-size:12px;
+
     padding:6px 12px;
 
   }
 
+
   .hero{
 
-    min-height:360px;
-    padding:55px 25px;
+    min-height:590px;
+
+    padding:65px 25px;
+
+    background-position:
+      62% center;
 
   }
 
   .hero h1{
 
-    font-size:39px;
+    font-size:40px;
 
   }
 
@@ -949,15 +1458,37 @@ footer{
 
     font-size:15px;
 
+    line-height:1.8;
+
   }
+
+
+  .hero-label{
+
+    font-size:12px;
+
+  }
+
 
   .toolbar{
 
-    width:calc(100% - 30px);
+    width:
+      calc(100% - 30px);
 
-    margin-top:30px;
+    margin-top:35px;
+
+    align-items:flex-start;
+
+    flex-direction:column;
 
   }
+
+  .section-title h2{
+
+    font-size:23px;
+
+  }
+
 
   .filters{
 
@@ -973,9 +1504,11 @@ footer{
 
   }
 
+
   .women-grid{
 
-    width:calc(100% - 30px);
+    width:
+      calc(100% - 30px);
 
     grid-template-columns:
       repeat(2,minmax(0,1fr));
@@ -983,6 +1516,7 @@ footer{
     gap:12px;
 
   }
+
 
   .woman-info{
 
@@ -999,6 +1533,13 @@ footer{
   .woman-info p{
 
     font-size:12px;
+
+  }
+
+
+  .more-card{
+
+    min-height:360px;
 
   }
 
@@ -1020,6 +1561,7 @@ footer{
 
   }
 
+
   .gallery-slide{
 
     padding:10px 15px;
@@ -1029,6 +1571,7 @@ footer{
   .gallery-arrow{
 
     width:40px;
+
     height:40px;
 
     font-size:23px;
@@ -1047,7 +1590,16 @@ footer{
 
   }
 
+
+  footer{
+
+    padding:
+      55px 20px 60px;
+
+  }
+
 }
+
 
 @media(max-width:400px){
 
@@ -1059,32 +1611,59 @@ footer{
 
 }
 
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *{
+
+    scroll-behavior:auto !important;
+
+    transition:none !important;
+
+  }
+
+}
+
 </style>
 
 </head>
 
+
 <body>
 
 
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
 <header class="site-header">
 
-  <a class="brand" href="./">
-
+  <a
+    class="brand"
+    href="./"
+  >
     缘分<span>·</span>相遇
-
   </a>
 
-  <a class="admin-link" href="admin/">
 
+  <a
+    class="admin-link"
+    href="admin/"
+  >
     管理
-
   </a>
 
 </header>
 
 
-<main>
 
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section class="hero">
 
@@ -1094,23 +1673,54 @@ footer{
       MEET SOMEONE SPECIAL
     </p>
 
+
     <h1>
       认真认识一个人，<br>
       从一次相遇开始。
     </h1>
 
+
     <p>
       浏览真实资料，了解彼此，再决定是否联系。
+      有些缘分，不需要刻意寻找，只需要一次恰好的相遇。
     </p>
+
+
+    <div class="hero-label">
+      每一次相遇，都可能成为故事的开始
+    </div>
 
   </div>
 
 </section>
 
 
+
+<!-- =========================================================
+     CONTENT
+========================================================= -->
+
+<main class="content-section">
+
+
 <section class="toolbar">
 
+
+  <div class="section-title">
+
+    <small>
+      DISCOVER
+    </small>
+
+    <h2>
+      认识她们
+    </h2>
+
+  </div>
+
+
   <div class="filters">
+
 
     <select id="cityFilter">
 
@@ -1119,6 +1729,7 @@ footer{
       </option>
 
     </select>
+
 
     <select id="ageFilter">
 
@@ -1149,6 +1760,7 @@ footer{
 </section>
 
 
+
 <section
   id="womenGrid"
   class="women-grid"
@@ -1164,17 +1776,24 @@ footer{
 </main>
 
 
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
 
-  © <span id="year"></span>
+  ©
+  <span id="year"></span>
   缘分·相遇
 
 </footer>
 
 
-<!-- =========================
-     Gallery
-========================= -->
+
+<!-- =========================================================
+     GALLERY
+========================================================= -->
 
 <div
   id="galleryModal"
@@ -1182,6 +1801,7 @@ footer{
 >
 
   <div class="gallery-container">
+
 
     <div class="gallery-header">
 
@@ -1191,6 +1811,7 @@ footer{
       >
         女士资料
       </div>
+
 
       <button
         id="galleryClose"
@@ -1203,7 +1824,9 @@ footer{
     </div>
 
 
+
     <div class="gallery-body">
+
 
       <button
         id="galleryPrev"
@@ -1231,19 +1854,22 @@ footer{
     </div>
 
 
+
     <div
       id="galleryCounter"
       class="gallery-counter"
     ></div>
+
 
   </div>
 
 </div>
 
 
-<!-- =========================
-     Join
-========================= -->
+
+<!-- =========================================================
+     JOIN
+========================================================= -->
 
 <div
   id="joinModal"
@@ -1251,6 +1877,7 @@ footer{
 >
 
   <div class="join-box">
+
 
     <button
       id="joinClose"
@@ -1260,13 +1887,16 @@ footer{
       ×
     </button>
 
+
     <h2>
       申请加入
     </h2>
 
+
     <p>
       如果你也希望出现在这里，可以联系我们。
     </p>
+
 
     <div
       id="joinContacts"
@@ -1279,16 +1909,18 @@ footer{
 
     </div>
 
+
   </div>
 
 </div>
+
 
 
 <script>
 
 
 /* ==================================================
-   Supabase
+   SUPABASE
 ================================================== */
 
 const SUPABASE_URL =
@@ -1305,14 +1937,18 @@ const STORAGE_BUCKET =
 
 let women = [];
 
+
 let joinContact = {
+
   whatsapp:"",
   telegram:""
+
 };
 
 
+
 /* ==================================================
-   基础
+   BASIC
 ================================================== */
 
 document
@@ -1321,111 +1957,177 @@ document
   new Date().getFullYear();
 
 
+
 function escapeHtml(value){
 
   return String(value ?? "")
 
     .replace(/&/g,"&amp;")
+
     .replace(/</g,"&lt;")
+
     .replace(/>/g,"&gt;")
+
     .replace(/"/g,"&quot;")
+
     .replace(/'/g,"&#039;");
 
 }
 
 
+
+/* ==================================================
+   MEDIA
+================================================== */
+
 function normalizeMedia(value){
 
   if(!value){
+
     return [];
+
   }
+
 
   if(Array.isArray(value)){
 
     return value
+
       .flat(Infinity)
+
       .filter(Boolean)
-      .map(v => String(v).trim())
+
+      .map(v =>
+        String(v).trim()
+      )
+
       .filter(Boolean);
 
   }
 
+
   if(typeof value === "string"){
 
-    const text = value.trim();
+    const text =
+      value.trim();
+
 
     if(!text){
+
       return [];
+
     }
+
 
     try{
 
       const parsed =
         JSON.parse(text);
 
+
       if(Array.isArray(parsed)){
 
         return parsed
+
           .flat(Infinity)
+
           .filter(Boolean)
-          .map(v => String(v).trim())
+
+          .map(v =>
+            String(v).trim()
+          )
+
           .filter(Boolean);
 
       }
 
     }catch(e){}
 
+
     if(text.includes(",")){
 
       return text
+
         .split(",")
-        .map(v => v.trim())
+
+        .map(v =>
+          v.trim()
+        )
+
         .filter(Boolean);
 
     }
 
+
     return [text];
 
   }
+
 
   return [];
 
 }
 
 
+
+/* ==================================================
+   STORAGE
+================================================== */
+
 function getStorageUrl(path){
 
   if(!path){
+
     return "";
+
   }
+
 
   const value =
     String(path).trim();
 
+
   if(
+
     value.startsWith("http://") ||
+
     value.startsWith("https://") ||
+
     value.startsWith("data:")
+
   ){
 
     return value;
 
   }
 
+
   return (
+
     SUPABASE_URL +
+
     "/storage/v1/object/public/" +
+
     STORAGE_BUCKET +
+
     "/" +
+
     value.replace(/^\/+/,"")
+
   );
 
 }
 
 
+
+/* ==================================================
+   PHOTOS
+================================================== */
+
 function getPhotos(woman){
 
   let photos = [];
+
 
   if(woman.image_url){
 
@@ -1435,6 +2137,7 @@ function getPhotos(woman){
 
   }
 
+
   photos =
     photos.concat(
       normalizeMedia(
@@ -1442,34 +2145,57 @@ function getPhotos(woman){
       )
     );
 
+
   return [
+
     ...new Set(
+
       photos
+
         .filter(Boolean)
-        .map(getStorageUrl)
+
+        .map(
+          getStorageUrl
+        )
+
     )
+
   ];
 
 }
 
+
+
+/* ==================================================
+   VIDEOS
+================================================== */
 
 function getVideos(woman){
 
   return [
+
     ...new Set(
+
       normalizeMedia(
         woman.videos
       )
+
       .filter(Boolean)
-      .map(getStorageUrl)
+
+      .map(
+        getStorageUrl
+      )
+
     )
+
   ];
 
 }
 
 
+
 /* ==================================================
-   获取女士
+   LOAD WOMEN
 ================================================== */
 
 async function loadWomen(){
@@ -1479,30 +2205,48 @@ async function loadWomen(){
       "womenGrid"
     );
 
+
   try{
 
     const url =
+
       SUPABASE_URL +
+
       "/rest/v1/women" +
+
       "?select=*" +
+
       "&is_published=eq.true" +
+
       "&order=created_at.desc";
+
 
     const response =
       await fetch(
+
         url,
+
         {
+
           headers:{
-            apikey:SUPABASE_KEY,
+
+            apikey:
+              SUPABASE_KEY,
+
             Authorization:
               "Bearer " +
               SUPABASE_KEY
+
           }
+
         }
+
       );
+
 
     const text =
       await response.text();
+
 
     if(!response.ok){
 
@@ -1512,18 +2256,25 @@ async function loadWomen(){
 
     }
 
+
     women =
       JSON.parse(text) || [];
 
+
     createCityFilter();
+
 
     renderWomen(
       women
     );
 
+
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     grid.innerHTML = `
 
@@ -1540,8 +2291,9 @@ async function loadWomen(){
 }
 
 
+
 /* ==================================================
-   城市
+   CITY FILTER
 ================================================== */
 
 function createCityFilter(){
@@ -1551,14 +2303,25 @@ function createCityFilter(){
       "cityFilter"
     );
 
+
   const cities =
+
     [
+
       ...new Set(
+
         women
-          .map(w => w.city)
+
+          .map(
+            w => w.city
+          )
+
           .filter(Boolean)
+
       )
+
     ];
+
 
   select.innerHTML = `
 
@@ -1568,7 +2331,9 @@ function createCityFilter(){
 
   `;
 
+
   cities.forEach(
+
     city => {
 
       const option =
@@ -1576,24 +2341,29 @@ function createCityFilter(){
           "option"
         );
 
+
       option.value =
         city;
 
+
       option.textContent =
         city;
+
 
       select.appendChild(
         option
       );
 
     }
+
   );
 
 }
 
 
+
 /* ==================================================
-   渲染
+   RENDER WOMEN
 ================================================== */
 
 function renderWomen(list){
@@ -1603,39 +2373,62 @@ function renderWomen(list){
       "womenGrid"
     );
 
+
   grid.innerHTML = "";
 
+
   list.forEach(
-    (woman,index) => {
+
+    woman => {
+
 
       const photos =
         getPhotos(
           woman
         );
 
+
       const cover =
+
         photos[0] ||
+
         "data:image/svg+xml;charset=UTF-8," +
+
         encodeURIComponent(`
-          <svg xmlns="http://www.w3.org/2000/svg"
-               width="600"
-               height="800">
-            <rect width="600" height="800"
-                  fill="#eeeeee"/>
-            <text x="300" y="400"
-                  text-anchor="middle"
-                  font-size="28"
-                  fill="#999">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="600"
+            height="800"
+          >
+
+            <rect
+              width="600"
+              height="800"
+              fill="#eee6e8"
+            />
+
+            <text
+              x="300"
+              y="400"
+              text-anchor="middle"
+              font-size="28"
+              fill="#999"
+            >
               暂无照片
             </text>
+
           </svg>
+
         `);
+
 
 
       const card =
         document.createElement(
           "article"
         );
+
 
       card.className =
         "woman-card";
@@ -1646,17 +2439,25 @@ function renderWomen(list){
         <div class="woman-image">
 
           <img
-            src="${escapeHtml(cover)}"
-            alt="${escapeHtml(
-              woman.name || "女士"
+
+            src="${escapeHtml(
+              cover
             )}"
+
+            alt="${escapeHtml(
+              woman.name ||
+              "女士"
+            )}"
+
             loading="lazy"
+
           >
 
         </div>
 
 
         <div class="woman-info">
+
 
           <h2>
 
@@ -1666,63 +2467,102 @@ function renderWomen(list){
             )}
 
             ${
+
               woman.age
+
               ?
+
               " · " +
+
               escapeHtml(
                 woman.age
               ) +
+
               "岁"
+
               :
+
               ""
+
             }
 
           </h2>
 
 
           ${
+
             woman.city
+
             ?
+
             `
+
               <p class="city">
+
                 ${escapeHtml(
                   woman.city
                 )}
+
               </p>
+
             `
+
             :
+
             ""
+
           }
 
 
           ${
+
             woman.occupation
+
             ?
+
             `
+
               <p>
+
                 ${escapeHtml(
                   woman.occupation
                 )}
+
               </p>
+
             `
+
             :
+
             ""
+
           }
 
 
           ${
+
             woman.description
+
             ?
+
             `
+
               <p class="description">
+
                 ${escapeHtml(
                   woman.description
                 )}
+
               </p>
+
             `
+
             :
+
             ""
+
           }
+
 
         </div>
 
@@ -1730,7 +2570,9 @@ function renderWomen(list){
 
 
       card.addEventListener(
+
         "click",
+
         () => {
 
           openGallery(
@@ -1738,6 +2580,7 @@ function renderWomen(list){
           );
 
         }
+
       );
 
 
@@ -1745,18 +2588,22 @@ function renderWomen(list){
         card
       );
 
+
     }
+
   );
 
 
-  /* =========================
-     最后一张申请卡
-  ========================= */
+
+  /* ==================================================
+     MORE CARD
+  ================================================== */
 
   const moreCard =
     document.createElement(
       "article"
     );
+
 
   moreCard.className =
     "more-card";
@@ -1800,8 +2647,9 @@ function renderWomen(list){
 }
 
 
+
 /* ==================================================
-   Gallery
+   GALLERY
 ================================================== */
 
 let galleryMedia = [];
@@ -1809,43 +2657,61 @@ let galleryMedia = [];
 let galleryIndex = 0;
 
 
+
 function openGallery(woman){
 
   const photos =
-    getPhotos(woman);
+    getPhotos(
+      woman
+    );
+
 
   const videos =
-    getVideos(woman);
+    getVideos(
+      woman
+    );
 
 
   galleryMedia = [];
 
 
   photos.forEach(
+
     url => {
 
       galleryMedia.push({
+
         type:"image",
+
         url
+
       });
 
     }
+
   );
 
 
   videos.forEach(
+
     url => {
 
       galleryMedia.push({
+
         type:"video",
+
         url
+
       });
 
     }
+
   );
 
 
-  if(galleryMedia.length === 0){
+  if(
+    galleryMedia.length === 0
+  ){
 
     return;
 
@@ -1860,11 +2726,13 @@ function openGallery(woman){
       "galleryTitle"
     )
     .textContent =
+
     woman.name ||
     "女士资料";
 
 
   renderGallery();
+
 
   document
     .getElementById(
@@ -1881,6 +2749,7 @@ function openGallery(woman){
 }
 
 
+
 function renderGallery(){
 
   const track =
@@ -1893,6 +2762,7 @@ function renderGallery(){
 
 
   galleryMedia.forEach(
+
     media => {
 
       const slide =
@@ -1900,19 +2770,25 @@ function renderGallery(){
           "div"
         );
 
+
       slide.className =
         "gallery-slide";
 
 
-      if(media.type === "image"){
+      if(
+        media.type === "image"
+      ){
 
         slide.innerHTML = `
 
           <img
+
             src="${escapeHtml(
               media.url
             )}"
+
             draggable="false"
+
           >
 
         `;
@@ -1922,9 +2798,13 @@ function renderGallery(){
         slide.innerHTML = `
 
           <video
+
             controls
+
             playsinline
+
             preload="metadata"
+
           >
 
             <source
@@ -1945,6 +2825,7 @@ function renderGallery(){
       );
 
     }
+
   );
 
 
@@ -1952,19 +2833,23 @@ function renderGallery(){
 
 
   requestAnimationFrame(
+
     () => {
 
       const width =
         track.clientWidth;
+
 
       track.scrollLeft =
         width *
         galleryIndex;
 
     }
+
   );
 
 }
+
 
 
 function updateGalleryCounter(){
@@ -1974,9 +2859,13 @@ function updateGalleryCounter(){
       "galleryCounter"
     );
 
-  if(galleryMedia.length){
+
+  if(
+    galleryMedia.length
+  ){
 
     counter.textContent =
+
       `${galleryIndex + 1} / ${galleryMedia.length}  ·  左右滑动查看`;
 
   }
@@ -1984,16 +2873,25 @@ function updateGalleryCounter(){
 }
 
 
+
 function galleryGoTo(index){
 
-  if(!galleryMedia.length){
+  if(
+    !galleryMedia.length
+  ){
+
     return;
+
   }
 
+
   if(index < 0){
+
     index =
       galleryMedia.length - 1;
+
   }
+
 
   if(
     index >=
@@ -2003,6 +2901,7 @@ function galleryGoTo(index){
     index = 0;
 
   }
+
 
   galleryIndex =
     index;
@@ -2015,6 +2914,7 @@ function galleryGoTo(index){
 
 
   track.scrollTo({
+
     left:
       track.clientWidth *
       galleryIndex,
@@ -2029,30 +2929,41 @@ function galleryGoTo(index){
 }
 
 
-/* =========================
-   自动识别手指滑动
-========================= */
+
+/* ==================================================
+   GALLERY SCROLL
+================================================== */
 
 document
   .getElementById(
     "galleryTrack"
   )
   .addEventListener(
+
     "scroll",
+
     function(){
 
       const width =
         this.clientWidth;
 
+
       if(!width){
+
         return;
+
       }
 
+
       const index =
+
         Math.round(
+
           this.scrollLeft /
           width
+
         );
+
 
       if(
         index !==
@@ -2062,12 +2973,15 @@ document
         galleryIndex =
           index;
 
+
         updateGalleryCounter();
 
       }
 
     }
+
   );
+
 
 
 document
@@ -2075,7 +2989,9 @@ document
     "galleryPrev"
   )
   .addEventListener(
+
     "click",
+
     () => {
 
       galleryGoTo(
@@ -2083,6 +2999,7 @@ document
       );
 
     }
+
   );
 
 
@@ -2091,7 +3008,9 @@ document
     "galleryNext"
   )
   .addEventListener(
+
     "click",
+
     () => {
 
       galleryGoTo(
@@ -2099,6 +3018,7 @@ document
       );
 
     }
+
   );
 
 
@@ -2107,9 +3027,13 @@ document
     "galleryClose"
   )
   .addEventListener(
+
     "click",
+
     closeGallery
+
   );
+
 
 
 function closeGallery(){
@@ -2122,29 +3046,39 @@ function closeGallery(){
       "show"
     );
 
+
   document.body.style.overflow =
     "";
+
 
   document
     .querySelectorAll(
       "#galleryTrack video"
     )
     .forEach(
-      video => video.pause()
+
+      video =>
+        video.pause()
+
     );
 
 }
 
 
-/* =========================
+
+/* ==================================================
    ESC
-========================= */
+================================================== */
 
 document.addEventListener(
+
   "keydown",
+
   event => {
 
-    if(event.key === "Escape"){
+    if(
+      event.key === "Escape"
+    ){
 
       closeGallery();
 
@@ -2152,15 +3086,21 @@ document.addEventListener(
 
     }
 
+
     if(
+
       document
         .getElementById(
           "galleryModal"
         )
-        .classList.contains("show")
+        .classList
+        .contains("show")
+
     ){
 
-      if(event.key === "ArrowLeft"){
+      if(
+        event.key === "ArrowLeft"
+      ){
 
         galleryGoTo(
           galleryIndex - 1
@@ -2168,7 +3108,10 @@ document.addEventListener(
 
       }
 
-      if(event.key === "ArrowRight"){
+
+      if(
+        event.key === "ArrowRight"
+      ){
 
         galleryGoTo(
           galleryIndex + 1
@@ -2179,11 +3122,13 @@ document.addEventListener(
     }
 
   }
+
 );
 
 
+
 /* ==================================================
-   Join 联系方式
+   JOIN CONTACT
 ================================================== */
 
 async function loadJoinContact(){
@@ -2191,24 +3136,38 @@ async function loadJoinContact(){
   try{
 
     const url =
+
       SUPABASE_URL +
+
       "/rest/v1/site_settings" +
+
       "?select=whatsapp,telegram" +
+
       "&setting_key=eq.join_contact" +
+
       "&limit=1";
 
 
     const response =
       await fetch(
+
         url,
+
         {
+
           headers:{
-            apikey:SUPABASE_KEY,
+
+            apikey:
+              SUPABASE_KEY,
+
             Authorization:
               "Bearer " +
               SUPABASE_KEY
+
           }
+
         }
+
       );
 
 
@@ -2225,7 +3184,9 @@ async function loadJoinContact(){
       await response.json();
 
 
-    if(data.length){
+    if(
+      data.length
+    ){
 
       joinContact =
         data[0];
@@ -2245,12 +3206,19 @@ async function loadJoinContact(){
 }
 
 
+
+/* ==================================================
+   WHATSAPP
+================================================== */
+
 function makeWhatsAppUrl(value){
 
   const number =
+
     String(
       value || ""
     )
+
     .replace(
       /[^\d]/g,
       ""
@@ -2258,7 +3226,9 @@ function makeWhatsAppUrl(value){
 
 
   if(!number){
+
     return "";
+
   }
 
 
@@ -2270,27 +3240,41 @@ function makeWhatsAppUrl(value){
 }
 
 
+
+/* ==================================================
+   TELEGRAM
+================================================== */
+
 function makeTelegramUrl(value){
 
   let username =
+
     String(
       value || ""
     )
+
     .trim();
 
 
   if(!username){
+
     return "";
+
   }
 
 
   if(
+
     username.startsWith(
       "https://t.me/"
-    ) ||
+    )
+
+    ||
+
     username.startsWith(
       "http://t.me/"
     )
+
   ){
 
     return username;
@@ -2312,6 +3296,11 @@ function makeTelegramUrl(value){
 
 }
 
+
+
+/* ==================================================
+   JOIN MODAL
+================================================== */
 
 function openJoinModal(){
 
@@ -2343,22 +3332,30 @@ function openJoinModal(){
         "a"
       );
 
+
     a.href =
       whatsappUrl;
+
 
     a.target =
       "_blank";
 
+
     a.rel =
       "noopener";
+
 
     a.className =
       "join-whatsapp";
 
+
     a.textContent =
       "WhatsApp 联系我们";
 
-    box.appendChild(a);
+
+    box.appendChild(
+      a
+    );
 
   }
 
@@ -2370,29 +3367,39 @@ function openJoinModal(){
         "a"
       );
 
+
     a.href =
       telegramUrl;
+
 
     a.target =
       "_blank";
 
+
     a.rel =
       "noopener";
+
 
     a.className =
       "join-telegram";
 
+
     a.textContent =
       "Telegram 联系我们";
 
-    box.appendChild(a);
+
+    box.appendChild(
+      a
+    );
 
   }
 
 
   if(
+
     !whatsappUrl &&
     !telegramUrl
+
   ){
 
     box.innerHTML = `
@@ -2419,6 +3426,7 @@ function openJoinModal(){
 }
 
 
+
 function closeJoinModal(){
 
   document
@@ -2432,6 +3440,7 @@ function closeJoinModal(){
 }
 
 
+
 document
   .getElementById(
     "joinClose"
@@ -2442,12 +3451,15 @@ document
   );
 
 
+
 document
   .getElementById(
     "joinModal"
   )
   .addEventListener(
+
     "click",
+
     function(event){
 
       if(
@@ -2460,16 +3472,19 @@ document
       }
 
     }
+
   );
 
 
+
 /* ==================================================
-   筛选
+   FILTER
 ================================================== */
 
 function filterWomen(){
 
   const city =
+
     document
       .getElementById(
         "cityFilter"
@@ -2478,6 +3493,7 @@ function filterWomen(){
 
 
   const age =
+
     document
       .getElementById(
         "ageFilter"
@@ -2486,12 +3502,17 @@ function filterWomen(){
 
 
   const filtered =
+
     women.filter(
+
       woman => {
 
+
         if(
+
           city &&
           woman.city !== city
+
         ){
 
           return false;
@@ -2500,44 +3521,61 @@ function filterWomen(){
 
 
         const womanAge =
+
           Number(
             woman.age
           );
 
 
-        if(age === "18-25"){
+        if(
+          age === "18-25"
+        ){
 
           return (
+
             womanAge >= 18 &&
             womanAge <= 25
+
           );
 
         }
 
 
-        if(age === "26-35"){
+        if(
+          age === "26-35"
+        ){
 
           return (
+
             womanAge >= 26 &&
             womanAge <= 35
+
           );
 
         }
 
 
-        if(age === "36-45"){
+        if(
+          age === "36-45"
+        ){
 
           return (
+
             womanAge >= 36 &&
             womanAge <= 45
+
           );
 
         }
 
 
-        if(age === "46+"){
+        if(
+          age === "46+"
+        ){
 
-          return womanAge >= 46;
+          return (
+            womanAge >= 46
+          );
 
         }
 
@@ -2545,6 +3583,7 @@ function filterWomen(){
         return true;
 
       }
+
     );
 
 
@@ -2553,6 +3592,7 @@ function filterWomen(){
   );
 
 }
+
 
 
 document
@@ -2575,13 +3615,17 @@ document
   );
 
 
+
 /* ==================================================
-   启动
+   START
 ================================================== */
 
 Promise.all([
+
   loadWomen(),
+
   loadJoinContact()
+
 ]);
 
 </script>
