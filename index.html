@@ -10,18 +10,14 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>缘分 · 相遇</title>
+<title>缘分·相遇</title>
 
 <meta
   name="description"
-  content="寻找适合你的缘分"
+  content="认真认识一个人，从一次相遇开始。"
 >
 
 <style>
-
-/* ==================================================
-   基础
-================================================== */
 
 *{
   box-sizing:border-box;
@@ -45,24 +41,18 @@ body{
     sans-serif;
 
   background:#faf9f7;
-
   color:#2b2927;
-
   line-height:1.6;
-}
 
-body.modal-open{
-  overflow:hidden;
-}
-
-button,
-select,
-input{
-  font-family:inherit;
 }
 
 button{
-  cursor:pointer;
+  font-family:inherit;
+}
+
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
 }
 
 a{
@@ -70,23 +60,17 @@ a{
   color:inherit;
 }
 
-.hidden{
-  display:none !important;
-}
 
-
-/* ==================================================
+/* =========================
    Header
-================================================== */
+========================= */
 
 .site-header{
 
   height:72px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   padding:0 6%;
@@ -96,26 +80,25 @@ a{
   border-bottom:1px solid #eee;
 
   position:sticky;
-
   top:0;
 
   z-index:100;
+
 }
 
 .brand{
 
   font-size:22px;
-
   font-weight:700;
-
   letter-spacing:1px;
+
 }
 
 .brand span{
 
   color:#b58b63;
-
   margin:0 3px;
+
 }
 
 .admin-link{
@@ -123,34 +106,30 @@ a{
   padding:8px 16px;
 
   border:1px solid #ddd;
-
   border-radius:20px;
 
   font-size:14px;
-
   color:#666;
 
-  transition:.2s;
 }
 
 .admin-link:hover{
 
   background:#2b2927;
-
   color:#fff;
+
 }
 
 
-/* ==================================================
+/* =========================
    Hero
-================================================== */
+========================= */
 
 .hero{
 
   min-height:420px;
 
   display:flex;
-
   align-items:center;
 
   padding:70px 8%;
@@ -162,34 +141,30 @@ a{
       rgba(250,249,247,.94) 55%,
       rgba(250,249,247,.65) 100%
     );
+
 }
 
 .hero > div{
 
   max-width:700px;
+
 }
 
 .eyebrow{
 
   font-size:13px;
-
   letter-spacing:4px;
-
   color:#b58b63;
 
   margin-bottom:18px;
 
   font-weight:600;
+
 }
 
 .hero h1{
 
-  font-size:
-    clamp(
-      38px,
-      6vw,
-      70px
-    );
+  font-size:clamp(38px,6vw,70px);
 
   line-height:1.2;
 
@@ -198,6 +173,7 @@ a{
   letter-spacing:1px;
 
   margin-bottom:24px;
+
 }
 
 .hero p:not(.eyebrow){
@@ -207,17 +183,17 @@ a{
   font-size:17px;
 
   max-width:520px;
+
 }
 
 
-/* ==================================================
+/* =========================
    Toolbar
-================================================== */
+========================= */
 
 .toolbar{
 
   width:88%;
-
   max-width:1400px;
 
   margin:40px auto 25px;
@@ -225,26 +201,12 @@ a{
   display:flex;
 
   align-items:center;
-
-  justify-content:space-between;
+  justify-content:flex-end;
 
   gap:20px;
 
   flex-wrap:wrap;
-}
 
-.toolbar strong{
-
-  font-size:22px;
-
-  margin-right:12px;
-}
-
-#count{
-
-  color:#999;
-
-  font-size:14px;
 }
 
 .filters{
@@ -252,6 +214,7 @@ a{
   display:flex;
 
   gap:10px;
+
 }
 
 .filters select{
@@ -262,11 +225,7 @@ a{
 
   background:#fff;
 
-  padding:
-    11px
-    36px
-    11px
-    14px;
+  padding:11px 36px 11px 14px;
 
   border-radius:8px;
 
@@ -275,22 +234,17 @@ a{
   cursor:pointer;
 
   outline:none;
-}
 
-.filters select:focus{
-
-  border-color:#b58b63;
 }
 
 
-/* ==================================================
-   女士 Grid
-================================================== */
+/* =========================
+   Grid
+========================= */
 
 .women-grid{
 
   width:88%;
-
   max-width:1400px;
 
   margin:0 auto 70px;
@@ -298,18 +252,16 @@ a{
   display:grid;
 
   grid-template-columns:
-    repeat(
-      4,
-      minmax(0,1fr)
-    );
+    repeat(4,minmax(0,1fr));
 
   gap:24px;
+
 }
 
 
-/* ==================================================
-   女士卡片
-================================================== */
+/* =========================
+   Card
+========================= */
 
 .woman-card{
 
@@ -326,6 +278,7 @@ a{
     box-shadow .25s ease;
 
   cursor:pointer;
+
 }
 
 .woman-card:hover{
@@ -333,21 +286,14 @@ a{
   transform:translateY(-5px);
 
   box-shadow:
-    0 15px 40px
-    rgba(0,0,0,.08);
+    0 15px 40px rgba(0,0,0,.08);
+
 }
 
 
-/* ==================================================
-   Media
-================================================== */
-
-.media-gallery{
-
-  background:#eee;
-
-  overflow:hidden;
-}
+/* =========================
+   Image
+========================= */
 
 .woman-image{
 
@@ -358,36 +304,38 @@ a{
   background:#eee;
 
   overflow:hidden;
+
 }
 
 .woman-image img{
 
   width:100%;
-
   height:100%;
 
   object-fit:cover;
 
   display:block;
 
-  transition:
-    transform .5s ease;
+  transition:transform .5s ease;
+
 }
 
 .woman-card:hover
 .woman-image img{
 
   transform:scale(1.03);
+
 }
 
 
-/* ==================================================
-   Card Info
-================================================== */
+/* =========================
+   Info
+========================= */
 
 .woman-info{
 
   padding:18px;
+
 }
 
 .woman-info h2{
@@ -396,7 +344,8 @@ a{
 
   font-weight:600;
 
-  margin-bottom:5px;
+  margin-bottom:4px;
+
 }
 
 .city{
@@ -406,176 +355,122 @@ a{
   font-size:14px;
 
   margin-bottom:7px;
+
 }
 
-.woman-info > p:not(.city){
+.woman-info p{
 
   color:#777;
 
   font-size:13px;
 
-  margin-bottom:5px;
 }
 
 .description{
 
-  margin-top:9px;
+  margin-top:8px;
 
   line-height:1.7;
 
-  display:
-    -webkit-box;
+  display:-webkit-box;
 
   -webkit-line-clamp:3;
 
   -webkit-box-orient:vertical;
 
   overflow:hidden;
-}
 
-.media-count{
-
-  margin-top:12px;
-
-  color:#999;
-
-  font-size:12px;
-}
-
-.view-profile{
-
-  margin-top:14px;
-
-  padding-top:12px;
-
-  border-top:1px solid #eee;
-
-  color:#b58b63;
-
-  font-size:13px;
-
-  font-weight:600;
 }
 
 
-/* ==================================================
-   更多女士卡片
-================================================== */
+/* =========================
+   More card
+========================= */
 
-.more-women-card{
+.more-card{
 
   position:relative;
 
-  min-height:520px;
+  min-height:100%;
 
-  border-radius:14px;
+  aspect-ratio:auto;
 
   overflow:hidden;
 
+  border-radius:14px;
+
+  cursor:pointer;
+
+  background:#222;
+
+}
+
+.more-card-bg{
+
+  position:absolute;
+
+  inset:0;
+
   background-image:
-
     linear-gradient(
-      180deg,
-      rgba(0,0,0,.05) 0%,
-      rgba(0,0,0,.18) 35%,
-      rgba(0,0,0,.78) 100%
+      rgba(0,0,0,.18),
+      rgba(0,0,0,.68)
     ),
-
-    url("./images/more-women.jpg");
+    url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85");
 
   background-size:cover;
 
   background-position:center;
 
+  transition:transform .5s ease;
+
+}
+
+.more-card:hover .more-card-bg{
+
+  transform:scale(1.04);
+
+}
+
+.more-card-content{
+
+  position:relative;
+
+  z-index:2;
+
+  min-height:100%;
+
+  padding:30px;
+
   display:flex;
 
-  align-items:flex-end;
+  flex-direction:column;
 
-  cursor:pointer;
-
-  border:1px solid #eee;
-
-  transition:
-    transform .25s ease,
-    box-shadow .25s ease;
-}
-
-.more-women-card:hover{
-
-  transform:translateY(-5px);
-
-  box-shadow:
-    0 15px 40px
-    rgba(0,0,0,.15);
-}
-
-.more-women-content{
-
-  width:100%;
-
-  padding:28px 22px;
+  justify-content:flex-end;
 
   color:#fff;
 
-  text-align:center;
 }
 
-.more-icon{
+.more-card-content h2{
 
-  width:58px;
+  font-size:25px;
 
-  height:58px;
+  margin-bottom:10px;
 
-  margin:
-    0 auto
-    15px;
-
-  border-radius:50%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  background:
-    rgba(255,255,255,.18);
-
-  border:
-    1px solid
-    rgba(255,255,255,.45);
-
-  backdrop-filter:blur(5px);
-
-  font-size:27px;
 }
 
-.more-women-content h2{
+.more-card-content p{
 
-  font-size:24px;
-
-  font-weight:600;
-
-  margin-bottom:8px;
-
-  text-shadow:
-    0 2px 8px
-    rgba(0,0,0,.35);
-}
-
-.more-women-content p{
+  color:rgba(255,255,255,.88);
 
   font-size:14px;
 
-  line-height:1.7;
+  margin-bottom:20px;
 
-  margin-bottom:18px;
-
-  color:
-    rgba(255,255,255,.92);
 }
 
-.more-women-button{
+.join-button{
 
   display:inline-flex;
 
@@ -583,37 +478,24 @@ a{
 
   justify-content:center;
 
-  min-width:150px;
+  width:100%;
 
-  padding:
-    11px 22px;
-
-  border-radius:30px;
+  padding:12px;
 
   background:#fff;
 
   color:#2b2927;
 
-  font-size:14px;
+  border-radius:9px;
 
   font-weight:600;
 
-  transition:.2s;
-}
-
-.more-women-button:hover{
-
-  background:#b58b63;
-
-  color:#fff;
-
-  transform:translateY(-2px);
 }
 
 
-/* ==================================================
+/* =========================
    Loading
-================================================== */
+========================= */
 
 .loading{
 
@@ -624,28 +506,13 @@ a{
   padding:80px 20px;
 
   color:#888;
-}
 
-.loading h3{
-
-  font-size:22px;
-
-  color:#444;
-
-  margin-bottom:10px;
-}
-
-.loading p{
-
-  color:#999;
-
-  font-size:14px;
 }
 
 
-/* ==================================================
+/* =========================
    Footer
-================================================== */
+========================= */
 
 footer{
 
@@ -660,414 +527,15 @@ footer{
   font-size:13px;
 
   background:#fff;
+
 }
 
 
-/* ==================================================
-   女士详情 Modal
-================================================== */
-
-.profile-modal{
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:800;
-
-  background:
-    rgba(0,0,0,.72);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:20px;
-
-  backdrop-filter:blur(5px);
-}
-
-.profile-modal-box{
-
-  width:100%;
-
-  max-width:1050px;
-
-  max-height:
-    calc(100vh - 40px);
-
-  background:#fff;
-
-  border-radius:18px;
-
-  overflow:hidden;
-
-  position:relative;
-
-  display:grid;
-
-  grid-template-columns:
-    minmax(0,1.1fr)
-    minmax(320px,.9fr);
-}
-
-.profile-close{
-
-  position:absolute;
-
-  top:14px;
-
-  right:14px;
-
-  z-index:20;
-
-  width:40px;
-
-  height:40px;
-
-  border:0;
-
-  border-radius:50%;
-
-  background:
-    rgba(0,0,0,.55);
-
-  color:#fff;
-
-  font-size:25px;
-
-  line-height:40px;
-}
-
-.profile-close:hover{
-
-  background:#222;
-}
-
-
-/* ==================================================
-   Slider
-================================================== */
-
-.profile-media{
-
-  min-width:0;
-
-  background:#111;
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.slider-viewport{
-
-  width:100%;
-
-  height:100%;
-
-  min-height:650px;
-
-  overflow:hidden;
-
-  touch-action:pan-y;
-}
-
-.slider-track{
-
-  height:100%;
-
-  display:flex;
-
-  transition:
-    transform .35s ease;
-}
-
-.slider-slide{
-
-  min-width:100%;
-
-  height:100%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  background:#111;
-
-  position:relative;
-}
-
-.slider-slide img{
-
-  width:100%;
-
-  height:100%;
-
-  object-fit:contain;
-
-  display:block;
-}
-
-.slider-slide video{
-
-  width:100%;
-
-  height:100%;
-
-  object-fit:contain;
-
-  background:#000;
-
-  display:block;
-}
-
-
-/* ==================================================
-   Slider Buttons
-================================================== */
-
-.slider-button{
-
-  position:absolute;
-
-  top:50%;
-
-  transform:
-    translateY(-50%);
-
-  z-index:10;
-
-  width:44px;
-
-  height:44px;
-
-  border:0;
-
-  border-radius:50%;
-
-  background:
-    rgba(0,0,0,.45);
-
-  color:#fff;
-
-  font-size:27px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-}
-
-.slider-button:hover{
-
-  background:
-    rgba(0,0,0,.75);
-}
-
-.slider-prev{
-
-  left:15px;
-}
-
-.slider-next{
-
-  right:15px;
-}
-
-.slider-counter{
-
-  position:absolute;
-
-  left:50%;
-
-  bottom:15px;
-
-  transform:
-    translateX(-50%);
-
-  z-index:10;
-
-  background:
-    rgba(0,0,0,.55);
-
-  color:#fff;
-
-  padding:
-    5px 12px;
-
-  border-radius:20px;
-
-  font-size:12px;
-}
-
-
-/* ==================================================
-   Profile Info
-================================================== */
-
-.profile-info{
-
-  padding:38px;
-
-  overflow-y:auto;
-
-  background:#fff;
-}
-
-.profile-info h2{
-
-  font-size:30px;
-
-  line-height:1.3;
-
-  margin-bottom:8px;
-}
-
-.profile-city{
-
-  color:#b58b63;
-
-  font-size:15px;
-
-  margin-bottom:20px;
-}
-
-.profile-meta{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:10px;
-
-  margin-bottom:25px;
-}
-
-.profile-meta-item{
-
-  padding:13px;
-
-  border-radius:9px;
-
-  background:#f7f7f7;
-}
-
-.profile-meta-item span{
-
-  display:block;
-
-  color:#999;
-
-  font-size:11px;
-
-  margin-bottom:3px;
-}
-
-.profile-meta-item strong{
-
-  font-size:14px;
-
-  font-weight:600;
-}
-
-.profile-description-title{
-
-  font-size:16px;
-
-  font-weight:600;
-
-  margin-bottom:8px;
-}
-
-.profile-description{
-
-  color:#666;
-
-  font-size:14px;
-
-  line-height:1.9;
-
-  white-space:pre-wrap;
-
-  margin-bottom:25px;
-}
-
-
-/* ==================================================
-   Profile Contact
-================================================== */
-
-.profile-contact-buttons{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:10px;
-
-  padding-top:20px;
-
-  border-top:1px solid #eee;
-}
-
-.profile-contact-btn{
-
-  width:100%;
-
-  border:0;
-
-  border-radius:9px;
-
-  padding:13px;
-
-  font-size:14px;
-
-  font-weight:600;
-
-  transition:.2s;
-}
-
-.profile-whatsapp{
-
-  background:#e8f7ed;
-
-  color:#168a43;
-}
-
-.profile-whatsapp:hover{
-
-  background:#168a43;
-
-  color:#fff;
-}
-
-.profile-telegram{
-
-  background:#e8f2fb;
-
-  color:#2481c7;
-}
-
-.profile-telegram:hover{
-
-  background:#2481c7;
-
-  color:#fff;
-}
-
-
-/* ==================================================
-   申请加入 Modal
-================================================== */
-
-.join-modal{
+/* =========================
+   Gallery Modal
+========================= */
+
+.gallery-modal{
 
   position:fixed;
 
@@ -1075,7 +543,239 @@ footer{
 
   z-index:1000;
 
+  background:rgba(0,0,0,.94);
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+.gallery-modal.show{
+
   display:flex;
+
+}
+
+.gallery-container{
+
+  width:100%;
+  height:100%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  position:relative;
+
+}
+
+.gallery-header{
+
+  height:65px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 20px;
+
+  color:#fff;
+
+  flex-shrink:0;
+
+}
+
+.gallery-title{
+
+  font-size:17px;
+  font-weight:600;
+
+}
+
+.gallery-close{
+
+  width:42px;
+  height:42px;
+
+  border:0;
+  border-radius:50%;
+
+  background:rgba(255,255,255,.15);
+
+  color:#fff;
+
+  font-size:25px;
+
+  cursor:pointer;
+
+}
+
+.gallery-body{
+
+  flex:1;
+
+  min-height:0;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+.gallery-track{
+
+  width:100%;
+  height:100%;
+
+  display:flex;
+
+  overflow-x:auto;
+
+  overflow-y:hidden;
+
+  scroll-snap-type:x mandatory;
+
+  scrollbar-width:none;
+
+  -webkit-overflow-scrolling:touch;
+
+}
+
+.gallery-track::-webkit-scrollbar{
+
+  display:none;
+
+}
+
+.gallery-slide{
+
+  min-width:100%;
+
+  height:100%;
+
+  scroll-snap-align:center;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:10px 70px;
+
+}
+
+.gallery-slide img{
+
+  max-width:100%;
+  max-height:100%;
+
+  object-fit:contain;
+
+  border-radius:6px;
+
+  user-select:none;
+
+  -webkit-user-drag:none;
+
+}
+
+.gallery-slide video{
+
+  max-width:100%;
+  max-height:100%;
+
+  width:auto;
+  height:auto;
+
+  background:#000;
+
+  border-radius:6px;
+
+}
+
+.gallery-arrow{
+
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:48px;
+  height:48px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.15);
+
+  color:#fff;
+
+  font-size:30px;
+
+  cursor:pointer;
+
+  z-index:5;
+
+}
+
+.gallery-prev{
+
+  left:15px;
+
+}
+
+.gallery-next{
+
+  right:15px;
+
+}
+
+.gallery-counter{
+
+  height:55px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#aaa;
+
+  font-size:13px;
+
+}
+
+
+/* =========================
+   Join Modal
+========================= */
+
+.join-modal{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:1100;
+
+  background:rgba(0,0,0,.55);
+
+  display:none;
 
   align-items:center;
 
@@ -1083,59 +783,46 @@ footer{
 
   padding:20px;
 
-  background:
-    rgba(0,0,0,.55);
-
-  backdrop-filter:blur(5px);
 }
 
-.join-modal-box{
+.join-modal.show{
+
+  display:flex;
+
+}
+
+.join-box{
 
   width:100%;
-
-  max-width:430px;
-
-  position:relative;
+  max-width:400px;
 
   background:#fff;
 
   border-radius:18px;
 
-  padding:
-    35px
-    25px
-    30px;
+  padding:30px;
+
+  position:relative;
 
   text-align:center;
 
-  box-shadow:
-    0 25px 80px
-    rgba(0,0,0,.25);
-
-  animation:
-    joinModalIn
-    .25s ease;
 }
 
-@keyframes joinModalIn{
+.join-box h2{
 
-  from{
+  font-size:25px;
 
-    opacity:0;
+  margin-bottom:8px;
 
-    transform:
-      translateY(20px)
-      scale(.96);
-  }
+}
 
-  to{
+.join-box p{
 
-    opacity:1;
+  color:#888;
 
-    transform:
-      translateY(0)
-      scale(1);
-  }
+  font-size:14px;
+
+  margin-bottom:25px;
 
 }
 
@@ -1144,12 +831,10 @@ footer{
   position:absolute;
 
   top:12px;
-
   right:12px;
 
-  width:34px;
-
-  height:34px;
+  width:35px;
+  height:35px;
 
   border:0;
 
@@ -1157,31 +842,21 @@ footer{
 
   background:#f1f1f1;
 
-  color:#555;
+  font-size:20px;
 
-  font-size:22px;
-
-  cursor:pointer;
-
-  line-height:34px;
 }
 
-.join-close:hover{
+.join-contact{
 
-  background:#222;
+  display:flex;
 
-  color:#fff;
+  flex-direction:column;
+
+  gap:10px;
+
 }
 
-.join-icon{
-
-  width:58px;
-
-  height:58px;
-
-  margin:
-    0 auto
-    15px;
+.join-contact a{
 
   display:flex;
 
@@ -1189,218 +864,105 @@ footer{
 
   justify-content:center;
 
-  border-radius:50%;
+  padding:13px;
 
-  background:#f5eee7;
-
-  color:#b58b63;
-
-  font-size:28px;
-}
-
-.join-modal-box h2{
-
-  font-size:24px;
-
-  margin-bottom:8px;
-}
-
-.join-modal-box > p{
-
-  color:#888;
-
-  font-size:14px;
-
-  line-height:1.7;
-
-  margin-bottom:25px;
-}
-
-.join-buttons{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:12px;
-}
-
-.join-contact-btn{
-
-  width:100%;
-
-  border:0;
-
-  border-radius:10px;
-
-  padding:
-    13px 18px;
-
-  cursor:pointer;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  transition:.2s;
-}
-
-.join-contact-btn span{
-
-  font-size:15px;
+  border-radius:9px;
 
   font-weight:600;
+
 }
 
-.join-contact-btn small{
-
-  font-size:12px;
-
-  opacity:.75;
-}
-
-.join-contact-btn.whatsapp{
+.join-whatsapp{
 
   background:#e8f7ed;
-
   color:#168a43;
+
 }
 
-.join-contact-btn.whatsapp:hover{
-
-  background:#168a43;
-
-  color:#fff;
-
-  transform:
-    translateY(-2px);
-}
-
-.join-contact-btn.telegram{
+.join-telegram{
 
   background:#e8f2fb;
-
   color:#2481c7;
+
 }
 
-.join-contact-btn.telegram:hover{
+.no-contact{
 
-  background:#2481c7;
+  color:#999;
 
-  color:#fff;
+  font-size:13px;
 
-  transform:
-    translateY(-2px);
 }
 
 
-/* ==================================================
-   Tablet
-================================================== */
+/* =========================
+   Responsive
+========================= */
 
 @media(max-width:1000px){
 
   .women-grid{
 
     grid-template-columns:
-      repeat(
-        3,
-        minmax(0,1fr)
-      );
-  }
+      repeat(3,minmax(0,1fr));
 
-  .profile-modal-box{
-
-    grid-template-columns:
-      1fr;
-
-    max-height:
-      calc(100vh - 20px);
-
-    overflow-y:auto;
-  }
-
-  .slider-viewport{
-
-    min-height:55vh;
-
-    max-height:65vh;
-  }
-
-  .profile-info{
-
-    max-height:none;
-
-    padding:25px;
   }
 
 }
-
-
-/* ==================================================
-   Mobile
-================================================== */
 
 @media(max-width:700px){
 
   .site-header{
 
     height:62px;
-
     padding:0 20px;
+
   }
 
   .brand{
 
     font-size:19px;
+
   }
 
   .admin-link{
 
     font-size:12px;
+    padding:6px 12px;
 
-    padding:
-      6px 12px;
   }
 
   .hero{
 
     min-height:360px;
+    padding:55px 25px;
 
-    padding:
-      55px 25px;
   }
 
   .hero h1{
 
     font-size:39px;
+
   }
 
   .hero p:not(.eyebrow){
 
     font-size:15px;
+
   }
 
   .toolbar{
 
-    width:
-      calc(100% - 40px);
+    width:calc(100% - 30px);
 
     margin-top:30px;
 
-    align-items:flex-start;
-  }
-
-  .toolbar strong{
-
-    font-size:20px;
   }
 
   .filters{
 
     width:100%;
+
   }
 
   .filters select{
@@ -1408,156 +970,91 @@ footer{
     flex:1;
 
     width:50%;
+
   }
 
   .women-grid{
 
-    width:
-      calc(100% - 30px);
+    width:calc(100% - 30px);
 
     grid-template-columns:
-      repeat(
-        2,
-        minmax(0,1fr)
-      );
+      repeat(2,minmax(0,1fr));
 
     gap:12px;
 
-    margin-bottom:50px;
   }
 
   .woman-info{
 
-    padding:14px;
+    padding:13px;
+
   }
 
   .woman-info h2{
 
     font-size:17px;
+
   }
 
-  .woman-info > p{
-
-    font-size:12px;
-  }
-
-  .description{
-
-    font-size:12px !important;
-  }
-
-  .view-profile{
+  .woman-info p{
 
     font-size:12px;
 
-    margin-top:10px;
-
-    padding-top:9px;
   }
 
-  .more-women-card{
+  .more-card-content{
 
-    min-height:430px;
+    padding:18px;
+
   }
 
-  .more-women-content{
-
-    padding:
-      22px 16px;
-  }
-
-  .more-women-content h2{
+  .more-card-content h2{
 
     font-size:20px;
+
   }
 
-  .profile-modal{
+  .more-card-content p{
 
-    padding:0;
+    font-size:12px;
+
   }
 
-  .profile-modal-box{
+  .gallery-slide{
 
-    width:100%;
+    padding:10px 15px;
 
-    height:100%;
-
-    max-height:none;
-
-    border-radius:0;
-
-    display:flex;
-
-    flex-direction:column;
   }
 
-  .profile-media{
+  .gallery-arrow{
 
-    flex:none;
+    width:40px;
+    height:40px;
 
-    height:56vh;
+    font-size:23px;
 
-    min-height:0;
   }
 
-  .slider-viewport{
+  .gallery-prev{
 
-    height:100%;
+    left:5px;
 
-    min-height:0;
-
-    max-height:none;
   }
 
-  .profile-info{
+  .gallery-next{
 
-    flex:1;
+    right:5px;
 
-    padding:22px;
-
-    overflow-y:auto;
-  }
-
-  .profile-info h2{
-
-    font-size:25px;
-  }
-
-  .profile-meta{
-
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .profile-close{
-
-    top:10px;
-
-    right:10px;
   }
 
 }
-
-
-/* ==================================================
-   Small Phone
-================================================== */
 
 @media(max-width:400px){
 
   .women-grid{
 
     grid-template-columns:1fr;
-  }
 
-  .woman-image{
-
-    aspect-ratio:4 / 5;
-  }
-
-  .more-women-card{
-
-    min-height:450px;
   }
 
 }
@@ -1566,36 +1063,25 @@ footer{
 
 </head>
 
-
 <body>
 
 
-<!-- ==================================================
-     Header
-================================================== -->
-
 <header class="site-header">
 
-  <a
-    class="brand"
-    href="./"
-  >
+  <a class="brand" href="./">
+
     缘分<span>·</span>相遇
+
   </a>
 
-  <a
-    class="admin-link"
-    href="admin/"
-  >
+  <a class="admin-link" href="admin/">
+
     管理
+
   </a>
 
 </header>
 
-
-<!-- ==================================================
-     Main
-================================================== -->
 
 <main>
 
@@ -1622,24 +1108,7 @@ footer{
 </section>
 
 
-<!-- ==================================================
-     Toolbar
-================================================== -->
-
 <section class="toolbar">
-
-  <div>
-
-    <strong>
-      女士资料
-    </strong>
-
-    <span id="count">
-      加载中…
-    </span>
-
-  </div>
-
 
   <div class="filters">
 
@@ -1650,7 +1119,6 @@ footer{
       </option>
 
     </select>
-
 
     <select id="ageFilter">
 
@@ -1681,25 +1149,13 @@ footer{
 </section>
 
 
-<!-- ==================================================
-     女士 Grid
-================================================== -->
-
 <section
   id="womenGrid"
   class="women-grid"
 >
 
   <div class="loading">
-
-    <h3>
-      正在加载资料…
-    </h3>
-
-    <p>
-      请稍候。
-    </p>
-
+    正在加载资料……
   </div>
 
 </section>
@@ -1708,228 +1164,118 @@ footer{
 </main>
 
 
-<!-- ==================================================
-     Footer
-================================================== -->
-
 <footer>
 
-  ©
-  <span id="year"></span>
+  © <span id="year"></span>
   缘分·相遇
 
 </footer>
 
 
-<!-- ==================================================
-     女士详情 Modal
-================================================== -->
+<!-- =========================
+     Gallery
+========================= -->
 
 <div
-  id="profileModal"
-  class="profile-modal hidden"
+  id="galleryModal"
+  class="gallery-modal"
 >
 
-  <div class="profile-modal-box">
+  <div class="gallery-container">
 
-    <button
-      id="profileClose"
-      class="profile-close"
-      type="button"
-    >
-      ×
-    </button>
-
-
-    <!-- =========================
-         Media
-    ========================== -->
-
-    <div class="profile-media">
+    <div class="gallery-header">
 
       <div
-        id="sliderViewport"
-        class="slider-viewport"
+        id="galleryTitle"
+        class="gallery-title"
       >
-
-        <div
-          id="sliderTrack"
-          class="slider-track"
-        ></div>
-
+        女士资料
       </div>
 
+      <button
+        id="galleryClose"
+        class="gallery-close"
+        type="button"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="gallery-body">
 
       <button
-        id="sliderPrev"
-        class="slider-button slider-prev"
+        id="galleryPrev"
+        class="gallery-arrow gallery-prev"
         type="button"
       >
         ‹
       </button>
 
 
+      <div
+        id="galleryTrack"
+        class="gallery-track"
+      ></div>
+
+
       <button
-        id="sliderNext"
-        class="slider-button slider-next"
+        id="galleryNext"
+        class="gallery-arrow gallery-next"
         type="button"
       >
         ›
       </button>
 
-
-      <div
-        id="sliderCounter"
-        class="slider-counter"
-      >
-        1 / 1
-      </div>
-
     </div>
 
 
-    <!-- =========================
-         Info
-    ========================== -->
-
-    <div class="profile-info">
-
-      <h2 id="profileName">
-        -
-      </h2>
-
-      <div
-        id="profileCity"
-        class="profile-city"
-      >
-        -
-      </div>
-
-
-      <div class="profile-meta">
-
-        <div class="profile-meta-item">
-
-          <span>
-            年龄
-          </span>
-
-          <strong id="profileAge">
-            -
-          </strong>
-
-        </div>
-
-
-        <div class="profile-meta-item">
-
-          <span>
-            职业
-          </span>
-
-          <strong id="profileOccupation">
-            -
-          </strong>
-
-        </div>
-
-      </div>
-
-
-      <div class="profile-description-title">
-        关于她
-      </div>
-
-      <div
-        id="profileDescription"
-        class="profile-description"
-      >
-        暂无介绍
-      </div>
-
-
-      <div
-        id="profileContactButtons"
-        class="profile-contact-buttons"
-      ></div>
-
-    </div>
+    <div
+      id="galleryCounter"
+      class="gallery-counter"
+    ></div>
 
   </div>
 
 </div>
 
 
-<!-- ==================================================
-     申请加入 Modal
-================================================== -->
+<!-- =========================
+     Join
+========================= -->
 
 <div
   id="joinModal"
-  class="join-modal hidden"
+  class="join-modal"
 >
 
-  <div class="join-modal-box">
+  <div class="join-box">
 
     <button
-      id="closeJoinModal"
+      id="joinClose"
       class="join-close"
       type="button"
     >
       ×
     </button>
 
-
-    <div class="join-icon">
-      ♡
-    </div>
-
-
     <h2>
       申请加入
     </h2>
 
-
     <p>
-      如果你希望加入我们的女士资料展示，
-      可以通过以下方式联系我们。
+      如果你也希望出现在这里，可以联系我们。
     </p>
 
+    <div
+      id="joinContacts"
+      class="join-contact"
+    >
 
-    <div class="join-buttons">
-
-      <button
-        id="joinWhatsapp"
-        class="join-contact-btn whatsapp"
-        type="button"
-      >
-
-        <span>
-          WhatsApp
-        </span>
-
-        <small>
-          立即联系
-        </small>
-
-      </button>
-
-
-      <button
-        id="joinTelegram"
-        class="join-contact-btn telegram"
-        type="button"
-      >
-
-        <span>
-          Telegram
-        </span>
-
-        <small>
-          立即联系
-        </small>
-
-      </button>
+      <div class="no-contact">
+        正在加载联系方式……
+      </div>
 
     </div>
 
@@ -1940,43 +1286,33 @@ footer{
 
 <script>
 
+
 /* ==================================================
    Supabase
 ================================================== */
 
 const SUPABASE_URL =
-  "https://yutraouosffjteivvlfx.supabase.co";
+"https://yutraouosffjteivvlfx.supabase.co";
+
 
 const SUPABASE_KEY =
-  "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
+"sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
 
-/* ==================================================
-   全局
-================================================== */
+const STORAGE_BUCKET =
+"women-photos";
+
 
 let women = [];
 
 let joinContact = {
-
   whatsapp:"",
   telegram:""
-
 };
-
-let currentProfile = null;
-
-let currentSlides = [];
-
-let currentSlideIndex = 0;
-
-let touchStartX = 0;
-
-let touchEndX = 0;
 
 
 /* ==================================================
-   Year
+   基础
 ================================================== */
 
 document
@@ -1985,217 +1321,119 @@ document
   new Date().getFullYear();
 
 
-/* ==================================================
-   HTML 安全处理
-================================================== */
-
 function escapeHtml(value){
 
-  return String(
-    value ?? ""
-  )
+  return String(value ?? "")
 
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-
-  .replace(
-    /</g,
-    "&lt;"
-  )
-
-  .replace(
-    />/g,
-    "&gt;"
-  )
-
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
-
-/* ==================================================
-   Supabase URL
-================================================== */
-
-function convertStorageUrl(path){
-
-  if(!path){
-
-    return "";
-
-  }
-
-
-  const value =
-    String(path).trim();
-
-
-  if(
-
-    value.startsWith("http://") ||
-
-    value.startsWith("https://") ||
-
-    value.startsWith("data:")
-
-  ){
-
-    return value;
-
-  }
-
-
-  return (
-
-    SUPABASE_URL +
-
-    "/storage/v1/object/public/women-photos/" +
-
-    value.replace(
-      /^\/+/,
-      ""
-    )
-
-  );
-
-}
-
-
-/* ==================================================
-   Media 数组
-================================================== */
 
 function normalizeMedia(value){
 
   if(!value){
-
     return [];
-
   }
-
 
   if(Array.isArray(value)){
 
     return value
-
       .flat(Infinity)
-
       .filter(Boolean)
-
-      .map(
-        item =>
-          String(item).trim()
-      )
-
+      .map(v => String(v).trim())
       .filter(Boolean);
 
   }
 
-
   if(typeof value === "string"){
 
-    const text =
-      value.trim();
-
+    const text = value.trim();
 
     if(!text){
-
       return [];
-
     }
-
 
     try{
 
       const parsed =
         JSON.parse(text);
 
-
       if(Array.isArray(parsed)){
 
         return parsed
-
           .flat(Infinity)
-
           .filter(Boolean)
-
-          .map(
-            item =>
-              String(item).trim()
-          )
-
+          .map(v => String(v).trim())
           .filter(Boolean);
 
       }
 
-    }catch(error){}
+    }catch(e){}
 
-
-    if(
-      text.includes(",")
-    ){
+    if(text.includes(",")){
 
       return text
-
         .split(",")
-
-        .map(
-          item =>
-            item.trim()
-        )
-
+        .map(v => v.trim())
         .filter(Boolean);
 
     }
 
-
     return [text];
 
   }
-
 
   return [];
 
 }
 
 
-/* ==================================================
-   获取照片
-================================================== */
+function getStorageUrl(path){
+
+  if(!path){
+    return "";
+  }
+
+  const value =
+    String(path).trim();
+
+  if(
+    value.startsWith("http://") ||
+    value.startsWith("https://") ||
+    value.startsWith("data:")
+  ){
+
+    return value;
+
+  }
+
+  return (
+    SUPABASE_URL +
+    "/storage/v1/object/public/" +
+    STORAGE_BUCKET +
+    "/" +
+    value.replace(/^\/+/,"")
+  );
+
+}
+
 
 function getPhotos(woman){
 
   let photos = [];
 
-
-  /*
-    兼容旧的 image_url
-  */
-
-  if(
-    woman.image_url
-  ){
+  if(woman.image_url){
 
     photos.push(
       woman.image_url
     );
 
   }
-
-
-  /*
-    新 photos 字段
-  */
 
   photos =
     photos.concat(
@@ -2204,199 +1442,34 @@ function getPhotos(woman){
       )
     );
 
-
-  /*
-    去重
-  */
-
-  photos =
-    [
-      ...new Set(
-        photos
-          .filter(Boolean)
-          .map(
-            convertStorageUrl
-          )
-      )
-    ];
-
-
-  return photos;
+  return [
+    ...new Set(
+      photos
+        .filter(Boolean)
+        .map(getStorageUrl)
+    )
+  ];
 
 }
 
 
-/* ==================================================
-   获取视频
-================================================== */
-
 function getVideos(woman){
 
   return [
-
     ...new Set(
-
       normalizeMedia(
         woman.videos
       )
-
       .filter(Boolean)
-
-      .map(
-        convertStorageUrl
-      )
-
+      .map(getStorageUrl)
     )
-
   ];
 
 }
 
 
 /* ==================================================
-   默认图片
-================================================== */
-
-function getDefaultImage(){
-
-  return (
-
-    "data:image/svg+xml;charset=UTF-8," +
-
-    encodeURIComponent(`
-
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="600"
-        height="800"
-      >
-
-        <rect
-          width="600"
-          height="800"
-          fill="#eeeeee"
-        />
-
-        <text
-          x="300"
-          y="400"
-          text-anchor="middle"
-          font-size="28"
-          fill="#999999"
-        >
-          暂无照片
-        </text>
-
-      </svg>
-
-    `)
-
-  );
-
-}
-
-
-/* ==================================================
-   获取申请加入联系方式
-================================================== */
-
-async function loadJoinContact(){
-
-  try{
-
-    const response =
-      await fetch(
-
-        SUPABASE_URL +
-        "/rest/v1/site_settings" +
-        "?select=*" +
-        "&key=in.(join_whatsapp,join_telegram)",
-
-        {
-
-          method:"GET",
-
-          headers:{
-
-            apikey:
-              SUPABASE_KEY,
-
-            Authorization:
-              "Bearer " +
-              SUPABASE_KEY,
-
-            "Content-Type":
-              "application/json"
-
-          }
-
-        }
-
-      );
-
-
-    if(!response.ok){
-
-      /*
-        site_settings 不存在时，
-        不影响女士资料正常显示
-      */
-
-      console.warn(
-        "site_settings 暂时无法读取"
-      );
-
-      return;
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    (data || []).forEach(
-      item => {
-
-        if(
-          item.key ===
-          "join_whatsapp"
-        ){
-
-          joinContact.whatsapp =
-            item.value || "";
-
-        }
-
-
-        if(
-          item.key ===
-          "join_telegram"
-        ){
-
-          joinContact.telegram =
-            item.value || "";
-
-        }
-
-      }
-    );
-
-
-  }catch(error){
-
-    console.warn(
-      "申请加入联系方式加载失败：",
-      error
-    );
-
-  }
-
-}
-
-
-/* ==================================================
-   加载女士
+   获取女士
 ================================================== */
 
 async function loadWomen(){
@@ -2406,143 +1479,57 @@ async function loadWomen(){
       "womenGrid"
     );
 
-
-  const count =
-    document.getElementById(
-      "count"
-    );
-
-
   try{
 
-    grid.innerHTML = `
-
-      <div class="loading">
-
-        <h3>
-          正在连接数据库……
-        </h3>
-
-        <p>
-          请稍候。
-        </p>
-
-      </div>
-
-    `;
-
-
     const url =
-
       SUPABASE_URL +
-
       "/rest/v1/women" +
-
       "?select=*" +
-
       "&is_published=eq.true" +
-
       "&order=created_at.desc";
-
 
     const response =
       await fetch(
         url,
         {
-
-          method:"GET",
-
           headers:{
-
-            apikey:
-              SUPABASE_KEY,
-
+            apikey:SUPABASE_KEY,
             Authorization:
               "Bearer " +
-              SUPABASE_KEY,
-
-            "Content-Type":
-              "application/json"
-
+              SUPABASE_KEY
           }
-
         }
       );
-
 
     const text =
       await response.text();
 
-
     if(!response.ok){
 
       throw new Error(
-        "Supabase 错误 " +
-        response.status +
-        ": " +
         text
       );
 
     }
 
-
-    let data;
-
-
-    try{
-
-      data =
-        JSON.parse(text);
-
-    }catch{
-
-      throw new Error(
-        "Supabase 返回的数据不是 JSON"
-      );
-
-    }
-
-
     women =
-      data || [];
-
-
-    count.textContent =
-      `共 ${women.length} 位`;
-
+      JSON.parse(text) || [];
 
     createCityFilter();
-
 
     renderWomen(
       women
     );
 
-
   }catch(error){
 
-    console.error(
-      error
-    );
-
-
-    count.textContent =
-      "加载失败";
-
+    console.error(error);
 
     grid.innerHTML = `
 
       <div class="loading">
 
-        <h3>
-          女士资料无法加载
-        </h3>
-
-        <p>
-          ${escapeHtml(
-            error.message
-          )}
-        </p>
+        暂时无法加载资料。
 
       </div>
 
@@ -2554,7 +1541,7 @@ async function loadWomen(){
 
 
 /* ==================================================
-   城市筛选
+   城市
 ================================================== */
 
 function createCityFilter(){
@@ -2564,28 +1551,14 @@ function createCityFilter(){
       "cityFilter"
     );
 
-
-  const cities = [
-
-    ...new Set(
-
-      women
-
-        .map(
-          woman =>
-            woman.city
-        )
-
-        .filter(
-          city =>
-            city &&
-            String(city).trim()
-        )
-
-    )
-
-  ];
-
+  const cities =
+    [
+      ...new Set(
+        women
+          .map(w => w.city)
+          .filter(Boolean)
+      )
+    ];
 
   select.innerHTML = `
 
@@ -2595,7 +1568,6 @@ function createCityFilter(){
 
   `;
 
-
   cities.forEach(
     city => {
 
@@ -2604,14 +1576,11 @@ function createCityFilter(){
           "option"
         );
 
-
       option.value =
         city;
 
-
       option.textContent =
         city;
-
 
       select.appendChild(
         option
@@ -2624,7 +1593,7 @@ function createCityFilter(){
 
 
 /* ==================================================
-   渲染女士
+   渲染
 ================================================== */
 
 function renderWomen(list){
@@ -2634,89 +1603,55 @@ function renderWomen(list){
       "womenGrid"
     );
 
-
   grid.innerHTML = "";
 
-
-  if(
-    !list ||
-    list.length === 0
-  ){
-
-    grid.innerHTML = `
-
-      <div class="loading">
-
-        <h3>
-          暂时没有女士资料
-        </h3>
-
-        <p>
-          当前没有符合条件的资料。
-        </p>
-
-      </div>
-
-    `;
-
-    addMoreWomenCard();
-
-    return;
-
-  }
-
-
   list.forEach(
-    woman => {
-
-      const card =
-        document.createElement(
-          "article"
-        );
-
-
-      card.className =
-        "woman-card";
-
+    (woman,index) => {
 
       const photos =
         getPhotos(
           woman
         );
 
+      const cover =
+        photos[0] ||
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg"
+               width="600"
+               height="800">
+            <rect width="600" height="800"
+                  fill="#eeeeee"/>
+            <text x="300" y="400"
+                  text-anchor="middle"
+                  font-size="28"
+                  fill="#999">
+              暂无照片
+            </text>
+          </svg>
+        `);
 
-      const videos =
-        getVideos(
-          woman
+
+      const card =
+        document.createElement(
+          "article"
         );
 
-
-      const firstPhoto =
-        photos.length > 0
-        ?
-        photos[0]
-        :
-        getDefaultImage();
+      card.className =
+        "woman-card";
 
 
       card.innerHTML = `
 
-        <div class="media-gallery">
+        <div class="woman-image">
 
-          <div class="woman-image">
-
-            <img
-              src="${escapeHtml(
-                firstPhoto
-              )}"
-              alt="${escapeHtml(
-                woman.name ||
-                "女士"
-              )}"
-              loading="lazy"
-            >
-
-          </div>
+          <img
+            src="${escapeHtml(cover)}"
+            alt="${escapeHtml(
+              woman.name || "女士"
+            )}"
+            loading="lazy"
+          >
 
         </div>
 
@@ -2733,7 +1668,7 @@ function renderWomen(list){
             ${
               woman.age
               ?
-              "，" +
+              " · " +
               escapeHtml(
                 woman.age
               ) +
@@ -2748,124 +1683,57 @@ function renderWomen(list){
           ${
             woman.city
             ?
-
             `
-
               <p class="city">
-
                 ${escapeHtml(
                   woman.city
                 )}
-
               </p>
-
             `
-
             :
-
             ""
-
           }
 
 
           ${
             woman.occupation
-
             ?
-
             `
-
               <p>
-
                 ${escapeHtml(
                   woman.occupation
                 )}
-
               </p>
-
             `
-
             :
-
             ""
-
           }
 
 
           ${
             woman.description
-
             ?
-
             `
-
               <p class="description">
-
                 ${escapeHtml(
                   woman.description
                 )}
-
               </p>
-
             `
-
             :
-
             ""
-
           }
-
-
-          <div class="media-count">
-
-            ${
-              photos.length
-            }
-            张照片
-
-            ·
-
-            ${
-              videos.length
-            }
-            个视频
-
-          </div>
-
-
-          <div class="view-profile">
-
-            点击查看完整资料 →
-
-          </div>
 
         </div>
 
       `;
 
 
-      const image =
-        card.querySelector(
-          "img"
-        );
-
-
-      image.addEventListener(
-        "error",
-        function(){
-
-          this.src =
-            getDefaultImage();
-
-        }
-      );
-
-
       card.addEventListener(
         "click",
-        function(){
+        () => {
 
-          openProfile(
+          openGallery(
             woman
           );
 
@@ -2881,59 +1749,38 @@ function renderWomen(list){
   );
 
 
-  /*
-    最后一张：
-    更多女士
-  */
-
-  addMoreWomenCard();
-
-}
-
-
-/* ==================================================
-   更多女士卡片
-================================================== */
-
-function addMoreWomenCard(){
-
-  const grid =
-    document.getElementById(
-      "womenGrid"
-    );
-
+  /* =========================
+     最后一张申请卡
+  ========================= */
 
   const moreCard =
     document.createElement(
       "article"
     );
 
-
   moreCard.className =
-    "more-women-card";
+    "more-card";
 
 
   moreCard.innerHTML = `
 
-    <div class="more-women-content">
+    <div class="more-card-bg"></div>
 
-      <div class="more-icon">
-        ♡
-      </div>
+    <div class="more-card-content">
 
       <h2>
         更多女士正在加入中
       </h2>
 
       <p>
-        我们正在持续添加新的女士资料。<br>
-        如果你也希望认识更多优秀的人，<br>
-        欢迎申请加入。
+        如果你也希望认识更多优秀的人，
+        或希望申请加入我们的资料展示，
+        欢迎联系我们。
       </p>
 
-      <span class="more-women-button">
+      <div class="join-button">
         申请加入
-      </span>
+      </div>
 
     </div>
 
@@ -2954,240 +1801,125 @@ function addMoreWomenCard(){
 
 
 /* ==================================================
-   打开女士资料
+   Gallery
 ================================================== */
 
-function openProfile(woman){
+let galleryMedia = [];
 
-  currentProfile =
-    woman;
+let galleryIndex = 0;
 
+
+function openGallery(woman){
 
   const photos =
-    getPhotos(
-      woman
-    );
-
+    getPhotos(woman);
 
   const videos =
-    getVideos(
-      woman
-    );
+    getVideos(woman);
 
 
-  currentSlides = [];
+  galleryMedia = [];
 
-
-  /*
-    照片
-  */
 
   photos.forEach(
     url => {
 
-      currentSlides.push({
-
+      galleryMedia.push({
         type:"image",
-
-        url:url
-
+        url
       });
 
     }
   );
 
-
-  /*
-    视频
-  */
 
   videos.forEach(
     url => {
 
-      currentSlides.push({
-
+      galleryMedia.push({
         type:"video",
-
-        url:url
-
+        url
       });
 
     }
   );
 
 
-  /*
-    没有媒体
-  */
-
-  if(
-    currentSlides.length === 0
-  ){
-
-    currentSlides.push({
-
-      type:"image",
-
-      url:getDefaultImage()
-
-    });
-
-  }
-
-
-  currentSlideIndex =
-    0;
-
-
-  renderProfile();
-
-
-  document
-    .getElementById(
-      "profileModal"
-    )
-    .classList.remove(
-      "hidden"
-    );
-
-
-  document.body.classList.add(
-    "modal-open"
-  );
-
-}
-
-
-/* ==================================================
-   渲染 Profile
-================================================== */
-
-function renderProfile(){
-
-  if(!currentProfile){
+  if(galleryMedia.length === 0){
 
     return;
 
   }
 
 
+  galleryIndex = 0;
+
+
   document
     .getElementById(
-      "profileName"
+      "galleryTitle"
     )
     .textContent =
+    woman.name ||
+    "女士资料";
 
-    (
-      currentProfile.name ||
-      "未填写姓名"
-    ) +
 
-    (
+  renderGallery();
 
-      currentProfile.age
-
-      ?
-
-      "，" +
-      currentProfile.age +
-      "岁"
-
-      :
-
-      ""
-
+  document
+    .getElementById(
+      "galleryModal"
+    )
+    .classList.add(
+      "show"
     );
 
 
-  document
-    .getElementById(
-      "profileCity"
-    )
-    .textContent =
-
-    currentProfile.city ||
-    "";
-
-
-  document
-    .getElementById(
-      "profileAge"
-    )
-    .textContent =
-
-    currentProfile.age
-    ?
-
-    currentProfile.age +
-    " 岁"
-
-    :
-
-    "未填写";
-
-
-  document
-    .getElementById(
-      "profileOccupation"
-    )
-    .textContent =
-
-    currentProfile.occupation ||
-    "未填写";
-
-
-  document
-    .getElementById(
-      "profileDescription"
-    )
-    .textContent =
-
-    currentProfile.description ||
-    "暂无个人介绍";
-
-
-  renderSlides();
-
-  renderProfileContacts();
+  document.body.style.overflow =
+    "hidden";
 
 }
 
 
-/* ==================================================
-   Render Slider
-================================================== */
-
-function renderSlides(){
+function renderGallery(){
 
   const track =
     document.getElementById(
-      "sliderTrack"
+      "galleryTrack"
     );
 
 
-  track.innerHTML =
-    "";
+  track.innerHTML = "";
 
 
-  currentSlides.forEach(
-    (slide,index) => {
+  galleryMedia.forEach(
+    media => {
 
-      const item =
+      const slide =
         document.createElement(
           "div"
         );
 
+      slide.className =
+        "gallery-slide";
 
-      item.className =
-        "slider-slide";
 
+      if(media.type === "image"){
 
-      if(
-        slide.type ===
-        "video"
-      ){
+        slide.innerHTML = `
 
-        item.innerHTML = `
+          <img
+            src="${escapeHtml(
+              media.url
+            )}"
+            draggable="false"
+          >
+
+        `;
+
+      }else{
+
+        slide.innerHTML = `
 
           <video
             controls
@@ -3197,240 +1929,142 @@ function renderSlides(){
 
             <source
               src="${escapeHtml(
-                slide.url
+                media.url
               )}"
             >
-
-            您的浏览器不支持视频播放。
 
           </video>
 
         `;
 
-      }else{
-
-        item.innerHTML = `
-
-          <img
-            src="${escapeHtml(
-              slide.url
-            )}"
-            alt="资料图片"
-          >
-
-        `;
-
-
-        item
-          .querySelector(
-            "img"
-          )
-          .addEventListener(
-            "error",
-            function(){
-
-              this.src =
-                getDefaultImage();
-
-            }
-          );
-
       }
 
 
       track.appendChild(
-        item
+        slide
       );
 
     }
   );
 
 
-  updateSlider();
+  updateGalleryCounter();
+
+
+  requestAnimationFrame(
+    () => {
+
+      const width =
+        track.clientWidth;
+
+      track.scrollLeft =
+        width *
+        galleryIndex;
+
+    }
+  );
 
 }
 
 
-/* ==================================================
-   Slider Position
-================================================== */
-
-function updateSlider(){
-
-  const track =
-    document.getElementById(
-      "sliderTrack"
-    );
-
-
-  track.style.transform =
-    "translateX(-" +
-    (
-      currentSlideIndex *
-      100
-    ) +
-    "%)";
-
+function updateGalleryCounter(){
 
   const counter =
     document.getElementById(
-      "sliderCounter"
+      "galleryCounter"
     );
 
+  if(galleryMedia.length){
 
-  counter.textContent =
-
-    (
-      currentSlideIndex + 1
-    ) +
-
-    " / " +
-
-    currentSlides.length;
-
-
-  const prev =
-    document.getElementById(
-      "sliderPrev"
-    );
-
-
-  const next =
-    document.getElementById(
-      "sliderNext"
-    );
-
-
-  if(
-    currentSlides.length <= 1
-  ){
-
-    prev.style.display =
-      "none";
-
-    next.style.display =
-      "none";
-
-  }else{
-
-    prev.style.display =
-      "flex";
-
-    next.style.display =
-      "flex";
+    counter.textContent =
+      `${galleryIndex + 1} / ${galleryMedia.length}  ·  左右滑动查看`;
 
   }
 
 }
 
 
-/* ==================================================
-   下一张
-================================================== */
+function galleryGoTo(index){
 
-function nextSlide(){
-
-  if(
-    currentSlides.length <= 1
-  ){
-
+  if(!galleryMedia.length){
     return;
-
   }
 
-
-  /*
-    循环播放
-  */
-
-  currentSlideIndex =
-
-    (
-      currentSlideIndex + 1
-    ) %
-
-    currentSlides.length;
-
-
-  pauseAllVideos();
-
-  updateSlider();
-
-}
-
-
-/* ==================================================
-   上一张
-================================================== */
-
-function previousSlide(){
+  if(index < 0){
+    index =
+      galleryMedia.length - 1;
+  }
 
   if(
-    currentSlides.length <= 1
+    index >=
+    galleryMedia.length
   ){
 
-    return;
+    index = 0;
 
   }
 
-
-  currentSlideIndex =
-
-    (
-      currentSlideIndex - 1 +
-      currentSlides.length
-    ) %
-
-    currentSlides.length;
+  galleryIndex =
+    index;
 
 
-  pauseAllVideos();
+  const track =
+    document.getElementById(
+      "galleryTrack"
+    );
 
-  updateSlider();
+
+  track.scrollTo({
+    left:
+      track.clientWidth *
+      galleryIndex,
+
+    behavior:"smooth"
+
+  });
+
+
+  updateGalleryCounter();
 
 }
 
 
-/* ==================================================
-   暂停视频
-================================================== */
+/* =========================
+   自动识别手指滑动
+========================= */
 
-function pauseAllVideos(){
+document
+  .getElementById(
+    "galleryTrack"
+  )
+  .addEventListener(
+    "scroll",
+    function(){
 
-  document
-    .querySelectorAll(
-      "#sliderTrack video"
-    )
-    .forEach(
-      video => {
+      const width =
+        this.clientWidth;
 
-        try{
+      if(!width){
+        return;
+      }
 
-          video.pause();
+      const index =
+        Math.round(
+          this.scrollLeft /
+          width
+        );
 
-        }catch(error){}
+      if(
+        index !==
+        galleryIndex
+      ){
+
+        galleryIndex =
+          index;
+
+        updateGalleryCounter();
 
       }
-    );
-
-}
-
-
-/* ==================================================
-   Slider Buttons
-================================================== */
-
-document
-  .getElementById(
-    "sliderNext"
-  )
-  .addEventListener(
-    "click",
-    function(event){
-
-      event.stopPropagation();
-
-      nextSlide();
 
     }
   );
@@ -3438,305 +2072,185 @@ document
 
 document
   .getElementById(
-    "sliderPrev"
+    "galleryPrev"
   )
   .addEventListener(
     "click",
-    function(event){
+    () => {
 
-      event.stopPropagation();
-
-      previousSlide();
+      galleryGoTo(
+        galleryIndex - 1
+      );
 
     }
   );
 
 
-/* ==================================================
-   Touch Swipe
-================================================== */
+document
+  .getElementById(
+    "galleryNext"
+  )
+  .addEventListener(
+    "click",
+    () => {
 
-const sliderViewport =
-  document.getElementById(
-    "sliderViewport"
+      galleryGoTo(
+        galleryIndex + 1
+      );
+
+    }
   );
 
 
-sliderViewport.addEventListener(
-  "touchstart",
-  function(event){
-
-    if(
-      !event.touches ||
-      !event.touches.length
-    ){
-
-      return;
-
-    }
+document
+  .getElementById(
+    "galleryClose"
+  )
+  .addEventListener(
+    "click",
+    closeGallery
+  );
 
 
-    touchStartX =
-      event.touches[0].clientX;
-
-  },
-  {
-    passive:true
-  }
-);
-
-
-sliderViewport.addEventListener(
-  "touchend",
-  function(event){
-
-    if(
-      !event.changedTouches ||
-      !event.changedTouches.length
-    ){
-
-      return;
-
-    }
-
-
-    touchEndX =
-      event.changedTouches[0].clientX;
-
-
-    const distance =
-      touchEndX -
-      touchStartX;
-
-
-    /*
-      至少滑动 50px
-    */
-
-    if(
-      Math.abs(distance) <
-      50
-    ){
-
-      return;
-
-    }
-
-
-    if(
-      distance < 0
-    ){
-
-      nextSlide();
-
-    }else{
-
-      previousSlide();
-
-    }
-
-  },
-  {
-    passive:true
-  }
-);
-
-
-/* ==================================================
-   关闭 Profile
-================================================== */
-
-function closeProfile(){
-
-  pauseAllVideos();
-
+function closeGallery(){
 
   document
     .getElementById(
-      "profileModal"
+      "galleryModal"
     )
-    .classList.add(
-      "hidden"
+    .classList.remove(
+      "show"
     );
 
+  document.body.style.overflow =
+    "";
 
-  document.body.classList.remove(
-    "modal-open"
-  );
-
-
-  currentProfile =
-    null;
+  document
+    .querySelectorAll(
+      "#galleryTrack video"
+    )
+    .forEach(
+      video => video.pause()
+    );
 
 }
 
 
-document
-  .getElementById(
-    "profileClose"
-  )
-  .addEventListener(
-    "click",
-    closeProfile
-  );
+/* =========================
+   ESC
+========================= */
 
+document.addEventListener(
+  "keydown",
+  event => {
 
-document
-  .getElementById(
-    "profileModal"
-  )
-  .addEventListener(
-    "click",
-    function(event){
+    if(event.key === "Escape"){
 
-      if(
-        event.target === this
-      ){
+      closeGallery();
 
-        closeProfile();
+      closeJoinModal();
+
+    }
+
+    if(
+      document
+        .getElementById(
+          "galleryModal"
+        )
+        .classList.contains("show")
+    ){
+
+      if(event.key === "ArrowLeft"){
+
+        galleryGoTo(
+          galleryIndex - 1
+        );
+
+      }
+
+      if(event.key === "ArrowRight"){
+
+        galleryGoTo(
+          galleryIndex + 1
+        );
 
       }
 
     }
-  );
+
+  }
+);
 
 
 /* ==================================================
-   Profile Contact
+   Join 联系方式
 ================================================== */
 
-function renderProfileContacts(){
+async function loadJoinContact(){
 
-  const box =
-    document.getElementById(
-      "profileContactButtons"
-    );
+  try{
+
+    const url =
+      SUPABASE_URL +
+      "/rest/v1/site_settings" +
+      "?select=whatsapp,telegram" +
+      "&setting_key=eq.join_contact" +
+      "&limit=1";
 
 
-  box.innerHTML =
-    "";
-
-
-  if(
-    currentProfile &&
-    currentProfile.whatsapp
-  ){
-
-    const button =
-      document.createElement(
-        "button"
+    const response =
+      await fetch(
+        url,
+        {
+          headers:{
+            apikey:SUPABASE_KEY,
+            Authorization:
+              "Bearer " +
+              SUPABASE_KEY
+          }
+        }
       );
 
 
-    button.className =
-      "profile-contact-btn profile-whatsapp";
+    if(!response.ok){
 
-
-    button.type =
-      "button";
-
-
-    button.textContent =
-      "通过 WhatsApp 联系";
-
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        openWhatsApp(
-          currentProfile.whatsapp
-        );
-
-      }
-    );
-
-
-    box.appendChild(
-      button
-    );
-
-  }
-
-
-  if(
-    currentProfile &&
-    currentProfile.telegram
-  ){
-
-    const button =
-      document.createElement(
-        "button"
+      throw new Error(
+        await response.text()
       );
 
-
-    button.className =
-      "profile-contact-btn profile-telegram";
+    }
 
 
-    button.type =
-      "button";
+    const data =
+      await response.json();
 
 
-    button.textContent =
-      "通过 Telegram 联系";
+    if(data.length){
+
+      joinContact =
+        data[0];
+
+    }
 
 
-    button.addEventListener(
-      "click",
-      function(){
+  }catch(error){
 
-        openTelegram(
-          currentProfile.telegram
-        );
-
-      }
+    console.error(
+      "联系方式加载失败:",
+      error
     );
-
-
-    box.appendChild(
-      button
-    );
-
-  }
-
-
-  if(
-    box.children.length === 0
-  ){
-
-    box.innerHTML = `
-
-      <p
-        style="
-          color:#999;
-          font-size:13px;
-          text-align:center;
-        "
-      >
-        暂未设置联系方式
-      </p>
-
-    `;
 
   }
 
 }
 
 
-/* ==================================================
-   WhatsApp
-================================================== */
+function makeWhatsAppUrl(value){
 
-function openWhatsApp(phone){
-
-  let number =
+  const number =
     String(
-      phone || ""
+      value || ""
     )
-
-    .trim()
-
     .replace(
       /[^\d]/g,
       ""
@@ -3744,190 +2258,166 @@ function openWhatsApp(phone){
 
 
   if(!number){
-
-    alert(
-      "WhatsApp 联系方式无效"
-    );
-
-    return;
-
+    return "";
   }
 
 
-  window.location.href =
+  return (
     "https://wa.me/" +
-    number;
+    number
+  );
 
 }
 
 
-/* ==================================================
-   Telegram
-================================================== */
+function makeTelegramUrl(value){
 
-function openTelegram(username){
-
-  let value =
+  let username =
     String(
-      username || ""
+      value || ""
     )
-
     .trim();
 
 
-  if(!value){
-
-    alert(
-      "Telegram 联系方式无效"
-    );
-
-    return;
-
+  if(!username){
+    return "";
   }
 
 
   if(
-
-    value.startsWith(
+    username.startsWith(
       "https://t.me/"
     ) ||
-
-    value.startsWith(
+    username.startsWith(
       "http://t.me/"
     )
-
   ){
 
-    window.location.href =
-      value;
-
-    return;
+    return username;
 
   }
 
 
-  value =
-    value.replace(
+  username =
+    username.replace(
       /^@/,
       ""
     );
 
 
-  if(!value){
-
-    alert(
-      "Telegram 联系方式无效"
-    );
-
-    return;
-
-  }
-
-
-  window.location.href =
+  return (
     "https://t.me/" +
-    value;
+    username
+  );
 
 }
 
-
-/* ==================================================
-   申请加入
-================================================== */
 
 function openJoinModal(){
 
-  const modal =
+  const box =
     document.getElementById(
+      "joinContacts"
+    );
+
+
+  box.innerHTML = "";
+
+
+  const whatsappUrl =
+    makeWhatsAppUrl(
+      joinContact.whatsapp
+    );
+
+
+  const telegramUrl =
+    makeTelegramUrl(
+      joinContact.telegram
+    );
+
+
+  if(whatsappUrl){
+
+    const a =
+      document.createElement(
+        "a"
+      );
+
+    a.href =
+      whatsappUrl;
+
+    a.target =
+      "_blank";
+
+    a.rel =
+      "noopener";
+
+    a.className =
+      "join-whatsapp";
+
+    a.textContent =
+      "WhatsApp 联系我们";
+
+    box.appendChild(a);
+
+  }
+
+
+  if(telegramUrl){
+
+    const a =
+      document.createElement(
+        "a"
+      );
+
+    a.href =
+      telegramUrl;
+
+    a.target =
+      "_blank";
+
+    a.rel =
+      "noopener";
+
+    a.className =
+      "join-telegram";
+
+    a.textContent =
+      "Telegram 联系我们";
+
+    box.appendChild(a);
+
+  }
+
+
+  if(
+    !whatsappUrl &&
+    !telegramUrl
+  ){
+
+    box.innerHTML = `
+
+      <div class="no-contact">
+
+        暂无联系方式，请稍后再试。
+
+      </div>
+
+    `;
+
+  }
+
+
+  document
+    .getElementById(
       "joinModal"
+    )
+    .classList.add(
+      "show"
     );
-
-
-  const whatsappButton =
-    document.getElementById(
-      "joinWhatsapp"
-    );
-
-
-  const telegramButton =
-    document.getElementById(
-      "joinTelegram"
-    );
-
-
-  /*
-    WhatsApp
-  */
-
-  if(
-    joinContact.whatsapp
-  ){
-
-    whatsappButton.style.display =
-      "flex";
-
-  }else{
-
-    whatsappButton.style.display =
-      "none";
-
-  }
-
-
-  /*
-    Telegram
-  */
-
-  if(
-    joinContact.telegram
-  ){
-
-    telegramButton.style.display =
-      "flex";
-
-  }else{
-
-    telegramButton.style.display =
-      "none";
-
-  }
-
-
-  /*
-    都没有
-  */
-
-  if(
-
-    !joinContact.whatsapp &&
-    !joinContact.telegram
-
-  ){
-
-    alert(
-      "目前暂未设置申请加入联系方式。"
-    );
-
-    return;
-
-  }
-
-
-  modal.classList.remove(
-    "hidden"
-  );
-
-
-  document.body.classList.add(
-    "modal-open"
-  );
 
 }
 
-
-/* ==================================================
-   关闭申请加入
-================================================== */
 
 function closeJoinModal(){
 
@@ -3935,21 +2425,16 @@ function closeJoinModal(){
     .getElementById(
       "joinModal"
     )
-    .classList.add(
-      "hidden"
+    .classList.remove(
+      "show"
     );
-
-
-  document.body.classList.remove(
-    "modal-open"
-  );
 
 }
 
 
 document
   .getElementById(
-    "closeJoinModal"
+    "joinClose"
   )
   .addEventListener(
     "click",
@@ -3966,7 +2451,8 @@ document
     function(event){
 
       if(
-        event.target === this
+        event.target ===
+        this
       ){
 
         closeJoinModal();
@@ -3978,104 +2464,96 @@ document
 
 
 /* ==================================================
-   WhatsApp - 申请加入
+   筛选
 ================================================== */
 
-document
-  .getElementById(
-    "joinWhatsapp"
-  )
-  .addEventListener(
-    "click",
-    function(){
+function filterWomen(){
 
-      openWhatsApp(
-        joinContact.whatsapp
-      );
+  const city =
+    document
+      .getElementById(
+        "cityFilter"
+      )
+      .value;
 
-    }
+
+  const age =
+    document
+      .getElementById(
+        "ageFilter"
+      )
+      .value;
+
+
+  const filtered =
+    women.filter(
+      woman => {
+
+        if(
+          city &&
+          woman.city !== city
+        ){
+
+          return false;
+
+        }
+
+
+        const womanAge =
+          Number(
+            woman.age
+          );
+
+
+        if(age === "18-25"){
+
+          return (
+            womanAge >= 18 &&
+            womanAge <= 25
+          );
+
+        }
+
+
+        if(age === "26-35"){
+
+          return (
+            womanAge >= 26 &&
+            womanAge <= 35
+          );
+
+        }
+
+
+        if(age === "36-45"){
+
+          return (
+            womanAge >= 36 &&
+            womanAge <= 45
+          );
+
+        }
+
+
+        if(age === "46+"){
+
+          return womanAge >= 46;
+
+        }
+
+
+        return true;
+
+      }
+    );
+
+
+  renderWomen(
+    filtered
   );
 
+}
 
-/* ==================================================
-   Telegram - 申请加入
-================================================== */
-
-document
-  .getElementById(
-    "joinTelegram"
-  )
-  .addEventListener(
-    "click",
-    function(){
-
-      openTelegram(
-        joinContact.telegram
-      );
-
-    }
-  );
-
-
-/* ==================================================
-   ESC
-================================================== */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(
-      event.key !== "Escape"
-    ){
-
-      return;
-
-    }
-
-
-    const profile =
-      document.getElementById(
-        "profileModal"
-      );
-
-
-    const join =
-      document.getElementById(
-        "joinModal"
-      );
-
-
-    if(
-      !profile.classList.contains(
-        "hidden"
-      )
-    ){
-
-      closeProfile();
-
-      return;
-
-    }
-
-
-    if(
-      !join.classList.contains(
-        "hidden"
-      )
-    ){
-
-      closeJoinModal();
-
-    }
-
-  }
-);
-
-
-/* ==================================================
-   城市筛选
-================================================== */
 
 document
   .getElementById(
@@ -4086,10 +2564,6 @@ document
     filterWomen
   );
 
-
-/* ==================================================
-   年龄筛选
-================================================== */
 
 document
   .getElementById(
@@ -4102,158 +2576,13 @@ document
 
 
 /* ==================================================
-   Filter
-================================================== */
-
-function filterWomen(){
-
-  const city =
-    document.getElementById(
-      "cityFilter"
-    ).value;
-
-
-  const age =
-    document.getElementById(
-      "ageFilter"
-    ).value;
-
-
-  const filtered =
-    women.filter(
-      woman => {
-
-        /*
-          城市
-        */
-
-        if(
-
-          city &&
-          woman.city !== city
-
-        ){
-
-          return false;
-
-        }
-
-
-        /*
-          年龄
-        */
-
-        const womanAge =
-          Number(
-            woman.age
-          );
-
-
-        if(
-          age ===
-          "18-25"
-        ){
-
-          return (
-
-            womanAge >= 18 &&
-            womanAge <= 25
-
-          );
-
-        }
-
-
-        if(
-          age ===
-          "26-35"
-        ){
-
-          return (
-
-            womanAge >= 26 &&
-            womanAge <= 35
-
-          );
-
-        }
-
-
-        if(
-          age ===
-          "36-45"
-        ){
-
-          return (
-
-            womanAge >= 36 &&
-            womanAge <= 45
-
-          );
-
-        }
-
-
-        if(
-          age ===
-          "46+"
-        ){
-
-          return (
-            womanAge >= 46
-          );
-
-        }
-
-
-        return true;
-
-      }
-    );
-
-
-  /*
-    数量也跟着筛选改变
-  */
-
-  document
-    .getElementById(
-      "count"
-    )
-    .textContent =
-
-    `共 ${filtered.length} 位`;
-
-
-  renderWomen(
-    filtered
-  );
-
-}
-
-
-/* ==================================================
    启动
 ================================================== */
 
-async function init(){
-
-  /*
-    两个同时加载
-  */
-
-  await Promise.all([
-
-    loadWomen(),
-
-    loadJoinContact()
-
-  ]);
-
-}
-
-
-init();
+Promise.all([
+  loadWomen(),
+  loadJoinContact()
+]);
 
 </script>
 
