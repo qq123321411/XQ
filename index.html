@@ -2555,6 +2555,113 @@ footer span{
 
 }
 
+
+/* =========================================================
+   FINAL THEME UNIFICATION OVERRIDE
+   Hero / Profiles / Banner / Footer统一为深酒红+玫瑰金主题
+========================================================= */
+
+body{
+  background:
+    linear-gradient(180deg,#171014 0%,#24171d 48%,#1b1217 100%);
+}
+
+.content-section{
+  background:
+    radial-gradient(circle at 8% 10%,rgba(213,128,151,.16),transparent 27%),
+    radial-gradient(circle at 92% 24%,rgba(232,181,145,.13),transparent 29%),
+    radial-gradient(circle at 50% 68%,rgba(104,53,70,.18),transparent 38%),
+    linear-gradient(180deg,#24171d 0%,#2b1b23 48%,#24161d 100%);
+}
+
+.profiles-area{
+  background:
+    radial-gradient(ellipse 70% 45% at 8% 12%,rgba(213,128,151,.22),transparent 70%),
+    radial-gradient(ellipse 65% 45% at 92% 18%,rgba(232,181,145,.18),transparent 70%),
+    radial-gradient(ellipse 75% 55% at 50% 55%,rgba(96,50,66,.20),transparent 75%),
+    radial-gradient(ellipse 65% 45% at 15% 90%,rgba(194,105,136,.16),transparent 72%),
+    radial-gradient(ellipse 65% 45% at 88% 88%,rgba(224,165,130,.14),transparent 72%),
+    linear-gradient(180deg,#26191f 0%,#302027 28%,#34212a 58%,#291a21 100%);
+}
+
+.profiles-area::before{
+  background:
+    radial-gradient(ellipse 45% 35% at 12% 18%,rgba(219,133,158,.24),transparent 70%),
+    radial-gradient(ellipse 50% 40% at 88% 20%,rgba(236,179,139,.18),transparent 72%),
+    radial-gradient(ellipse 55% 45% at 50% 52%,rgba(111,57,76,.18),transparent 72%),
+    radial-gradient(ellipse 48% 38% at 15% 88%,rgba(207,116,148,.16),transparent 72%),
+    radial-gradient(ellipse 50% 42% at 88% 88%,rgba(228,166,132,.14),transparent 72%);
+}
+
+.profiles-area::after{
+  background:
+    radial-gradient(circle at 18% 18%,rgba(225,145,169,.18),transparent 17%),
+    radial-gradient(circle at 82% 18%,rgba(241,193,158,.15),transparent 20%),
+    radial-gradient(circle at 50% 48%,rgba(213,132,157,.10),transparent 28%),
+    radial-gradient(circle at 28% 82%,rgba(225,146,171,.10),transparent 22%),
+    radial-gradient(circle at 76% 84%,rgba(232,180,145,.10),transparent 23%);
+  filter:blur(38px);
+  opacity:.9;
+  animation:profileAmbient 15s ease-in-out infinite alternate;
+}
+
+@keyframes profileAmbient{
+  0%,100%{transform:translate3d(0,0,0) scale(.96);opacity:.68}
+  50%{transform:translate3d(0,-18px,0) scale(1.04);opacity:1}
+}
+
+.toolbar .section-title{
+  color:#fff;
+}
+
+.section-title small{
+  color:#e0a0b2;
+}
+
+.filters select{
+  color:#f8e9ee;
+  background:rgba(42,25,32,.78);
+  border:1px solid rgba(235,185,197,.24);
+  box-shadow:0 8px 28px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.07);
+  backdrop-filter:blur(12px);
+}
+
+.filters select:focus{
+  border-color:#d69aaa;
+}
+
+.loading{
+  color:rgba(255,255,255,.72);
+}
+
+.profile-decoration{
+  opacity:.65;
+}
+
+.romantic-banner{
+  background:
+    linear-gradient(115deg,rgba(36,20,27,.98),rgba(75,42,51,.96),rgba(50,29,35,.98));
+  box-shadow:0 28px 75px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+footer{
+  background:
+    radial-gradient(circle at 15% 20%,rgba(211,137,157,.22),transparent 32%),
+    radial-gradient(circle at 85% 70%,rgba(221,166,139,.17),transparent 35%),
+    linear-gradient(135deg,#24171c 0%,#352128 45%,#24171c 100%);
+}
+
+/* 让资料卡区域与前后区域视觉连续，避免白色断层 */
+.profiles-area + .romantic-banner{
+  margin-top:0;
+}
+
+@media(max-width:700px){
+  .profiles-area{
+    padding-bottom:55px;
+  }
+}
+
 </style>
 
 </head>
