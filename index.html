@@ -3057,7 +3057,3069 @@ loadJoinSettings();
 
 
 </script>
+<!doctype html>
+<html lang="zh-CN">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
+<title>缘分 · 相遇</title>
+
+<meta
+  name="description"
+  content="寻找适合你的缘分"
+>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    Arial,
+    sans-serif;
+
+  background:#faf9f7;
+  color:#2b2927;
+  line-height:1.6;
+}
+
+button,
+select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.site-header{
+  height:72px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 6%;
+
+  background:rgba(255,255,255,.97);
+
+  border-bottom:1px solid #eee;
+
+  position:sticky;
+  top:0;
+
+  z-index:100;
+}
+
+.brand{
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.brand span{
+  color:#b58b63;
+  margin:0 3px;
+}
+
+.admin-link{
+  padding:8px 16px;
+
+  border:1px solid #ddd;
+  border-radius:20px;
+
+  font-size:14px;
+  color:#666;
+}
+
+.admin-link:hover{
+  background:#2b2927;
+  color:#fff;
+}
+
+
+/* =========================
+   Hero
+========================= */
+
+.hero{
+  min-height:420px;
+
+  display:flex;
+  align-items:center;
+
+  padding:70px 8%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #faf9f7 0%,
+      rgba(250,249,247,.94) 55%,
+      rgba(250,249,247,.65) 100%
+    );
+}
+
+.hero > div{
+  max-width:700px;
+}
+
+.eyebrow{
+  font-size:13px;
+  letter-spacing:4px;
+  color:#b58b63;
+  margin-bottom:18px;
+  font-weight:600;
+}
+
+.hero h1{
+  font-size:clamp(38px,6vw,70px);
+  line-height:1.2;
+  font-weight:600;
+  letter-spacing:1px;
+  margin-bottom:24px;
+}
+
+.hero p:not(.eyebrow){
+  color:#777;
+  font-size:17px;
+  max-width:520px;
+}
+
+
+/* =========================
+   Toolbar
+========================= */
+
+.toolbar{
+  width:88%;
+  max-width:1400px;
+
+  margin:40px auto 25px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.toolbar strong{
+  font-size:22px;
+  margin-right:12px;
+}
+
+#count{
+  color:#999;
+  font-size:14px;
+}
+
+.filters{
+  display:flex;
+  gap:10px;
+}
+
+.filters select{
+  appearance:none;
+
+  border:1px solid #ddd;
+
+  background:#fff;
+
+  padding:11px 36px 11px 14px;
+
+  border-radius:8px;
+
+  color:#444;
+
+  cursor:pointer;
+
+  outline:none;
+}
+
+
+/* =========================
+   Grid
+========================= */
+
+.women-grid{
+  width:88%;
+  max-width:1400px;
+
+  margin:0 auto 25px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:24px;
+}
+
+
+/* =========================
+   Card
+========================= */
+
+.woman-card{
+  background:#fff;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  border:1px solid #eee;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+
+  cursor:pointer;
+}
+
+.woman-card:hover{
+  transform:translateY(-5px);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+}
+
+
+/* =========================
+   Media
+========================= */
+
+.media-gallery{
+  background:#eee;
+}
+
+.woman-image{
+  width:100%;
+
+  aspect-ratio:3 / 4;
+
+  background:#eee;
+
+  overflow:hidden;
+}
+
+.woman-image img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+}
+
+
+/* =========================
+   Card Info
+========================= */
+
+.woman-info{
+  padding:18px;
+}
+
+.woman-info h2{
+  font-size:20px;
+
+  font-weight:600;
+
+  margin-bottom:4px;
+}
+
+.city{
+  color:#b58b63;
+
+  font-size:14px;
+
+  margin-bottom:7px;
+}
+
+.woman-info > p{
+  color:#777;
+
+  font-size:14px;
+
+  margin-bottom:5px;
+}
+
+.description{
+  margin-top:9px;
+
+  line-height:1.7;
+
+  display:-webkit-box;
+
+  -webkit-line-clamp:3;
+
+  -webkit-box-orient:vertical;
+
+  overflow:hidden;
+}
+
+
+/* =========================
+   More Card
+========================= */
+
+.more-card{
+  background:#fff;
+
+  border:1px solid #e7e0d8;
+
+  border-radius:14px;
+
+  min-height:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  padding:35px 25px;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.more-card:hover{
+  transform:translateY(-5px);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.08);
+}
+
+.more-card-content{
+  max-width:260px;
+}
+
+.more-icon{
+  width:62px;
+  height:62px;
+
+  margin:0 auto 20px;
+
+  border-radius:50%;
+
+  background:#f5eee7;
+
+  color:#b58b63;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:27px;
+}
+
+.more-card h2{
+  font-size:22px;
+
+  margin-bottom:10px;
+}
+
+.more-card p{
+  color:#888;
+
+  font-size:14px;
+
+  line-height:1.8;
+
+  margin-bottom:20px;
+}
+
+.join-button{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:10px 24px;
+
+  background:#2b2927;
+
+  color:#fff;
+
+  border-radius:8px;
+
+  font-size:14px;
+
+  font-weight:600;
+}
+
+
+/* =========================
+   Modal
+========================= */
+
+.profile-modal{
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.72);
+
+  z-index:500;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+}
+
+.profile-modal.show{
+  display:flex;
+}
+
+.profile-modal-box{
+  width:100%;
+
+  max-width:1100px;
+
+  max-height:92vh;
+
+  overflow:hidden;
+
+  background:#fff;
+
+  border-radius:18px;
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,1.05fr)
+    minmax(320px,.95fr);
+
+  position:relative;
+}
+
+
+/* =========================
+   Gallery
+========================= */
+
+.profile-gallery{
+  background:#111;
+
+  min-height:600px;
+
+  position:relative;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  overflow:hidden;
+}
+
+.gallery-track{
+  width:100%;
+  height:100%;
+
+  display:flex;
+
+  overflow-x:auto;
+
+  overflow-y:hidden;
+
+  scroll-snap-type:x mandatory;
+
+  scroll-behavior:smooth;
+
+  scrollbar-width:none;
+}
+
+.gallery-track::-webkit-scrollbar{
+  display:none;
+}
+
+.gallery-slide{
+  min-width:100%;
+
+  height:100%;
+
+  scroll-snap-align:center;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:#111;
+}
+
+.gallery-slide img,
+.gallery-slide video{
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+
+  display:block;
+}
+
+.gallery-arrow{
+  position:absolute;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:44px;
+  height:44px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.75);
+
+  color:#222;
+
+  font-size:24px;
+
+  z-index:5;
+}
+
+.gallery-arrow:hover{
+  background:#fff;
+}
+
+.gallery-prev{
+  left:15px;
+}
+
+.gallery-next{
+  right:15px;
+}
+
+.gallery-counter{
+  position:absolute;
+
+  bottom:15px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:rgba(0,0,0,.6);
+
+  color:#fff;
+
+  padding:5px 12px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  z-index:5;
+}
+
+.gallery-hint{
+  position:absolute;
+
+  bottom:15px;
+  left:15px;
+
+  color:#fff;
+
+  background:rgba(0,0,0,.5);
+
+  padding:5px 10px;
+
+  border-radius:15px;
+
+  font-size:11px;
+
+  z-index:5;
+}
+
+
+/* =========================
+   Profile Info
+========================= */
+
+.profile-info{
+  padding:40px;
+
+  overflow-y:auto;
+}
+
+.profile-close{
+  position:absolute;
+
+  top:15px;
+  right:15px;
+
+  width:40px;
+  height:40px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(0,0,0,.08);
+
+  font-size:24px;
+
+  z-index:20;
+}
+
+.profile-info h2{
+  font-size:30px;
+
+  margin-bottom:5px;
+}
+
+.profile-city{
+  color:#b58b63;
+
+  font-size:15px;
+
+  margin-bottom:20px;
+}
+
+.profile-meta{
+  color:#666;
+
+  font-size:14px;
+
+  margin-bottom:25px;
+}
+
+.profile-description{
+  color:#555;
+
+  font-size:15px;
+
+  line-height:1.9;
+
+  white-space:pre-wrap;
+
+  margin-bottom:30px;
+}
+
+.profile-contact{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+}
+
+.profile-contact button{
+  width:100%;
+
+  border:0;
+
+  border-radius:9px;
+
+  padding:13px;
+
+  font-size:14px;
+
+  font-weight:600;
+}
+
+.profile-whatsapp{
+  background:#e8f7ed;
+
+  color:#168a43;
+}
+
+.profile-telegram{
+  background:#e8f2fb;
+
+  color:#2481c7;
+}
+
+
+/* =========================
+   Join Section
+========================= */
+
+.join-section{
+  width:88%;
+  max-width:1400px;
+
+  margin:0 auto 70px;
+
+  background:#fff;
+
+  border:1px solid #eee;
+
+  border-radius:16px;
+
+  padding:45px 30px;
+
+  text-align:center;
+}
+
+.join-section h2{
+  font-size:27px;
+
+  margin-bottom:10px;
+}
+
+.join-section p{
+  color:#888;
+
+  font-size:14px;
+
+  margin-bottom:22px;
+}
+
+.join-actions{
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+}
+
+.join-contact-btn{
+  border:0;
+
+  border-radius:9px;
+
+  padding:12px 25px;
+
+  font-size:14px;
+
+  font-weight:600;
+}
+
+.join-whatsapp{
+  background:#e8f7ed;
+
+  color:#168a43;
+}
+
+.join-telegram{
+  background:#e8f2fb;
+
+  color:#2481c7;
+}
+
+
+/* =========================
+   Footer
+========================= */
+
+footer{
+  text-align:center;
+
+  padding:35px 20px;
+
+  border-top:1px solid #eee;
+
+  color:#aaa;
+
+  font-size:13px;
+
+  background:#fff;
+}
+
+
+/* =========================
+   Loading
+========================= */
+
+.loading{
+  grid-column:1 / -1;
+
+  text-align:center;
+
+  padding:80px 20px;
+
+  color:#888;
+}
+
+.loading h3{
+  font-size:22px;
+
+  color:#444;
+
+  margin-bottom:10px;
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media(max-width:1000px){
+
+  .women-grid{
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+  }
+
+  .profile-modal-box{
+    grid-template-columns:1fr;
+    max-width:700px;
+
+    max-height:92vh;
+
+    overflow-y:auto;
+  }
+
+  .profile-gallery{
+    min-height:500px;
+
+    height:55vh;
+  }
+
+  .profile-info{
+    padding:30px;
+  }
+
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media(max-width:700px){
+
+  .site-header{
+    height:62px;
+    padding:0 20px;
+  }
+
+  .brand{
+    font-size:19px;
+  }
+
+  .admin-link{
+    font-size:12px;
+    padding:6px 12px;
+  }
+
+  .hero{
+    min-height:360px;
+    padding:55px 25px;
+  }
+
+  .hero h1{
+    font-size:39px;
+  }
+
+  .hero p:not(.eyebrow){
+    font-size:15px;
+  }
+
+  .toolbar{
+    width:calc(100% - 40px);
+
+    margin-top:30px;
+
+    align-items:flex-start;
+  }
+
+  .toolbar strong{
+    font-size:20px;
+  }
+
+  .filters{
+    width:100%;
+  }
+
+  .filters select{
+    flex:1;
+    width:50%;
+  }
+
+  .women-grid{
+    width:calc(100% - 30px);
+
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+    gap:12px;
+
+    margin-bottom:35px;
+  }
+
+  .woman-info{
+    padding:13px;
+  }
+
+  .woman-info h2{
+    font-size:17px;
+  }
+
+  .woman-info > p{
+    font-size:12px;
+  }
+
+  .description{
+    font-size:12px !important;
+  }
+
+  .more-card{
+    padding:25px 12px;
+
+    min-height:300px;
+  }
+
+  .more-icon{
+    width:50px;
+    height:50px;
+
+    font-size:21px;
+
+    margin-bottom:13px;
+  }
+
+  .more-card h2{
+    font-size:17px;
+  }
+
+  .more-card p{
+    font-size:12px;
+  }
+
+  .join-section{
+    width:calc(100% - 30px);
+
+    padding:35px 20px;
+
+    margin-bottom:45px;
+  }
+
+  .join-section h2{
+    font-size:22px;
+  }
+
+  .profile-modal{
+    padding:0;
+  }
+
+  .profile-modal-box{
+    width:100%;
+    height:100%;
+    max-height:100vh;
+
+    border-radius:0;
+
+    display:block;
+
+    overflow-y:auto;
+  }
+
+  .profile-gallery{
+    height:55vh;
+
+    min-height:350px;
+  }
+
+  .profile-info{
+    padding:25px 20px 40px;
+  }
+
+  .profile-info h2{
+    font-size:25px;
+  }
+
+  .gallery-hint{
+    display:none;
+  }
+
+}
+
+
+/* =========================
+   Small phone
+========================= */
+
+@media(max-width:400px){
+
+  .women-grid{
+    grid-template-columns:1fr;
+  }
+
+  .woman-image{
+    aspect-ratio:4 / 5;
+  }
+
+  .more-card{
+    min-height:260px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="site-header">
+
+  <a
+    class="brand"
+    href="./"
+  >
+    缘分<span>·</span>相遇
+  </a>
+
+  <a
+    class="admin-link"
+    href="admin/"
+  >
+    管理
+  </a>
+
+</header>
+
+
+<main>
+
+
+<section class="hero">
+
+  <div>
+
+    <p class="eyebrow">
+      MEET SOMEONE SPECIAL
+    </p>
+
+    <h1>
+      认真认识一个人，<br>
+      从一次相遇开始。
+    </h1>
+
+    <p>
+      浏览真实资料，了解彼此，再决定是否联系。
+    </p>
+
+  </div>
+
+</section>
+
+
+<section class="toolbar">
+
+  <div>
+
+    <strong>
+      女士资料
+    </strong>
+
+    <span id="count">
+      加载中…
+    </span>
+
+  </div>
+
+
+  <div class="filters">
+
+    <select id="cityFilter">
+
+      <option value="">
+        全部城市
+      </option>
+
+    </select>
+
+
+    <select id="ageFilter">
+
+      <option value="">
+        全部年龄
+      </option>
+
+      <option value="18-25">
+        18–25
+      </option>
+
+      <option value="26-35">
+        26–35
+      </option>
+
+      <option value="36-45">
+        36–45
+      </option>
+
+      <option value="46+">
+        46+
+      </option>
+
+    </select>
+
+  </div>
+
+</section>
+
+
+<section
+  id="womenGrid"
+  class="women-grid"
+>
+
+  <div class="loading">
+    正在加载资料…
+  </div>
+
+</section>
+
+
+<section class="join-section">
+
+  <h2>
+    申请加入
+  </h2>
+
+  <p>
+    如果你希望出现在这里，可以联系我们了解申请方式。
+  </p>
+
+  <div
+    id="joinActions"
+    class="join-actions"
+  >
+
+    <div style="
+      color:#999;
+      font-size:13px;
+    ">
+      正在加载联系方式……
+    </div>
+
+  </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+  ©
+  <span id="year"></span>
+  缘分·相遇
+
+</footer>
+
+
+<!-- ==================================================
+     女士详情 Modal
+================================================== -->
+
+<div
+  id="profileModal"
+  class="profile-modal"
+>
+
+  <div class="profile-modal-box">
+
+
+    <button
+      id="profileClose"
+      class="profile-close"
+      type="button"
+    >
+      ×
+    </button>
+
+
+    <div class="profile-gallery">
+
+      <div
+        id="galleryTrack"
+        class="gallery-track"
+      ></div>
+
+
+      <button
+        id="galleryPrev"
+        class="gallery-arrow gallery-prev"
+        type="button"
+      >
+        ‹
+      </button>
+
+
+      <button
+        id="galleryNext"
+        class="gallery-arrow gallery-next"
+        type="button"
+      >
+        ›
+      </button>
+
+
+      <div
+        id="galleryCounter"
+        class="gallery-counter"
+      >
+        1 / 1
+      </div>
+
+
+      <div class="gallery-hint">
+        ← 左右滑动查看 →
+      </div>
+
+    </div>
+
+
+    <div
+      id="profileInfo"
+      class="profile-info"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+
+/* ==================================================
+   Supabase
+================================================== */
+
+const SUPABASE_URL =
+"https://yutraouosffjteivvlfx.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
+
+
+const STORAGE_BUCKET =
+"women-photos";
+
+
+let women = [];
+
+
+let joinSettings = {
+  whatsapp:"",
+  telegram:""
+};
+
+
+let currentGalleryIndex = 0;
+
+let currentGalleryItems = [];
+
+
+/* ==================================================
+   Year
+================================================== */
+
+document
+  .getElementById("year")
+  .textContent =
+  new Date().getFullYear();
+
+
+/* ==================================================
+   HTML 安全处理
+================================================== */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
+   Media Normalize
+================================================== */
+
+function normalizeMedia(value){
+
+  if(!value){
+    return [];
+  }
+
+
+  if(Array.isArray(value)){
+
+    return value
+      .flat(Infinity)
+      .filter(Boolean)
+      .map(v => String(v).trim())
+      .filter(Boolean);
+
+  }
+
+
+  if(typeof value === "string"){
+
+    const text =
+      value.trim();
+
+
+    if(!text){
+      return [];
+    }
+
+
+    try{
+
+      const parsed =
+        JSON.parse(text);
+
+
+      if(Array.isArray(parsed)){
+
+        return parsed
+          .flat(Infinity)
+          .filter(Boolean)
+          .map(v => String(v).trim())
+          .filter(Boolean);
+
+      }
+
+    }catch(e){}
+
+
+    if(text.includes(",")){
+
+      return text
+        .split(",")
+        .map(v => v.trim())
+        .filter(Boolean);
+
+    }
+
+
+    return [text];
+
+  }
+
+
+  return [];
+
+}
+
+
+/* ==================================================
+   Storage URL
+================================================== */
+
+function convertStorageUrl(path){
+
+  if(!path){
+    return "";
+  }
+
+
+  let value =
+    String(path).trim();
+
+
+  if(
+    value.startsWith("http://") ||
+    value.startsWith("https://") ||
+    value.startsWith("data:")
+  ){
+
+    return value;
+
+  }
+
+
+  return (
+    SUPABASE_URL +
+    "/storage/v1/object/public/" +
+    STORAGE_BUCKET +
+    "/" +
+    value.replace(/^\/+/,"")
+  );
+
+}
+
+
+/* ==================================================
+   Photos
+================================================== */
+
+function getPhotos(woman){
+
+  let photos = [];
+
+
+  if(woman.image_url){
+
+    photos.push(
+      woman.image_url
+    );
+
+  }
+
+
+  photos =
+    photos.concat(
+      normalizeMedia(
+        woman.photos
+      )
+    );
+
+
+  return [
+    ...new Set(
+      photos
+        .filter(Boolean)
+        .map(
+          convertStorageUrl
+        )
+    )
+  ];
+
+}
+
+
+/* ==================================================
+   Videos
+================================================== */
+
+function getVideos(woman){
+
+  return [
+    ...new Set(
+
+      normalizeMedia(
+        woman.videos
+      )
+
+      .filter(Boolean)
+
+      .map(
+        convertStorageUrl
+      )
+
+    )
+  ];
+
+}
+
+
+/* ==================================================
+   默认图片
+================================================== */
+
+function getDefaultImage(){
+
+  return (
+    "data:image/svg+xml;charset=UTF-8," +
+
+    encodeURIComponent(`
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="600"
+        height="800"
+      >
+
+        <rect
+          width="600"
+          height="800"
+          fill="#eeeeee"
+        />
+
+        <text
+          x="300"
+          y="400"
+          text-anchor="middle"
+          font-size="28"
+          fill="#999999"
+        >
+          暂无照片
+        </text>
+
+      </svg>
+
+    `)
+
+  );
+
+}
+
+
+/* ==================================================
+   加载女士
+================================================== */
+
+async function loadWomen(){
+
+  const grid =
+    document.getElementById(
+      "womenGrid"
+    );
+
+
+  const count =
+    document.getElementById(
+      "count"
+    );
+
+
+  try{
+
+    grid.innerHTML = `
+
+      <div class="loading">
+        正在连接数据库……
+      </div>
+
+    `;
+
+
+    const url =
+      SUPABASE_URL +
+      "/rest/v1/women" +
+      "?select=*" +
+      "&is_published=eq.true" +
+      "&order=created_at.desc";
+
+
+    const response =
+      await fetch(
+        url,
+        {
+
+          method:"GET",
+
+          headers:{
+
+            "apikey":
+              SUPABASE_KEY,
+
+            "Authorization":
+              "Bearer " +
+              SUPABASE_KEY,
+
+            "Content-Type":
+              "application/json"
+
+          }
+
+        }
+      );
+
+
+    const text =
+      await response.text();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        "Supabase " +
+        response.status +
+        ": " +
+        text
+      );
+
+    }
+
+
+    women =
+      JSON.parse(text) || [];
+
+
+    /*
+      这里只显示实际女士数量，
+      “更多女士”不计入数量。
+    */
+
+    count.textContent =
+      `共 ${women.length} 位`;
+
+
+    createCityFilter();
+
+
+    renderWomen(
+      women
+    );
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    count.textContent =
+      "加载失败";
+
+
+    grid.innerHTML = `
+
+      <div class="loading">
+
+        <h3>
+          女士资料无法加载
+        </h3>
+
+        <p>
+          ${escapeHtml(
+            error.message
+          )}
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* ==================================================
+   城市
+================================================== */
+
+function createCityFilter(){
+
+  const select =
+    document.getElementById(
+      "cityFilter"
+    );
+
+
+  const cities = [
+
+    ...new Set(
+
+      women
+
+        .map(
+          woman =>
+            woman.city
+        )
+
+        .filter(
+          city =>
+            city &&
+            String(city).trim()
+        )
+
+    )
+
+  ];
+
+
+  select.innerHTML = `
+
+    <option value="">
+      全部城市
+    </option>
+
+  `;
+
+
+  cities.forEach(
+    city => {
+
+      const option =
+        document.createElement(
+          "option"
+        );
+
+
+      option.value =
+        city;
+
+
+      option.textContent =
+        city;
+
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   渲染女士
+================================================== */
+
+function renderWomen(list){
+
+  const grid =
+    document.getElementById(
+      "womenGrid"
+    );
+
+
+  grid.innerHTML = "";
+
+
+  if(
+    !list ||
+    list.length === 0
+  ){
+
+    grid.innerHTML = `
+
+      <div class="loading">
+
+        <h3>
+          暂时没有女士资料
+        </h3>
+
+        <p>
+          当前没有符合条件的资料。
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+
+  list.forEach(
+    woman => {
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+
+      card.className =
+        "woman-card";
+
+
+      const photos =
+        getPhotos(
+          woman
+        );
+
+
+      const firstPhoto =
+        photos.length
+        ?
+        photos[0]
+        :
+        getDefaultImage();
+
+
+      card.innerHTML = `
+
+        <div class="media-gallery">
+
+          <div class="woman-image">
+
+            <img
+              src="${escapeHtml(
+                firstPhoto
+              )}"
+              alt="${escapeHtml(
+                woman.name ||
+                "女士"
+              )}"
+              loading="lazy"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="woman-info">
+
+          <h2>
+            ${escapeHtml(
+              woman.name ||
+              "未填写姓名"
+            )}
+
+            ${
+              woman.age
+              ?
+              "，" +
+              escapeHtml(
+                woman.age
+              ) +
+              "岁"
+              :
+              ""
+            }
+          </h2>
+
+
+          ${
+            woman.city
+            ?
+            `
+              <p class="city">
+                ${escapeHtml(
+                  woman.city
+                )}
+              </p>
+            `
+            :
+            ""
+          }
+
+
+          ${
+            woman.occupation
+            ?
+            `
+              <p>
+                ${escapeHtml(
+                  woman.occupation
+                )}
+              </p>
+            `
+            :
+            ""
+          }
+
+
+          ${
+            woman.description
+            ?
+            `
+              <p class="description">
+                ${escapeHtml(
+                  woman.description
+                )}
+              </p>
+            `
+            :
+            ""
+          }
+
+        </div>
+
+      `;
+
+
+      /*
+        点击整张资料卡，
+        打开详情
+      */
+
+      card.addEventListener(
+        "click",
+        () => {
+
+          openProfile(
+            woman
+          );
+
+        }
+      );
+
+
+      grid.appendChild(
+        card
+      );
+
+    }
+  );
+
+
+  /*
+    最后固定添加“更多女士”
+  */
+
+  addMoreCard(
+    grid
+  );
+
+}
+
+
+/* ==================================================
+   更多女士卡片
+================================================== */
+
+function addMoreCard(grid){
+
+  const card =
+    document.createElement(
+      "article"
+    );
+
+
+  card.className =
+    "more-card";
+
+
+  card.innerHTML = `
+
+    <div class="more-card-content">
+
+      <div class="more-icon">
+        ♡
+      </div>
+
+      <h2>
+        更多女士正在加入中
+      </h2>
+
+      <p>
+        这里会持续添加新的女士资料。
+        如果你也希望出现在这里，
+        欢迎申请加入。
+      </p>
+
+      <span class="join-button">
+        申请加入
+      </span>
+
+    </div>
+
+  `;
+
+
+  card.addEventListener(
+    "click",
+    () => {
+
+      document
+        .querySelector(
+          ".join-section"
+        )
+        .scrollIntoView({
+          behavior:"smooth"
+        });
+
+    }
+  );
+
+
+  grid.appendChild(
+    card
+  );
+
+}
+
+
+/* ==================================================
+   打开女士详情
+================================================== */
+
+function openProfile(woman){
+
+  const modal =
+    document.getElementById(
+      "profileModal"
+    );
+
+
+  const track =
+    document.getElementById(
+      "galleryTrack"
+    );
+
+
+  const info =
+    document.getElementById(
+      "profileInfo"
+    );
+
+
+  const photos =
+    getPhotos(
+      woman
+    );
+
+
+  const videos =
+    getVideos(
+      woman
+    );
+
+
+  currentGalleryItems = [
+
+    ...photos.map(
+      url => ({
+        type:"image",
+        url
+      })
+    ),
+
+    ...videos.map(
+      url => ({
+        type:"video",
+        url
+      })
+    )
+
+  ];
+
+
+  /*
+    没有媒体时显示默认图片
+  */
+
+  if(
+    currentGalleryItems.length === 0
+  ){
+
+    currentGalleryItems = [
+
+      {
+        type:"image",
+        url:getDefaultImage()
+      }
+
+    ];
+
+  }
+
+
+  currentGalleryIndex =
+    0;
+
+
+  /*
+    生成左右滑动内容
+  */
+
+  track.innerHTML =
+    currentGalleryItems
+      .map(
+        (item,index) => {
+
+          if(
+            item.type === "video"
+          ){
+
+            return `
+
+              <div
+                class="gallery-slide"
+                data-index="${index}"
+              >
+
+                <video
+                  controls
+                  playsinline
+                  preload="metadata"
+                >
+
+                  <source
+                    src="${escapeHtml(
+                      item.url
+                    )}"
+                  >
+
+                  您的浏览器不支持视频播放。
+
+                </video>
+
+              </div>
+
+            `;
+
+          }
+
+
+          return `
+
+            <div
+              class="gallery-slide"
+              data-index="${index}"
+            >
+
+              <img
+                src="${escapeHtml(
+                  item.url
+                )}"
+                alt="${escapeHtml(
+                  woman.name ||
+                  "女士"
+                )}"
+              >
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  /*
+    资料
+  */
+
+  info.innerHTML = `
+
+    <h2>
+
+      ${escapeHtml(
+        woman.name ||
+        "未填写姓名"
+      )}
+
+      ${
+        woman.age
+        ?
+        "，" +
+        escapeHtml(
+          woman.age
+        ) +
+        "岁"
+        :
+        ""
+      }
+
+    </h2>
+
+
+    ${
+      woman.city
+      ?
+      `
+        <div class="profile-city">
+          ${escapeHtml(
+            woman.city
+          )}
+        </div>
+      `
+      :
+      ""
+    }
+
+
+    <div class="profile-meta">
+
+      ${
+        woman.occupation
+        ?
+        `
+          <div>
+            职业：${escapeHtml(
+              woman.occupation
+            )}
+          </div>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+
+    ${
+      woman.description
+      ?
+      `
+        <div class="profile-description">
+          ${escapeHtml(
+            woman.description
+          )}
+        </div>
+      `
+      :
+      ""
+    }
+
+
+    <div class="profile-contact">
+
+      ${
+        woman.whatsapp
+        ?
+        `
+          <button
+            class="profile-whatsapp"
+            type="button"
+            data-whatsapp="${escapeHtml(
+              woman.whatsapp
+            )}"
+          >
+            WhatsApp 联系
+          </button>
+        `
+        :
+        ""
+      }
+
+
+      ${
+        woman.telegram
+        ?
+        `
+          <button
+            class="profile-telegram"
+            type="button"
+            data-telegram="${escapeHtml(
+              woman.telegram
+            )}"
+          >
+            Telegram 联系
+          </button>
+        `
+        :
+        ""
+      }
+
+    </div>
+
+  `;
+
+
+  const whatsapp =
+    info.querySelector(
+      "[data-whatsapp]"
+    );
+
+
+  if(whatsapp){
+
+    whatsapp.addEventListener(
+      "click",
+      () => {
+
+        openWhatsApp(
+          whatsapp.dataset.whatsapp
+        );
+
+      }
+    );
+
+  }
+
+
+  const telegram =
+    info.querySelector(
+      "[data-telegram]"
+    );
+
+
+  if(telegram){
+
+    telegram.addEventListener(
+      "click",
+      () => {
+
+        openTelegram(
+          telegram.dataset.telegram
+        );
+
+      }
+    );
+
+  }
+
+
+  modal.classList.add(
+    "show"
+  );
+
+
+  document.body.style.overflow =
+    "hidden";
+
+
+  setTimeout(
+    () => {
+
+      updateGallery();
+
+    },
+    50
+  );
+
+}
+
+
+/* ==================================================
+   关闭详情
+================================================== */
+
+function closeProfile(){
+
+  const modal =
+    document.getElementById(
+      "profileModal"
+    );
+
+
+  modal.classList.remove(
+    "show"
+  );
+
+
+  document.body.style.overflow =
+    "";
+
+
+  /*
+    停止视频播放
+  */
+
+  document
+    .querySelectorAll(
+      "#galleryTrack video"
+    )
+    .forEach(
+      video => {
+
+        video.pause();
+
+      }
+    );
+
+}
+
+
+document
+  .getElementById(
+    "profileClose"
+  )
+  .addEventListener(
+    "click",
+    closeProfile
+  );
+
+
+document
+  .getElementById(
+    "profileModal"
+  )
+  .addEventListener(
+    "click",
+    event => {
+
+      if(
+        event.target.id ===
+        "profileModal"
+      ){
+
+        closeProfile();
+
+      }
+
+    }
+  );
+
+
+document
+  .addEventListener(
+    "keydown",
+    event => {
+
+      if(
+        event.key === "Escape"
+      ){
+
+        closeProfile();
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
+   Gallery
+================================================== */
+
+function updateGallery(){
+
+  const track =
+    document.getElementById(
+      "galleryTrack"
+    );
+
+
+  const counter =
+    document.getElementById(
+      "galleryCounter"
+    );
+
+
+  const width =
+    track.clientWidth;
+
+
+  track.scrollTo({
+
+    left:
+      width *
+      currentGalleryIndex,
+
+    behavior:"smooth"
+
+  });
+
+
+  counter.textContent =
+    `${currentGalleryIndex + 1} / ${currentGalleryItems.length}`;
+
+}
+
+
+/* ==================================================
+   下一张
+================================================== */
+
+function nextGallery(){
+
+  if(
+    currentGalleryIndex <
+    currentGalleryItems.length - 1
+  ){
+
+    currentGalleryIndex++;
+
+  }else{
+
+    currentGalleryIndex = 0;
+
+  }
+
+
+  updateGallery();
+
+}
+
+
+/* ==================================================
+   上一张
+================================================== */
+
+function prevGallery(){
+
+  if(
+    currentGalleryIndex > 0
+  ){
+
+    currentGalleryIndex--;
+
+  }else{
+
+    currentGalleryIndex =
+      currentGalleryItems.length - 1;
+
+  }
+
+
+  updateGallery();
+
+}
+
+
+document
+  .getElementById(
+    "galleryNext"
+  )
+  .addEventListener(
+    "click",
+    nextGallery
+  );
+
+
+document
+  .getElementById(
+    "galleryPrev"
+  )
+  .addEventListener(
+    "click",
+    prevGallery
+  );
+
+
+/*
+  用户手指左右滑动时，
+  自动计算当前第几张
+*/
+
+document
+  .getElementById(
+    "galleryTrack"
+  )
+  .addEventListener(
+    "scroll",
+    function(){
+
+      const width =
+        this.clientWidth;
+
+
+      if(!width){
+        return;
+      }
+
+
+      const index =
+        Math.round(
+          this.scrollLeft /
+          width
+        );
+
+
+      if(
+        index !==
+        currentGalleryIndex
+      ){
+
+        currentGalleryIndex =
+          Math.max(
+            0,
+            Math.min(
+              index,
+              currentGalleryItems.length - 1
+            )
+          );
+
+
+        document
+          .getElementById(
+            "galleryCounter"
+          )
+          .textContent =
+          `${currentGalleryIndex + 1} / ${currentGalleryItems.length}`;
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
+   WhatsApp
+================================================== */
+
+function openWhatsApp(phone){
+
+  let number =
+    String(
+      phone || ""
+    )
+    .trim()
+    .replace(
+      /[^\d]/g,
+      ""
+    );
+
+
+  if(!number){
+
+    alert(
+      "WhatsApp 联系方式无效"
+    );
+
+    return;
+
+  }
+
+
+  window.location.href =
+    "https://wa.me/" +
+    number;
+
+}
+
+
+/* ==================================================
+   Telegram
+================================================== */
+
+function openTelegram(username){
+
+  let value =
+    String(
+      username || ""
+    )
+    .trim();
+
+
+  if(
+    value.startsWith(
+      "https://t.me/"
+    ) ||
+    value.startsWith(
+      "http://t.me/"
+    )
+  ){
+
+    window.location.href =
+      value;
+
+    return;
+
+  }
+
+
+  value =
+    value.replace(
+      /^@/,
+      ""
+    );
+
+
+  if(!value){
+
+    alert(
+      "Telegram 联系方式无效"
+    );
+
+    return;
+
+  }
+
+
+  window.location.href =
+    "https://t.me/" +
+    value;
+
+}
+
+
+/* ==================================================
+   读取申请加入联系方式
+================================================== */
+
+async function loadJoinSettings(){
+
+  const box =
+    document.getElementById(
+      "joinActions"
+    );
+
+
+  try{
+
+    const url =
+      SUPABASE_URL +
+      "/rest/v1/site_settings" +
+      "?select=whatsapp,telegram" +
+      "&setting_key=eq.join_contact" +
+      "&limit=1";
+
+
+    const response =
+      await fetch(
+        url,
+        {
+
+          headers:{
+
+            "apikey":
+              SUPABASE_KEY,
+
+            "Authorization":
+              "Bearer " +
+              SUPABASE_KEY
+
+          }
+
+        }
+      );
+
+
+    if(!response.ok){
+
+      throw new Error(
+        await response.text()
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      data &&
+      data.length > 0
+    ){
+
+      joinSettings =
+        {
+
+          whatsapp:
+            data[0].whatsapp || "",
+
+          telegram:
+            data[0].telegram || ""
+
+        };
+
+    }
+
+
+    renderJoinButtons();
+
+
+  }catch(error){
+
+    console.error(
+      "申请加入联系方式加载失败：",
+      error
+    );
+
+
+    box.innerHTML = `
+
+      <div style="
+        color:#999;
+        font-size:13px;
+      ">
+        暂无联系方式
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* ==================================================
+   渲染申请加入按钮
+================================================== */
+
+function renderJoinButtons(){
+
+  const box =
+    document.getElementById(
+      "joinActions"
+    );
+
+
+  box.innerHTML =
+    "";
+
+
+  if(
+    joinSettings.whatsapp
+  ){
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "join-contact-btn join-whatsapp";
+
+
+    button.type =
+      "button";
+
+
+    button.textContent =
+      "WhatsApp 申请加入";
+
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        openWhatsApp(
+          joinSettings.whatsapp
+        );
+
+      }
+    );
+
+
+    box.appendChild(
+      button
+    );
+
+  }
+
+
+  if(
+    joinSettings.telegram
+  ){
+
+    const button =
+      document.createElement(
+        "button"
+      );
+
+
+    button.className =
+      "join-contact-btn join-telegram";
+
+
+    button.type =
+      "button";
+
+
+    button.textContent =
+      "Telegram 申请加入";
+
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        openTelegram(
+          joinSettings.telegram
+        );
+
+      }
+    );
+
+
+    box.appendChild(
+      button
+    );
+
+  }
+
+
+  if(
+    !joinSettings.whatsapp &&
+    !joinSettings.telegram
+  ){
+
+    box.innerHTML = `
+
+      <div style="
+        color:#999;
+        font-size:13px;
+      ">
+        联系方式暂未设置
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* ==================================================
+   筛选
+================================================== */
+
+function filterWomen(){
+
+  const city =
+    document
+      .getElementById(
+        "cityFilter"
+      )
+      .value;
+
+
+  const age =
+    document
+      .getElementById(
+        "ageFilter"
+      )
+      .value;
+
+
+  const filtered =
+    women.filter(
+      woman => {
+
+        if(
+          city &&
+          woman.city !== city
+        ){
+
+          return false;
+
+        }
+
+
+        const womanAge =
+          Number(
+            woman.age
+          );
+
+
+        if(
+          age === "18-25"
+        ){
+
+          return (
+            womanAge >= 18 &&
+            womanAge <= 25
+          );
+
+        }
+
+
+        if(
+          age === "26-35"
+        ){
+
+          return (
+            womanAge >= 26 &&
+            womanAge <= 35
+          );
+
+        }
+
+
+        if(
+          age === "36-45"
+        ){
+
+          return (
+            womanAge >= 36 &&
+            womanAge <= 45
+          );
+
+        }
+
+
+        if(
+          age === "46+"
+        ){
+
+          return womanAge >= 46;
+
+        }
+
+
+        return true;
+
+      }
+    );
+
+
+  /*
+    筛选后的数量
+  */
+
+  document
+    .getElementById(
+      "count"
+    )
+    .textContent =
+    `共 ${filtered.length} 位`;
+
+
+  renderWomen(
+    filtered
+  );
+
+}
+
+
+/* ==================================================
+   筛选事件
+================================================== */
+
+document
+  .getElementById(
+    "cityFilter"
+  )
+  .addEventListener(
+    "change",
+    filterWomen
+  );
+
+
+document
+  .getElementById(
+    "ageFilter"
+  )
+  .addEventListener(
+    "change",
+    filterWomen
+  );
+
+
+/* ==================================================
+   开始
+================================================== */
+
+loadWomen();
+
+loadJoinSettings();
+
+
+</script>
+
+</body>
+
+</html>
 </body>
 
 </html>
