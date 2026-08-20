@@ -380,7 +380,515 @@ a{
 }
 
 
-/* 内容区装饰光晕 */
+/* =========================================================
+   ROMANTIC BACKGROUND
+   动态恋爱氛围层
+========================================================= */
+
+.romance-background{
+
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  pointer-events:none;
+
+  z-index:0;
+
+}
+
+
+/* 大型柔和光晕 */
+
+.romance-glow{
+
+  position:absolute;
+
+  border-radius:50%;
+
+  filter:blur(70px);
+
+  opacity:.5;
+
+  animation:
+    glowFloat 9s ease-in-out infinite alternate;
+
+}
+
+.romance-glow.one{
+
+  width:380px;
+  height:380px;
+
+  left:-150px;
+  top:160px;
+
+  background:
+    rgba(239,157,181,.22);
+
+}
+
+.romance-glow.two{
+
+  width:430px;
+  height:430px;
+
+  right:-170px;
+  top:520px;
+
+  background:
+    rgba(239,191,165,.20);
+
+  animation-delay:-3s;
+
+}
+
+.romance-glow.three{
+
+  width:300px;
+  height:300px;
+
+  left:42%;
+  top:42%;
+
+  background:
+    rgba(220,157,179,.13);
+
+  animation-delay:-6s;
+
+}
+
+
+@keyframes glowFloat{
+
+  0%{
+
+    transform:
+      translate3d(0,0,0)
+      scale(1);
+
+  }
+
+  100%{
+
+    transform:
+      translate3d(25px,-25px,0)
+      scale(1.12);
+
+  }
+
+}
+
+
+/* =========================================================
+   FLOATING HEART
+========================================================= */
+
+.floating-heart{
+
+  position:absolute;
+
+  color:#d9879d;
+
+  font-size:var(--size,22px);
+
+  opacity:var(--opacity,.35);
+
+  animation:
+    heartFloat
+    var(--duration,9s)
+    ease-in-out
+    infinite;
+
+  filter:
+    drop-shadow(
+      0 5px 12px
+      rgba(194,103,132,.18)
+    );
+
+  user-select:none;
+
+}
+
+@keyframes heartFloat{
+
+  0%{
+
+    transform:
+      translate3d(0,35px,0)
+      rotate(-8deg)
+      scale(.85);
+
+    opacity:0;
+
+  }
+
+  15%{
+
+    opacity:var(--opacity,.35);
+
+  }
+
+  50%{
+
+    transform:
+      translate3d(
+        var(--moveX,18px),
+        -35px,
+        0
+      )
+      rotate(7deg)
+      scale(1);
+
+  }
+
+  85%{
+
+    opacity:var(--opacity,.35);
+
+  }
+
+  100%{
+
+    transform:
+      translate3d(
+        var(--moveX,-10px),
+        -120px,
+        0
+      )
+      rotate(-5deg)
+      scale(.8);
+
+    opacity:0;
+
+  }
+
+}
+
+
+/* =========================================================
+   HEART PAIR
+========================================================= */
+
+.heart-pair{
+
+  position:absolute;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  width:100px;
+
+  height:70px;
+
+  opacity:.25;
+
+  animation:
+    pairFloat 8s ease-in-out infinite;
+
+}
+
+.heart-pair span{
+
+  position:absolute;
+
+  font-size:28px;
+
+}
+
+.heart-pair span:first-child{
+
+  transform:
+    translateX(-15px)
+    rotate(-15deg);
+
+  color:#d77d96;
+
+}
+
+.heart-pair span:last-child{
+
+  transform:
+    translateX(15px)
+    rotate(15deg);
+
+  color:#e3a08c;
+
+}
+
+@keyframes pairFloat{
+
+  0%,
+  100%{
+
+    transform:
+      translateY(12px)
+      scale(.92);
+
+  }
+
+  50%{
+
+    transform:
+      translateY(-18px)
+      scale(1.06);
+
+  }
+
+}
+
+
+/* =========================================================
+   SPARKLES
+========================================================= */
+
+.sparkle{
+
+  position:absolute;
+
+  width:5px;
+
+  height:5px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.9);
+
+  box-shadow:
+    0 0 8px
+    rgba(255,255,255,.85),
+    0 0 18px
+    rgba(224,137,160,.55);
+
+  animation:
+    sparkle 3s ease-in-out infinite;
+
+}
+
+.sparkle::before,
+.sparkle::after{
+
+  content:"";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%);
+
+  background:
+    rgba(255,255,255,.65);
+
+}
+
+.sparkle::before{
+
+  width:1px;
+  height:22px;
+
+}
+
+.sparkle::after{
+
+  width:22px;
+  height:1px;
+
+}
+
+@keyframes sparkle{
+
+  0%,
+  100%{
+
+    opacity:.15;
+
+    transform:
+      scale(.55)
+      rotate(0deg);
+
+  }
+
+  50%{
+
+    opacity:1;
+
+    transform:
+      scale(1.25)
+      rotate(45deg);
+
+  }
+
+}
+
+
+/* =========================================================
+   SMALL ROMANTIC DOTS
+========================================================= */
+
+.love-dot{
+
+  position:absolute;
+
+  width:var(--dot-size,7px);
+
+  height:var(--dot-size,7px);
+
+  border-radius:50%;
+
+  background:
+    rgba(211,132,153,.30);
+
+  animation:
+    dotMove
+    var(--dot-duration,12s)
+    linear infinite;
+
+}
+
+@keyframes dotMove{
+
+  0%{
+
+    transform:
+      translate3d(0,80px,0);
+
+    opacity:0;
+
+  }
+
+  15%{
+
+    opacity:.5;
+
+  }
+
+  50%{
+
+    transform:
+      translate3d(
+        var(--dot-x,30px),
+        -80px,
+        0
+      );
+
+    opacity:.8;
+
+  }
+
+  100%{
+
+    transform:
+      translate3d(
+        var(--dot-x,-20px),
+        -230px,
+        0
+      );
+
+    opacity:0;
+
+  }
+
+}
+
+
+/* =========================================================
+   ROMANTIC DECORATION LINES
+========================================================= */
+
+.romance-line{
+
+  position:absolute;
+
+  width:180px;
+
+  height:180px;
+
+  border:
+
+    1px solid
+
+    rgba(190,111,136,.12);
+
+  border-radius:50%;
+
+  animation:
+    ringRotate
+    18s
+    linear
+    infinite;
+
+}
+
+.romance-line::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:15px;
+
+  border:
+
+    1px dashed
+
+    rgba(190,111,136,.09);
+
+  border-radius:50%;
+
+}
+
+.romance-line.one{
+
+  left:-90px;
+
+  top:780px;
+
+}
+
+.romance-line.two{
+
+  right:-85px;
+
+  top:280px;
+
+  width:170px;
+
+  height:170px;
+
+  animation-direction:reverse;
+
+}
+
+@keyframes ringRotate{
+
+  from{
+
+    transform:
+      rotate(0deg);
+
+  }
+
+  to{
+
+    transform:
+      rotate(360deg);
+
+  }
+
+}
+
+
+/* =========================================================
+   CONTENT 装饰光晕
+========================================================= */
 
 .content-section::before{
 
@@ -921,9 +1429,6 @@ footer{
 
 }
 
-
-/* Footer 左下光晕 */
-
 footer::before{
 
   content:"";
@@ -948,9 +1453,6 @@ footer::before{
   pointer-events:none;
 
 }
-
-
-/* Footer 右上光晕 */
 
 footer::after{
 
@@ -1598,14 +2100,12 @@ footer span{
 
   }
 
-}
 
+  /* 手机端减少背景装饰数量 */
 
-@media(max-width:400px){
+  .romance-line{
 
-  .women-grid{
-
-    grid-template-columns:1fr;
+    opacity:.55;
 
   }
 
@@ -1623,6 +2123,8 @@ footer span{
     scroll-behavior:auto !important;
 
     transition:none !important;
+
+    animation:none !important;
 
   }
 
@@ -1701,6 +2203,77 @@ footer span{
 ========================================================= -->
 
 <main class="content-section">
+
+
+  <!-- =======================================================
+       动态恋爱背景
+  ======================================================== -->
+
+  <div
+    id="romanceBackground"
+    class="romance-background"
+    aria-hidden="true"
+  >
+
+    <div class="romance-glow one"></div>
+
+    <div class="romance-glow two"></div>
+
+    <div class="romance-glow three"></div>
+
+
+    <div class="romance-line one"></div>
+
+    <div class="romance-line two"></div>
+
+
+    <div
+      class="heart-pair"
+      style="
+        left:8%;
+        top:360px;
+        animation-delay:-2s;
+      "
+    >
+
+      <span>♥</span>
+      <span>♥</span>
+
+    </div>
+
+
+    <div
+      class="heart-pair"
+      style="
+        right:7%;
+        top:960px;
+        animation-delay:-5s;
+      "
+    >
+
+      <span>♥</span>
+      <span>♥</span>
+
+    </div>
+
+
+    <div
+      class="heart-pair"
+      style="
+        left:47%;
+        top:1450px;
+        animation-delay:-1s;
+        opacity:.15;
+      "
+    >
+
+      <span>♥</span>
+      <span>♥</span>
+
+    </div>
+
+  </div>
+
 
 
 <section class="toolbar">
@@ -1973,6 +2546,266 @@ function escapeHtml(value){
     .replace(/'/g,"&#039;");
 
 }
+
+
+
+/* ==================================================
+   动态恋爱背景
+================================================== */
+
+function createRomanticDecorations(){
+
+  const container =
+    document.getElementById(
+      "romanceBackground"
+    );
+
+
+  if(!container){
+
+    return;
+
+  }
+
+
+  /*
+   * 爱心
+   */
+
+  const hearts = [
+    "♥",
+    "♡",
+    "❤",
+    "💕",
+    "♡"
+  ];
+
+
+  for(
+    let i = 0;
+    i < 22;
+    i++
+  ){
+
+    const heart =
+      document.createElement(
+        "div"
+      );
+
+
+    heart.className =
+      "floating-heart";
+
+
+    heart.textContent =
+      hearts[
+        Math.floor(
+          Math.random() *
+          hearts.length
+        )
+      ];
+
+
+    heart.style.left =
+      (
+        Math.random() *
+        100
+      ) + "%";
+
+
+    heart.style.top =
+      (
+        80 +
+        Math.random() *
+        180
+      ) + "px";
+
+
+    heart.style.setProperty(
+      "--size",
+      (
+        13 +
+        Math.random() * 22
+      ) + "px"
+    );
+
+
+    heart.style.setProperty(
+      "--opacity",
+      (
+        .12 +
+        Math.random() * .28
+      )
+    );
+
+
+    heart.style.setProperty(
+      "--duration",
+      (
+        7 +
+        Math.random() * 8
+      ) + "s"
+    );
+
+
+    heart.style.setProperty(
+      "--moveX",
+      (
+        -35 +
+        Math.random() * 70
+      ) + "px"
+    );
+
+
+    heart.style.animationDelay =
+      (
+        -Math.random() * 12
+      ) + "s";
+
+
+    container.appendChild(
+      heart
+    );
+
+  }
+
+
+
+  /*
+   * 星光
+   */
+
+  for(
+    let i = 0;
+    i < 18;
+    i++
+  ){
+
+    const sparkle =
+      document.createElement(
+        "div"
+      );
+
+
+    sparkle.className =
+      "sparkle";
+
+
+    sparkle.style.left =
+      (
+        Math.random() *
+        100
+      ) + "%";
+
+
+    sparkle.style.top =
+      (
+        150 +
+        Math.random() *
+        1800
+      ) + "px";
+
+
+    sparkle.style.animationDelay =
+      (
+        -Math.random() * 4
+      ) + "s";
+
+
+    sparkle.style.animationDuration =
+      (
+        2 +
+        Math.random() * 3
+      ) + "s";
+
+
+    container.appendChild(
+      sparkle
+    );
+
+  }
+
+
+
+  /*
+   * 漂浮圆点
+   */
+
+  for(
+    let i = 0;
+    i < 24;
+    i++
+  ){
+
+    const dot =
+      document.createElement(
+        "div"
+      );
+
+
+    dot.className =
+      "love-dot";
+
+
+    dot.style.left =
+      (
+        Math.random() *
+        100
+      ) + "%";
+
+
+    dot.style.top =
+      (
+        300 +
+        Math.random() *
+        1700
+      ) + "px";
+
+
+    dot.style.setProperty(
+      "--dot-size",
+      (
+        4 +
+        Math.random() * 7
+      ) + "px"
+    );
+
+
+    dot.style.setProperty(
+      "--dot-duration",
+      (
+        9 +
+        Math.random() * 9
+      ) + "s"
+    );
+
+
+    dot.style.setProperty(
+      "--dot-x",
+      (
+        -40 +
+        Math.random() * 80
+      ) + "px"
+    );
+
+
+    dot.style.animationDelay =
+      (
+        -Math.random() * 15
+      ) + "s";
+
+
+    container.appendChild(
+      dot
+    );
+
+  }
+
+}
+
+
+
+createRomanticDecorations();
 
 
 
