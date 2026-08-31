@@ -129,6 +129,12 @@ $('logout').onclick = async () => {
 
 async function loadList(){
 
+  /*
+    注意：
+    当前 women 表不使用 sort_order，
+    所以这里只按 created_at 倒序排列。
+  */
+
   const {
     data,
     error
@@ -136,12 +142,6 @@ async function loadList(){
     await sb
       .from('women')
       .select('*')
-      .order(
-        'sort_order',
-        {
-          ascending:true
-        }
-      )
       .order(
         'created_at',
         {
@@ -250,6 +250,7 @@ async function loadList(){
       .join('')
 
       ||
+
       `
         <tr>
           <td colspan="6">
@@ -330,10 +331,6 @@ async function loadGlobalContact(){
       await getGlobalContact();
 
 
-    /*
-      全局 WhatsApp
-    */
-
     const whatsappInput =
       $('profileWhatsapp');
 
@@ -344,10 +341,6 @@ async function loadGlobalContact(){
 
     }
 
-
-    /*
-      全局 Telegram
-    */
 
     const telegramInput =
       $('profileTelegram');
@@ -408,16 +401,9 @@ async function saveGlobalContact(){
       ).trim();
 
 
-    /*
-      如果两个联系方式都是空，
-      仍然允许保存。
-      保存后会清空所有资料卡联系方式。
-    */
-
-
     /* ------------------------------------------
        第一步：
-       保存全局联系方式
+       查找全局联系方式
     ------------------------------------------ */
 
     const {
@@ -444,6 +430,14 @@ async function saveGlobalContact(){
     let settingsError;
 
 
+    /* ------------------------------------------
+       第二步：
+       保存全局联系方式
+       
+       注意：
+       不再写 updated_at
+    ------------------------------------------ */
+
     if(existingSetting?.id){
 
       const result =
@@ -453,10 +447,7 @@ async function saveGlobalContact(){
 
             whatsapp,
 
-            telegram,
-
-            updated_at:
-              new Date().toISOString()
+            telegram
 
           })
           .eq(
@@ -480,10 +471,7 @@ async function saveGlobalContact(){
 
             whatsapp,
 
-            telegram,
-
-            updated_at:
-              new Date().toISOString()
+            telegram
 
           });
 
@@ -500,8 +488,11 @@ async function saveGlobalContact(){
 
 
     /* ------------------------------------------
-       第二步：
+       第三步：
        覆盖所有女士资料卡
+       
+       women 表没有 updated_at，
+       所以这里只更新 whatsapp / telegram
     ------------------------------------------ */
 
     const {
@@ -514,10 +505,7 @@ async function saveGlobalContact(){
 
           whatsapp,
 
-          telegram,
-
-          updated_at:
-            new Date().toISOString()
+          telegram
 
         })
         .not(
@@ -533,7 +521,7 @@ async function saveGlobalContact(){
 
 
     /* ------------------------------------------
-       第三步：
+       第四步：
        刷新资料卡列表
     ------------------------------------------ */
 
@@ -648,10 +636,10 @@ async function openEditor(w){
   });
 
 
-  /*
-    新增资料卡：
-    自动读取当前全局联系方式
-  */
+  /* ------------------------------------------
+     新增资料卡：
+     自动读取当前全局联系方式
+  ------------------------------------------ */
 
   if(!w){
 
@@ -891,9 +879,9 @@ $('form').onsubmit =
 
     try{
 
-      /*
-        新增上传照片
-      */
+      /* ------------------------------------------
+         新增上传照片
+      ------------------------------------------ */
 
       let id =
         $('id').value
@@ -904,10 +892,9 @@ $('form').onsubmit =
       await uploadFiles(id);
 
 
-      /*
-        联系方式
-        单独保存资料卡自己的联系方式
-      */
+      /* ------------------------------------------
+         联系方式
+      ------------------------------------------ */
 
       const whatsapp =
         (
@@ -924,6 +911,14 @@ $('form').onsubmit =
         )
         .trim();
 
+
+      /* ------------------------------------------
+         保存数据
+         
+         注意：
+         women 表没有 updated_at，
+         所以 payload 中已经删除。
+      ------------------------------------------ */
 
       const payload = {
 
@@ -981,18 +976,14 @@ $('form').onsubmit =
 
         is_published:
           $('is_published')
-            .checked,
-
-        updated_at:
-          new Date()
-            .toISOString()
+            .checked
 
       };
 
 
-      /*
-        保存资料
-      */
+      /* ------------------------------------------
+         保存资料
+      ------------------------------------------ */
 
       const {
         error
@@ -1064,11 +1055,7 @@ window.toggle =
         .update({
 
           is_published:
-            value,
-
-          updated_at:
-            new Date()
-              .toISOString()
+            value
 
         })
         .eq(
