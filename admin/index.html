@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="zh-CN">
 
@@ -407,31 +408,49 @@ button{
 }
 
 .profile-contact-settings{
+
   border-color:#e7ddd2;
+
 }
 
 .global-contact-warning{
+
   margin:0 0 20px;
+
   padding:12px 14px;
+
   border-radius:9px;
+
   background:#fff8ed;
+
   color:#8a6334;
+
   border:1px solid #f0dfc5;
+
   font-size:13px;
+
   line-height:1.7;
+
 }
 
 .profile-settings-save{
+
   background:#8b5e34;
+
 }
 
 .profile-settings-save:hover{
+
   opacity:.92;
+
 }
 
 .profile-settings-save:disabled{
+
   opacity:.55;
+
   cursor:not-allowed;
+
 }
 
 
@@ -510,6 +529,7 @@ button{
 .card-photo img{
 
   width:100%;
+
   height:100%;
 
   object-fit:cover;
@@ -521,11 +541,13 @@ button{
 .card-no-photo{
 
   width:100%;
+
   height:100%;
 
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   color:#999;
@@ -706,6 +728,7 @@ button{
 .close-modal{
 
   width:35px;
+
   height:35px;
 
   border:0;
@@ -866,9 +889,11 @@ textarea{
   position:absolute;
 
   top:5px;
+
   right:5px;
 
   width:27px;
+
   height:27px;
 
   border:0;
@@ -1102,7 +1127,7 @@ textarea{
         <input
           id="loginPassword"
           type="password"
-          placeholder="请输入密码"
+          placeholder="请输入管理员密码"
           required
         >
 
@@ -1249,15 +1274,26 @@ textarea{
   </h2>
 
   <p class="settings-description">
+
     修改这里的 WhatsApp / Telegram 后，点击下方按钮，
     新联系方式会立即覆盖所有已经上传的女士资料卡。
     新增资料卡也会自动使用这里的联系方式。
+
   </p>
 
+
   <div class="global-contact-warning">
-    ⚠️ 注意：点击“保存并覆盖全部资料卡”后，所有现有资料卡的旧 WhatsApp 和 Telegram 都会被新内容替换。
+
+    ⚠️ 注意：点击“保存并覆盖全部资料卡”后，
+    所有现有资料卡的旧 WhatsApp 和 Telegram
+    都会被新内容替换。
+
+    <br>
+
     单独编辑资料卡仍然可以填写不同的联系方式。
+
   </div>
+
 
   <div class="settings-grid">
 
@@ -1304,6 +1340,10 @@ textarea{
 
 </section>
 
+
+<!-- =========================
+     Women
+========================= -->
 
 <div class="page-title">
 
@@ -1734,6 +1774,7 @@ function normalizeArray(value){
     return [];
   }
 
+
   if(Array.isArray(value)){
 
     return value
@@ -1744,19 +1785,23 @@ function normalizeArray(value){
 
   }
 
+
   if(typeof value === "string"){
 
     const text =
       value.trim();
 
+
     if(!text){
       return [];
     }
+
 
     try{
 
       const parsed =
         JSON.parse(text);
+
 
       if(Array.isArray(parsed)){
 
@@ -1770,6 +1815,7 @@ function normalizeArray(value){
 
     }catch(e){}
 
+
     if(text.includes(",")){
 
       return text
@@ -1779,9 +1825,11 @@ function normalizeArray(value){
 
     }
 
+
     return [text];
 
   }
+
 
   return [];
 
@@ -1794,8 +1842,10 @@ function getStorageUrl(path){
     return "";
   }
 
+
   const value =
     String(path).trim();
+
 
   if(
     value.startsWith("http://") ||
@@ -1805,6 +1855,7 @@ function getStorageUrl(path){
     return value;
 
   }
+
 
   return (
     SUPABASE_URL +
@@ -1825,9 +1876,11 @@ function showMessage(
   messageBox.textContent =
     text;
 
+
   messageBox.className =
     "message " +
     type;
+
 
   setTimeout(
     () => {
@@ -1852,9 +1905,11 @@ loginForm.addEventListener(
 
     event.preventDefault();
 
+
     loginError.classList.add(
       "hidden"
     );
+
 
     const email =
       document
@@ -1863,6 +1918,7 @@ loginForm.addEventListener(
         )
         .value
         .trim();
+
 
     const password =
       document
@@ -1896,11 +1952,13 @@ loginForm.addEventListener(
 
       showAdmin();
 
+
     }catch(error){
 
       loginError.textContent =
         "登录失败：" +
         error.message;
+
 
       loginError.classList.remove(
         "hidden"
@@ -1931,6 +1989,7 @@ async function checkSession(){
 
     currentUser =
       data.session.user;
+
 
     showAdmin();
 
@@ -1997,8 +2056,10 @@ document
       await supabaseClient.auth
         .signOut();
 
+
       currentUser =
         null;
+
 
       showLogin();
 
@@ -2048,6 +2109,7 @@ async function loadWomen(){
 
 
     renderWomenList();
+
 
   }catch(error){
 
@@ -2104,6 +2166,7 @@ function renderWomenList(){
           "article"
         );
 
+
       card.className =
         "woman-admin-card";
 
@@ -2112,6 +2175,7 @@ function renderWomenList(){
         normalizeArray(
           woman.photos
         );
+
 
       const videos =
         normalizeArray(
@@ -2268,6 +2332,7 @@ function renderWomenList(){
               编辑
             </button>
 
+
             <button
               class="delete-btn"
               type="button"
@@ -2331,14 +2396,18 @@ async function openAddWoman(){
   editingWoman =
     null;
 
+
   currentPhotos =
     [];
+
 
   currentVideos =
     [];
 
+
   pendingPhotos =
     [];
+
 
   pendingVideos =
     [];
@@ -2348,9 +2417,10 @@ async function openAddWoman(){
 
 
   /*
-    新增资料卡时自动带入当前全局联系方式。
-    如果读取失败，则保持为空，不影响继续添加资料。
+    新增资料卡时自动读取
+    profile_contact
   */
+
   try{
 
     const {
@@ -2359,21 +2429,36 @@ async function openAddWoman(){
     } =
       await supabaseClient
         .from("site_settings")
-        .select("whatsapp,telegram")
-        .eq("setting_key","profile_contact")
+        .select(
+          "whatsapp,telegram"
+        )
+        .eq(
+          "setting_key",
+          "profile_contact"
+        )
         .maybeSingle();
 
-    if(!globalContactError){
+
+    if(
+      !globalContactError
+    ){
 
       document
-        .getElementById("womanWhatsapp")
+        .getElementById(
+          "womanWhatsapp"
+        )
         .value =
-        globalContact?.whatsapp || "";
+        globalContact?.whatsapp ||
+        "";
+
 
       document
-        .getElementById("womanTelegram")
+        .getElementById(
+          "womanTelegram"
+        )
         .value =
-        globalContact?.telegram || "";
+        globalContact?.telegram ||
+        "";
 
     }
 
@@ -2413,6 +2498,7 @@ async function openAddWoman(){
 
   renderExistingMedia();
 
+
   modal.classList.remove(
     "hidden"
   );
@@ -2429,18 +2515,22 @@ function openEditWoman(woman){
   editingWoman =
     woman;
 
+
   currentPhotos =
     normalizeArray(
       woman.photos
     );
+
 
   currentVideos =
     normalizeArray(
       woman.videos
     );
 
+
   pendingPhotos =
     [];
+
 
   pendingVideos =
     [];
@@ -2548,6 +2638,7 @@ function openEditWoman(woman){
 
   renderExistingMedia();
 
+
   modal.classList.remove(
     "hidden"
   );
@@ -2637,6 +2728,7 @@ function renderExistingMedia(){
       "existingPhotos"
     );
 
+
   const videoBox =
     document.getElementById(
       "existingVideos"
@@ -2645,6 +2737,7 @@ function renderExistingMedia(){
 
   photoBox.innerHTML =
     "";
+
 
   videoBox.innerHTML =
     "";
@@ -2670,6 +2763,7 @@ function renderExistingMedia(){
             "div"
           );
 
+
         item.className =
           "media-item";
 
@@ -2682,6 +2776,7 @@ function renderExistingMedia(){
             )}"
             alt="照片"
           >
+
 
           <button
             class="remove-media"
@@ -2705,6 +2800,7 @@ function renderExistingMedia(){
                 index,
                 1
               );
+
 
               renderExistingMedia();
 
@@ -2742,6 +2838,7 @@ function renderExistingMedia(){
             "div"
           );
 
+
         item.className =
           "media-item";
 
@@ -2760,6 +2857,7 @@ function renderExistingMedia(){
             >
 
           </video>
+
 
           <button
             class="remove-media"
@@ -2783,6 +2881,7 @@ function renderExistingMedia(){
                 index,
                 1
               );
+
 
               renderExistingMedia();
 
@@ -2977,6 +3076,7 @@ womanForm.addEventListener(
     saveButton.disabled =
       true;
 
+
     saveButton.textContent =
       "正在保存……";
 
@@ -3079,21 +3179,27 @@ womanForm.addEventListener(
 
 
       const firstPhoto =
-        finalPhotos[0] || "";
+        finalPhotos[0] ||
+        "";
 
 
       const record = {
 
         name,
+
         age,
+
         city,
+
         occupation,
+
         description,
 
         image_url:
           firstPhoto,
 
         whatsapp,
+
         telegram,
 
         is_published:
@@ -3128,6 +3234,7 @@ womanForm.addEventListener(
           "success"
         );
 
+
       }else{
 
         const {
@@ -3157,10 +3264,12 @@ womanForm.addEventListener(
 
       closeModal();
 
+
       await loadWomen();
 
 
       pendingPhotos = [];
+
       pendingVideos = [];
 
 
@@ -3168,16 +3277,19 @@ womanForm.addEventListener(
 
       console.error(error);
 
+
       showMessage(
         "保存失败：" +
         error.message,
         "error"
       );
 
+
     }finally{
 
       saveButton.disabled =
         false;
+
 
       saveButton.textContent =
         "保存资料";
@@ -3212,17 +3324,16 @@ async function deleteWoman(woman){
 
   try{
 
-    /*
-      收集所有 Storage 文件
-    */
-
     const paths = [
+
       ...normalizeArray(
         woman.photos
       ),
+
       ...normalizeArray(
         woman.videos
       )
+
     ];
 
 
@@ -3245,6 +3356,7 @@ async function deleteWoman(woman){
               const value =
                 String(path);
 
+
               if(
                 value.includes(
                   "/storage/v1/object/public/"
@@ -3260,6 +3372,7 @@ async function deleteWoman(woman){
 
               }
 
+
               return value
                 .replace(
                   new RegExp(
@@ -3274,10 +3387,6 @@ async function deleteWoman(woman){
         )
       ];
 
-
-    /*
-      先删除数据库
-    */
 
     const {
       error
@@ -3297,10 +3406,6 @@ async function deleteWoman(woman){
 
     }
 
-
-    /*
-      再删除 Storage
-    */
 
     if(uniquePaths.length){
 
@@ -3343,6 +3448,7 @@ async function deleteWoman(woman){
 
     console.error(error);
 
+
     showMessage(
       "删除失败：" +
       error.message,
@@ -3372,8 +3478,13 @@ async function loadSettings(){
     } =
       await supabaseClient
         .from("site_settings")
-        .select("whatsapp,telegram")
-        .eq("setting_key","join_contact")
+        .select(
+          "whatsapp,telegram"
+        )
+        .eq(
+          "setting_key",
+          "join_contact"
+        )
         .maybeSingle();
 
 
@@ -3387,7 +3498,8 @@ async function loadSettings(){
         "joinWhatsapp"
       )
       .value =
-      joinData?.whatsapp || "";
+      joinData?.whatsapp ||
+      "";
 
 
     document
@@ -3395,7 +3507,8 @@ async function loadSettings(){
         "joinTelegram"
       )
       .value =
-      joinData?.telegram || "";
+      joinData?.telegram ||
+      "";
 
 
     /* ------------------------------------------
@@ -3408,8 +3521,13 @@ async function loadSettings(){
     } =
       await supabaseClient
         .from("site_settings")
-        .select("whatsapp,telegram")
-        .eq("setting_key","profile_contact")
+        .select(
+          "whatsapp,telegram"
+        )
+        .eq(
+          "setting_key",
+          "profile_contact"
+        )
         .maybeSingle();
 
 
@@ -3423,7 +3541,8 @@ async function loadSettings(){
         "profileWhatsapp"
       )
       .value =
-      profileData?.whatsapp || "";
+      profileData?.whatsapp ||
+      "";
 
 
     document
@@ -3431,7 +3550,8 @@ async function loadSettings(){
         "profileTelegram"
       )
       .value =
-      profileData?.telegram || "";
+      profileData?.telegram ||
+      "";
 
 
   }catch(error){
@@ -3445,6 +3565,10 @@ async function loadSettings(){
 
 }
 
+
+/* ==================================================
+   Save join settings
+================================================== */
 
 document
   .getElementById(
@@ -3466,6 +3590,7 @@ async function saveSettings(){
 
   button.disabled =
     true;
+
 
   button.textContent =
     "正在保存……";
@@ -3491,32 +3616,82 @@ async function saveSettings(){
         .trim();
 
 
+    /*
+      这里不再写 updated_at。
+      避免 site_settings 没有该字段导致保存失败。
+    */
+
     const {
-      error
+      data: existing,
+      error: findError
     } =
       await supabaseClient
-        .from(
-          "site_settings"
-        )
-        .update({
-
-          whatsapp,
-          telegram,
-
-          updated_at:
-            new Date()
-              .toISOString()
-
-        })
+        .from("site_settings")
+        .select("id")
         .eq(
           "setting_key",
           "join_contact"
-        );
+        )
+        .maybeSingle();
 
 
-    if(error){
+    if(findError){
 
-      throw error;
+      throw findError;
+
+    }
+
+
+    if(existing?.id){
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("site_settings")
+          .update({
+
+            whatsapp,
+
+            telegram
+
+          })
+          .eq(
+            "id",
+            existing.id
+          );
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+    }else{
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("site_settings")
+          .insert({
+
+            setting_key:
+              "join_contact",
+
+            whatsapp,
+
+            telegram
+
+          });
+
+
+      if(error){
+
+        throw error;
+
+      }
 
     }
 
@@ -3531,16 +3706,19 @@ async function saveSettings(){
 
     console.error(error);
 
+
     showMessage(
       "联系方式保存失败：" +
       error.message,
       "error"
     );
 
+
   }finally{
 
     button.disabled =
       false;
+
 
     button.textContent =
       "保存联系方式";
@@ -3551,8 +3729,7 @@ async function saveSettings(){
 
 
 /* ==================================================
-   资料卡全局联系方式
-   保存后覆盖所有现有资料卡
+   Profile global settings
 ================================================== */
 
 document
@@ -3600,11 +3777,16 @@ async function saveProfileSettings(){
 
 
   if(!confirmed){
+
     return;
+
   }
 
 
-  button.disabled = true;
+  button.disabled =
+    true;
+
+
   button.textContent =
     "正在覆盖全部资料卡……";
 
@@ -3612,7 +3794,11 @@ async function saveProfileSettings(){
   try{
 
     /* ------------------------------------------
-       第一步：保存 profile_contact 全局设置
+       第一步：
+       保存 profile_contact
+       
+       注意：
+       不再写 updated_at
     ------------------------------------------ */
 
     const {
@@ -3622,12 +3808,17 @@ async function saveProfileSettings(){
       await supabaseClient
         .from("site_settings")
         .select("id")
-        .eq("setting_key","profile_contact")
+        .eq(
+          "setting_key",
+          "profile_contact"
+        )
         .maybeSingle();
 
 
     if(findError){
+
       throw findError;
+
     }
 
 
@@ -3639,10 +3830,11 @@ async function saveProfileSettings(){
         await supabaseClient
           .from("site_settings")
           .update({
+
             whatsapp,
-            telegram,
-            updated_at:
-              new Date().toISOString()
+
+            telegram
+
           })
           .eq(
             "id",
@@ -3651,7 +3843,9 @@ async function saveProfileSettings(){
 
 
       if(error){
+
         throw error;
+
       }
 
     }else{
@@ -3662,24 +3856,33 @@ async function saveProfileSettings(){
         await supabaseClient
           .from("site_settings")
           .insert({
+
             setting_key:
               "profile_contact",
+
             whatsapp,
-            telegram,
-            updated_at:
-              new Date().toISOString()
+
+            telegram
+
           });
 
 
       if(error){
+
         throw error;
+
       }
 
     }
 
 
     /* ------------------------------------------
-       第二步：覆盖 women 表所有资料卡
+       第二步：
+       覆盖 women 表全部资料卡
+       
+       这里特别重要：
+       只更新 whatsapp / telegram
+       不再更新 updated_at
     ------------------------------------------ */
 
     const {
@@ -3688,10 +3891,11 @@ async function saveProfileSettings(){
       await supabaseClient
         .from("women")
         .update({
+
           whatsapp,
-          telegram,
-          updated_at:
-            new Date().toISOString()
+
+          telegram
+
         })
         .not(
           "id",
@@ -3701,12 +3905,15 @@ async function saveProfileSettings(){
 
 
     if(womenError){
+
       throw womenError;
+
     }
 
 
     /* ------------------------------------------
-       第三步：刷新后台资料卡列表
+       第三步：
+       刷新资料卡
     ------------------------------------------ */
 
     await loadWomen();
@@ -3725,15 +3932,20 @@ async function saveProfileSettings(){
       error
     );
 
+
     showMessage(
       "全局联系方式保存失败：" +
       error.message,
       "error"
     );
 
+
   }finally{
 
-    button.disabled = false;
+    button.disabled =
+      false;
+
+
     button.textContent =
       "保存并覆盖全部资料卡";
 
@@ -3759,6 +3971,7 @@ supabaseClient
         currentUser =
           null;
 
+
         showLogin();
 
       }
@@ -3778,3 +3991,4 @@ checkSession();
 </body>
 
 </html>
+```
