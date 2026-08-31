@@ -406,6 +406,34 @@ button{
 
 }
 
+.profile-contact-settings{
+  border-color:#e7ddd2;
+}
+
+.global-contact-warning{
+  margin:0 0 20px;
+  padding:12px 14px;
+  border-radius:9px;
+  background:#fff8ed;
+  color:#8a6334;
+  border:1px solid #f0dfc5;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.profile-settings-save{
+  background:#8b5e34;
+}
+
+.profile-settings-save:hover{
+  opacity:.92;
+}
+
+.profile-settings-save:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
 
 /* =========================
    Message
@@ -1205,6 +1233,73 @@ textarea{
     type="button"
   >
     保存联系方式
+  </button>
+
+</section>
+
+
+<!-- =========================
+     资料卡全局联系方式
+========================= -->
+
+<section class="settings-box profile-contact-settings">
+
+  <h2>
+    资料卡全局联系方式
+  </h2>
+
+  <p class="settings-description">
+    修改这里的 WhatsApp / Telegram 后，点击下方按钮，
+    新联系方式会立即覆盖所有已经上传的女士资料卡。
+    新增资料卡也会自动使用这里的联系方式。
+  </p>
+
+  <div class="global-contact-warning">
+    ⚠️ 注意：点击“保存并覆盖全部资料卡”后，所有现有资料卡的旧 WhatsApp 和 Telegram 都会被新内容替换。
+    单独编辑资料卡仍然可以填写不同的联系方式。
+  </div>
+
+  <div class="settings-grid">
+
+    <div class="form-group">
+
+      <label>
+        资料卡 WhatsApp
+      </label>
+
+      <input
+        id="profileWhatsapp"
+        type="text"
+        inputmode="tel"
+        placeholder="例如：5215512345678"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        资料卡 Telegram
+      </label>
+
+      <input
+        id="profileTelegram"
+        type="text"
+        placeholder="例如：@username"
+      >
+
+    </div>
+
+  </div>
+
+
+  <button
+    id="saveProfileSettingsButton"
+    class="settings-save profile-settings-save"
+    type="button"
+  >
+    保存并覆盖全部资料卡
   </button>
 
 </section>
@@ -2231,7 +2326,7 @@ document
   );
 
 
-function openAddWoman(){
+async function openAddWoman(){
 
   editingWoman =
     null;
@@ -2250,6 +2345,46 @@ function openAddWoman(){
 
 
   womanForm.reset();
+
+
+  /*
+    新增资料卡时自动带入当前全局联系方式。
+    如果读取失败，则保持为空，不影响继续添加资料。
+  */
+  try{
+
+    const {
+      data: globalContact,
+      error: globalContactError
+    } =
+      await supabaseClient
+        .from("site_settings")
+        .select("whatsapp,telegram")
+        .eq("setting_key","profile_contact")
+        .maybeSingle();
+
+    if(!globalContactError){
+
+      document
+        .getElementById("womanWhatsapp")
+        .value =
+        globalContact?.whatsapp || "";
+
+      document
+        .getElementById("womanTelegram")
+        .value =
+        globalContact?.telegram || "";
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "读取资料卡全局联系方式失败：",
+      error
+    );
+
+  }
 
 
   document
@@ -3227,26 +3362,23 @@ async function loadSettings(){
 
   try{
 
+    /* ------------------------------------------
+       申请加入联系方式
+    ------------------------------------------ */
+
     const {
-      data,
-      error
+      data: joinData,
+      error: joinError
     } =
       await supabaseClient
         .from("site_settings")
-        .select(
-          "whatsapp,telegram"
-        )
-        .eq(
-          "setting_key",
-          "join_contact"
-        )
+        .select("whatsapp,telegram")
+        .eq("setting_key","join_contact")
         .maybeSingle();
 
 
-    if(error){
-
-      throw error;
-
+    if(joinError){
+      throw joinError;
     }
 
 
@@ -3255,7 +3387,7 @@ async function loadSettings(){
         "joinWhatsapp"
       )
       .value =
-      data?.whatsapp || "";
+      joinData?.whatsapp || "";
 
 
     document
@@ -3263,7 +3395,43 @@ async function loadSettings(){
         "joinTelegram"
       )
       .value =
-      data?.telegram || "";
+      joinData?.telegram || "";
+
+
+    /* ------------------------------------------
+       资料卡全局联系方式
+    ------------------------------------------ */
+
+    const {
+      data: profileData,
+      error: profileError
+    } =
+      await supabaseClient
+        .from("site_settings")
+        .select("whatsapp,telegram")
+        .eq("setting_key","profile_contact")
+        .maybeSingle();
+
+
+    if(profileError){
+      throw profileError;
+    }
+
+
+    document
+      .getElementById(
+        "profileWhatsapp"
+      )
+      .value =
+      profileData?.whatsapp || "";
+
+
+    document
+      .getElementById(
+        "profileTelegram"
+      )
+      .value =
+      profileData?.telegram || "";
 
 
   }catch(error){
@@ -3376,6 +3544,198 @@ async function saveSettings(){
 
     button.textContent =
       "保存联系方式";
+
+  }
+
+}
+
+
+/* ==================================================
+   资料卡全局联系方式
+   保存后覆盖所有现有资料卡
+================================================== */
+
+document
+  .getElementById(
+    "saveProfileSettingsButton"
+  )
+  .addEventListener(
+    "click",
+    saveProfileSettings
+  );
+
+
+async function saveProfileSettings(){
+
+  const button =
+    document.getElementById(
+      "saveProfileSettingsButton"
+    );
+
+
+  const whatsapp =
+    document
+      .getElementById(
+        "profileWhatsapp"
+      )
+      .value
+      .trim();
+
+
+  const telegram =
+    document
+      .getElementById(
+        "profileTelegram"
+      )
+      .value
+      .trim();
+
+
+  const confirmed =
+    confirm(
+      "确定要覆盖所有资料卡的联系方式吗？\n\n" +
+      "新的 WhatsApp 和 Telegram 将替换所有女士资料卡中的旧联系方式。\n\n" +
+      "此操作不会修改女士姓名、照片、视频、介绍或发布状态。"
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  button.disabled = true;
+  button.textContent =
+    "正在覆盖全部资料卡……";
+
+
+  try{
+
+    /* ------------------------------------------
+       第一步：保存 profile_contact 全局设置
+    ------------------------------------------ */
+
+    const {
+      data: existingSetting,
+      error: findError
+    } =
+      await supabaseClient
+        .from("site_settings")
+        .select("id")
+        .eq("setting_key","profile_contact")
+        .maybeSingle();
+
+
+    if(findError){
+      throw findError;
+    }
+
+
+    if(existingSetting?.id){
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("site_settings")
+          .update({
+            whatsapp,
+            telegram,
+            updated_at:
+              new Date().toISOString()
+          })
+          .eq(
+            "id",
+            existingSetting.id
+          );
+
+
+      if(error){
+        throw error;
+      }
+
+    }else{
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("site_settings")
+          .insert({
+            setting_key:
+              "profile_contact",
+            whatsapp,
+            telegram,
+            updated_at:
+              new Date().toISOString()
+          });
+
+
+      if(error){
+        throw error;
+      }
+
+    }
+
+
+    /* ------------------------------------------
+       第二步：覆盖 women 表所有资料卡
+    ------------------------------------------ */
+
+    const {
+      error: womenError
+    } =
+      await supabaseClient
+        .from("women")
+        .update({
+          whatsapp,
+          telegram,
+          updated_at:
+            new Date().toISOString()
+        })
+        .not(
+          "id",
+          "is",
+          null
+        );
+
+
+    if(womenError){
+      throw womenError;
+    }
+
+
+    /* ------------------------------------------
+       第三步：刷新后台资料卡列表
+    ------------------------------------------ */
+
+    await loadWomen();
+
+
+    showMessage(
+      "全局联系方式保存成功，所有资料卡的 WhatsApp 和 Telegram 已全部覆盖。",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "覆盖资料卡联系方式失败:",
+      error
+    );
+
+    showMessage(
+      "全局联系方式保存失败：" +
+      error.message,
+      "error"
+    );
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent =
+      "保存并覆盖全部资料卡";
 
   }
 
