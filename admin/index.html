@@ -1,4 +1,3 @@
-html
 <!doctype html>
 <html lang="zh-CN">
 
@@ -20,7 +19,6 @@ html
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <style>
 
 *{
@@ -30,7 +28,6 @@ html
 }
 
 body{
-
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -41,32 +38,23 @@ body{
     sans-serif;
 
   background:#f5f5f5;
-
   color:#222;
-
   line-height:1.6;
-
 }
 
 button,
 input,
 textarea,
 select{
-
   font-family:inherit;
-
 }
 
 button{
-
   cursor:pointer;
-
 }
 
 .hidden{
-
   display:none !important;
-
 }
 
 
@@ -75,15 +63,10 @@ button{
 ========================= */
 
 .login-page{
-
   min-height:100vh;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   padding:20px;
 
   background:
@@ -92,127 +75,82 @@ button{
       #faf9f7,
       #eee8e0
     );
-
 }
 
 .login-box{
-
   width:100%;
-
   max-width:430px;
-
   background:#fff;
-
   border-radius:18px;
-
   padding:40px;
 
   box-shadow:
     0 20px 60px rgba(0,0,0,.1);
-
 }
 
 .login-box h1{
-
   font-size:28px;
-
   margin-bottom:8px;
-
 }
 
 .subtitle{
-
   color:#999;
-
   font-size:14px;
-
   margin-bottom:30px;
-
 }
 
 .form-group{
-
   margin-bottom:18px;
-
 }
 
 .form-group label{
-
   display:block;
-
   font-size:14px;
-
   font-weight:600;
-
   margin-bottom:7px;
-
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select{
-
   width:100%;
-
   border:1px solid #ddd;
-
   border-radius:9px;
-
   padding:12px 14px;
-
   outline:none;
-
   background:#fff;
-
   font-size:14px;
-
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus{
-
   border-color:#b58b63;
 
   box-shadow:
     0 0 0 3px rgba(181,139,99,.1);
-
 }
 
 .login-button{
-
   width:100%;
-
   border:0;
-
   border-radius:9px;
-
   padding:13px;
 
   background:#2b2927;
-
   color:#fff;
 
   font-size:15px;
-
   font-weight:600;
-
 }
 
 .login-error{
-
   color:#d33;
-
   background:#fff0f0;
-
   border-radius:8px;
-
   padding:10px 12px;
-
   margin-bottom:15px;
-
   font-size:13px;
-
 }
 
 
@@ -221,73 +159,47 @@ button{
 ========================= */
 
 .admin-header{
-
   height:68px;
-
   background:#fff;
-
   border-bottom:1px solid #eee;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   padding:0 30px;
 
   position:sticky;
-
   top:0;
-
   z-index:100;
-
 }
 
 .admin-brand{
-
   font-size:20px;
-
   font-weight:700;
-
 }
 
 .admin-brand span{
-
   color:#b58b63;
-
 }
 
 .header-right{
-
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
 }
 
 .user-email{
-
   color:#777;
-
   font-size:13px;
-
 }
 
 .logout-button{
-
   border:1px solid #ddd;
-
   background:#fff;
-
   padding:8px 14px;
-
   border-radius:20px;
-
   font-size:13px;
-
 }
 
 
@@ -296,49 +208,32 @@ button{
 ========================= */
 
 .admin-container{
-
   width:94%;
-
   max-width:1400px;
-
   margin:30px auto 70px;
-
 }
 
 .page-title{
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   gap:15px;
-
   margin-bottom:25px;
-
 }
 
 .page-title h1{
-
   font-size:28px;
-
 }
 
 .add-button{
-
   border:0;
-
   border-radius:9px;
-
   padding:12px 20px;
 
   background:#2b2927;
-
   color:#fff;
 
   font-weight:600;
-
 }
 
 
@@ -347,110 +242,88 @@ button{
 ========================= */
 
 .settings-box{
-
   background:#fff;
-
   border:1px solid #eee;
-
   border-radius:14px;
-
   padding:25px;
-
   margin-bottom:30px;
-
 }
 
 .settings-box h2{
-
   font-size:20px;
-
   margin-bottom:6px;
-
 }
 
 .settings-description{
-
   color:#999;
-
   font-size:13px;
-
   margin-bottom:20px;
-
 }
 
 .settings-grid{
-
   display:grid;
-
   grid-template-columns:
     repeat(2,minmax(0,1fr));
 
   gap:18px;
-
 }
 
 .settings-save{
-
   margin-top:15px;
-
   border:0;
-
   border-radius:8px;
 
   background:#2b2927;
-
   color:#fff;
 
   padding:11px 20px;
-
   font-weight:600;
-
 }
 
 .profile-contact-settings{
-
   border-color:#e7ddd2;
-
 }
 
 .global-contact-warning{
-
   margin:0 0 20px;
-
   padding:12px 14px;
-
   border-radius:9px;
 
   background:#fff8ed;
-
   color:#8a6334;
-
   border:1px solid #f0dfc5;
 
   font-size:13px;
-
   line-height:1.7;
-
 }
 
 .profile-settings-save{
-
   background:#8b5e34;
-
 }
 
 .profile-settings-save:hover{
-
   opacity:.92;
-
 }
 
 .profile-settings-save:disabled{
-
   opacity:.55;
-
   cursor:not-allowed;
+}
 
+
+/* =========================
+   Telegram Help
+========================= */
+
+.telegram-help{
+  margin-top:6px;
+  color:#999;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.telegram-help strong{
+  color:#777;
 }
 
 
@@ -459,31 +332,20 @@ button{
 ========================= */
 
 .message{
-
   padding:12px 15px;
-
   border-radius:9px;
-
   margin-bottom:20px;
-
   font-size:14px;
-
 }
 
 .message.success{
-
   background:#edf9f1;
-
   color:#18733b;
-
 }
 
 .message.error{
-
   background:#fff0f0;
-
   color:#c22;
-
 }
 
 
@@ -492,178 +354,114 @@ button{
 ========================= */
 
 .women-list{
-
   display:grid;
 
   grid-template-columns:
     repeat(3,minmax(0,1fr));
 
   gap:20px;
-
 }
 
 .woman-admin-card{
-
   background:#fff;
-
   border:1px solid #eee;
-
   border-radius:14px;
-
   overflow:hidden;
-
 }
 
 .card-photo{
-
   width:100%;
-
   aspect-ratio:3 / 4;
-
   background:#eee;
-
   overflow:hidden;
-
 }
 
 .card-photo img{
-
   width:100%;
-
   height:100%;
-
   object-fit:cover;
-
   display:block;
-
 }
 
 .card-no-photo{
-
   width:100%;
-
   height:100%;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   color:#999;
-
 }
 
 .card-content{
-
   padding:18px;
-
 }
 
 .card-content h2{
-
   font-size:19px;
-
   margin-bottom:5px;
-
 }
 
 .card-meta{
-
   color:#888;
-
   font-size:13px;
-
   margin-bottom:10px;
-
 }
 
 .card-description{
-
   color:#777;
-
   font-size:13px;
 
   display:-webkit-box;
-
   -webkit-line-clamp:3;
-
   -webkit-box-orient:vertical;
 
   overflow:hidden;
-
 }
 
 .card-media-count{
-
   margin-top:12px;
-
   font-size:13px;
-
   color:#888;
-
 }
 
 .card-status{
-
   display:inline-block;
-
   padding:4px 9px;
-
   border-radius:15px;
 
   font-size:12px;
-
   margin-top:10px;
-
 }
 
 .status-on{
-
   background:#e8f7ed;
-
   color:#168a43;
-
 }
 
 .status-off{
-
   background:#eee;
-
   color:#888;
-
 }
 
 .card-actions{
-
   display:flex;
-
   gap:8px;
-
   margin-top:16px;
-
 }
 
 .card-actions button{
-
   flex:1;
-
   border:1px solid #ddd;
-
   background:#fff;
-
   padding:9px;
-
   border-radius:8px;
-
   font-size:13px;
-
 }
 
 .delete-btn{
-
   color:#c33;
-
 }
 
 
@@ -672,17 +470,13 @@ button{
 ========================= */
 
 .modal{
-
   position:fixed;
-
   inset:0;
 
   background:rgba(0,0,0,.55);
 
   display:flex;
-
   align-items:flex-start;
-
   justify-content:center;
 
   padding:30px 15px;
@@ -690,55 +484,37 @@ button{
   overflow-y:auto;
 
   z-index:500;
-
 }
 
 .modal-box{
-
   width:100%;
-
   max-width:850px;
 
   background:#fff;
-
   border-radius:16px;
-
   padding:30px;
-
 }
 
 .modal-header{
-
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   margin-bottom:25px;
-
 }
 
 .modal-header h2{
-
   font-size:23px;
-
 }
 
 .close-modal{
-
   width:35px;
-
   height:35px;
 
   border:0;
-
   border-radius:50%;
 
   background:#eee;
-
   font-size:20px;
-
 }
 
 
@@ -747,28 +523,21 @@ button{
 ========================= */
 
 .form-grid{
-
   display:grid;
 
   grid-template-columns:
     repeat(2,minmax(0,1fr));
 
   gap:0 18px;
-
 }
 
 .form-full{
-
   grid-column:1 / -1;
-
 }
 
 textarea{
-
   min-height:110px;
-
   resize:vertical;
-
 }
 
 
@@ -777,41 +546,27 @@ textarea{
 ========================= */
 
 .upload-box{
-
   border:2px dashed #ddd;
-
   border-radius:12px;
 
   padding:20px;
-
   background:#fafafa;
-
 }
 
 .upload-box label{
-
   display:block;
-
   font-weight:600;
-
   margin-bottom:10px;
-
 }
 
 .file-input{
-
   width:100%;
-
 }
 
 .upload-help{
-
   color:#999;
-
   font-size:12px;
-
   margin-top:8px;
-
 }
 
 
@@ -820,92 +575,66 @@ textarea{
 ========================= */
 
 .media-section{
-
   margin-top:25px;
-
 }
 
 .media-section h3{
-
   font-size:16px;
-
   margin-bottom:12px;
-
 }
 
 .media-grid{
-
   display:grid;
 
   grid-template-columns:
     repeat(4,minmax(0,1fr));
 
   gap:10px;
-
 }
 
 .media-item{
-
   position:relative;
 
   border:1px solid #eee;
-
   border-radius:9px;
 
   overflow:hidden;
-
   background:#f5f5f5;
-
 }
 
 .media-item img{
-
   width:100%;
-
   aspect-ratio:1 / 1;
-
   object-fit:cover;
-
   display:block;
-
 }
 
 .media-item video{
-
   width:100%;
-
   aspect-ratio:1 / 1;
 
   object-fit:cover;
-
   display:block;
 
   background:#000;
-
 }
 
 .remove-media{
-
   position:absolute;
 
   top:5px;
-
   right:5px;
 
   width:27px;
-
   height:27px;
 
   border:0;
-
   border-radius:50%;
 
   background:rgba(0,0,0,.7);
-
   color:#fff;
 
   font-size:16px;
-
 }
 
 
@@ -914,53 +643,37 @@ textarea{
 ========================= */
 
 .modal-footer{
-
   display:flex;
-
   justify-content:flex-end;
-
   gap:10px;
 
   margin-top:30px;
-
   padding-top:20px;
 
   border-top:1px solid #eee;
-
 }
 
 .cancel-button{
-
   border:1px solid #ddd;
-
   background:#fff;
 
   padding:11px 20px;
-
   border-radius:8px;
-
 }
 
 .save-button{
-
   border:0;
-
   background:#2b2927;
-
   color:#fff;
 
   padding:11px 25px;
-
   border-radius:8px;
 
   font-weight:600;
-
 }
 
 .save-button:disabled{
-
   opacity:.5;
-
 }
 
 
@@ -969,13 +682,9 @@ textarea{
 ========================= */
 
 .loading-page{
-
   text-align:center;
-
   padding:80px 20px;
-
   color:#999;
-
 }
 
 
@@ -986,10 +695,8 @@ textarea{
 @media(max-width:900px){
 
   .women-list{
-
     grid-template-columns:
       repeat(2,minmax(0,1fr));
-
   }
 
 }
@@ -997,72 +704,49 @@ textarea{
 @media(max-width:650px){
 
   .admin-header{
-
     padding:0 15px;
-
   }
 
   .user-email{
-
     display:none;
-
   }
 
   .admin-container{
-
     width:calc(100% - 30px);
-
     margin-top:20px;
-
   }
 
   .page-title h1{
-
     font-size:23px;
-
   }
 
   .women-list{
-
     grid-template-columns:1fr;
-
   }
 
   .settings-grid{
-
     grid-template-columns:1fr;
-
   }
 
   .modal{
-
     padding:10px;
-
   }
 
   .modal-box{
-
     padding:20px;
-
   }
 
   .form-grid{
-
     grid-template-columns:1fr;
-
   }
 
   .form-full{
-
     grid-column:auto;
-
   }
 
   .media-grid{
-
     grid-template-columns:
       repeat(3,minmax(0,1fr));
-
   }
 
 }
@@ -1070,7 +754,6 @@ textarea{
 </style>
 
 </head>
-
 
 <body>
 
@@ -1099,7 +782,6 @@ textarea{
       class="login-error hidden"
     ></div>
 
-
     <form id="loginForm">
 
       <div class="form-group">
@@ -1117,7 +799,6 @@ textarea{
 
       </div>
 
-
       <div class="form-group">
 
         <label>
@@ -1132,7 +813,6 @@ textarea{
         >
 
       </div>
-
 
       <button
         class="login-button"
@@ -1157,7 +837,6 @@ textarea{
   class="hidden"
 >
 
-
 <header class="admin-header">
 
   <div class="admin-brand">
@@ -1174,7 +853,6 @@ textarea{
     </span>
 
   </div>
-
 
   <div class="header-right">
 
@@ -1200,7 +878,7 @@ textarea{
 
 
 <!-- =========================
-     联系方式设置
+     申请加入联系方式
 ========================= -->
 
 <section class="settings-box">
@@ -1216,9 +894,7 @@ textarea{
 
   </p>
 
-
   <div class="settings-grid">
-
 
     <div class="form-group">
 
@@ -1234,7 +910,6 @@ textarea{
 
     </div>
 
-
     <div class="form-group">
 
       <label>
@@ -1247,10 +922,15 @@ textarea{
         placeholder="例如：@username"
       >
 
+      <div class="telegram-help">
+        推荐填写 <strong>@username</strong>，
+        保存后系统会自动转换成标准
+        <strong>https://t.me/username</strong> 链接。
+      </div>
+
     </div>
 
   </div>
-
 
   <button
     id="saveSettingsButton"
@@ -1275,25 +955,20 @@ textarea{
 
   <p class="settings-description">
 
-    修改这里的 WhatsApp / Telegram 后，点击下方按钮，
-    新联系方式会立即覆盖所有已经上传的女士资料卡。
+    修改这里的 WhatsApp / Telegram 后，
+    点击下方按钮，新联系方式会立即覆盖所有已经上传的女士资料卡。
     新增资料卡也会自动使用这里的联系方式。
 
   </p>
 
-
   <div class="global-contact-warning">
 
     ⚠️ 注意：点击“保存并覆盖全部资料卡”后，
-    所有现有资料卡的旧 WhatsApp 和 Telegram
-    都会被新内容替换。
-
-    <br>
+    所有现有资料卡的旧 WhatsApp 和 Telegram 都会被新内容替换。
 
     单独编辑资料卡仍然可以填写不同的联系方式。
 
   </div>
-
 
   <div class="settings-grid">
 
@@ -1312,7 +987,6 @@ textarea{
 
     </div>
 
-
     <div class="form-group">
 
       <label>
@@ -1325,10 +999,14 @@ textarea{
         placeholder="例如：@username"
       >
 
+      <div class="telegram-help">
+        推荐填写 <strong>@username</strong>，
+        保存时会自动转换为标准 Telegram 链接。
+      </div>
+
     </div>
 
   </div>
-
 
   <button
     id="saveProfileSettingsButton"
@@ -1420,9 +1098,7 @@ textarea{
         type="hidden"
       >
 
-
       <div class="form-grid">
-
 
         <div class="form-group">
 
@@ -1515,6 +1191,11 @@ textarea{
             placeholder="例如：@username"
           >
 
+          <div class="telegram-help">
+            可以填写 @username、username、
+            t.me/username 或完整 Telegram 链接。
+          </div>
+
         </div>
 
 
@@ -1602,7 +1283,6 @@ textarea{
 
         </div>
 
-
       </div>
 
 
@@ -1663,7 +1343,6 @@ textarea{
 
 <script>
 
-
 /* ==================================================
    Supabase
 ================================================== */
@@ -1671,20 +1350,17 @@ textarea{
 const SUPABASE_URL =
 "https://yutraouosffjteivvlfx.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
-
 
 const STORAGE_BUCKET =
 "women-photos";
 
-
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 
 /* ==================================================
@@ -1711,54 +1387,37 @@ let pendingVideos = [];
 ================================================== */
 
 const loginPage =
-  document.getElementById(
-    "loginPage"
-  );
+document.getElementById("loginPage");
 
 const adminPage =
-  document.getElementById(
-    "adminPage"
-  );
+document.getElementById("adminPage");
 
 const loginForm =
-  document.getElementById(
-    "loginForm"
-  );
+document.getElementById("loginForm");
 
 const loginError =
-  document.getElementById(
-    "loginError"
-  );
+document.getElementById("loginError");
 
 const womenList =
-  document.getElementById(
-    "womenList"
-  );
+document.getElementById("womenList");
 
 const messageBox =
-  document.getElementById(
-    "message"
-  );
+document.getElementById("message");
 
 const modal =
-  document.getElementById(
-    "womanModal"
-  );
+document.getElementById("womanModal");
 
 const womanForm =
-  document.getElementById(
-    "womanForm"
-  );
+document.getElementById("womanForm");
 
 
 /* ==================================================
-   Helpers
+   HTML Escape
 ================================================== */
 
 function escapeHtml(value){
 
   return String(value ?? "")
-
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -1768,12 +1427,15 @@ function escapeHtml(value){
 }
 
 
+/* ==================================================
+   Array
+================================================== */
+
 function normalizeArray(value){
 
   if(!value){
     return [];
   }
-
 
   if(Array.isArray(value)){
 
@@ -1785,23 +1447,19 @@ function normalizeArray(value){
 
   }
 
-
   if(typeof value === "string"){
 
     const text =
       value.trim();
 
-
     if(!text){
       return [];
     }
 
-
     try{
 
       const parsed =
-        JSON.parse(text);
-
+      JSON.parse(text);
 
       if(Array.isArray(parsed)){
 
@@ -1815,7 +1473,6 @@ function normalizeArray(value){
 
     }catch(e){}
 
-
     if(text.includes(",")){
 
       return text
@@ -1825,16 +1482,162 @@ function normalizeArray(value){
 
     }
 
-
     return [text];
 
   }
-
 
   return [];
 
 }
 
+
+/* ==================================================
+   Telegram Normalize
+================================================== */
+
+/*
+  统一 Telegram 格式。
+
+  支持：
+
+  @username
+  username
+  t.me/username
+  https://t.me/username
+  http://t.me/username
+*/
+
+function normalizeTelegram(value){
+
+  let text =
+    String(value ?? "").trim();
+
+  if(!text){
+    return "";
+  }
+
+
+  /*
+    去掉 Telegram 常见前缀
+  */
+
+  text =
+    text.replace(
+      /^telegram\s*:\s*/i,
+      ""
+    );
+
+
+  /*
+    完整 URL
+  */
+
+  if(
+    /^https?:\/\/t\.me\//i.test(text)
+  ){
+
+    return text
+      .replace(
+        /^http:\/\//i,
+        "https://"
+      )
+      .replace(
+        /\/+$/,
+        ""
+      );
+
+  }
+
+
+  /*
+    t.me/username
+  */
+
+  if(
+    /^t\.me\//i.test(text)
+  ){
+
+    return (
+      "https://" +
+      text
+        .replace(/^t\.me\//i,"")
+        .replace(/^\/+/,"")
+        .replace(/\/+$/,"")
+    );
+
+  }
+
+
+  /*
+    @username
+    或 username
+  */
+
+  text =
+    text
+      .replace(/^@+/,"")
+      .replace(/^\/+/,"")
+      .replace(/\/+$/,"");
+
+
+  if(!text){
+    return "";
+  }
+
+
+  /*
+    防止错误输入 URL
+  */
+
+  if(
+    text.includes(" ")
+  ){
+
+    return value.trim();
+
+  }
+
+
+  return "https://t.me/" + text;
+
+}
+
+
+/* ==================================================
+   Telegram Display
+================================================== */
+
+function telegramForInput(value){
+
+  const normalized =
+    normalizeTelegram(value);
+
+  if(!normalized){
+    return "";
+  }
+
+  /*
+    后台输入框显示 @username，
+    方便管理员继续编辑。
+  */
+
+  const match =
+    normalized.match(
+      /^https:\/\/t\.me\/(.+)$/i
+    );
+
+  if(match){
+    return "@" + match[1];
+  }
+
+  return value || "";
+
+}
+
+
+/* ==================================================
+   Storage URL
+================================================== */
 
 function getStorageUrl(path){
 
@@ -1842,10 +1645,8 @@ function getStorageUrl(path){
     return "";
   }
 
-
   const value =
     String(path).trim();
-
 
   if(
     value.startsWith("http://") ||
@@ -1855,7 +1656,6 @@ function getStorageUrl(path){
     return value;
 
   }
-
 
   return (
     SUPABASE_URL +
@@ -1868,6 +1668,10 @@ function getStorageUrl(path){
 }
 
 
+/* ==================================================
+   Message
+================================================== */
+
 function showMessage(
   text,
   type="success"
@@ -1876,11 +1680,8 @@ function showMessage(
   messageBox.textContent =
     text;
 
-
   messageBox.className =
-    "message " +
-    type;
-
+    "message " + type;
 
   setTimeout(
     () => {
@@ -1905,28 +1706,18 @@ loginForm.addEventListener(
 
     event.preventDefault();
 
-
-    loginError.classList.add(
-      "hidden"
-    );
-
+    loginError.classList.add("hidden");
 
     const email =
       document
-        .getElementById(
-          "loginEmail"
-        )
+        .getElementById("loginEmail")
         .value
         .trim();
 
-
     const password =
       document
-        .getElementById(
-          "loginPassword"
-        )
+        .getElementById("loginPassword")
         .value;
-
 
     try{
 
@@ -1940,18 +1731,14 @@ loginForm.addEventListener(
             password
           });
 
-
       if(error){
         throw error;
       }
 
-
       currentUser =
         data.user;
 
-
       showAdmin();
-
 
     }catch(error){
 
@@ -1959,10 +1746,7 @@ loginForm.addEventListener(
         "登录失败：" +
         error.message;
 
-
-      loginError.classList.remove(
-        "hidden"
-      );
+      loginError.classList.remove("hidden");
 
     }
 
@@ -1982,14 +1766,10 @@ async function checkSession(){
     await supabaseClient.auth
       .getSession();
 
-
-  if(
-    data?.session?.user
-  ){
+  if(data?.session?.user){
 
     currentUser =
       data.session.user;
-
 
     showAdmin();
 
@@ -2004,35 +1784,23 @@ async function checkSession(){
 
 function showLogin(){
 
-  loginPage.classList.remove(
-    "hidden"
-  );
+  loginPage.classList.remove("hidden");
 
-  adminPage.classList.add(
-    "hidden"
-  );
+  adminPage.classList.add("hidden");
 
 }
 
 
 function showAdmin(){
 
-  loginPage.classList.add(
-    "hidden"
-  );
+  loginPage.classList.add("hidden");
 
-  adminPage.classList.remove(
-    "hidden"
-  );
-
+  adminPage.classList.remove("hidden");
 
   document
-    .getElementById(
-      "userEmail"
-    )
+    .getElementById("userEmail")
     .textContent =
     currentUser?.email || "";
-
 
   loadWomen();
 
@@ -2046,9 +1814,7 @@ function showAdmin(){
 ================================================== */
 
 document
-  .getElementById(
-    "logoutButton"
-  )
+  .getElementById("logoutButton")
   .addEventListener(
     "click",
     async function(){
@@ -2056,10 +1822,7 @@ document
       await supabaseClient.auth
         .signOut();
 
-
-      currentUser =
-        null;
-
+      currentUser = null;
 
       showLogin();
 
@@ -2068,7 +1831,7 @@ document
 
 
 /* ==================================================
-   Load women
+   Load Women
 ================================================== */
 
 async function loadWomen(){
@@ -2080,7 +1843,6 @@ async function loadWomen(){
     </div>
 
   `;
-
 
   try{
 
@@ -2098,18 +1860,14 @@ async function loadWomen(){
           }
         );
 
-
     if(error){
       throw error;
     }
 
-
     women =
       data || [];
 
-
     renderWomenList();
-
 
   }catch(error){
 
@@ -2119,9 +1877,7 @@ async function loadWomen(){
 
         加载失败：
 
-        ${escapeHtml(
-          error.message
-        )}
+        ${escapeHtml(error.message)}
 
       </div>
 
@@ -2133,7 +1889,7 @@ async function loadWomen(){
 
 
 /* ==================================================
-   Render women
+   Render Women
 ================================================== */
 
 function renderWomenList(){
@@ -2143,9 +1899,7 @@ function renderWomenList(){
     womenList.innerHTML = `
 
       <div class="loading-page">
-
         暂时没有女士资料。
-
       </div>
 
     `;
@@ -2154,37 +1908,24 @@ function renderWomenList(){
 
   }
 
-
   womenList.innerHTML = "";
-
 
   women.forEach(
     woman => {
 
       const card =
-        document.createElement(
-          "article"
-        );
-
+        document.createElement("article");
 
       card.className =
         "woman-admin-card";
 
-
       const photos =
-        normalizeArray(
-          woman.photos
-        );
-
+        normalizeArray(woman.photos);
 
       const videos =
-        normalizeArray(
-          woman.videos
-        );
-
+        normalizeArray(woman.videos);
 
       let cover = "";
-
 
       if(woman.image_url){
 
@@ -2202,7 +1943,6 @@ function renderWomenList(){
 
       }
 
-
       card.innerHTML = `
 
         <div class="card-photo">
@@ -2212,12 +1952,8 @@ function renderWomenList(){
             ?
             `
               <img
-                src="${escapeHtml(
-                  cover
-                )}"
-                alt="${escapeHtml(
-                  woman.name
-                )}"
+                src="${escapeHtml(cover)}"
+                alt="${escapeHtml(woman.name)}"
               >
             `
             :
@@ -2244,9 +1980,7 @@ function renderWomenList(){
               woman.age
               ?
               " · " +
-              escapeHtml(
-                woman.age
-              ) +
+              escapeHtml(woman.age) +
               "岁"
               :
               ""
@@ -2260,9 +1994,7 @@ function renderWomenList(){
             ${
               woman.city
               ?
-              escapeHtml(
-                woman.city
-              )
+              escapeHtml(woman.city)
               :
               "未填写城市"
             }
@@ -2271,9 +2003,7 @@ function renderWomenList(){
               woman.occupation
               ?
               " · " +
-              escapeHtml(
-                woman.occupation
-              )
+              escapeHtml(woman.occupation)
               :
               ""
             }
@@ -2332,7 +2062,6 @@ function renderWomenList(){
               编辑
             </button>
 
-
             <button
               class="delete-btn"
               type="button"
@@ -2346,30 +2075,21 @@ function renderWomenList(){
 
       `;
 
-
       card
-        .querySelector(
-          ".edit-btn"
-        )
+        .querySelector(".edit-btn")
         .addEventListener(
           "click",
           () => openEditWoman(woman)
         );
 
-
       card
-        .querySelector(
-          ".delete-btn"
-        )
+        .querySelector(".delete-btn")
         .addEventListener(
           "click",
           () => deleteWoman(woman)
         );
 
-
-      womenList.appendChild(
-        card
-      );
+      womenList.appendChild(card);
 
     }
   );
@@ -2378,13 +2098,11 @@ function renderWomenList(){
 
 
 /* ==================================================
-   Add
+   Add Woman
 ================================================== */
 
 document
-  .getElementById(
-    "addWomanButton"
-  )
+  .getElementById("addWomanButton")
   .addEventListener(
     "click",
     openAddWoman
@@ -2393,32 +2111,21 @@ document
 
 async function openAddWoman(){
 
-  editingWoman =
-    null;
+  editingWoman = null;
 
+  currentPhotos = [];
 
-  currentPhotos =
-    [];
+  currentVideos = [];
 
+  pendingPhotos = [];
 
-  currentVideos =
-    [];
-
-
-  pendingPhotos =
-    [];
-
-
-  pendingVideos =
-    [];
-
+  pendingVideos = [];
 
   womanForm.reset();
 
 
   /*
-    新增资料卡时自动读取
-    profile_contact
+    新增资料自动读取全局联系方式
   */
 
   try{
@@ -2429,36 +2136,26 @@ async function openAddWoman(){
     } =
       await supabaseClient
         .from("site_settings")
-        .select(
-          "whatsapp,telegram"
-        )
+        .select("whatsapp,telegram")
         .eq(
           "setting_key",
           "profile_contact"
         )
         .maybeSingle();
 
-
-    if(
-      !globalContactError
-    ){
+    if(!globalContactError){
 
       document
-        .getElementById(
-          "womanWhatsapp"
-        )
+        .getElementById("womanWhatsapp")
         .value =
-        globalContact?.whatsapp ||
-        "";
-
+        globalContact?.whatsapp || "";
 
       document
-        .getElementById(
-          "womanTelegram"
-        )
+        .getElementById("womanTelegram")
         .value =
-        globalContact?.telegram ||
-        "";
+        telegramForInput(
+          globalContact?.telegram || ""
+        );
 
     }
 
@@ -2473,41 +2170,29 @@ async function openAddWoman(){
 
 
   document
-    .getElementById(
-      "modalTitle"
-    )
+    .getElementById("modalTitle")
     .textContent =
     "添加女士";
 
-
   document
-    .getElementById(
-      "womanPublished"
-    )
+    .getElementById("womanPublished")
     .value =
     "true";
 
-
   document
-    .getElementById(
-      "womanId"
-    )
+    .getElementById("womanId")
     .value =
     "";
 
-
   renderExistingMedia();
 
-
-  modal.classList.remove(
-    "hidden"
-  );
+  modal.classList.remove("hidden");
 
 }
 
 
 /* ==================================================
-   Edit
+   Edit Woman
 ================================================== */
 
 function openEditWoman(woman){
@@ -2515,103 +2200,75 @@ function openEditWoman(woman){
   editingWoman =
     woman;
 
-
   currentPhotos =
-    normalizeArray(
-      woman.photos
-    );
-
+    normalizeArray(woman.photos);
 
   currentVideos =
-    normalizeArray(
-      woman.videos
-    );
+    normalizeArray(woman.videos);
 
+  pendingPhotos = [];
 
-  pendingPhotos =
-    [];
-
-
-  pendingVideos =
-    [];
+  pendingVideos = [];
 
 
   document
-    .getElementById(
-      "modalTitle"
-    )
+    .getElementById("modalTitle")
     .textContent =
     "编辑女士";
 
 
   document
-    .getElementById(
-      "womanId"
-    )
+    .getElementById("womanId")
     .value =
     woman.id || "";
 
 
   document
-    .getElementById(
-      "womanName"
-    )
+    .getElementById("womanName")
     .value =
     woman.name || "";
 
 
   document
-    .getElementById(
-      "womanAge"
-    )
+    .getElementById("womanAge")
     .value =
     woman.age || "";
 
 
   document
-    .getElementById(
-      "womanCity"
-    )
+    .getElementById("womanCity")
     .value =
     woman.city || "";
 
 
   document
-    .getElementById(
-      "womanOccupation"
-    )
+    .getElementById("womanOccupation")
     .value =
     woman.occupation || "";
 
 
   document
-    .getElementById(
-      "womanDescription"
-    )
+    .getElementById("womanDescription")
     .value =
     woman.description || "";
 
 
   document
-    .getElementById(
-      "womanWhatsapp"
-    )
+    .getElementById("womanWhatsapp")
     .value =
     woman.whatsapp || "";
 
 
   document
-    .getElementById(
-      "womanTelegram"
-    )
+    .getElementById("womanTelegram")
     .value =
-    woman.telegram || "";
+    telegramForInput(
+      woman.telegram || ""
+    );
 
 
   document
-    .getElementById(
-      "womanPublished"
-    )
+    .getElementById("womanPublished")
     .value =
     woman.is_published
     ?
@@ -2621,48 +2278,35 @@ function openEditWoman(woman){
 
 
   document
-    .getElementById(
-      "photoInput"
-    )
+    .getElementById("photoInput")
     .value =
     "";
-
 
   document
-    .getElementById(
-      "videoInput"
-    )
+    .getElementById("videoInput")
     .value =
     "";
-
 
   renderExistingMedia();
 
-
-  modal.classList.remove(
-    "hidden"
-  );
+  modal.classList.remove("hidden");
 
 }
 
 
 /* ==================================================
-   Close
+   Close Modal
 ================================================== */
 
 function closeModal(){
 
-  modal.classList.add(
-    "hidden"
-  );
+  modal.classList.add("hidden");
 
 }
 
 
 document
-  .getElementById(
-    "closeModalButton"
-  )
+  .getElementById("closeModalButton")
   .addEventListener(
     "click",
     closeModal
@@ -2670,9 +2314,7 @@ document
 
 
 document
-  .getElementById(
-    "cancelButton"
-  )
+  .getElementById("cancelButton")
   .addEventListener(
     "click",
     closeModal
@@ -2680,13 +2322,11 @@ document
 
 
 /* ==================================================
-   File selection
+   File Selection
 ================================================== */
 
 document
-  .getElementById(
-    "photoInput"
-  )
+  .getElementById("photoInput")
   .addEventListener(
     "change",
     function(){
@@ -2701,9 +2341,7 @@ document
 
 
 document
-  .getElementById(
-    "videoInput"
-  )
+  .getElementById("videoInput")
   .addEventListener(
     "change",
     function(){
@@ -2718,7 +2356,7 @@ document
 
 
 /* ==================================================
-   Existing media
+   Existing Media
 ================================================== */
 
 function renderExistingMedia(){
@@ -2728,19 +2366,14 @@ function renderExistingMedia(){
       "existingPhotos"
     );
 
-
   const videoBox =
     document.getElementById(
       "existingVideos"
     );
 
+  photoBox.innerHTML = "";
 
-  photoBox.innerHTML =
-    "";
-
-
-  videoBox.innerHTML =
-    "";
+  videoBox.innerHTML = "";
 
 
   if(!currentPhotos.length){
@@ -2759,14 +2392,10 @@ function renderExistingMedia(){
       (path,index) => {
 
         const item =
-          document.createElement(
-            "div"
-          );
-
+          document.createElement("div");
 
         item.className =
           "media-item";
-
 
         item.innerHTML = `
 
@@ -2777,7 +2406,6 @@ function renderExistingMedia(){
             alt="照片"
           >
 
-
           <button
             class="remove-media"
             type="button"
@@ -2787,11 +2415,8 @@ function renderExistingMedia(){
 
         `;
 
-
         item
-          .querySelector(
-            ".remove-media"
-          )
+          .querySelector(".remove-media")
           .addEventListener(
             "click",
             () => {
@@ -2801,16 +2426,12 @@ function renderExistingMedia(){
                 1
               );
 
-
               renderExistingMedia();
 
             }
           );
 
-
-        photoBox.appendChild(
-          item
-        );
+        photoBox.appendChild(item);
 
       }
     );
@@ -2834,14 +2455,10 @@ function renderExistingMedia(){
       (path,index) => {
 
         const item =
-          document.createElement(
-            "div"
-          );
-
+          document.createElement("div");
 
         item.className =
           "media-item";
-
 
         item.innerHTML = `
 
@@ -2858,7 +2475,6 @@ function renderExistingMedia(){
 
           </video>
 
-
           <button
             class="remove-media"
             type="button"
@@ -2868,11 +2484,8 @@ function renderExistingMedia(){
 
         `;
 
-
         item
-          .querySelector(
-            ".remove-media"
-          )
+          .querySelector(".remove-media")
           .addEventListener(
             "click",
             () => {
@@ -2882,16 +2495,12 @@ function renderExistingMedia(){
                 1
               );
 
-
               renderExistingMedia();
 
             }
           );
 
-
-        videoBox.appendChild(
-          item
-        );
+        videoBox.appendChild(item);
 
       }
     );
@@ -2918,7 +2527,6 @@ async function uploadFile(
 
   }
 
-
   const extension =
     file.name.includes(".")
     ?
@@ -2930,7 +2538,6 @@ async function uploadFile(
     :
     "";
 
-
   const uniqueName =
     Date.now() +
     "_" +
@@ -2939,12 +2546,10 @@ async function uploadFile(
       .substring(2,10) +
     extension;
 
-
   const path =
     folder +
     "/" +
     uniqueName;
-
 
   const {
     data,
@@ -2952,9 +2557,7 @@ async function uploadFile(
   } =
     await supabaseClient
       .storage
-      .from(
-        STORAGE_BUCKET
-      )
+      .from(STORAGE_BUCKET)
       .upload(
         path,
         file,
@@ -2967,13 +2570,9 @@ async function uploadFile(
         }
       );
 
-
   if(error){
-
     throw error;
-
   }
-
 
   return data.path;
 
@@ -2984,15 +2583,12 @@ async function uploadPhotos(){
 
   const uploaded = [];
 
-
   for(
     const file of pendingPhotos
   ){
 
     if(
-      !file.type.startsWith(
-        "image/"
-      )
+      !file.type.startsWith("image/")
     ){
 
       throw new Error(
@@ -3001,7 +2597,6 @@ async function uploadPhotos(){
       );
 
     }
-
 
     uploaded.push(
       await uploadFile(
@@ -3012,7 +2607,6 @@ async function uploadPhotos(){
 
   }
 
-
   return uploaded;
 
 }
@@ -3022,15 +2616,12 @@ async function uploadVideos(){
 
   const uploaded = [];
 
-
   for(
     const file of pendingVideos
   ){
 
     if(
-      !file.type.startsWith(
-        "video/"
-      )
+      !file.type.startsWith("video/")
     ){
 
       throw new Error(
@@ -3039,7 +2630,6 @@ async function uploadVideos(){
       );
 
     }
-
 
     uploaded.push(
       await uploadFile(
@@ -3050,14 +2640,13 @@ async function uploadVideos(){
 
   }
 
-
   return uploaded;
 
 }
 
 
 /* ==================================================
-   Save woman
+   Save Woman
 ================================================== */
 
 womanForm.addEventListener(
@@ -3066,50 +2655,38 @@ womanForm.addEventListener(
 
     event.preventDefault();
 
-
     const saveButton =
       document.getElementById(
         "saveButton"
       );
 
-
-    saveButton.disabled =
-      true;
-
+    saveButton.disabled = true;
 
     saveButton.textContent =
       "正在保存……";
-
 
     try{
 
       const newPhotos =
         await uploadPhotos();
 
-
       const newVideos =
         await uploadVideos();
 
+      const finalPhotos = [
+        ...currentPhotos,
+        ...newPhotos
+      ];
 
-      const finalPhotos =
-        [
-          ...currentPhotos,
-          ...newPhotos
-        ];
-
-
-      const finalVideos =
-        [
-          ...currentVideos,
-          ...newVideos
-        ];
+      const finalVideos = [
+        ...currentVideos,
+        ...newVideos
+      ];
 
 
       const name =
         document
-          .getElementById(
-            "womanName"
-          )
+          .getElementById("womanName")
           .value
           .trim();
 
@@ -3117,70 +2694,59 @@ womanForm.addEventListener(
       const age =
         Number(
           document
-            .getElementById(
-              "womanAge"
-            )
+            .getElementById("womanAge")
             .value
         );
 
 
       const city =
         document
-          .getElementById(
-            "womanCity"
-          )
+          .getElementById("womanCity")
           .value
           .trim();
 
 
       const occupation =
         document
-          .getElementById(
-            "womanOccupation"
-          )
+          .getElementById("womanOccupation")
           .value
           .trim();
 
 
       const description =
         document
-          .getElementById(
-            "womanDescription"
-          )
+          .getElementById("womanDescription")
           .value
           .trim();
 
 
       const whatsapp =
         document
-          .getElementById(
-            "womanWhatsapp"
-          )
+          .getElementById("womanWhatsapp")
           .value
           .trim();
 
+
+      /*
+        Telegram 保存前统一格式
+      */
 
       const telegram =
-        document
-          .getElementById(
-            "womanTelegram"
-          )
-          .value
-          .trim();
+        normalizeTelegram(
+          document
+            .getElementById("womanTelegram")
+            .value
+        );
 
 
       const isPublished =
         document
-          .getElementById(
-            "womanPublished"
-          )
-          .value ===
-          "true";
+          .getElementById("womanPublished")
+          .value === "true";
 
 
       const firstPhoto =
-        finalPhotos[0] ||
-        "";
+        finalPhotos[0] || "";
 
 
       const record = {
@@ -3223,17 +2789,14 @@ womanForm.addEventListener(
             .from("women")
             .insert(record);
 
-
         if(error){
           throw error;
         }
-
 
         showMessage(
           "女士资料添加成功。",
           "success"
         );
-
 
       }else{
 
@@ -3248,11 +2811,9 @@ womanForm.addEventListener(
               editingWoman.id
             );
 
-
         if(error){
           throw error;
         }
-
 
         showMessage(
           "女士资料修改成功。",
@@ -3264,19 +2825,15 @@ womanForm.addEventListener(
 
       closeModal();
 
-
       await loadWomen();
-
 
       pendingPhotos = [];
 
       pendingVideos = [];
 
-
     }catch(error){
 
       console.error(error);
-
 
       showMessage(
         "保存失败：" +
@@ -3284,12 +2841,9 @@ womanForm.addEventListener(
         "error"
       );
 
-
     }finally{
 
-      saveButton.disabled =
-        false;
-
+      saveButton.disabled = false;
 
       saveButton.textContent =
         "保存资料";
@@ -3301,7 +2855,7 @@ womanForm.addEventListener(
 
 
 /* ==================================================
-   Delete woman
+   Delete Woman
 ================================================== */
 
 async function deleteWoman(woman){
@@ -3313,14 +2867,13 @@ async function deleteWoman(woman){
         woman.name ||
         "这位女士"
       ) +
-      "」吗？\n\n数据库资料和 Storage 中的照片/视频都会尝试删除。"
+      "」吗？\n\n" +
+      "数据库资料和 Storage 中的照片/视频都会尝试删除。"
     );
-
 
   if(!confirmed){
     return;
   }
-
 
   try{
 
@@ -3356,7 +2909,6 @@ async function deleteWoman(woman){
               const value =
                 String(path);
 
-
               if(
                 value.includes(
                   "/storage/v1/object/public/"
@@ -3371,7 +2923,6 @@ async function deleteWoman(woman){
                   )[1];
 
               }
-
 
               return value
                 .replace(
@@ -3388,6 +2939,10 @@ async function deleteWoman(woman){
       ];
 
 
+    /*
+      删除数据库
+    */
+
     const {
       error
     } =
@@ -3399,13 +2954,14 @@ async function deleteWoman(woman){
           woman.id
         );
 
-
     if(error){
-
       throw error;
-
     }
 
+
+    /*
+      删除 Storage
+    */
 
     if(uniquePaths.length){
 
@@ -3415,13 +2971,8 @@ async function deleteWoman(woman){
       } =
         await supabaseClient
           .storage
-          .from(
-            STORAGE_BUCKET
-          )
-          .remove(
-            uniquePaths
-          );
-
+          .from(STORAGE_BUCKET)
+          .remove(uniquePaths);
 
       if(storageError){
 
@@ -3440,14 +2991,11 @@ async function deleteWoman(woman){
       "success"
     );
 
-
     await loadWomen();
-
 
   }catch(error){
 
     console.error(error);
-
 
     showMessage(
       "删除失败：" +
@@ -3461,16 +3009,16 @@ async function deleteWoman(woman){
 
 
 /* ==================================================
-   Settings
+   Load Settings
 ================================================== */
 
 async function loadSettings(){
 
   try{
 
-    /* ------------------------------------------
-       申请加入联系方式
-    ------------------------------------------ */
+    /*
+      申请加入联系方式
+    */
 
     const {
       data: joinData,
@@ -3478,15 +3026,12 @@ async function loadSettings(){
     } =
       await supabaseClient
         .from("site_settings")
-        .select(
-          "whatsapp,telegram"
-        )
+        .select("whatsapp,telegram")
         .eq(
           "setting_key",
           "join_contact"
         )
         .maybeSingle();
-
 
     if(joinError){
       throw joinError;
@@ -3494,26 +3039,22 @@ async function loadSettings(){
 
 
     document
-      .getElementById(
-        "joinWhatsapp"
-      )
+      .getElementById("joinWhatsapp")
       .value =
-      joinData?.whatsapp ||
-      "";
+      joinData?.whatsapp || "";
 
 
     document
-      .getElementById(
-        "joinTelegram"
-      )
+      .getElementById("joinTelegram")
       .value =
-      joinData?.telegram ||
-      "";
+      telegramForInput(
+        joinData?.telegram || ""
+      );
 
 
-    /* ------------------------------------------
-       资料卡全局联系方式
-    ------------------------------------------ */
+    /*
+      资料卡全局联系方式
+    */
 
     const {
       data: profileData,
@@ -3521,15 +3062,12 @@ async function loadSettings(){
     } =
       await supabaseClient
         .from("site_settings")
-        .select(
-          "whatsapp,telegram"
-        )
+        .select("whatsapp,telegram")
         .eq(
           "setting_key",
           "profile_contact"
         )
         .maybeSingle();
-
 
     if(profileError){
       throw profileError;
@@ -3537,21 +3075,17 @@ async function loadSettings(){
 
 
     document
-      .getElementById(
-        "profileWhatsapp"
-      )
+      .getElementById("profileWhatsapp")
       .value =
-      profileData?.whatsapp ||
-      "";
+      profileData?.whatsapp || "";
 
 
     document
-      .getElementById(
-        "profileTelegram"
-      )
+      .getElementById("profileTelegram")
       .value =
-      profileData?.telegram ||
-      "";
+      telegramForInput(
+        profileData?.telegram || ""
+      );
 
 
   }catch(error){
@@ -3567,13 +3101,11 @@ async function loadSettings(){
 
 
 /* ==================================================
-   Save join settings
+   Save Join Settings
 ================================================== */
 
 document
-  .getElementById(
-    "saveSettingsButton"
-  )
+  .getElementById("saveSettingsButton")
   .addEventListener(
     "click",
     saveSettings
@@ -3587,113 +3119,61 @@ async function saveSettings(){
       "saveSettingsButton"
     );
 
-
-  button.disabled =
-    true;
-
+  button.disabled = true;
 
   button.textContent =
     "正在保存……";
-
 
   try{
 
     const whatsapp =
       document
-        .getElementById(
-          "joinWhatsapp"
-        )
+        .getElementById("joinWhatsapp")
         .value
         .trim();
 
 
     const telegram =
-      document
-        .getElementById(
-          "joinTelegram"
-        )
-        .value
-        .trim();
+      normalizeTelegram(
+        document
+          .getElementById("joinTelegram")
+          .value
+      );
 
 
     /*
       这里不再写 updated_at。
-      避免 site_settings 没有该字段导致保存失败。
+      如果 site_settings 有 updated_at 也不影响。
+      不依赖这个字段即可正常保存。
     */
 
     const {
-      data: existing,
-      error: findError
+      error
     } =
       await supabaseClient
         .from("site_settings")
-        .select("id")
+        .update({
+          whatsapp,
+          telegram
+        })
         .eq(
           "setting_key",
           "join_contact"
-        )
-        .maybeSingle();
+        );
 
-
-    if(findError){
-
-      throw findError;
-
+    if(error){
+      throw error;
     }
 
 
-    if(existing?.id){
+    /*
+      重新显示标准格式
+    */
 
-      const {
-        error
-      } =
-        await supabaseClient
-          .from("site_settings")
-          .update({
-
-            whatsapp,
-
-            telegram
-
-          })
-          .eq(
-            "id",
-            existing.id
-          );
-
-
-      if(error){
-
-        throw error;
-
-      }
-
-    }else{
-
-      const {
-        error
-      } =
-        await supabaseClient
-          .from("site_settings")
-          .insert({
-
-            setting_key:
-              "join_contact",
-
-            whatsapp,
-
-            telegram
-
-          });
-
-
-      if(error){
-
-        throw error;
-
-      }
-
-    }
+    document
+      .getElementById("joinTelegram")
+      .value =
+      telegramForInput(telegram);
 
 
     showMessage(
@@ -3701,11 +3181,9 @@ async function saveSettings(){
       "success"
     );
 
-
   }catch(error){
 
     console.error(error);
-
 
     showMessage(
       "联系方式保存失败：" +
@@ -3713,12 +3191,9 @@ async function saveSettings(){
       "error"
     );
 
-
   }finally{
 
-    button.disabled =
-      false;
-
+    button.disabled = false;
 
     button.textContent =
       "保存联系方式";
@@ -3729,7 +3204,7 @@ async function saveSettings(){
 
 
 /* ==================================================
-   Profile global settings
+   Global Profile Contact
 ================================================== */
 
 document
@@ -3752,40 +3227,39 @@ async function saveProfileSettings(){
 
   const whatsapp =
     document
-      .getElementById(
-        "profileWhatsapp"
-      )
+      .getElementById("profileWhatsapp")
       .value
       .trim();
 
+
+  /*
+    Telegram 在这里统一标准化
+  */
 
   const telegram =
-    document
-      .getElementById(
-        "profileTelegram"
-      )
-      .value
-      .trim();
+    normalizeTelegram(
+      document
+        .getElementById("profileTelegram")
+        .value
+    );
 
 
   const confirmed =
     confirm(
       "确定要覆盖所有资料卡的联系方式吗？\n\n" +
+
       "新的 WhatsApp 和 Telegram 将替换所有女士资料卡中的旧联系方式。\n\n" +
+
       "此操作不会修改女士姓名、照片、视频、介绍或发布状态。"
     );
 
 
   if(!confirmed){
-
     return;
-
   }
 
 
-  button.disabled =
-    true;
-
+  button.disabled = true;
 
   button.textContent =
     "正在覆盖全部资料卡……";
@@ -3793,13 +3267,9 @@ async function saveProfileSettings(){
 
   try{
 
-    /* ------------------------------------------
-       第一步：
-       保存 profile_contact
-       
-       注意：
-       不再写 updated_at
-    ------------------------------------------ */
+    /* ==================================================
+       第一步：读取全局设置
+    ================================================== */
 
     const {
       data: existingSetting,
@@ -3816,13 +3286,20 @@ async function saveProfileSettings(){
 
 
     if(findError){
-
       throw findError;
-
     }
 
 
+    /* ==================================================
+       第二步：保存全局设置
+    ================================================== */
+
     if(existingSetting?.id){
+
+      /*
+        注意：
+        不再发送 updated_at
+      */
 
       const {
         error
@@ -3830,11 +3307,8 @@ async function saveProfileSettings(){
         await supabaseClient
           .from("site_settings")
           .update({
-
             whatsapp,
-
             telegram
-
           })
           .eq(
             "id",
@@ -3843,12 +3317,15 @@ async function saveProfileSettings(){
 
 
       if(error){
-
         throw error;
-
       }
 
     }else{
+
+      /*
+        新建设置。
+        同样不依赖 updated_at。
+      */
 
       const {
         error
@@ -3868,22 +3345,17 @@ async function saveProfileSettings(){
 
 
       if(error){
-
         throw error;
-
       }
 
     }
 
 
-    /* ------------------------------------------
-       第二步：
-       覆盖 women 表全部资料卡
-       
-       这里特别重要：
-       只更新 whatsapp / telegram
-       不再更新 updated_at
-    ------------------------------------------ */
+    /* ==================================================
+       第三步：覆盖 women
+       重要：
+       这里彻底删除 updated_at
+    ================================================== */
 
     const {
       error: womenError
@@ -3905,16 +3377,19 @@ async function saveProfileSettings(){
 
 
     if(womenError){
-
       throw womenError;
-
     }
 
 
-    /* ------------------------------------------
-       第三步：
-       刷新资料卡
-    ------------------------------------------ */
+    /* ==================================================
+       第四步：刷新后台
+    ================================================== */
+
+    document
+      .getElementById("profileTelegram")
+      .value =
+      telegramForInput(telegram);
+
 
     await loadWomen();
 
@@ -3932,19 +3407,15 @@ async function saveProfileSettings(){
       error
     );
 
-
     showMessage(
       "全局联系方式保存失败：" +
       error.message,
       "error"
     );
 
-
   }finally{
 
-    button.disabled =
-      false;
-
+    button.disabled = false;
 
     button.textContent =
       "保存并覆盖全部资料卡";
@@ -3955,7 +3426,7 @@ async function saveProfileSettings(){
 
 
 /* ==================================================
-   Auth listener
+   Auth Listener
 ================================================== */
 
 supabaseClient
@@ -3964,13 +3435,10 @@ supabaseClient
     (event,session) => {
 
       if(
-        event ===
-        "SIGNED_OUT"
+        event === "SIGNED_OUT"
       ){
 
-        currentUser =
-          null;
-
+        currentUser = null;
 
         showLogin();
 
@@ -3991,4 +3459,3 @@ checkSession();
 </body>
 
 </html>
-```
