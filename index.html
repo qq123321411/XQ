@@ -4573,7 +4573,7 @@ function openWomanProfile(woman){
 
   const contactButton=document.getElementById("profileContactButton");
   contactButton.textContent=T.profileContact;
-  contactButton.onclick=()=>{ closeWomanProfile(); openWomanContact(woman); };
+  contactButton.onclick=()=>{ openWomanContact(woman); };
 
   modal.classList.add("show");
   document.body.style.overflow="hidden";
@@ -5067,18 +5067,31 @@ function closeWomanContact(){
     );
 
 
-  if(
-    !document
-      .getElementById(
-        "galleryModal"
-      )
+  const galleryOpen =
+    document
+      .getElementById("galleryModal")
       .classList
-      .contains("show")
-  ){
+      .contains("show");
 
-    document.body.style.overflow =
-      "";
+  const profileOpen =
+    document
+      .getElementById("profileModal")
+      .classList
+      .contains("show");
 
+  const joinOpen =
+    document
+      .getElementById("joinModal")
+      .classList
+      .contains("show");
+
+  /*
+   * 如果联系方式弹窗是从资料卡打开的，
+   * 关闭联系方式后必须回到资料卡，
+   * 不能解除资料卡的锁屏状态。
+   */
+  if(!galleryOpen && !profileOpen && !joinOpen){
+    document.body.style.overflow = "";
   }
 
 }
