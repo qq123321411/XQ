@@ -1582,9 +1582,9 @@ textarea{
 
           <div class="multilingual-editor">
 
-            <h3>多语言资料（完全免费）</h3>
+            <h3>多语言个人介绍（完全免费）</h3>
             <p class="upload-help">
-              首页会根据访客语言读取对应内容。未填写的语言会自动使用 English；English 也为空时才使用原始字段。
+              国家、城市、职业、婚姻状态、兴趣爱好使用通用资料；只有个人介绍需要分别填写多语言版本。未填写当前语言时自动使用 English；English 也为空时使用原始个人介绍。
             </p>
 
             <div class="language-panel">
@@ -3261,15 +3261,9 @@ womanForm.addEventListener(
       const dbSuffixes = {En:"en",ZhCn:"zh_cn",ZhTw:"zh_tw",Ja:"ja",Ru:"ru"};
       for(const suffix of languageSuffixes){
         const db=dbSuffixes[suffix];
-        const fields={
-          country:document.getElementById("womanCountry"+suffix)?.value.trim() || "",
-          city:document.getElementById("womanCity"+suffix)?.value.trim() || "",
-          occupation:document.getElementById("womanOccupation"+suffix)?.value.trim() || "",
-          marital_status:document.getElementById("womanMarital"+suffix)?.value.trim() || "",
-          interests:document.getElementById("womanInterests"+suffix)?.value.trim() || "",
-          description:document.getElementById("womanDescription"+suffix)?.value.trim() || ""
-        };
-        Object.entries(fields).forEach(([field,value])=>{ multilingualRecord[field+"_"+db]=value || null; });
+        const description =
+          document.getElementById("womanDescription"+suffix)?.value.trim() || "";
+        multilingualRecord["description_"+db] = description || null;
       }
 
       const record = {
