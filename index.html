@@ -681,8 +681,8 @@ a{
   overflow:hidden;
   display:grid;
   grid-template-columns:minmax(280px,40%) minmax(0,1fr);
-  background:linear-gradient(145deg,#fff,#fdf7f8);
-  color:#33272b;
+  background:linear-gradient(145deg,rgba(43,27,34,.98),rgba(72,42,53,.97));
+  color:#f8eef1;
   border-radius:24px;
   box-shadow:0 30px 100px rgba(0,0,0,.42);
   position:relative;
@@ -693,6 +693,99 @@ a{
   position:relative;
   background:#281c21;
   overflow:hidden;
+}
+
+.profile-media-track{
+  width:100%;
+  height:100%;
+  min-height:560px;
+  display:flex;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+  touch-action:pan-x;
+}
+.profile-media-track::-webkit-scrollbar{display:none;}
+.profile-media-slide{
+  flex:0 0 100%;
+  min-width:100%;
+  height:100%;
+  min-height:560px;
+  scroll-snap-align:center;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#281c21;
+}
+.profile-media-slide img,
+.profile-media-slide video{
+  width:100%;
+  height:100%;
+  min-height:560px;
+  display:block;
+  object-fit:cover;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.profile-media-slide video{background:#000;}
+.profile-media-type{
+  position:absolute;
+  top:16px;
+  left:16px;
+  z-index:4;
+  padding:6px 9px;
+  border-radius:999px;
+  background:rgba(0,0,0,.42);
+  border:1px solid rgba(255,255,255,.16);
+  color:#fff;
+  font-size:11px;
+  backdrop-filter:blur(8px);
+}
+.profile-media-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:8;
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:50%;
+  background:rgba(20,10,15,.38);
+  color:#fff;
+  font-size:28px;
+  line-height:1;
+  cursor:pointer;
+  backdrop-filter:blur(8px);
+}
+.profile-media-prev{left:12px;}
+.profile-media-next{right:12px;}
+.profile-media-dots{
+  position:absolute;
+  left:50%;
+  bottom:16px;
+  transform:translateX(-50%);
+  z-index:8;
+  display:flex;
+  gap:6px;
+  max-width:80%;
+  overflow:hidden;
+}
+.profile-media-dot{
+  width:6px;
+  height:6px;
+  flex:0 0 6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.42);
+}
+.profile-media-dot.active{
+  width:18px;
+  flex-basis:18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.92);
 }
 
 .profile-photo-panel img{
@@ -739,8 +832,9 @@ a{
   height:38px;
   border:0;
   border-radius:50%;
-  background:rgba(255,255,255,.88);
-  color:#66565b;
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.14);
   font-size:22px;
   cursor:pointer;
   box-shadow:0 4px 16px rgba(0,0,0,.12);
@@ -755,11 +849,11 @@ a{
   font-size:30px;
   line-height:1.2;
   margin-bottom:7px;
-  color:#33272b;
+  color:#fff;
 }
 
 .profile-subtitle{
-  color:#a17f88;
+  color:#d5aab7;
   font-size:14px;
 }
 
@@ -774,20 +868,20 @@ a{
   padding:13px 14px;
   border:1px solid rgba(145,105,117,.13);
   border-radius:12px;
-  background:#fff;
+  background:rgba(255,255,255,.055);
 }
 
 .profile-detail-label{
   display:block;
   font-size:11px;
-  color:#a78d94;
+  color:#c6a7b0;
   margin-bottom:3px;
   letter-spacing:.3px;
 }
 
 .profile-detail-value{
   display:block;
-  color:#4b3b41;
+  color:#f7edf0;
   font-size:14px;
   font-weight:600;
   word-break:break-word;
@@ -800,12 +894,12 @@ a{
 .profile-section-title{
   font-size:14px;
   font-weight:700;
-  color:#6f505b;
+  color:#e5bdc8;
   margin-bottom:9px;
 }
 
 .profile-description-text{
-  color:#66575d;
+  color:rgba(255,255,255,.82);
   font-size:14px;
   line-height:1.9;
   white-space:pre-wrap;
@@ -822,8 +916,9 @@ a{
   display:inline-flex;
   padding:7px 11px;
   border-radius:999px;
-  background:#f5eaed;
-  color:#765965;
+  background:rgba(217,156,172,.16);
+  border:1px solid rgba(217,156,172,.22);
+  color:#f3d7df;
   font-size:12px;
 }
 
@@ -833,7 +928,7 @@ a{
   flex-wrap:wrap;
   margin-top:28px;
   padding-top:20px;
-  border-top:1px solid rgba(145,105,117,.13);
+  border-top:1px solid rgba(255,255,255,.10);
 }
 
 .profile-action{
@@ -847,11 +942,11 @@ a{
   text-align:center;
 }
 
-.profile-action-photo{background:#f3e7ea;color:#6f505b;}
+.profile-action-photo{background:rgba(217,156,172,.16);color:#f3d7df;border:1px solid rgba(217,156,172,.22);}
 .profile-action-contact{background:#33272b;color:#fff;}
 
 .profile-empty{
-  color:#a08f95;
+  color:#c4adb4;
   font-size:13px;
 }
 
@@ -866,7 +961,9 @@ a{
     overflow-y:auto;
   }
   .profile-photo-panel{height:48vh;min-height:300px;}
-  .profile-photo-panel img{height:100%;min-height:300px;}
+  .profile-media-track,.profile-media-slide{min-height:300px;}
+  .profile-media-slide img,.profile-media-slide video{min-height:300px;}
+  .profile-media-arrow{width:38px;height:38px;font-size:25px;}
   .profile-content{overflow:visible;padding:25px 18px 35px;}
   .profile-header h2{font-size:25px;}
   .profile-details-grid{grid-template-columns:1fr 1fr;gap:8px;}
@@ -1442,7 +1539,7 @@ footer span{
 }
 
 .contact-name{
-  color:#a17f88;
+  color:#d5aab7;
   font-size:13px;
   margin-bottom:23px;
 }
@@ -1850,24 +1947,34 @@ footer span{
 
 
 /* =========================================================
-   PROFILE CARD INFORMATION — RESPONSIVE
+   FINAL PROFILE CARD SUMMARY
+   Common fields + multilingual personal introduction
 ========================================================= */
-.woman-info{
-  position:relative;
-  z-index:4;
-  padding:20px 18px 18px;
+.woman-card .woman-info{
   min-width:0;
+  padding:20px 16px 16px;
+}
+
+.woman-card .woman-info h2{
+  line-height:1.25;
+  overflow-wrap:anywhere;
 }
 
 .woman-card-detail{
   display:flex;
-  align-items:center;
-  gap:7px;
-  margin-top:7px;
-  color:rgba(255,255,255,.86);
-  font-size:13px;
+  align-items:flex-start;
+  gap:6px;
+  margin-top:5px;
+  color:rgba(255,255,255,.88);
+  font-size:12px;
   line-height:1.35;
   min-width:0;
+}
+
+.woman-card-detail .detail-icon{
+  flex:0 0 17px;
+  width:17px;
+  text-align:center;
 }
 
 .woman-card-detail span:last-child{
@@ -1875,64 +1982,55 @@ footer span{
   overflow-wrap:anywhere;
 }
 
-.detail-icon{
-  width:18px;
-  flex:0 0 18px;
-  text-align:center;
-}
-
 .woman-interests{
   display:flex;
   flex-wrap:wrap;
   gap:5px;
-  margin-top:9px;
+  margin-top:8px;
 }
 
 .woman-interest-tag{
   display:inline-flex;
-  align-items:center;
   max-width:100%;
-  padding:4px 8px;
+  padding:4px 7px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.18);
   background:rgba(255,255,255,.08);
   color:rgba(255,255,255,.9);
-  font-size:11px;
-  line-height:1.2;
+  font-size:10px;
+  line-height:1.25;
   overflow-wrap:anywhere;
 }
 
 .woman-card-description{
-  margin:10px 0 0;
-  color:rgba(255,255,255,.78);
-  font-size:12px;
-  line-height:1.55;
+  margin:8px 0 0;
+  color:rgba(255,255,255,.76);
+  font-size:11px;
+  line-height:1.5;
   display:-webkit-box;
   -webkit-box-orient:vertical;
-  -webkit-line-clamp:3;
+  -webkit-line-clamp:2;
   overflow:hidden;
 }
 
 @media(max-width:700px){
-  .woman-info{
-    padding:15px 11px 12px;
+  .woman-card .woman-info{
+    padding:14px 10px 11px;
   }
 
   .woman-card-detail{
-    font-size:11px;
-    margin-top:5px;
+    font-size:10px;
+    margin-top:4px;
   }
 
   .woman-interest-tag{
-    font-size:9px;
-    padding:3px 6px;
+    font-size:8.5px;
+    padding:3px 5px;
   }
 
   .woman-card-description{
-    font-size:10px;
+    font-size:9.5px;
     line-height:1.45;
-    margin-top:7px;
-    -webkit-line-clamp:2;
   }
 }
 
@@ -2316,7 +2414,10 @@ footer span{
     <button id="profileClose" class="profile-close" type="button" aria-label="Close">×</button>
 
     <div class="profile-photo-panel">
-      <img id="profilePhoto" src="" alt="">
+      <div id="profileMediaTrack" class="profile-media-track"></div>
+      <button id="profileMediaPrev" class="profile-media-arrow profile-media-prev" type="button" aria-label="Previous">‹</button>
+      <button id="profileMediaNext" class="profile-media-arrow profile-media-next" type="button" aria-label="Next">›</button>
+      <div id="profileMediaDots" class="profile-media-dots"></div>
       <div class="profile-photo-overlay">
         <div id="profilePhotoName" class="profile-photo-name"></div>
         <div id="profilePhotoAge" class="profile-photo-age"></div>
@@ -3524,7 +3625,7 @@ async function detectVisitorLanguage(){
     const timeout =
       setTimeout(
         () => controller.abort(),
-        4000
+        1500
       );
 
 
@@ -3600,37 +3701,30 @@ async function detectVisitorLanguage(){
    START LANGUAGE INITIALIZATION
 ========================================================= */
 
-async function initializeLanguage(){
-
-  const language =
-    await detectVisitorLanguage();
-
-
-  applyLanguage(
-    language
-  );
-
-
-  const loader =
-    document.getElementById(
-      "languageLoader"
-    );
-
+function hideLanguageLoader(){
+  const loader = document.getElementById("languageLoader");
+  if(!loader) return;
 
   requestAnimationFrame(() => {
-
-    setTimeout(() => {
-
-      loader.classList.add(
-        "hide"
-      );
-
-    },120);
-
+    setTimeout(() => loader.classList.add("hide"), 80);
   });
-
 }
 
+function initializeLanguage(){
+  // Never wait for IP detection before loading/rendering profiles.
+  const browserLanguage = languageFromBrowser();
+  applyLanguage(browserLanguage);
+  hideLanguageLoader();
+
+  // IP is only a background language hint.
+  detectVisitorLanguage()
+    .then(language => {
+      if(language && language !== currentLanguage){
+        applyLanguage(language);
+      }
+    })
+    .catch(() => {});
+}
 
 /* =========================================================
    SUPABASE
@@ -3703,14 +3797,24 @@ function escapeHtml(value){
  * 自动退回原始中文。
  */
 
+function hasText(value){
+  return value !== null &&
+         value !== undefined &&
+         String(value).trim() !== "";
+}
+
 function getWomanText(woman, field){
   if(!woman) return "";
 
-  // Only personal introduction is multilingual.
+  // All profile fields except the personal introduction are common
+  // fields and are read directly from Supabase.
   if(field !== "description"){
-    return hasText(woman[field]) ? String(woman[field]).trim() : "";
+    return hasText(woman[field])
+      ? String(woman[field]).trim()
+      : "";
   }
 
+  // Only personal introduction uses language-specific columns.
   const langMap = {
     "en":"en",
     "zh-CN":"zh_cn",
@@ -3720,19 +3824,21 @@ function getWomanText(woman, field){
   };
 
   const suffix = langMap[currentLanguage] || "en";
-  const current = woman["description_" + suffix];
+  const translated = woman["description_" + suffix];
 
-  if(hasText(current)){
-    return String(current).trim();
+  if(hasText(translated)){
+    return String(translated).trim();
   }
 
   if(hasText(woman.description_en)){
     return String(woman.description_en).trim();
   }
 
-  return hasText(woman.description)
-    ? String(woman.description).trim()
-    : "";
+  if(hasText(woman.description)){
+    return String(woman.description).trim();
+  }
+
+  return "";
 }
 
 
@@ -4417,10 +4523,84 @@ function getWomanInterests(woman){
   return getWomanList(woman, fields);
 }
 
+function getWomanWeight(woman){
+  const value = getWomanValue(woman,["weight_kg","weight","weightKg"]);
+  if(!value) return "";
+  return /kg/i.test(String(value))
+    ? String(value)
+    : String(value) + " kg";
+}
+
 function getWomanHeight(woman){
   const value=getWomanValue(woman,["height_cm","height","heightCm"]);
   if(!value) return "";
   return String(value).match(/cm/i) ? String(value) : String(value)+" cm";
+}
+
+let profileMediaIndex = 0;
+
+function renderProfileMedia(woman){
+  const track=document.getElementById("profileMediaTrack");
+  const dots=document.getElementById("profileMediaDots");
+  if(!track || !dots) return;
+
+  const media=[
+    ...getPhotos(woman).map(url=>({type:"image",url})),
+    ...getVideos(woman).map(url=>({type:"video",url}))
+  ];
+
+  profileMediaIndex=0;
+  track.innerHTML="";
+  dots.innerHTML="";
+
+  if(!media.length){
+    track.innerHTML='<div class="profile-media-slide"><div class="profile-empty">No photos or videos</div></div>';
+    return;
+  }
+
+  media.forEach((item,index)=>{
+    const slide=document.createElement("div");
+    slide.className="profile-media-slide";
+    if(item.type==="image"){
+      const img=document.createElement("img");
+      img.src=item.url; img.alt=getWomanName(woman); img.draggable=false;
+      slide.appendChild(img);
+    }else{
+      const video=document.createElement("video");
+      video.controls=true; video.playsInline=true; video.preload="metadata";
+      const source=document.createElement("source"); source.src=item.url;
+      video.appendChild(source); slide.appendChild(video);
+      const badge=document.createElement("span"); badge.className="profile-media-type"; badge.textContent="VIDEO"; slide.appendChild(badge);
+    }
+    track.appendChild(slide);
+
+    const dot=document.createElement("span");
+    dot.className="profile-media-dot"+(index===0?" active":"");
+    dot.addEventListener("click",()=>profileMediaGoTo(index));
+    dots.appendChild(dot);
+  });
+
+  requestAnimationFrame(()=>{ track.scrollLeft=0; });
+}
+
+function profileMediaGoTo(index){
+  const track=document.getElementById("profileMediaTrack");
+  if(!track || !track.children.length) return;
+  if(index<0) index=track.children.length-1;
+  if(index>=track.children.length) index=0;
+  profileMediaIndex=index;
+  track.scrollTo({left:track.clientWidth*index,behavior:"smooth"});
+  document.querySelectorAll("#profileMediaDots .profile-media-dot").forEach((dot,i)=>dot.classList.toggle("active",i===index));
+}
+
+function updateProfileMediaIndex(){
+  const track=document.getElementById("profileMediaTrack");
+  if(!track || !track.clientWidth) return;
+  const index=Math.round(track.scrollLeft/track.clientWidth);
+  if(index!==profileMediaIndex){
+    profileMediaIndex=index;
+    document.querySelectorAll("#profileMediaDots .profile-media-dot").forEach((dot,i)=>dot.classList.toggle("active",i===index));
+  }
 }
 
 function openWomanProfile(woman){
@@ -4437,9 +4617,7 @@ function openWomanProfile(woman){
   const interests=getWomanInterests(woman);
   const photos=getPhotos(woman);
 
-  const photo=document.getElementById("profilePhoto");
-  photo.src=photos[0] || "";
-  photo.alt=name;
+  renderProfileMedia(woman);
   document.getElementById("profilePhotoName").textContent=name;
   document.getElementById("profilePhotoAge").textContent=age;
   document.getElementById("profileName").textContent=name;
@@ -4447,10 +4625,13 @@ function openWomanProfile(woman){
 
   const details=document.getElementById("profileDetails");
   details.innerHTML="";
+  const weight=getWomanWeight(woman);
+
   const rows=[
     [T.profileCity,city],
     [T.profileOccupation,occupation],
     [T.profileHeight,height],
+    ["Weight",weight],
     [T.profileMarital,marital]
   ];
   rows.forEach(([label,value])=>{
@@ -4494,6 +4675,10 @@ function openWomanProfile(woman){
   modal.classList.add("show");
   document.body.style.overflow="hidden";
 }
+
+document.getElementById("profileMediaPrev")?.addEventListener("click",()=>profileMediaGoTo(profileMediaIndex-1));
+document.getElementById("profileMediaNext")?.addEventListener("click",()=>profileMediaGoTo(profileMediaIndex+1));
+document.getElementById("profileMediaTrack")?.addEventListener("scroll",updateProfileMediaIndex,{passive:true});
 
 function closeWomanProfile(){
   const modal=document.getElementById("profileModal");
@@ -4616,7 +4801,13 @@ function renderWomen(list){
       getWomanName(woman);
 
 
-    const displayAge =
+    
+    const displayCountry = getWomanText(woman,"country");
+    const displayHeight = getWomanHeight(woman);
+    const displayWeight = getWomanWeight(woman);
+    const displayMarital = getWomanMarital(woman);
+    const displayInterests = getWomanInterests(woman);
+const displayAge =
       woman.age
         ? getWomanAgeText(
             woman.age
@@ -4636,16 +4827,24 @@ function renderWomen(list){
       <div class="woman-info">
         <h2>
           ${escapeHtml(displayName)}
-          ${
-            displayAge
-              ? " · " + displayAge
-              : ""
-          }
+          ${displayAge ? " · " + escapeHtml(displayAge) : ""}
         </h2>
 
         ${
+          displayCountry
+            ? `<div class="woman-card-detail">
+                 <span class="detail-icon">🌍</span>
+                 <span>${escapeHtml(displayCountry)}</span>
+               </div>`
+            : ""
+        }
+
+        ${
           displayCity
-            ? `<div class="city">📍 ${escapeHtml(displayCity)}</div>`
+            ? `<div class="woman-card-detail">
+                 <span class="detail-icon">📍</span>
+                 <span>${escapeHtml(displayCity)}</span>
+               </div>`
             : ""
         }
 
@@ -4659,37 +4858,37 @@ function renderWomen(list){
         }
 
         ${
-          getWomanHeight(woman)
+          displayHeight
             ? `<div class="woman-card-detail">
                  <span class="detail-icon">📏</span>
-                 <span>${escapeHtml(getWomanHeight(woman))}</span>
+                 <span>${escapeHtml(displayHeight)}</span>
                </div>`
             : ""
         }
 
         ${
-          woman.weight_kg || woman.weight
+          displayWeight
             ? `<div class="woman-card-detail">
                  <span class="detail-icon">⚖️</span>
-                 <span>${escapeHtml(String(woman.weight_kg || woman.weight))} kg</span>
+                 <span>${escapeHtml(displayWeight)}</span>
                </div>`
             : ""
         }
 
         ${
-          getWomanMarital(woman)
+          displayMarital
             ? `<div class="woman-card-detail">
                  <span class="detail-icon">♡</span>
-                 <span>${escapeHtml(getWomanMarital(woman))}</span>
+                 <span>${escapeHtml(displayMarital)}</span>
                </div>`
             : ""
         }
 
         ${
-          getWomanInterests(woman).length
+          displayInterests.length
             ? `<div class="woman-interests">
-                 ${getWomanInterests(woman).slice(0,4).map(x =>
-                   `<span class="woman-interest-tag">${escapeHtml(x)}</span>`
+                 ${displayInterests.slice(0,4).map(item =>
+                   `<span class="woman-interest-tag">${escapeHtml(item)}</span>`
                  ).join("")}
                </div>`
             : ""
@@ -4697,7 +4896,9 @@ function renderWomen(list){
 
         ${
           displayDescription
-            ? `<p class="woman-card-description">${escapeHtml(displayDescription)}</p>`
+            ? `<p class="woman-card-description">
+                 ${escapeHtml(displayDescription)}
+               </p>`
             : ""
         }
 
@@ -4706,24 +4907,13 @@ function renderWomen(list){
             ? `<button
                  type="button"
                  class="woman-contact-button"
-                 aria-label="${escapeHtml(T.profileContact)}"
-               >${escapeHtml(T.profileContact)}</button>`
+               >
+                 ${escapeHtml(T.contact)}
+               </button>`
             : ""
         }
       </div>
     `;
-    const contactBtn = card.querySelector(".woman-contact-button");
-    if(contactBtn){
-      contactBtn.addEventListener("click", event => {
-        event.stopPropagation();
-        openWomanContact(woman);
-      });
-    }
-
-    card.addEventListener("click", () => {
-      openWomanProfile(woman);
-    });
-
 
 
     /*
