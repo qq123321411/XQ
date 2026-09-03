@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="auto">
+<html lang="zh-CN">
 
 <head>
 
@@ -10,13 +10,15 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>Love & Connection</title>
+<title>缘分·相遇 - 管理后台</title>
 
 <meta
-  id="metaDescription"
-  name="description"
-  content="认真认识一个人，从一次相遇开始。"
+  name="robots"
+  content="noindex,nofollow"
 >
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <style>
 
@@ -26,1925 +28,1042 @@
   padding:0;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
-html,
 body{
-  min-height:100%;
-}
 
-body{
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
     "PingFang SC",
-    "Hiragino Sans GB",
     "Microsoft YaHei",
     Arial,
     sans-serif;
 
-  color:#f3e9ed;
+  background:#f5f5f5;
+
+  color:#222;
+
   line-height:1.6;
-  overflow-x:hidden;
 
-  background:
-    radial-gradient(
-      ellipse 75% 38% at 5% 8%,
-      rgba(213,128,151,.16),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 70% 40% at 95% 22%,
-      rgba(232,181,145,.12),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 80% 55% at 50% 58%,
-      rgba(108,55,76,.15),
-      transparent 75%
-    ),
-    radial-gradient(
-      ellipse 70% 40% at 15% 90%,
-      rgba(194,105,136,.12),
-      transparent 72%
-    ),
-    linear-gradient(
-      180deg,
-      #171014 0%,
-      #21151b 32%,
-      #291923 65%,
-      #21141b 100%
-    );
-
-  background-attachment:fixed;
 }
 
 button,
-a{
-  -webkit-tap-highlight-color:transparent;
+input,
+textarea,
+select{
+
+  font-family:inherit;
+
 }
 
 button{
-  font-family:inherit;
+
+  cursor:pointer;
+
 }
 
-a{
-  text-decoration:none;
-  color:inherit;
+.hidden{
+
+  display:none !important;
+
 }
 
 
-/* =========================================================
-   LANGUAGE LOADER
-========================================================= */
+/* =========================
+   Login
+========================= */
 
-#languageLoader{
-  position:fixed;
-  inset:0;
-  z-index:99999;
+.login-page{
+
+  min-height:100vh;
+
   display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #faf9f7,
+      #eee8e0
+    );
+
+}
+
+.login-box{
+
+  width:100%;
+
+  max-width:430px;
+
+  background:#fff;
+
+  border-radius:18px;
+
+  padding:40px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.1);
+
+}
+
+.login-box h1{
+
+  font-size:28px;
+
+  margin-bottom:8px;
+
+}
+
+.subtitle{
+
+  color:#999;
+
+  font-size:14px;
+
+  margin-bottom:30px;
+
+}
+
+.form-group{
+
+  margin-bottom:18px;
+
+}
+
+.form-group label{
+
+  display:block;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  margin-bottom:7px;
+
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+  width:100%;
+
+  border:1px solid #ddd;
+
+  border-radius:9px;
+
+  padding:12px 14px;
+
+  outline:none;
+
+  background:#fff;
+
+  font-size:14px;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+
+  border-color:#b58b63;
+
+  box-shadow:
+    0 0 0 3px rgba(181,139,99,.1);
+
+}
+
+.login-button{
+
+  width:100%;
+
+  border:0;
+
+  border-radius:9px;
+
+  padding:13px;
+
+  background:#2b2927;
+
+  color:#fff;
+
+  font-size:15px;
+
+  font-weight:600;
+
+}
+
+.login-error{
+
+  color:#d33;
+
+  background:#fff0f0;
+
+  border-radius:8px;
+
+  padding:10px 12px;
+
+  margin-bottom:15px;
+
+  font-size:13px;
+
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.admin-header{
+
+  height:68px;
+
+  background:#fff;
+
+  border-bottom:1px solid #eee;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 30px;
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+}
+
+.admin-brand{
+
+  font-size:20px;
+
+  font-weight:700;
+
+}
+
+.admin-brand span{
+
+  color:#b58b63;
+
+}
+
+.header-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.user-email{
+
+  color:#777;
+
+  font-size:13px;
+
+}
+
+.logout-button{
+
+  border:1px solid #ddd;
+
+  background:#fff;
+
+  padding:8px 14px;
+
+  border-radius:20px;
+
+  font-size:13px;
+
+}
+
+
+/* =========================
+   Container
+========================= */
+
+.admin-container{
+
+  width:94%;
+
+  max-width:1400px;
+
+  margin:30px auto 70px;
+
+}
+
+.page-title{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  margin-bottom:25px;
+
+}
+
+.page-title h1{
+
+  font-size:28px;
+
+}
+
+.add-button{
+
+  border:0;
+
+  border-radius:9px;
+
+  padding:12px 20px;
+
+  background:#2b2927;
+
+  color:#fff;
+
+  font-weight:600;
+
+}
+
+
+/* =========================
+   Settings
+========================= */
+
+.settings-box{
+
+  background:#fff;
+
+  border:1px solid #eee;
+
+  border-radius:14px;
+
+  padding:25px;
+
+  margin-bottom:30px;
+
+}
+
+.settings-box h2{
+
+  font-size:20px;
+
+  margin-bottom:6px;
+
+}
+
+.settings-description{
+
+  color:#999;
+
+  font-size:13px;
+
+  margin-bottom:20px;
+
+}
+
+.settings-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:18px;
+
+}
+
+.settings-save{
+
+  margin-top:15px;
+
+  border:0;
+
+  border-radius:8px;
+
+  background:#2b2927;
+
+  color:#fff;
+
+  padding:11px 20px;
+
+  font-weight:600;
+
+}
+
+.profile-contact-settings{
+  border-color:#e7ddd2;
+}
+
+.global-contact-warning{
+  margin:0 0 20px;
+  padding:12px 14px;
+  border-radius:9px;
+  background:#fff8ed;
+  color:#8a6334;
+  border:1px solid #f0dfc5;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.profile-settings-save{
+  background:#8b5e34;
+}
+
+.profile-settings-save:hover{
+  opacity:.92;
+}
+
+.profile-settings-save:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+
+/* =========================
+   Message
+========================= */
+
+.message{
+
+  padding:12px 15px;
+
+  border-radius:9px;
+
+  margin-bottom:20px;
+
+  font-size:14px;
+
+}
+
+.message.success{
+
+  background:#edf9f1;
+
+  color:#18733b;
+
+}
+
+.message.error{
+
+  background:#fff0f0;
+
+  color:#c22;
+
+}
+
+
+/* =========================
+   List
+========================= */
+
+.women-list{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:20px;
+
+}
+
+.woman-admin-card{
+
+  background:#fff;
+
+  border:1px solid #eee;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+}
+
+.card-photo{
+
+  width:100%;
+
+  aspect-ratio:3 / 4;
+
+  background:#eee;
+
+  overflow:hidden;
+
+}
+
+.card-photo img{
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+
+}
+
+.card-no-photo{
+
+  width:100%;
+  height:100%;
+
+  display:flex;
+
   align-items:center;
   justify-content:center;
 
-  background:
-    linear-gradient(
-      180deg,
-      #171014,
-      #291923
-    );
+  color:#999;
 
-  transition:
-    opacity .35s ease,
-    visibility .35s ease;
 }
 
-#languageLoader.hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
+.card-content{
+
+  padding:18px;
+
 }
 
-.language-loader-inner{
-  text-align:center;
-  color:#fff;
+.card-content h2{
+
+  font-size:19px;
+
+  margin-bottom:5px;
+
 }
 
-.language-loader-heart{
-  font-size:28px;
-  color:#df9faf;
-  margin-bottom:15px;
-  animation:
-    languagePulse 1.2s ease-in-out infinite;
-}
+.card-meta{
 
-.language-loader-text{
+  color:#888;
+
   font-size:13px;
-  letter-spacing:3px;
-  color:rgba(255,255,255,.65);
+
+  margin-bottom:10px;
+
 }
 
-@keyframes languagePulse{
-  0%,100%{
-    transform:scale(1);
-    opacity:.65;
-  }
+.card-description{
 
-  50%{
-    transform:scale(1.12);
-    opacity:1;
-  }
-}
+  color:#777;
 
+  font-size:13px;
 
-/* =========================================================
-   HEADER
-========================================================= */
+  display:-webkit-box;
 
-.site-header{
-  height:72px;
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  padding:0 6%;
-  position:sticky;
-  top:0;
-  z-index:100;
-  color:#fff;
+  -webkit-line-clamp:3;
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(23,15,20,.97),
-      rgba(48,28,36,.94)
-    );
+  -webkit-box-orient:vertical;
 
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.10);
-
-  box-shadow:
-    0 5px 25px
-    rgba(0,0,0,.15);
-
-  backdrop-filter:blur(16px);
-}
-
-.brand{
-  font-size:22px;
-  font-weight:700;
-  letter-spacing:2px;
-  color:#fff;
-}
-
-.brand span{
-  color:#df9faf;
-  margin:0 4px;
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-  min-height:360px;
-  height:360px;
-  display:flex;
-  align-items:center;
-  position:relative;
-  z-index:2;
-  padding:55px 8%;
   overflow:hidden;
-  color:#fff;
 
-  background-image:
-    linear-gradient(
-      90deg,
-      rgba(20,13,17,.92) 0%,
-      rgba(28,18,22,.74) 38%,
-      rgba(30,20,24,.48) 70%,
-      rgba(20,14,18,.34) 100%
-    ),
-    url(
-      "https://yutraouosffjteivvlfx.supabase.co/storage/v1/object/public/women-photos/12121.png"
-    );
-
-  background-size:cover;
-  background-position:center 42%;
-
-  -webkit-mask-image:
-    linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 90%,
-      rgba(0,0,0,.96) 96%,
-      transparent 100%
-    );
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 90%,
-      rgba(0,0,0,.96) 96%,
-      transparent 100%
-    );
 }
 
-.hero > div{
-  max-width:720px;
-  position:relative;
-  z-index:5;
+.card-media-count{
+
+  margin-top:12px;
+
+  font-size:13px;
+
+  color:#888;
+
 }
 
-.eyebrow{
+.card-status{
+
+  display:inline-block;
+
+  padding:4px 9px;
+
+  border-radius:15px;
+
   font-size:12px;
-  letter-spacing:5px;
-  color:#e8a8b8;
-  margin-bottom:15px;
-  font-weight:600;
+
+  margin-top:10px;
+
 }
 
-.hero h1{
-  font-size:clamp(36px,5vw,64px);
-  line-height:1.16;
-  font-weight:600;
-  letter-spacing:1px;
-  margin-bottom:18px;
+.status-on{
 
-  text-shadow:
-    0 4px 25px
-    rgba(0,0,0,.28);
+  background:#e8f7ed;
+
+  color:#168a43;
+
 }
 
-.hero p:not(.eyebrow){
-  color:rgba(255,255,255,.84);
-  font-size:16px;
-  max-width:550px;
-  line-height:1.8;
+.status-off{
+
+  background:#eee;
+
+  color:#888;
+
 }
 
-.hero-label{
-  margin-top:22px;
+.card-actions{
+
   display:flex;
-  align-items:center;
-  gap:12px;
-  color:rgba(255,255,255,.62);
+
+  gap:8px;
+
+  margin-top:16px;
+
+}
+
+.card-actions button{
+
+  flex:1;
+
+  border:1px solid #ddd;
+
+  background:#fff;
+
+  padding:9px;
+
+  border-radius:8px;
+
   font-size:13px;
+
 }
 
-.hero-label::before{
-  content:"";
-  width:34px;
-  height:1px;
-  background:#d99cac;
-}
+.delete-btn{
 
+  color:#c33;
 
-/* =========================================================
-   CONTENT
-========================================================= */
-
-.content-section{
-  position:relative;
-  z-index:2;
-  overflow:visible;
-  padding-top:1px;
-  background:transparent;
-}
-
-.content-section::before{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  top:-90px;
-  height:90px;
-  pointer-events:none;
-  z-index:0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      transparent,
-      rgba(33,21,27,.65)
-    );
 }
 
 
-/* =========================================================
-   PROFILES
-========================================================= */
+/* =========================
+   Modal
+========================= */
 
-.profiles-area{
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.55);
+
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:center;
+
+  padding:30px 15px;
+
+  overflow-y:auto;
+
+  z-index:500;
+
+}
+
+.modal-box{
+
   width:100%;
-  position:relative;
-  z-index:30;
-  isolation:isolate;
-  overflow:hidden;
-  padding-bottom:70px;
 
-  background:
-    radial-gradient(
-      ellipse 70% 38% at 8% 12%,
-      rgba(213,128,151,.17),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 65% 40% at 92% 20%,
-      rgba(232,181,145,.13),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 75% 55% at 50% 52%,
-      rgba(108,55,76,.13),
-      transparent 75%
-    ),
-    linear-gradient(
-      180deg,
-      #21151b 0%,
-      #261821 45%,
-      #21141b 100%
-    );
+  max-width:850px;
+
+  background:#fff;
+
+  border-radius:16px;
+
+  padding:30px;
+
 }
 
+.modal-header{
 
-/* =========================================================
-   TOOLBAR
-========================================================= */
-
-.toolbar{
-  width:88%;
-  max-width:1400px;
-  margin:35px auto 25px;
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-  position:relative;
-  z-index:5;
+
+  margin-bottom:25px;
+
 }
 
-.section-title{
-  color:#fff;
+.modal-header h2{
+
+  font-size:23px;
+
 }
 
-.section-title small{
+.close-modal{
+
+  width:35px;
+  height:35px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:#eee;
+
+  font-size:20px;
+
+}
+
+
+/* =========================
+   Form
+========================= */
+
+.form-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:0 18px;
+
+}
+
+.form-full{
+
+  grid-column:1 / -1;
+
+}
+
+textarea{
+
+  min-height:110px;
+
+  resize:vertical;
+
+}
+
+
+/* =========================
+   Upload
+========================= */
+
+.upload-box{
+
+  border:2px dashed #ddd;
+
+  border-radius:12px;
+
+  padding:20px;
+
+  background:#fafafa;
+
+}
+
+.upload-box label{
+
   display:block;
-  font-size:11px;
-  letter-spacing:4px;
-  color:#e0a0b2;
-  margin-bottom:4px;
-}
 
-.section-title h2{
-  font-size:27px;
   font-weight:600;
-  color:#fff;
+
+  margin-bottom:10px;
+
 }
 
-.filters{
-  display:flex;
-  gap:10px;
+.file-input{
+
+  width:100%;
+
 }
 
-.filters select{
-  appearance:none;
-  border:
-    1px solid
-    rgba(235,185,197,.22);
+.upload-help{
 
-  background:
-    rgba(42,25,32,.72);
+  color:#999;
 
-  padding:
-    11px 40px 11px 15px;
+  font-size:12px;
 
-  border-radius:10px;
-  color:#f8e9ee;
-  cursor:pointer;
-  outline:none;
+  margin-top:8px;
 
-  box-shadow:
-    0 8px 28px
-    rgba(0,0,0,.14),
-    inset 0 1px 0
-    rgba(255,255,255,.06);
-
-  backdrop-filter:blur(14px);
-}
-
-.filters select:focus{
-  border-color:
-    rgba(214,154,170,.75);
 }
 
 
-/* =========================================================
-   GRID
-========================================================= */
+/* =========================
+   Media
+========================= */
 
-.women-grid{
-  width:88%;
-  max-width:1400px;
-  margin:0 auto;
+.media-section{
+
+  margin-top:25px;
+
+}
+
+.media-section h3{
+
+  font-size:16px;
+
+  margin-bottom:12px;
+
+}
+
+.media-grid{
 
   display:grid;
 
   grid-template-columns:
     repeat(4,minmax(0,1fr));
 
-  gap:24px;
-
-  position:relative;
-  z-index:6;
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
-
-.woman-card{
-  position:relative;
-  z-index:7;
-  height:520px;
-  min-height:520px;
-  border-radius:18px;
-  overflow:hidden;
-
-  border:
-    1px solid
-    rgba(255,255,255,.22);
-
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease;
-
-  cursor:pointer;
-  color:#fff;
-  background:#281c21;
-
-  box-shadow:
-    0 12px 40px
-    rgba(0,0,0,.20),
-    0 2px 8px
-    rgba(0,0,0,.08);
-
-  isolation:isolate;
-}
-
-.woman-card:hover{
-  transform:translateY(-7px);
-
-  box-shadow:
-    0 25px 65px
-    rgba(0,0,0,.32),
-    0 4px 15px
-    rgba(0,0,0,.12);
-}
-
-
-/* =========================================================
-   IMAGE
-========================================================= */
-
-.woman-image{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  background:#281c21;
-}
-
-.woman-image::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:2;
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(15,8,12,0) 35%,
-      rgba(15,8,12,.04) 45%,
-      rgba(15,8,12,.28) 62%,
-      rgba(15,8,12,.78) 82%,
-      rgba(15,8,12,.96) 100%
-    );
-}
-
-.woman-image::before{
-  content:"♥";
-  position:absolute;
-  right:12px;
-  top:12px;
-  z-index:4;
-  width:32px;
-  height:32px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:50%;
-  color:rgba(255,255,255,.95);
-
-  background:
-    rgba(60,30,42,.28);
-
-  backdrop-filter:blur(5px);
-  font-size:14px;
-  opacity:.9;
-
-  border:
-    1px solid
-    rgba(255,255,255,.16);
-}
-
-.woman-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center center;
-  display:block;
-
-  transition:
-    transform .6s ease;
-}
-
-.woman-card:hover
-.woman-image img{
-  transform:scale(1.045);
-}
-
-
-/* =========================================================
-   CARD INFO
-========================================================= */
-
-.woman-info{
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:5;
-
-  padding:
-    25px 20px 20px;
-
-  padding-right:145px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(15,8,12,0),
-      rgba(15,8,12,.48) 30%,
-      rgba(15,8,12,.92) 100%
-    );
-}
-
-.woman-info h2{
-  font-size:21px;
-  font-weight:600;
-  color:#fff;
-  margin-bottom:4px;
-
-  text-shadow:
-    0 2px 8px
-    rgba(0,0,0,.45);
-}
-
-.city{
-  color:#f0b5c4;
-  font-size:13px;
-  margin-bottom:5px;
-
-  text-shadow:
-    0 2px 6px
-    rgba(0,0,0,.45);
-}
-
-.woman-info p{
-  color:rgba(255,255,255,.82);
-  font-size:13px;
-
-  text-shadow:
-    0 2px 6px
-    rgba(0,0,0,.45);
-}
-
-.description{
-  margin-top:7px;
-  line-height:1.6;
-
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-
-  color:
-    rgba(255,255,255,.76) !important;
-}
-
-
-
-
-/* =========================================================
-   FULL WOMAN PROFILE MODAL
-========================================================= */
-
-.profile-modal{
-  position:fixed;
-  inset:0;
-  z-index:1200;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  background:rgba(12,7,10,.78);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-}
-
-.profile-modal.show{display:flex;}
-
-.profile-box{
-  width:min(960px,100%);
-  max-height:min(90vh,900px);
-  overflow:hidden;
-  display:grid;
-  grid-template-columns:minmax(280px,40%) minmax(0,1fr);
-  background:linear-gradient(145deg,rgba(43,27,34,.98),rgba(72,42,53,.97));
-  color:#f8eef1;
-  border-radius:24px;
-  box-shadow:0 30px 100px rgba(0,0,0,.42);
-  position:relative;
-}
-
-.profile-photo-panel{
-  min-height:560px;
-  position:relative;
-  background:#281c21;
-  overflow:hidden;
-}
-
-.profile-media-track{
-  width:100%;
-  height:100%;
-  min-height:560px;
-  display:flex;
-  overflow-x:auto;
-  overflow-y:hidden;
-  scroll-snap-type:x mandatory;
-  scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
-  overscroll-behavior-x:contain;
-  touch-action:pan-x;
-}
-.profile-media-track::-webkit-scrollbar{display:none;}
-.profile-media-slide{
-  flex:0 0 100%;
-  min-width:100%;
-  height:100%;
-  min-height:560px;
-  scroll-snap-align:center;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#281c21;
-}
-.profile-media-slide img,
-.profile-media-slide video{
-  width:100%;
-  height:100%;
-  min-height:560px;
-  display:block;
-  object-fit:cover;
-  user-select:none;
-  -webkit-user-drag:none;
-}
-.profile-media-slide video{background:#000;}
-.profile-media-type{
-  position:absolute;
-  top:16px;
-  left:16px;
-  z-index:4;
-  padding:6px 9px;
-  border-radius:999px;
-  background:rgba(0,0,0,.42);
-  border:1px solid rgba(255,255,255,.16);
-  color:#fff;
-  font-size:11px;
-  backdrop-filter:blur(8px);
-}
-.profile-media-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  z-index:8;
-  width:42px;
-  height:42px;
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:50%;
-  background:rgba(20,10,15,.38);
-  color:#fff;
-  font-size:28px;
-  line-height:1;
-  cursor:pointer;
-  backdrop-filter:blur(8px);
-}
-.profile-media-prev{left:12px;}
-.profile-media-next{right:12px;}
-.profile-media-dots{
-  position:absolute;
-  left:50%;
-  bottom:16px;
-  transform:translateX(-50%);
-  z-index:8;
-  display:flex;
-  gap:6px;
-  max-width:80%;
-  overflow:hidden;
-}
-.profile-media-dot{
-  width:6px;
-  height:6px;
-  flex:0 0 6px;
-  border-radius:50%;
-  background:rgba(255,255,255,.42);
-}
-.profile-media-dot.active{
-  width:18px;
-  flex-basis:18px;
-  border-radius:999px;
-  background:rgba(255,255,255,.92);
-}
-
-.profile-photo-panel img{
-  width:100%;
-  height:100%;
-  min-height:560px;
-  display:block;
-  object-fit:cover;
-}
-
-.profile-photo-overlay{
-  position:absolute;
-  inset:auto 0 0;
-  padding:45px 25px 24px;
-  color:#fff;
-  background:linear-gradient(to bottom,transparent,rgba(15,8,12,.86));
-}
-
-.profile-photo-name{
-  font-size:27px;
-  font-weight:700;
-  line-height:1.25;
-}
-
-.profile-photo-age{
-  margin-top:4px;
-  color:rgba(255,255,255,.78);
-  font-size:13px;
-}
-
-.profile-content{
-  min-width:0;
-  overflow-y:auto;
-  padding:38px 38px 32px;
-  scrollbar-width:thin;
-}
-
-.profile-close{
-  position:absolute;
-  top:14px;
-  right:14px;
-  z-index:10;
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:50%;
-  background:rgba(255,255,255,.12);
-  color:#fff;
-  border:1px solid rgba(255,255,255,.14);
-  font-size:22px;
-  cursor:pointer;
-  box-shadow:0 4px 16px rgba(0,0,0,.12);
-}
-
-.profile-header{
-  padding-right:48px;
-  margin-bottom:22px;
-}
-
-.profile-header h2{
-  font-size:30px;
-  line-height:1.2;
-  margin-bottom:7px;
-  color:#fff;
-}
-
-.profile-subtitle{
-  color:#d5aab7;
-  font-size:14px;
-}
-
-.profile-details-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
   gap:10px;
-  margin-bottom:26px;
+
 }
 
-.profile-detail-item{
-  padding:13px 14px;
-  border:1px solid rgba(145,105,117,.13);
-  border-radius:12px;
-  background:rgba(255,255,255,.055);
+.media-item{
+
+  position:relative;
+
+  border:1px solid #eee;
+
+  border-radius:9px;
+
+  overflow:hidden;
+
+  background:#f5f5f5;
+
 }
 
-.profile-detail-label{
+.media-item img{
+
+  width:100%;
+
+  aspect-ratio:1 / 1;
+
+  object-fit:cover;
+
   display:block;
-  font-size:11px;
-  color:#c6a7b0;
-  margin-bottom:3px;
-  letter-spacing:.3px;
+
 }
 
-.profile-detail-value{
+.media-item video{
+
+  width:100%;
+
+  aspect-ratio:1 / 1;
+
+  object-fit:cover;
+
   display:block;
-  color:#f7edf0;
-  font-size:14px;
-  font-weight:600;
-  word-break:break-word;
+
+  background:#000;
+
 }
 
-.profile-section{
-  margin-top:22px;
-}
+.remove-media{
 
-.profile-section-title{
-  font-size:14px;
-  font-weight:700;
-  color:#e5bdc8;
-  margin-bottom:9px;
-}
-
-.profile-description-text{
-  color:rgba(255,255,255,.82);
-  font-size:14px;
-  line-height:1.9;
-  white-space:pre-wrap;
-  word-break:break-word;
-}
-
-.profile-interests{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-.profile-interest{
-  display:inline-flex;
-  padding:7px 11px;
-  border-radius:999px;
-  background:rgba(217,156,172,.16);
-  border:1px solid rgba(217,156,172,.22);
-  color:#f3d7df;
-  font-size:12px;
-}
-
-.profile-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:28px;
-  padding-top:20px;
-  border-top:1px solid rgba(255,255,255,.10);
-}
-
-.profile-action{
-  flex:1;
-  min-width:145px;
-  border:0;
-  border-radius:11px;
-  padding:13px 15px;
-  cursor:pointer;
-  font:600 13px inherit;
-  text-align:center;
-}
-
-.profile-action-photo{background:rgba(217,156,172,.16);color:#f3d7df;border:1px solid rgba(217,156,172,.22);}
-.profile-action-contact{background:#33272b;color:#fff;}
-
-.profile-empty{
-  color:#c4adb4;
-  font-size:13px;
-}
-
-@media(max-width:700px){
-  .profile-modal{padding:0;align-items:stretch;}
-  .profile-box{
-    width:100%;
-    height:100%;
-    max-height:none;
-    border-radius:0;
-    display:block;
-    overflow-y:auto;
-  }
-  .profile-photo-panel{height:48vh;min-height:300px;}
-  .profile-media-track,.profile-media-slide{min-height:300px;}
-  .profile-media-slide img,.profile-media-slide video{min-height:300px;}
-  .profile-media-arrow{width:38px;height:38px;font-size:25px;}
-  .profile-content{overflow:visible;padding:25px 18px 35px;}
-  .profile-header h2{font-size:25px;}
-  .profile-details-grid{grid-template-columns:1fr 1fr;gap:8px;}
-  .profile-detail-item{padding:11px 10px;}
-  .profile-detail-value{font-size:13px;}
-  .profile-description-text{font-size:13px;line-height:1.85;}
-  .profile-action{min-width:0;}
-}
-
-
-/* =========================================================
-   CONTACT BUTTON
-========================================================= */
-
-.woman-contact-button{
   position:absolute;
-  right:14px;
-  bottom:15px;
-  z-index:20;
 
-  border:
-    1px solid
-    rgba(255,255,255,.25);
+  top:5px;
+  right:5px;
 
-  background:
-    rgba(255,255,255,.16);
+  width:27px;
+  height:27px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(0,0,0,.7);
 
   color:#fff;
-  min-width:112px;
-  padding:9px 13px;
-  border-radius:10px;
-  font-size:12px;
-  font-weight:600;
-  cursor:pointer;
 
-  backdrop-filter:blur(10px);
+  font-size:16px;
 
-  box-shadow:
-    0 5px 18px
-    rgba(0,0,0,.18);
-
-  transition:
-    background .2s ease,
-    transform .2s ease;
-}
-
-.woman-contact-button:hover{
-  background:
-    rgba(255,255,255,.25);
-
-  transform:translateY(-2px);
-}
-
-.woman-contact-button:active{
-  transform:scale(.97);
 }
 
 
-/* =========================================================
-   MORE CARD
-========================================================= */
+/* =========================
+   Footer
+========================= */
 
-.more-card{
-  position:relative;
-  z-index:7;
-  min-height:520px;
-  overflow:hidden;
-  border-radius:18px;
-  cursor:pointer;
-  background:#281c21;
-
-  box-shadow:
-    0 15px 45px
-    rgba(0,0,0,.22);
-
-  isolation:isolate;
-}
-
-.more-card-bg{
-  position:absolute;
-  inset:0;
-  z-index:0;
-
-  background-image:
-    linear-gradient(
-      rgba(30,17,22,.20),
-      rgba(27,16,21,.86)
-    ),
-    url(
-      "https://yutraouosffjteivvlfx.supabase.co/storage/v1/object/public/women-photos/12121.png"
-    );
-
-  background-size:cover;
-  background-position:center;
-
-  transition:
-    transform .6s ease;
-}
-
-.more-card:hover
-.more-card-bg{
-  transform:scale(1.05);
-}
-
-.more-card-content{
-  position:relative;
-  z-index:2;
-  min-height:520px;
-  padding:30px;
+.modal-footer{
 
   display:flex;
-  flex-direction:column;
+
   justify-content:flex-end;
 
-  color:#fff;
+  gap:10px;
+
+  margin-top:30px;
+
+  padding-top:20px;
+
+  border-top:1px solid #eee;
+
 }
 
-.more-card-content h2{
-  font-size:26px;
-  line-height:1.3;
-  margin-bottom:12px;
-}
+.cancel-button{
 
-.more-card-content p{
-  color:rgba(255,255,255,.82);
-  font-size:14px;
-  line-height:1.8;
-  margin-bottom:20px;
-}
-
-.join-button{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  padding:13px;
+  border:1px solid #ddd;
 
   background:#fff;
-  color:#33282c;
 
-  border-radius:10px;
+  padding:11px 20px;
+
+  border-radius:8px;
+
+}
+
+.save-button{
+
+  border:0;
+
+  background:#2b2927;
+
+  color:#fff;
+
+  padding:11px 25px;
+
+  border-radius:8px;
+
   font-weight:600;
-  transition:.25s ease;
+
 }
 
-.more-card:hover
-.join-button{
-  background:#f3dce2;
+.save-button:disabled{
+
+  opacity:.5;
+
 }
 
 
-/* =========================================================
-   LOADING
-========================================================= */
+/* =========================
+   Loading
+========================= */
 
-.loading{
-  grid-column:1 / -1;
+.loading-page{
+
   text-align:center;
+
   padding:80px 20px;
-  color:rgba(255,255,255,.70);
-  position:relative;
-  z-index:6;
-}
 
-
-/* =========================================================
-   ROMANTIC BANNER
-========================================================= */
-
-.romantic-banner{
-  width:88%;
-  max-width:1400px;
-  min-height:235px;
-  margin:0 auto;
-  position:relative;
-  z-index:30;
-  overflow:hidden;
-  border-radius:25px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.14);
-
-  background:
-    linear-gradient(
-      115deg,
-      rgba(35,20,27,.96),
-      rgba(72,40,50,.94),
-      rgba(48,28,35,.97)
-    );
-
-  box-shadow:
-    0 28px 75px
-    rgba(0,0,0,.23),
-    inset 0 1px 0
-    rgba(255,255,255,.10);
-
-  isolation:isolate;
-}
-
-.romantic-banner-content{
-  min-height:235px;
-  position:relative;
-  z-index:5;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-
-  text-align:center;
-  padding:30px;
-}
-
-.romantic-mini{
-  font-size:10px;
-  letter-spacing:6px;
-  color:#e8bd9f;
-  margin-bottom:8px;
-  opacity:.9;
-}
-
-.romantic-banner h2{
-  color:#fff;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-weight:400;
-
-  font-size:
-    clamp(28px,4vw,47px);
-
-  letter-spacing:2px;
-  line-height:1.25;
-
-  text-shadow:
-    0 5px 30px
-    rgba(0,0,0,.35);
-}
-
-.romantic-banner h2 span{
-  color:#e6aabd;
-}
-
-.romantic-subtitle{
-  margin-top:10px;
-  color:rgba(255,255,255,.73);
-  font-size:14px;
-  letter-spacing:2px;
-}
-
-.romantic-line{
-  width:100px;
-  height:1px;
-  margin-top:19px;
-  position:relative;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(230,176,145,.85),
-      transparent
-    );
-}
-
-.romantic-heart{
-  position:absolute;
-  left:50%;
-  top:50%;
-
-  transform:
-    translate(-50%,-50%);
-
-  color:#e6a8ba;
-  font-size:14px;
-  background:#4c2b35;
-  padding:0 8px;
-}
-
-.banner-corner{
-  position:absolute;
-  width:70px;
-  height:70px;
-
-  border-color:
-    rgba(233,185,160,.32);
-
-  border-style:solid;
-  z-index:4;
-}
-
-.banner-corner.left-top{
-  left:18px;
-  top:18px;
-  border-width:1px 0 0 1px;
-  border-radius:15px 0 0 0;
-}
-
-.banner-corner.right-top{
-  right:18px;
-  top:18px;
-  border-width:1px 1px 0 0;
-  border-radius:0 15px 0 0;
-}
-
-.banner-corner.left-bottom{
-  left:18px;
-  bottom:18px;
-  border-width:0 0 1px 1px;
-  border-radius:0 0 0 15px;
-}
-
-.banner-corner.right-bottom{
-  right:18px;
-  bottom:18px;
-  border-width:0 1px 1px 0;
-  border-radius:0 0 15px 0;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-  position:relative;
-  z-index:2;
-  overflow:hidden;
-  isolation:isolate;
-
-  text-align:center;
-
-  padding:
-    70px 20px 75px;
-
-  color:rgba(255,255,255,.68);
-  font-size:13px;
-
-  background:
-    linear-gradient(
-      180deg,
-      #21151b 0%,
-      #24171e 50%,
-      #1b1217 100%
-    );
-
-  border-top:
-    1px solid
-    rgba(255,255,255,.06);
-}
-
-footer span{
-  position:relative;
-  z-index:2;
-}
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-.gallery-modal{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-
-  background:
-    rgba(15,10,13,.96);
-
-  display:none;
-  align-items:center;
-  justify-content:center;
-}
-
-.gallery-modal.show{
-  display:flex;
-}
-
-.gallery-container{
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  position:relative;
-}
-
-.gallery-header{
-  height:65px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 20px;
-  color:#fff;
-  flex-shrink:0;
-}
-
-.gallery-title{
-  font-size:17px;
-  font-weight:600;
-}
-
-.gallery-close{
-  width:42px;
-  height:42px;
-  border:0;
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.13);
-
-  color:#fff;
-  font-size:25px;
-  cursor:pointer;
-}
-
-.gallery-body{
-  flex:1;
-  min-height:0;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  position:relative;
-  overflow:hidden;
-}
-
-.gallery-track{
-  width:100%;
-  height:100%;
-
-  display:flex;
-
-  overflow-x:auto;
-  overflow-y:hidden;
-
-  scroll-snap-type:x mandatory;
-  scrollbar-width:none;
-
-  -webkit-overflow-scrolling:touch;
-}
-
-.gallery-track::-webkit-scrollbar{
-  display:none;
-}
-
-.gallery-slide{
-  min-width:100%;
-  height:100%;
-
-  scroll-snap-align:center;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:10px 70px;
-}
-
-.gallery-slide img{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-  border-radius:6px;
-  user-select:none;
-  -webkit-user-drag:none;
-}
-
-.gallery-slide video{
-  max-width:100%;
-  max-height:100%;
-  width:auto;
-  height:auto;
-  background:#000;
-  border-radius:6px;
-}
-
-.gallery-arrow{
-  position:absolute;
-  top:50%;
-
-  transform:
-    translateY(-50%);
-
-  width:48px;
-  height:48px;
-
-  border:0;
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.13);
-
-  color:#fff;
-  font-size:30px;
-  cursor:pointer;
-  z-index:5;
-}
-
-.gallery-prev{
-  left:15px;
-}
-
-.gallery-next{
-  right:15px;
-}
-
-.gallery-counter{
-  height:55px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#aaa;
-  font-size:13px;
-}
-
-
-/* =========================================================
-   CONTACT MODAL
-========================================================= */
-
-.contact-modal{
-  position:fixed;
-  inset:0;
-  z-index:1200;
-
-  background:
-    rgba(15,8,12,.70);
-
-  display:none;
-  align-items:center;
-  justify-content:center;
-
-  padding:20px;
-
-  backdrop-filter:
-    blur(8px);
-}
-
-.contact-modal.show{
-  display:flex;
-}
-
-.contact-box{
-  width:100%;
-  max-width:410px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fff,
-      #fdf7f8
-    );
-
-  border-radius:20px;
-  padding:32px;
-  position:relative;
-  text-align:center;
-
-  box-shadow:
-    0 30px 80px
-    rgba(0,0,0,.30);
-}
-
-.contact-box h2{
-  font-size:27px;
-  margin-bottom:6px;
-  color:#33272b;
-}
-
-.contact-name{
-  color:#d5aab7;
-  font-size:13px;
-  margin-bottom:23px;
-}
-
-.contact-close{
-  position:absolute;
-  top:12px;
-  right:12px;
-
-  width:35px;
-  height:35px;
-
-  border:0;
-  border-radius:50%;
-
-  background:#f1e8ea;
-  color:#66565b;
-
-  font-size:20px;
-  cursor:pointer;
-}
-
-.contact-buttons{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.contact-buttons a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:14px;
-  border-radius:11px;
-  font-weight:600;
-
-  transition:.25s ease;
-}
-
-.contact-buttons a:hover{
-  transform:translateY(-2px);
-}
-
-.contact-whatsapp{
-  background:#e7f6ec;
-  color:#168743;
-}
-
-.contact-telegram{
-  background:#e7f1f9;
-  color:#2480c5;
-}
-
-.no-contact{
   color:#999;
-  font-size:13px;
-  padding:8px;
-}
-
-
-/* =========================================================
-   JOIN MODAL
-========================================================= */
-
-.join-modal{
-  position:fixed;
-  inset:0;
-  z-index:1100;
-
-  background:
-    rgba(15,8,12,.68);
-
-  display:none;
-  align-items:center;
-  justify-content:center;
-
-  padding:20px;
-
-  backdrop-filter:
-    blur(8px);
-}
-
-.join-modal.show{
-  display:flex;
-}
-
-.join-box{
-  width:100%;
-  max-width:410px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fff,
-      #fdf7f8
-    );
-
-  border-radius:20px;
-  padding:32px;
-  position:relative;
-  text-align:center;
-
-  box-shadow:
-    0 30px 80px
-    rgba(0,0,0,.25);
-}
-
-.join-box h2{
-  font-size:27px;
-  margin-bottom:8px;
-  color:#33272b;
-}
-
-.join-box p{
-  color:#8b7b80;
-  font-size:14px;
-  margin-bottom:25px;
-}
-
-.join-close{
-  position:absolute;
-  top:12px;
-  right:12px;
-
-  width:35px;
-  height:35px;
-
-  border:0;
-  border-radius:50%;
-
-  background:#f1e8ea;
-  color:#66565b;
-
-  font-size:20px;
-  cursor:pointer;
-}
-
-.join-contact{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.join-contact a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  padding:13px;
-  border-radius:10px;
-  font-weight:600;
-
-  transition:.25s ease;
-}
-
-.join-contact a:hover{
-  transform:translateY(-2px);
-}
-
-.join-whatsapp{
-  background:#e7f6ec;
-  color:#168743;
-}
-
-.join-telegram{
-  background:#e7f1f9;
-  color:#2480c5;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:1000px){
-
-  .women-grid{
-    grid-template-columns:
-      repeat(3,minmax(0,1fr));
-  }
 
 }
 
 
-@media(max-width:700px){
+/* =========================
+   Responsive
+========================= */
 
-  .site-header{
-    height:62px;
-    padding:0 20px;
-  }
+@media(max-width:900px){
 
-  .brand{
-    font-size:19px;
-  }
-
-  .hero{
-    min-height:300px;
-    height:300px;
-    padding:45px 25px;
-
-    background-position:
-      62% center;
-
-    -webkit-mask-image:
-      linear-gradient(
-        to bottom,
-        #000 0%,
-        #000 91%,
-        transparent 100%
-      );
-
-    mask-image:
-      linear-gradient(
-        to bottom,
-        #000 0%,
-        #000 91%,
-        transparent 100%
-      );
-  }
-
-  .hero h1{
-    font-size:34px;
-  }
-
-  .hero p:not(.eyebrow){
-    font-size:14px;
-    line-height:1.75;
-  }
-
-  .hero-label{
-    margin-top:16px;
-    font-size:12px;
-  }
-
-  .profiles-area{
-    padding-bottom:55px;
-  }
-
-  .toolbar{
-    width:
-      calc(100% - 30px);
-
-    margin-top:30px;
-
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .section-title h2{
-    font-size:23px;
-  }
-
-  .filters{
-    width:100%;
-  }
-
-  .filters select{
-    flex:1;
-    width:50%;
-  }
-
-  .women-grid{
-    width:
-      calc(100% - 30px);
+  .women-list{
 
     grid-template-columns:
       repeat(2,minmax(0,1fr));
 
-    gap:12px;
   }
 
-  .woman-card{
-    height:390px;
-    min-height:390px;
-    border-radius:15px;
+}
+
+@media(max-width:650px){
+
+  .admin-header{
+
+    padding:0 15px;
+
   }
 
-  .woman-info{
-    padding:
-      22px 13px 14px;
+  .user-email{
 
-    padding-right:13px;
+    display:none;
+
   }
 
-  .woman-info h2{
-    font-size:17px;
+  .admin-container{
+
+    width:calc(100% - 30px);
+
+    margin-top:20px;
+
   }
 
-  .woman-info p{
-    font-size:12px;
-  }
+  .page-title h1{
 
-  .description{
-    -webkit-line-clamp:unset;
-    display:block;
-    overflow:visible;
-  }
-
-  .woman-contact-button{
-    right:10px;
-    bottom:10px;
-    min-width:92px;
-    padding:8px 9px;
-    font-size:11px;
-  }
-
-  .more-card{
-    min-height:390px;
-    border-radius:15px;
-  }
-
-  .more-card-content{
-    min-height:390px;
-    padding:18px;
-  }
-
-  .more-card-content h2{
-    font-size:20px;
-  }
-
-  .more-card-content p{
-    font-size:12px;
-  }
-
-  .romantic-banner{
-    width:
-      calc(100% - 30px);
-
-    min-height:210px;
-    margin:0 auto;
-    border-radius:20px;
-  }
-
-  .romantic-banner-content{
-    min-height:210px;
-    padding:25px 18px;
-  }
-
-  .romantic-mini{
-    font-size:8px;
-    letter-spacing:4px;
-  }
-
-  .romantic-banner h2{
-    font-size:28px;
-    letter-spacing:1px;
-  }
-
-  .romantic-subtitle{
-    font-size:12px;
-    letter-spacing:1px;
-  }
-
-  .gallery-slide{
-    padding:10px 15px;
-  }
-
-  .gallery-arrow{
-    width:40px;
-    height:40px;
     font-size:23px;
+
   }
 
-  .gallery-prev{
-    left:5px;
-  }
+  .women-list{
 
-  .gallery-next{
-    right:5px;
-  }
-
-  .contact-box{
-    padding:28px 22px;
-  }
-
-  footer{
-    padding:
-      55px 20px 60px;
-  }
-
-}
-
-
-@media(max-width:400px){
-
-  .women-grid{
     grid-template-columns:1fr;
+
   }
 
-  .woman-card{
-    height:500px;
-    min-height:500px;
+  .settings-grid{
+
+    grid-template-columns:1fr;
+
   }
 
-  .more-card{
-    min-height:500px;
+  .modal{
+
+    padding:10px;
+
   }
 
-  .more-card-content{
-    min-height:500px;
+  .modal-box{
+
+    padding:20px;
+
+  }
+
+  .form-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .form-full{
+
+    grid-column:auto;
+
+  }
+
+  .media-grid{
+
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+
   }
 
 }
 
+
+
+/* =========================
+   Multilingual editor
+========================= */
+.multilingual-editor{
+  border:1px solid rgba(120,120,120,.18);
+  border-radius:16px;
+  padding:18px;
+  background:rgba(255,255,255,.035);
+}
+.multilingual-editor h3{margin:0 0 6px;}
+.multilingual-editor h4{margin:0 0 10px;}
+.language-panel{
+  margin-top:14px;
+  padding:14px;
+  border-radius:12px;
+  background:rgba(0,0,0,.035);
+  display:grid;
+  gap:10px;
+}
+.language-panel textarea{min-height:90px;}
 </style>
 
 </head>
@@ -1953,272 +1072,321 @@ footer span{
 <body>
 
 
-<!-- =========================================================
-     LANGUAGE LOADER
-========================================================= -->
+<!-- =========================
+     Login
+========================= -->
 
-<div id="languageLoader">
+<section
+  id="loginPage"
+  class="login-page"
+>
 
-  <div class="language-loader-inner">
+  <div class="login-box">
 
-    <div class="language-loader-heart">
-      ♥
-    </div>
+    <h1>
+      缘分 · 相遇
+    </h1>
+
+    <p class="subtitle">
+      管理后台
+    </p>
 
     <div
-      id="languageLoaderText"
-      class="language-loader-text"
+      id="loginError"
+      class="login-error hidden"
+    ></div>
+
+
+    <form id="loginForm">
+
+      <div class="form-group">
+
+        <label>
+          管理员邮箱
+        </label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="请输入管理员邮箱"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          密码
+        </label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="请输入密码"
+          required
+        >
+
+      </div>
+
+
+      <button
+        class="login-button"
+        type="submit"
+      >
+        登录后台
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     Admin
+========================= -->
+
+<section
+  id="adminPage"
+  class="hidden"
+>
+
+
+<header class="admin-header">
+
+  <div class="admin-brand">
+
+    缘分<span>·</span>相遇
+
+    <span style="
+      color:#999;
+      font-weight:400;
+      font-size:13px;
+      margin-left:8px;
+    ">
+      管理后台
+    </span>
+
+  </div>
+
+
+  <div class="header-right">
+
+    <span
+      id="userEmail"
+      class="user-email"
+    ></span>
+
+    <button
+      id="logoutButton"
+      class="logout-button"
+      type="button"
     >
-      LOADING
+      退出登录
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="admin-container">
+
+
+<!-- =========================
+     联系方式设置
+========================= -->
+
+<section class="settings-box">
+
+  <h2>
+    申请加入联系方式
+  </h2>
+
+  <p class="settings-description">
+
+    这里修改后，首页最后的「更多女士正在加入中」
+    →「申请加入」弹窗会自动使用新的联系方式。
+
+  </p>
+
+
+  <div class="settings-grid">
+
+
+    <div class="form-group">
+
+      <label>
+        WhatsApp
+      </label>
+
+      <input
+        id="joinWhatsapp"
+        type="text"
+        placeholder="例如：5215512345678"
+      >
+
     </div>
 
+
+    <div class="form-group">
+
+      <label>
+        Telegram
+      </label>
+
+      <input
+        id="joinTelegram"
+        type="text"
+        placeholder="例如：@username"
+      >
+
+    </div>
+
+  </div>
+
+
+  <button
+    id="saveSettingsButton"
+    class="settings-save"
+    type="button"
+  >
+    保存联系方式
+  </button>
+
+</section>
+
+
+<!-- =========================
+     资料卡全局联系方式
+========================= -->
+
+<section class="settings-box profile-contact-settings">
+
+  <h2>
+    资料卡全局联系方式
+  </h2>
+
+  <p class="settings-description">
+    修改这里的 WhatsApp / Telegram 后，点击下方按钮，
+    新联系方式会立即覆盖所有已经上传的女士资料卡。
+    新增资料卡也会自动使用这里的联系方式。
+  </p>
+
+  <div class="global-contact-warning">
+    ⚠️ 注意：点击“保存并覆盖全部资料卡”后，所有现有资料卡的旧 WhatsApp 和 Telegram 都会被新内容替换。
+    单独编辑资料卡仍然可以填写不同的联系方式。
+  </div>
+
+  <div class="settings-grid">
+
+    <div class="form-group">
+
+      <label>
+        资料卡 WhatsApp
+      </label>
+
+      <input
+        id="profileWhatsapp"
+        type="text"
+        inputmode="tel"
+        placeholder="例如：5215512345678"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        资料卡 Telegram
+      </label>
+
+      <input
+        id="profileTelegram"
+        type="text"
+        placeholder="例如：@username"
+      >
+
+    </div>
+
+  </div>
+
+
+  <button
+    id="saveProfileSettingsButton"
+    class="settings-save profile-settings-save"
+    type="button"
+  >
+    保存并覆盖全部资料卡
+  </button>
+
+</section>
+
+
+<div class="page-title">
+
+  <h1>
+    女士资料
+  </h1>
+
+  <button
+    id="addWomanButton"
+    class="add-button"
+    type="button"
+  >
+    ＋ 添加女士
+  </button>
+
+</div>
+
+
+<div
+  id="message"
+  class="message hidden"
+></div>
+
+
+<div
+  id="womenList"
+  class="women-list"
+>
+
+  <div class="loading-page">
+    正在加载资料……
   </div>
 
 </div>
 
 
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
-<header class="site-header">
-
-  <a
-    class="brand"
-    href="./"
-  >
-
-    <span id="brandMain">
-      缘分
-    </span>
-
-    <span>·</span>
-
-    <span id="brandSecond">
-      相遇
-    </span>
-
-  </a>
-
-</header>
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
-
-<section class="hero">
-
-  <div>
-
-    <p
-      id="heroEyebrow"
-      class="eyebrow"
-    >
-      MEET SOMEONE SPECIAL
-    </p>
-
-    <h1 id="heroTitle">
-      认真认识一个人，<br>
-      从一次相遇开始。
-    </h1>
-
-    <p id="heroDescription">
-      浏览真实资料，了解彼此，再决定是否联系。
-      有些缘分，不需要刻意寻找，只需要一次恰好的相遇。
-    </p>
-
-    <div
-      id="heroLabel"
-      class="hero-label"
-    >
-      每一次相遇，都可能成为故事的开始
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =========================================================
-     CONTENT
-========================================================= -->
-
-<main class="content-section">
-
-
-<section class="profiles-area">
-
-
-  <section class="toolbar">
-
-    <div class="section-title">
-
-      <small id="discoverSmall">
-        DISCOVER
-      </small>
-
-      <h2 id="discoverTitle">
-        认识她们
-      </h2>
-
-    </div>
-
-
-    <div class="filters">
-
-      <select id="cityFilter">
-
-        <option value="">
-          全部城市
-        </option>
-
-      </select>
-
-
-      <select id="ageFilter">
-
-        <option value="">
-          全部年龄
-        </option>
-
-        <option value="18-25">
-          18–25
-        </option>
-
-        <option value="26-35">
-          26–35
-        </option>
-
-        <option value="36-45">
-          36–45
-        </option>
-
-        <option value="46+">
-          46+
-        </option>
-
-      </select>
-
-    </div>
-
-  </section>
-
-
-  <section
-    id="womenGrid"
-    class="women-grid"
-  >
-
-    <div
-      id="womenLoading"
-      class="loading"
-    >
-      正在加载资料……
-    </div>
-
-  </section>
-
-
-</section>
-
-
-<!-- =========================================================
-     ROMANTIC BANNER
-========================================================= -->
-
-<section class="romantic-banner">
-
-  <div class="banner-corner left-top"></div>
-
-  <div class="banner-corner right-top"></div>
-
-  <div class="banner-corner left-bottom"></div>
-
-  <div class="banner-corner right-bottom"></div>
-
-
-  <div class="romantic-banner-content">
-
-    <div
-      id="romanticMini"
-      class="romantic-mini"
-    >
-      ROMANCE · DESTINY · CONNECTION
-    </div>
-
-
-    <h2 id="romanticTitle">
-
-      Somewhere Between
-      <span>Us & Destiny</span>
-
-    </h2>
-
-
-    <div
-      id="romanticSubtitle"
-      class="romantic-subtitle"
-    >
-      有些心动，不需要解释
-    </div>
-
-
-    <div class="romantic-line">
-
-      <span class="romantic-heart">
-        ♥
-      </span>
-
-    </div>
-
-  </div>
-
-</section>
-
-
 </main>
 
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-  ©
-  <span id="year"></span>
-
-  <span id="footerText">
-    缘分·相遇
-  </span>
-
-</footer>
+</section>
 
 
-<!-- =========================================================
-     GALLERY
-========================================================= -->
+<!-- =========================
+     Woman Modal
+========================= -->
 
 <div
-  id="galleryModal"
-  class="gallery-modal"
+  id="womanModal"
+  class="modal hidden"
 >
 
-  <div class="gallery-container">
+  <div class="modal-box">
 
-    <div class="gallery-header">
+    <div class="modal-header">
 
-      <div
-        id="galleryTitle"
-        class="gallery-title"
-      >
-        女士资料
-      </div>
+      <h2 id="modalTitle">
+        添加女士
+      </h2>
 
       <button
-        id="galleryClose"
-        class="gallery-close"
+        id="closeModalButton"
+        class="close-modal"
         type="button"
       >
         ×
@@ -2227,180 +1395,351 @@ footer span{
     </div>
 
 
-    <div class="gallery-body">
+    <form id="womanForm">
 
-      <button
-        id="galleryPrev"
-        class="gallery-arrow gallery-prev"
-        type="button"
+      <input
+        id="womanId"
+        type="hidden"
       >
-        ‹
-      </button>
 
 
-      <div
-        id="galleryTrack"
-        class="gallery-track"
-      ></div>
+      <div class="form-grid">
 
 
-      <button
-        id="galleryNext"
-        class="gallery-arrow gallery-next"
-        type="button"
-      >
-        ›
-      </button>
+        <div class="form-group">
 
-    </div>
+          <label>
+            姓名 *
+          </label>
 
+          <input
+            id="womanName"
+            type="text"
+            required
+            placeholder="例如：Sofia"
+          >
 
-    <div
-      id="galleryCounter"
-      class="gallery-counter"
-    ></div>
-
-  </div>
-
-</div>
+        </div>
 
 
-<!-- =========================================================
-     WOMAN CONTACT MODAL
-========================================================= -->
+        <div class="form-group">
 
-<div
-  id="contactModal"
-  class="contact-modal"
->
+          <label>
+            年龄 *
+          </label>
 
-  <div class="contact-box">
+          <input
+            id="womanAge"
+            type="number"
+            min="18"
+            max="100"
+            required
+            placeholder="例如：28"
+          >
 
-    <button
-      id="contactClose"
-      class="contact-close"
-      type="button"
-    >
-      ×
-    </button>
+        </div>
 
 
-    <h2 id="contactTitle">
-      联系方式
-    </h2>
+        <div class="form-group">
+
+          <label>
+            国家
+          </label>
+
+          <input
+            id="womanCountry"
+            type="text"
+            placeholder="例如：Mexico"
+          >
+
+        </div>
 
 
-    <div
-      id="contactName"
-      class="contact-name"
-    >
-      女士
-    </div>
+        <div class="form-group">
+
+          <label>
+            身高（cm）
+          </label>
+
+          <input
+            id="womanHeight"
+            type="number"
+            min="100"
+            max="250"
+            placeholder="例如：168"
+          >
+
+        </div>
 
 
-    <div
-      id="contactButtons"
-      class="contact-buttons"
-    >
+        <div class="form-group">
 
-      <div class="no-contact">
-        正在加载联系方式……
+          <label>
+            体重（kg）
+          </label>
+
+          <input
+            id="womanWeight"
+            type="number"
+            min="30"
+            max="200"
+            placeholder="例如：55"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            婚姻状态
+          </label>
+
+          <input
+            id="womanMarital"
+            type="text"
+            placeholder="例如：Single"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            城市
+          </label>
+
+          <input
+            id="womanCity"
+            type="text"
+            placeholder="例如：Mexico City"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            职业
+          </label>
+
+          <input
+            id="womanOccupation"
+            type="text"
+            placeholder="例如：Designer"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            WhatsApp
+          </label>
+
+          <input
+            id="womanWhatsapp"
+            type="text"
+            placeholder="例如：5215512345678"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Telegram
+          </label>
+
+          <input
+            id="womanTelegram"
+            type="text"
+            placeholder="例如：@username"
+          >
+
+        </div>
+
+
+        <div class="form-group form-full">
+
+          <label>
+            个人介绍
+          </label>
+
+          <textarea
+            id="womanDescription"
+            placeholder="填写女士的个人介绍……"
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group form-full">
+
+          <div class="multilingual-editor">
+
+            <h3>多语言个人介绍（完全免费）</h3>
+            <p class="upload-help">
+              国家、城市、职业、婚姻状态使用通用资料；多语言区域仅填写个人介绍。未填写当前语言时自动使用 English；English 也为空时使用原始个人介绍。
+            </p>
+
+            <div class="language-panel">
+              <h4>English（建议必填，作为备用语言）</h4>
+<textarea id="womanDescriptionEn" placeholder="Personal introduction in English"></textarea>
+            </div>
+
+            <div class="language-panel">
+              <h4>简体中文</h4>
+<textarea id="womanDescriptionZhCn" placeholder="个人介绍"></textarea>
+            </div>
+
+            <div class="language-panel">
+              <h4>繁體中文</h4>
+<textarea id="womanDescriptionZhTw" placeholder="個人介紹"></textarea>
+            </div>
+
+            <div class="language-panel">
+              <h4>日本語</h4>
+<textarea id="womanDescriptionJa" placeholder="自己紹介"></textarea>
+            </div>
+
+            <div class="language-panel">
+              <h4>Русский</h4>
+<textarea id="womanDescriptionRu" placeholder="О себе"></textarea>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group form-full">
+
+          <label>
+            网站显示
+          </label>
+
+          <select id="womanPublished">
+
+            <option value="true">
+              发布到网站
+            </option>
+
+            <option value="false">
+              暂不发布
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group form-full">
+
+          <div class="upload-box">
+
+            <label>
+              上传照片
+            </label>
+
+            <input
+              id="photoInput"
+              class="file-input"
+              type="file"
+              accept="image/*"
+              multiple
+            >
+
+            <p class="upload-help">
+              可以一次选择多张照片。
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group form-full">
+
+          <div class="upload-box">
+
+            <label>
+              上传短视频
+            </label>
+
+            <input
+              id="videoInput"
+              class="file-input"
+              type="file"
+              accept="video/*"
+              multiple
+            >
+
+            <p class="upload-help">
+              建议使用 MP4。
+            </p>
+
+          </div>
+
+        </div>
+
+
       </div>
 
-    </div>
 
-  </div>
+      <div class="media-section">
 
-</div>
+        <h3>
+          已有照片
+        </h3>
 
+        <div
+          id="existingPhotos"
+          class="media-grid"
+        ></div>
 
-
-
-<!-- =========================================================
-     FULL WOMAN PROFILE MODAL
-========================================================= -->
-
-<div id="profileModal" class="profile-modal">
-  <div class="profile-box">
-    <button id="profileClose" class="profile-close" type="button" aria-label="Close">×</button>
-
-    <div class="profile-photo-panel">
-      <div id="profileMediaTrack" class="profile-media-track"></div>
-      <button id="profileMediaPrev" class="profile-media-arrow profile-media-prev" type="button" aria-label="Previous">‹</button>
-      <button id="profileMediaNext" class="profile-media-arrow profile-media-next" type="button" aria-label="Next">›</button>
-      <div id="profileMediaDots" class="profile-media-dots"></div>
-      <div class="profile-photo-overlay">
-        <div id="profilePhotoName" class="profile-photo-name"></div>
-        <div id="profilePhotoAge" class="profile-photo-age"></div>
-      </div>
-    </div>
-
-    <div class="profile-content">
-      <div class="profile-header">
-        <h2 id="profileName"></h2>
-        <div id="profileSubtitle" class="profile-subtitle"></div>
       </div>
 
-      <div id="profileDetails" class="profile-details-grid"></div>
 
-      <div class="profile-section">
-        <div id="profileAboutTitle" class="profile-section-title">About Me</div>
-        <div id="profileDescription" class="profile-description-text"></div>
+      <div class="media-section">
+
+        <h3>
+          已有视频
+        </h3>
+
+        <div
+          id="existingVideos"
+          class="media-grid"
+        ></div>
+
       </div>
 
-      <div class="profile-section">
-        <div id="profileInterestsTitle" class="profile-section-title">Interests</div>
-        <div id="profileInterests" class="profile-interests"></div>
+
+      <div class="modal-footer">
+
+        <button
+          id="cancelButton"
+          class="cancel-button"
+          type="button"
+        >
+          取消
+        </button>
+
+        <button
+          id="saveButton"
+          class="save-button"
+          type="submit"
+        >
+          保存资料
+        </button>
+
       </div>
 
-      <div class="profile-actions">
-        <button id="profilePhotosButton" class="profile-action profile-action-photo" type="button"></button>
-        <button id="profileContactButton" class="profile-action profile-action-contact" type="button"></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- =========================================================
-     JOIN MODAL
-========================================================= -->
-
-<div
-  id="joinModal"
-  class="join-modal"
->
-
-  <div class="join-box">
-
-    <button
-      id="joinClose"
-      class="join-close"
-      type="button"
-    >
-      ×
-    </button>
-
-
-    <h2 id="joinTitle">
-      申请加入
-    </h2>
-
-
-    <p id="joinDescription">
-      如果你也希望出现在这里，可以联系我们。
-    </p>
-
-
-    <div
-      id="joinContacts"
-      class="join-contact"
-    >
-
-      <div class="no-contact">
-        正在加载联系方式……
-      </div>
-
-    </div>
+    </form>
 
   </div>
 
@@ -2410,1282 +1749,101 @@ footer span{
 <script>
 
 
-
-
-/* =========================================================
-   FULL PROFILE EVENTS
-========================================================= */
-
-document.getElementById("profileClose").addEventListener("click",closeWomanProfile);
-document.getElementById("profileModal").addEventListener("click",function(event){
-  if(event.target===this) closeWomanProfile();
-});
-
-
-/* =========================================================
-   LANGUAGE SYSTEM
-========================================================= */
-
-/*
- * 页面语言：
- *
- * zh-CN = 简体中文
- * zh-TW = 繁体中文
- * ja    = 日文
- * en    = 英文
- * ru    = 俄文
- *
- * 资料卡：
- *
- * 中文：
- * city
- * occupation
- * description
- *
- * English：
- * city_en
- * occupation_en
- * description_en
- *
- * 日本語：
- * city_ja
- * occupation_ja
- * description_ja
- *
- * 如果英文或日文没有填写，
- * 自动使用中文字段作为备用。
- */
-
-
-/* =========================================================
-   TRANSLATIONS
-========================================================= */
-
-const LANGUAGES = {
-
-  "zh-CN": {
-
-    htmlLang:"zh-CN",
-
-    title:"缘分·相遇",
-
-    description:
-      "认真认识一个人，从一次相遇开始。",
-
-    brandMain:"缘分",
-
-    brandSecond:"相遇",
-
-    heroEyebrow:
-      "MEET SOMEONE SPECIAL",
-
-    heroTitle:
-      "认真认识一个人，<br>从一次相遇开始。",
-
-    heroDescription:
-      "浏览真实资料，了解彼此，再决定是否联系。<br>有些缘分，不需要刻意寻找，只需要一次恰好的相遇。",
-
-    heroLabel:
-      "每一次相遇，都可能成为故事的开始",
-
-    discoverSmall:
-      "DISCOVER",
-
-    discoverTitle:
-      "认识她们",
-
-    allCities:
-      "全部城市",
-
-    allAges:
-      "全部年龄",
-
-    age18_25:
-      "18–25",
-
-    age26_35:
-      "26–35",
-
-    age36_45:
-      "36–45",
-
-    age46:
-      "46+",
-
-    loading:
-      "正在加载资料……",
-
-    loadError:
-      "暂时无法加载资料。",
-
-    noPhoto:
-      "暂无照片",
-
-    contact:
-      "联系方式",
-
-    contactTitle:
-      "联系方式",
-
-    contactWoman:
-      "女士联系方式",
-
-    noContact:
-      "暂无联系方式",
-
-    join:
-      "申请加入",
-
-    moreTitle:
-      "更多女士正在加入中",
-
-    moreDescription:
-      "如果你也希望认识更多优秀的人，或希望申请加入我们的资料展示，欢迎联系我们。",
-
-    joinTitle:
-      "申请加入",
-
-    joinDescription:
-      "如果你也希望出现在这里，可以联系我们。",
-
-    loadingContact:
-      "正在加载联系方式……",
-
-    noJoinContact:
-      "暂无联系方式，请稍后再试。",
-
-    whatsapp:
-      "🟢 WhatsApp",
-
-    telegram:
-      "🔵 Telegram",
-
-    whatsappContact:
-      "WhatsApp 联系我们",
-
-    telegramContact:
-      "Telegram 联系我们",
-
-    galleryTitle:
-      "女士资料",
-
-    gallerySwipe:
-      "左右滑动查看",
-
-    profileAbout:"关于我",
-    profileInterests:"兴趣爱好",
-    profileCity:"城市",
-    profileOccupation:"职业",
-    profileHeight:"身高",
-    profileMarital:"婚姻状态",
-    profilePhotos:"查看照片",
-    profileContact:"联系方式",
-    profileEmpty:"暂无资料",
-
-    romanticSubtitle:
-      "有些心动，不需要解释",
-
-    footer:
-      "缘分·相遇",
-
-    loader:
-      "正在准备页面"
-
-  },
-
-
-  "zh-TW": {
-
-    htmlLang:"zh-TW",
-
-    title:"緣分·相遇",
-
-    description:
-      "認真認識一個人，從一次相遇開始。",
-
-    brandMain:"緣分",
-
-    brandSecond:"相遇",
-
-    heroEyebrow:
-      "MEET SOMEONE SPECIAL",
-
-    heroTitle:
-      "認真認識一個人，<br>從一次相遇開始。",
-
-    heroDescription:
-      "瀏覽真實資料，了解彼此，再決定是否聯絡。<br>有些緣分，不需要刻意尋找，只需要一次恰好的相遇。",
-
-    heroLabel:
-      "每一次相遇，都可能成為故事的開始",
-
-    discoverSmall:
-      "DISCOVER",
-
-    discoverTitle:
-      "認識她們",
-
-    allCities:
-      "全部城市",
-
-    allAges:
-      "全部年齡",
-
-    age18_25:
-      "18–25",
-
-    age26_35:
-      "26–35",
-
-    age36_45:
-      "36–45",
-
-    age46:
-      "46+",
-
-    loading:
-      "正在載入資料……",
-
-    loadError:
-      "暫時無法載入資料。",
-
-    noPhoto:
-      "暫無照片",
-
-    contact:
-      "聯絡方式",
-
-    contactTitle:
-      "聯絡方式",
-
-    contactWoman:
-      "女士聯絡方式",
-
-    noContact:
-      "暫無聯絡方式",
-
-    join:
-      "申請加入",
-
-    moreTitle:
-      "更多女士正在加入中",
-
-    moreDescription:
-      "如果你也希望認識更多優秀的人，或希望申請加入我們的資料展示，歡迎聯絡我們。",
-
-    joinTitle:
-      "申請加入",
-
-    joinDescription:
-      "如果你也希望出現在這裡，可以聯絡我們。",
-
-    loadingContact:
-      "正在載入聯絡方式……",
-
-    noJoinContact:
-      "暫無聯絡方式，請稍後再試。",
-
-    whatsapp:
-      "🟢 WhatsApp",
-
-    telegram:
-      "🔵 Telegram",
-
-    whatsappContact:
-      "WhatsApp 聯絡我們",
-
-    telegramContact:
-      "Telegram 聯絡我們",
-
-    galleryTitle:
-      "女士資料",
-
-    gallerySwipe:
-      "左右滑動查看",
-
-    profileAbout:"關於我",
-    profileInterests:"興趣愛好",
-    profileCity:"城市",
-    profileOccupation:"職業",
-    profileHeight:"身高",
-    profileMarital:"婚姻狀態",
-    profilePhotos:"查看照片",
-    profileContact:"聯絡方式",
-    profileEmpty:"暫無資料",
-
-    romanticSubtitle:
-      "有些心動，不需要解釋",
-
-    footer:
-      "緣分·相遇",
-
-    loader:
-      "正在準備頁面"
-
-  },
-
-
-  "ja": {
-
-    htmlLang:"ja",
-
-    title:"ご縁 · 出会い",
-
-    description:
-      "大切な人を知ることから、ひとつの出会いが始まります。",
-
-    brandMain:"ご縁",
-
-    brandSecond:"出会い",
-
-    heroEyebrow:
-      "MEET SOMEONE SPECIAL",
-
-    heroTitle:
-      "一人の人をもっと知る。<br>すべては一度の出会いから。",
-
-    heroDescription:
-      "プロフィールを見て、お互いを知り、連絡するかどうかを決めてください。<br>ご縁は無理に探すものではなく、ちょうどいい出会いから始まります。",
-
-    heroLabel:
-      "すべての出会いが、物語の始まりになるかもしれません",
-
-    discoverSmall:
-      "DISCOVER",
-
-    discoverTitle:
-      "彼女たちを知る",
-
-    allCities:
-      "すべての都市",
-
-    allAges:
-      "すべての年齢",
-
-    age18_25:
-      "18–25",
-
-    age26_35:
-      "26–35",
-
-    age36_45:
-      "36–45",
-
-    age46:
-      "46+",
-
-    loading:
-      "プロフィールを読み込んでいます……",
-
-    loadError:
-      "現在プロフィールを読み込めません。",
-
-    noPhoto:
-      "写真なし",
-
-    contact:
-      "連絡先",
-
-    contactTitle:
-      "連絡先",
-
-    contactWoman:
-      "連絡先",
-
-    noContact:
-      "連絡先はありません",
-
-    join:
-      "参加を申し込む",
-
-    moreTitle:
-      "新しい女性が続々参加しています",
-
-    moreDescription:
-      "もっと素敵な人と出会いたい方、またはこちらへの掲載を希望される方は、お気軽にお問い合わせください。",
-
-    joinTitle:
-      "参加を申し込む",
-
-    joinDescription:
-      "あなたもここに掲載されたい場合は、お問い合わせください。",
-
-    loadingContact:
-      "連絡先を読み込んでいます……",
-
-    noJoinContact:
-      "現在連絡先がありません。後ほどお試しください。",
-
-    whatsapp:
-      "🟢 WhatsApp",
-
-    telegram:
-      "🔵 Telegram",
-
-    whatsappContact:
-      "WhatsApp で連絡",
-
-    telegramContact:
-      "Telegram で連絡",
-
-    galleryTitle:
-      "プロフィール",
-
-    gallerySwipe:
-      "左右にスワイプして見る",
-
-    profileAbout:"自己紹介",
-    profileInterests:"趣味・興味",
-    profileCity:"都市",
-    profileOccupation:"職業",
-    profileHeight:"身長",
-    profileMarital:"婚姻状況",
-    profilePhotos:"写真を見る",
-    profileContact:"連絡先",
-    profileEmpty:"情報はありません",
-
-    romanticSubtitle:
-      "ときめきには、説明はいらない",
-
-    footer:
-      "ご縁·出会い",
-
-    loader:
-      "ページを準備しています"
-
-  },
-
-
-  "en": {
-
-    htmlLang:"en",
-
-    title:"Fate · Encounter",
-
-    description:
-      "Get to know someone sincerely. Every story begins with an encounter.",
-
-    brandMain:"Fate",
-
-    brandSecond:"Encounter",
-
-    heroEyebrow:
-      "MEET SOMEONE SPECIAL",
-
-    heroTitle:
-      "Get to know someone sincerely,<br>starting with one encounter.",
-
-    heroDescription:
-      "Browse real profiles, get to know each other, and decide whether you'd like to connect.<br>Some connections don't need to be forced. They simply begin with the right encounter.",
-
-    heroLabel:
-      "Every encounter could be the beginning of a story",
-
-    discoverSmall:
-      "DISCOVER",
-
-    discoverTitle:
-      "Meet Them",
-
-    allCities:
-      "All Cities",
-
-    allAges:
-      "All Ages",
-
-    age18_25:
-      "18–25",
-
-    age26_35:
-      "26–35",
-
-    age36_45:
-      "36–45",
-
-    age46:
-      "46+",
-
-    loading:
-      "Loading profiles…",
-
-    loadError:
-      "Unable to load profiles at the moment.",
-
-    noPhoto:
-      "No photo",
-
-    contact:
-      "Contact",
-
-    contactTitle:
-      "Contact",
-
-    contactWoman:
-      "Contact",
-
-    noContact:
-      "No contact information",
-
-    join:
-      "Apply to Join",
-
-    moreTitle:
-      "More women are joining",
-
-    moreDescription:
-      "If you'd like to meet more wonderful people, or would like to apply to have your profile featured here, feel free to contact us.",
-
-    joinTitle:
-      "Apply to Join",
-
-    joinDescription:
-      "If you'd like to appear here too, you are welcome to contact us.",
-
-    loadingContact:
-      "Loading contact information…",
-
-    noJoinContact:
-      "No contact information is available. Please try again later.",
-
-    whatsapp:
-      "🟢 WhatsApp",
-
-    telegram:
-      "🔵 Telegram",
-
-    whatsappContact:
-      "Contact us on WhatsApp",
-
-    telegramContact:
-      "Contact us on Telegram",
-
-    galleryTitle:
-      "Profile",
-
-    gallerySwipe:
-      "Swipe left or right to view",
-
-    profileAbout:"About Me",
-    profileInterests:"Interests",
-    profileCity:"City",
-    profileOccupation:"Occupation",
-    profileHeight:"Height",
-    profileMarital:"Marital status",
-    profilePhotos:"View photos",
-    profileContact:"Contact",
-    profileEmpty:"No information available",
-
-    romanticSubtitle:
-      "Some feelings need no explanation",
-
-    footer:
-      "Fate · Encounter",
-
-    loader:
-      "PREPARING PAGE"
-
-  },
-
-
-  "ru": {
-
-    htmlLang:"ru",
-
-    title:"Судьба · Встреча",
-
-    description:
-      "Узнать человека по-настоящему. Каждая история начинается со встречи.",
-
-    brandMain:"Судьба",
-
-    brandSecond:"Встреча",
-
-    heroEyebrow:
-      "MEET SOMEONE SPECIAL",
-
-    heroTitle:
-      "Познакомиться с человеком по-настоящему,<br>начиная с одной встречи.",
-
-    heroDescription:
-      "Просматривайте реальные анкеты, узнавайте друг друга и решайте, хотите ли вы связаться.<br>Некоторые встречи не нужно искать специально — иногда достаточно правильного момента.",
-
-    heroLabel:
-      "Каждая встреча может стать началом новой истории",
-
-    discoverSmall:
-      "DISCOVER",
-
-    discoverTitle:
-      "Познакомьтесь с ними",
-
-    allCities:
-      "Все города",
-
-    allAges:
-      "Любой возраст",
-
-    age18_25:
-      "18–25",
-
-    age26_35:
-      "26–35",
-
-    age36_45:
-      "36–45",
-
-    age46:
-      "46+",
-
-    loading:
-      "Загрузка анкет…",
-
-    loadError:
-      "Не удалось загрузить анкеты.",
-
-    noPhoto:
-      "Нет фотографии",
-
-    contact:
-      "Контакты",
-
-    contactTitle:
-      "Контакты",
-
-    contactWoman:
-      "Контактная информация",
-
-    noContact:
-      "Контактная информация отсутствует",
-
-    join:
-      "Подать заявку",
-
-    moreTitle:
-      "Новые девушки продолжают присоединяться",
-
-    moreDescription:
-      "Если вы хотите познакомиться с интересными людьми или хотите разместить здесь свою анкету, свяжитесь с нами.",
-
-    joinTitle:
-      "Подать заявку",
-
-    joinDescription:
-      "Если вы тоже хотите появиться здесь, свяжитесь с нами.",
-
-    loadingContact:
-      "Загрузка контактной информации…",
-
-    noJoinContact:
-      "Контактная информация отсутствует. Попробуйте позже.",
-
-    whatsapp:
-      "🟢 WhatsApp",
-
-    telegram:
-      "🔵 Telegram",
-
-    whatsappContact:
-      "Связаться через WhatsApp",
-
-    telegramContact:
-      "Связаться через Telegram",
-
-    galleryTitle:
-      "Профиль",
-
-    gallerySwipe:
-      "Проведите влево или вправо",
-
-    profileAbout:"О себе",
-    profileInterests:"Интересы",
-    profileCity:"Город",
-    profileOccupation:"Профессия",
-    profileHeight:"Рост",
-    profileMarital:"Семейное положение",
-    profilePhotos:"Смотреть фото",
-    profileContact:"Контакты",
-    profileEmpty:"Информация отсутствует",
-
-    romanticSubtitle:
-      "Некоторые чувства не требуют объяснений",
-
-    footer:
-      "Судьба · Встреча",
-
-    loader:
-      "ПОДГОТОВКА СТРАНИЦЫ"
-
-  }
-
-};
-
-
-/* =========================================================
-   CURRENT LANGUAGE
-========================================================= */
-
-let currentLanguage = "en";
-
-let T =
-  LANGUAGES[currentLanguage];
-
-
-/* =========================================================
-   COUNTRY → LANGUAGE
-========================================================= */
-
-function languageFromCountry(country){
-
-  const code =
-    String(country || "")
-      .toUpperCase()
-      .trim();
-
-
-  if(code === "CN"){
-    return "zh-CN";
-  }
-
-
-  if(
-    code === "TW" ||
-    code === "HK" ||
-    code === "MO"
-  ){
-
-    return "zh-TW";
-
-  }
-
-
-  if(code === "JP"){
-    return "ja";
-  }
-
-
-  if(
-    code === "RU" ||
-    code === "BY"
-  ){
-
-    return "ru";
-
-  }
-
-
-  const englishCountries = [
-
-    "US",
-    "GB",
-    "CA",
-    "AU",
-    "NZ",
-    "IE",
-    "SG",
-    "MY"
-
-  ];
-
-
-  if(
-    englishCountries.includes(code)
-  ){
-
-    return "en";
-
-  }
-
-
-  return "en";
-
-}
-
-
-/* =========================================================
-   BROWSER LANGUAGE FALLBACK
-========================================================= */
-
-function languageFromBrowser(){
-
-  const languages = [
-
-    ...(navigator.languages || []),
-
-    navigator.language || ""
-
-  ];
-
-
-  for(
-    const language of languages
-  ){
-
-    const value =
-      String(language)
-        .toLowerCase();
-
-
-    if(
-      value.startsWith("zh-tw") ||
-      value.startsWith("zh-hk") ||
-      value.startsWith("zh-mo")
-    ){
-
-      return "zh-TW";
-
-    }
-
-
-    if(
-      value.startsWith("zh")
-    ){
-
-      return "zh-CN";
-
-    }
-
-
-    if(
-      value.startsWith("ja")
-    ){
-
-      return "ja";
-
-    }
-
-
-    if(
-      value.startsWith("ru")
-    ){
-
-      return "ru";
-
-    }
-
-
-    if(
-      value.startsWith("en")
-    ){
-
-      return "en";
-
-    }
-
-  }
-
-
-  return "en";
-
-}
-
-
-/* =========================================================
-   APPLY LANGUAGE
-========================================================= */
-
-function applyLanguage(language){
-
-  if(
-    !LANGUAGES[language]
-  ){
-
-    language =
-      "en";
-
-  }
-
-
-  currentLanguage =
-    language;
-
-
-  T =
-    LANGUAGES[
-      currentLanguage
-    ];
-
-
-  document.documentElement.lang =
-    T.htmlLang;
-
-
-  document.title =
-    T.title;
-
-
-  const meta =
-    document.getElementById(
-      "metaDescription"
-    );
-
-
-  if(meta){
-
-    meta.setAttribute(
-      "content",
-      T.description
-    );
-
-  }
-
-
-  document.getElementById(
-    "brandMain"
-  ).textContent =
-    T.brandMain;
-
-
-  document.getElementById(
-    "brandSecond"
-  ).textContent =
-    T.brandSecond;
-
-
-  document.getElementById(
-    "heroEyebrow"
-  ).textContent =
-    T.heroEyebrow;
-
-
-  document.getElementById(
-    "heroTitle"
-  ).innerHTML =
-    T.heroTitle;
-
-
-  document.getElementById(
-    "heroDescription"
-  ).innerHTML =
-    T.heroDescription;
-
-
-  document.getElementById(
-    "heroLabel"
-  ).textContent =
-    T.heroLabel;
-
-
-  document.getElementById(
-    "discoverSmall"
-  ).textContent =
-    T.discoverSmall;
-
-
-  document.getElementById(
-    "discoverTitle"
-  ).textContent =
-    T.discoverTitle;
-
-
-  updateFilterLanguage();
-
-
-  /*
-   * 如果资料已经加载，
-   * 切换语言时立即重新生成资料卡。
-   */
-
-  if(
-    typeof women !== "undefined" &&
-    women.length
-  ){
-
-    createCityFilter();
-
-    filterWomen();
-
-  }
-
-
-  document.getElementById(
-    "romanticSubtitle"
-  ).textContent =
-    T.romanticSubtitle;
-
-
-  document.getElementById(
-    "footerText"
-  ).textContent =
-    T.footer;
-
-
-  const galleryTitle =
-    document.getElementById(
-      "galleryTitle"
-    );
-
-
-  if(galleryTitle){
-
-    galleryTitle.dataset.defaultTitle =
-      T.galleryTitle;
-
-  }
-
-
-  document.getElementById(
-    "contactTitle"
-  ).textContent =
-    T.contactTitle;
-
-
-  document.getElementById(
-    "joinTitle"
-  ).textContent =
-    T.joinTitle;
-
-
-  document.getElementById(
-    "joinDescription"
-  ).textContent =
-    T.joinDescription;
-
-
-  document.getElementById(
-    "languageLoaderText"
-  ).textContent =
-    T.loader;
-
-}
-
-
-/* =========================================================
-   FILTER LANGUAGE
-========================================================= */
-
-function updateFilterLanguage(){
-
-  const cityFilter =
-    document.getElementById(
-      "cityFilter"
-    );
-
-
-  const ageFilter =
-    document.getElementById(
-      "ageFilter"
-    );
-
-
-  if(!cityFilter || !ageFilter){
-    return;
-  }
-
-
-  const currentCity =
-    cityFilter.value;
-
-
-  const currentAge =
-    ageFilter.value;
-
-
-  if(cityFilter.options.length){
-
-    cityFilter.options[0].textContent =
-      T.allCities;
-
-  }
-
-
-  if(ageFilter.options.length >= 5){
-
-    ageFilter.options[0].textContent =
-      T.allAges;
-
-    ageFilter.options[1].textContent =
-      T.age18_25;
-
-    ageFilter.options[2].textContent =
-      T.age26_35;
-
-    ageFilter.options[3].textContent =
-      T.age36_45;
-
-    ageFilter.options[4].textContent =
-      T.age46;
-
-  }
-
-
-  cityFilter.value =
-    currentCity;
-
-  ageFilter.value =
-    currentAge;
-
-}
-
-
-/* =========================================================
-   DETECT VISITOR LANGUAGE BY IP
-========================================================= */
-
-async function detectVisitorLanguage(){
-
-  const browserLanguage =
-    languageFromBrowser();
-
-
-  try{
-
-    const controller =
-      new AbortController();
-
-
-    const timeout =
-      setTimeout(
-        () => controller.abort(),
-        4000
-      );
-
-
-    const response =
-      await fetch(
-        "https://ipapi.co/json/",
-        {
-          method:"GET",
-          cache:"no-store",
-          signal:
-            controller.signal
-        }
-      );
-
-
-    clearTimeout(timeout);
-
-
-    if(!response.ok){
-
-      throw new Error(
-        "IP API HTTP " +
-        response.status
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    console.log(
-      "IP language detection:",
-      data
-    );
-
-
-    const country =
-      data.country_code ||
-      data.country ||
-      "";
-
-
-    if(country){
-
-      return languageFromCountry(
-        country
-      );
-
-    }
-
-
-    return browserLanguage;
-
-
-  }catch(error){
-
-    console.warn(
-      "IP language detection failed:",
-      error
-    );
-
-
-    return browserLanguage;
-
-  }
-
-}
-
-
-/* =========================================================
-   START LANGUAGE INITIALIZATION
-========================================================= */
-
-async function initializeLanguage(){
-
-  const language =
-    await detectVisitorLanguage();
-
-
-  applyLanguage(
-    language
-  );
-
-
-  const loader =
-    document.getElementById(
-      "languageLoader"
-    );
-
-
-  requestAnimationFrame(() => {
-
-    setTimeout(() => {
-
-      loader.classList.add(
-        "hide"
-      );
-
-    },120);
-
-  });
-
-}
-
-
-/* =========================================================
-   SUPABASE
-========================================================= */
+/* ==================================================
+   Supabase
+================================================== */
 
 const SUPABASE_URL =
-  "https://yutraouosffjteivvlfx.supabase.co";
+"https://yutraouosffjteivvlfx.supabase.co";
 
 
 const SUPABASE_KEY =
-  "sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
+"sb_publishable_9kM95KpOX6WPwcXowvPbWQ_s0_YJUEA";
 
 
 const STORAGE_BUCKET =
-  "women-photos";
+"women-photos";
 
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* ==================================================
+   Variables
+================================================== */
+
+let currentUser = null;
 
 let women = [];
 
-let shuffledWomen = [];
+let editingWoman = null;
+
+let currentPhotos = [];
+
+let currentVideos = [];
+
+let pendingPhotos = [];
+
+let pendingVideos = [];
 
 
-let joinContact = {
+/* ==================================================
+   DOM
+================================================== */
 
-  whatsapp:"",
-  telegram:""
+const loginPage =
+  document.getElementById(
+    "loginPage"
+  );
 
-};
+const adminPage =
+  document.getElementById(
+    "adminPage"
+  );
+
+const loginForm =
+  document.getElementById(
+    "loginForm"
+  );
+
+const loginError =
+  document.getElementById(
+    "loginError"
+  );
+
+const womenList =
+  document.getElementById(
+    "womenList"
+  );
+
+const messageBox =
+  document.getElementById(
+    "message"
+  );
+
+const modal =
+  document.getElementById(
+    "womanModal"
+  );
+
+const womanForm =
+  document.getElementById(
+    "womanForm"
+  );
 
 
-/* =========================================================
-   BASIC
-========================================================= */
-
-document
-  .getElementById("year")
-  .textContent =
-  new Date().getFullYear();
-
+/* ==================================================
+   Helpers
+================================================== */
 
 function escapeHtml(value){
 
   return String(value ?? "")
+
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -3695,149 +1853,11 @@ function escapeHtml(value){
 }
 
 
-/* =========================================================
-   MULTILINGUAL WOMAN DATA
-========================================================= */
-
-/*
- * 这是这次修改的核心。
- *
- * 中文 / 繁体 / 俄文：
- * 使用原始字段。
- *
- * English：
- * field_en
- *
- * 日本語：
- * field_ja
- *
- * 如果对应翻译不存在：
- * 自动退回原始中文。
- */
-
-function getWomanText(woman, field){
-  if(!woman) return "";
-  if(field !== "description"){
-    return hasText(woman[field]) ? String(woman[field]).trim() : "";
-  }
-  const langMap = {"en":"en","zh-CN":"zh_cn","zh-TW":"zh_tw","ja":"ja","ru":"ru"};
-  const suffix = langMap[currentLanguage] || "en";
-  const current = woman["description_" + suffix];
-  if(hasText(current)) return String(current).trim();
-  const english = woman.description_en;
-  if(hasText(english)) return String(english).trim();
-  return hasText(woman.description) ? String(woman.description).trim() : "";
-}
-
-
-/*
- * 姓名不翻译
- */
-
-function getWomanName(woman){
-
-  return (
-    woman.name ||
-    T.contactWoman ||
-    "—"
-  );
-
-}
-
-
-/*
- * 年龄根据语言显示
- */
-
-function getWomanAgeText(age){
-
-  if(
-    age === null ||
-    age === undefined ||
-    age === ""
-  ){
-
-    return "";
-
-  }
-
-
-  const value =
-    escapeHtml(age);
-
-
-  if(
-    currentLanguage === "ja"
-  ){
-
-    return value + "歳";
-
-  }
-
-
-  if(
-    currentLanguage === "en"
-  ){
-
-    return value + " years old";
-
-  }
-
-
-  return value + "岁";
-
-}
-
-
-/* =========================================================
-   RANDOM SHUFFLE
-========================================================= */
-
-function shuffleWomen(list){
-
-  const result =
-    [...list];
-
-
-  for(
-    let i = result.length - 1;
-    i > 0;
-    i--
-  ){
-
-    const j =
-      Math.floor(
-        Math.random() * (i + 1)
-      );
-
-
-    [
-      result[i],
-      result[j]
-    ] =
-    [
-      result[j],
-      result[i]
-    ];
-
-  }
-
-
-  return result;
-
-}
-
-
-/* =========================================================
-   MEDIA
-========================================================= */
-
-function normalizeMedia(value){
+function normalizeArray(value){
 
   if(!value){
     return [];
   }
-
 
   if(Array.isArray(value)){
 
@@ -3849,23 +1869,19 @@ function normalizeMedia(value){
 
   }
 
-
   if(typeof value === "string"){
 
     const text =
       value.trim();
 
-
     if(!text){
       return [];
     }
-
 
     try{
 
       const parsed =
         JSON.parse(text);
-
 
       if(Array.isArray(parsed)){
 
@@ -3879,7 +1895,6 @@ function normalizeMedia(value){
 
     }catch(e){}
 
-
     if(text.includes(",")){
 
       return text
@@ -3889,20 +1904,14 @@ function normalizeMedia(value){
 
     }
 
-
     return [text];
 
   }
-
 
   return [];
 
 }
 
-
-/* =========================================================
-   STORAGE URL
-========================================================= */
 
 function getStorageUrl(path){
 
@@ -3910,1767 +1919,117 @@ function getStorageUrl(path){
     return "";
   }
 
-
   const value =
     String(path).trim();
 
-
   if(
     value.startsWith("http://") ||
-    value.startsWith("https://") ||
-    value.startsWith("data:")
+    value.startsWith("https://")
   ){
 
     return value;
 
   }
 
-
   return (
-
     SUPABASE_URL +
-
     "/storage/v1/object/public/" +
-
     STORAGE_BUCKET +
-
     "/" +
-
     value.replace(/^\/+/,"")
-
   );
 
 }
 
 
-/* =========================================================
-   PHOTOS
-========================================================= */
+function showMessage(
+  text,
+  type="success"
+){
 
-function getPhotos(woman){
+  messageBox.textContent =
+    text;
 
-  let photos = [];
+  messageBox.className =
+    "message " +
+    type;
 
+  setTimeout(
+    () => {
 
-  if(woman.image_url){
+      messageBox.className =
+        "message hidden";
 
-    photos.push(
-      woman.image_url
-    );
-
-  }
-
-
-  photos =
-    photos.concat(
-      normalizeMedia(
-        woman.photos
-      )
-    );
-
-
-  return [
-
-    ...new Set(
-
-      photos
-        .filter(Boolean)
-        .map(getStorageUrl)
-
-    )
-
-  ];
-
-}
-
-
-/* =========================================================
-   VIDEOS
-========================================================= */
-
-function getVideos(woman){
-
-  return [
-
-    ...new Set(
-
-      normalizeMedia(
-        woman.videos
-      )
-      .filter(Boolean)
-      .map(getStorageUrl)
-
-    )
-
-  ];
-
-}
-
-
-/* =========================================================
-   WOMAN CONTACT
-========================================================= */
-
-function getWomanWhatsApp(woman){
-
-  return (
-
-    woman.whatsapp ||
-
-    woman.whatsapp_number ||
-
-    woman.whatsapp_url ||
-
-    ""
-
+    },
+    5000
   );
 
 }
 
 
-function getWomanTelegram(woman){
+/* ==================================================
+   Login
+================================================== */
 
-  return (
+loginForm.addEventListener(
+  "submit",
+  async function(event){
 
-    woman.telegram ||
+    event.preventDefault();
 
-    woman.telegram_username ||
-
-    woman.telegram_url ||
-
-    ""
-
-  );
-
-}
-
-
-/* =========================================================
-   WHATSAPP URL
-========================================================= */
-
-function makeWhatsAppUrl(value){
-
-  if(!value){
-    return "";
-  }
-
-
-  const text =
-    String(value)
-      .trim();
-
-
-  if(
-    text.startsWith("https://wa.me/") ||
-    text.startsWith("http://wa.me/") ||
-    text.startsWith("https://api.whatsapp.com/")
-  ){
-
-    return text;
-
-  }
-
-
-  const number =
-    text.replace(/[^\d]/g,"");
-
-
-  if(!number){
-    return "";
-  }
-
-
-  return (
-    "https://wa.me/" +
-    number
-  );
-
-}
-
-
-/* =========================================================
-   TELEGRAM URL
-========================================================= */
-
-function makeTelegramUrl(value){
-
-  if(!value){
-    return "";
-  }
-
-
-  let username =
-    String(value)
-      .trim();
-
-
-  if(!username){
-    return "";
-  }
-
-
-  if(
-    username.startsWith(
-      "https://t.me/"
-    ) ||
-    username.startsWith(
-      "http://t.me/"
-    ) ||
-    username.startsWith(
-      "https://telegram.me/"
-    ) ||
-    username.startsWith(
-      "http://telegram.me/"
-    )
-  ){
-
-    return username;
-
-  }
-
-
-  username =
-    username.replace(
-      /^@/,
-      ""
+    loginError.classList.add(
+      "hidden"
     );
 
-
-  if(!username){
-    return "";
-  }
-
-
-  return (
-    "https://t.me/" +
-    username
-  );
-
-}
-
-
-/* =========================================================
-   LOAD WOMEN
-========================================================= */
-
-async function loadWomen(){
-
-  const grid =
-    document.getElementById(
-      "womenGrid"
-    );
-
-
-  try{
-
-    const url =
-
-      SUPABASE_URL +
-
-      "/rest/v1/women" +
-
-      "?select=*" +
-
-      "&is_published=eq.true";
-
-
-    const response =
-      await fetch(
-        url,
-        {
-          headers:{
-
-            apikey:
-              SUPABASE_KEY,
-
-            Authorization:
-              "Bearer " +
-              SUPABASE_KEY
-
-          }
-        }
-      );
-
-
-    const text =
-      await response.text();
-
-
-    if(!response.ok){
-
-      throw new Error(
-        text
-      );
-
-    }
-
-
-    women =
-      JSON.parse(text) || [];
-
-
-    shuffledWomen =
-      shuffleWomen(
-        women
-      );
-
-
-    createCityFilter();
-
-
-    renderWomen(
-      shuffledWomen
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "女士资料加载失败：",
-      error
-    );
-
-
-    grid.innerHTML = `
-
-      <div class="loading">
-        ${escapeHtml(
-          T.loadError
-        )}
-      </div>
-
-    `;
-
-  }
-
-}
-
-
-/* =========================================================
-   CITY FILTER
-========================================================= */
-
-function createCityFilter(){
-
-  const select =
-    document.getElementById(
-      "cityFilter"
-    );
-
-
-  if(!select){
-    return;
-  }
-
-
-  /*
-   * 当前已经选择的城市。
-   *
-   * 内部 value 始终保存中文原始 city。
-   */
-
-  const currentCity =
-    select.value;
-
-
-  const cityMap =
-    new Map();
-
-
-  women.forEach(woman => {
-
-    const originalCity =
-      woman.city;
-
-
-    if(!originalCity){
-      return;
-    }
-
-
-    const displayCity =
-      getWomanText(
-        woman,
-        "city"
-      );
-
-
-    if(!cityMap.has(originalCity)){
-
-      cityMap.set(
-        originalCity,
-        displayCity
-      );
-
-    }
-
-  });
-
-
-  select.innerHTML = `
-
-    <option value="">
-      ${escapeHtml(
-        T.allCities
-      )}
-    </option>
-
-  `;
-
-
-  cityMap.forEach(
-    (
-      displayCity,
-      originalCity
-    ) => {
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-
-      option.value =
-        originalCity;
-
-
-      option.textContent =
-        displayCity;
-
-
-      select.appendChild(
-        option
-      );
-
-    }
-  );
-
-
-  /*
-   * 保留原来的筛选状态。
-   */
-
-  if(
-    [...select.options]
-      .some(
-        option =>
-          option.value === currentCity
-      )
-  ){
-
-    select.value =
-      currentCity;
-
-  }
-
-}
-
-
-
-/* =========================================================
-   FULL PROFILE HELPERS
-========================================================= */
-
-function getWomanValue(woman, fields){
-  for(const field of fields){
-    const value = woman && woman[field];
-    if(value !== undefined && value !== null && String(value).trim() !== ""){
-      return value;
-    }
-  }
-  return "";
-}
-
-function getWomanList(woman, fields){
-  const value = getWomanValue(woman, fields);
-  if(Array.isArray(value)){
-    return value.flat(Infinity).map(v=>String(v).trim()).filter(Boolean);
-  }
-  if(!value) return [];
-  const text=String(value).trim();
-  try{
-    const parsed=JSON.parse(text);
-    if(Array.isArray(parsed)) return parsed.flat(Infinity).map(v=>String(v).trim()).filter(Boolean);
-  }catch(e){}
-  return text.split(/[、,，;；|\\n]+/).map(v=>v.trim()).filter(Boolean);
-}
-
-function getWomanMarital(woman){
-  return getWomanText(woman,"marital_status") ||
-    getWomanText(woman,"maritalStatus") ||
-    getWomanText(woman,"marital") || "";
-}
-
-function getWomanInterests(woman){
-  const fields = currentLanguage === "en"
-    ? ["hobbies_en","interests_en","hobbies","interests"]
-    : currentLanguage === "ja"
-      ? ["hobbies_ja","interests_ja","hobbies","interests"]
-      : ["hobbies","interests"];
-  return getWomanList(woman, fields);
-}
-
-function getWomanHeight(woman){
-  const value=getWomanValue(woman,["height_cm","height","heightCm"]);
-  if(!value) return "";
-  return String(value).match(/cm/i) ? String(value) : String(value)+" cm";
-}
-
-let profileMediaIndex = 0;
-
-function renderProfileMedia(woman){
-  const track=document.getElementById("profileMediaTrack");
-  const dots=document.getElementById("profileMediaDots");
-  if(!track || !dots) return;
-
-  const media=[
-    ...getPhotos(woman).map(url=>({type:"image",url})),
-    ...getVideos(woman).map(url=>({type:"video",url}))
-  ];
-
-  profileMediaIndex=0;
-  track.innerHTML="";
-  dots.innerHTML="";
-
-  if(!media.length){
-    track.innerHTML='<div class="profile-media-slide"><div class="profile-empty">No photos or videos</div></div>';
-    return;
-  }
-
-  media.forEach((item,index)=>{
-    const slide=document.createElement("div");
-    slide.className="profile-media-slide";
-    if(item.type==="image"){
-      const img=document.createElement("img");
-      img.src=item.url; img.alt=getWomanName(woman); img.draggable=false;
-      slide.appendChild(img);
-    }else{
-      const video=document.createElement("video");
-      video.controls=true; video.playsInline=true; video.preload="metadata";
-      const source=document.createElement("source"); source.src=item.url;
-      video.appendChild(source); slide.appendChild(video);
-      const badge=document.createElement("span"); badge.className="profile-media-type"; badge.textContent="VIDEO"; slide.appendChild(badge);
-    }
-    track.appendChild(slide);
-
-    const dot=document.createElement("span");
-    dot.className="profile-media-dot"+(index===0?" active":"");
-    dot.addEventListener("click",()=>profileMediaGoTo(index));
-    dots.appendChild(dot);
-  });
-
-  requestAnimationFrame(()=>{ track.scrollLeft=0; });
-}
-
-function profileMediaGoTo(index){
-  const track=document.getElementById("profileMediaTrack");
-  if(!track || !track.children.length) return;
-  if(index<0) index=track.children.length-1;
-  if(index>=track.children.length) index=0;
-  profileMediaIndex=index;
-  track.scrollTo({left:track.clientWidth*index,behavior:"smooth"});
-  document.querySelectorAll("#profileMediaDots .profile-media-dot").forEach((dot,i)=>dot.classList.toggle("active",i===index));
-}
-
-function updateProfileMediaIndex(){
-  const track=document.getElementById("profileMediaTrack");
-  if(!track || !track.clientWidth) return;
-  const index=Math.round(track.scrollLeft/track.clientWidth);
-  if(index!==profileMediaIndex){
-    profileMediaIndex=index;
-    document.querySelectorAll("#profileMediaDots .profile-media-dot").forEach((dot,i)=>dot.classList.toggle("active",i===index));
-  }
-}
-
-function openWomanProfile(woman){
-  const modal=document.getElementById("profileModal");
-  if(!modal) return;
-
-  const name=getWomanName(woman);
-  const age=woman.age ? getWomanAgeText(woman.age) : "";
-  const city=getWomanText(woman,"city");
-  const occupation=getWomanText(woman,"occupation");
-  const description=getWomanText(woman,"description") || getWomanText(woman,"bio");
-  const height=getWomanHeight(woman);
-  const marital=getWomanMarital(woman);
-  const interests=getWomanInterests(woman);
-  const photos=getPhotos(woman);
-
-  renderProfileMedia(woman);
-  document.getElementById("profilePhotoName").textContent=name;
-  document.getElementById("profilePhotoAge").textContent=age;
-  document.getElementById("profileName").textContent=name;
-  document.getElementById("profileSubtitle").textContent=[city,occupation].filter(Boolean).join(" · ");
-
-  const details=document.getElementById("profileDetails");
-  details.innerHTML="";
-  const rows=[
-    [T.profileCity,city],
-    [T.profileOccupation,occupation],
-    [T.profileHeight,height],
-    [T.profileMarital,marital]
-  ];
-  rows.forEach(([label,value])=>{
-    if(!value) return;
-    const item=document.createElement("div");
-    item.className="profile-detail-item";
-    item.innerHTML=`<span class="profile-detail-label">${escapeHtml(label)}</span><span class="profile-detail-value">${escapeHtml(value)}</span>`;
-    details.appendChild(item);
-  });
-
-  const desc=document.getElementById("profileDescription");
-  desc.textContent=description || T.profileEmpty;
-  desc.classList.toggle("profile-empty",!description);
-
-  document.getElementById("profileAboutTitle").textContent=T.profileAbout;
-  document.getElementById("profileInterestsTitle").textContent=T.profileInterests;
-
-  const interestsBox=document.getElementById("profileInterests");
-  interestsBox.innerHTML="";
-  if(interests.length){
-    interests.forEach(item=>{
-      const tag=document.createElement("span");
-      tag.className="profile-interest";
-      tag.textContent=item;
-      interestsBox.appendChild(tag);
-    });
-  }else{
-    interestsBox.innerHTML=`<span class="profile-empty">${escapeHtml(T.profileEmpty)}</span>`;
-  }
-
-  const photosButton=document.getElementById("profilePhotosButton");
-  photosButton.textContent=T.profilePhotos;
-  photosButton.disabled=photos.length===0;
-  photosButton.style.opacity=photos.length ? "1" : ".5";
-  photosButton.onclick=()=>{ closeWomanProfile(); if(photos.length) openGallery(woman); };
-
-  const contactButton=document.getElementById("profileContactButton");
-  contactButton.textContent=T.profileContact;
-  contactButton.onclick=()=>{ closeWomanProfile(); openWomanContact(woman); };
-
-  modal.classList.add("show");
-  document.body.style.overflow="hidden";
-}
-
-document.getElementById("profileMediaPrev")?.addEventListener("click",()=>profileMediaGoTo(profileMediaIndex-1));
-document.getElementById("profileMediaNext")?.addEventListener("click",()=>profileMediaGoTo(profileMediaIndex+1));
-document.getElementById("profileMediaTrack")?.addEventListener("scroll",updateProfileMediaIndex,{passive:true});
-
-function closeWomanProfile(){
-  const modal=document.getElementById("profileModal");
-  if(modal) modal.classList.remove("show");
-  if(!document.getElementById("galleryModal").classList.contains("show") && !document.getElementById("contactModal").classList.contains("show")){
-    document.body.style.overflow="";
-  }
-}
-
-
-/* =========================================================
-   RENDER WOMEN
-========================================================= */
-
-function renderWomen(list){
-
-  const grid =
-    document.getElementById(
-      "womenGrid"
-    );
-
-
-  grid.innerHTML = "";
-
-
-  list.forEach(woman => {
-
-    const photos =
-      getPhotos(woman);
-
-
-    const cover =
-
-      photos[0] ||
-
-      "data:image/svg+xml;charset=UTF-8," +
-
-      encodeURIComponent(`
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="600"
-          height="800"
-        >
-
-          <rect
-            width="600"
-            height="800"
-            fill="#39252d"
-          />
-
-          <text
-            x="300"
-            y="400"
-            text-anchor="middle"
-            font-size="28"
-            fill="#d6b9c1"
-          >
-            ${T.noPhoto}
-          </text>
-
-        </svg>
-
-      `);
-
-
-    const card =
-      document.createElement(
-        "article"
-      );
-
-
-    card.className =
-      "woman-card";
-
-
-    const whatsappUrl =
-      makeWhatsAppUrl(
-        getWomanWhatsApp(woman)
-      );
-
-
-    const telegramUrl =
-      makeTelegramUrl(
-        getWomanTelegram(woman)
-      );
-
-
-    const hasContact =
-      !!whatsappUrl ||
-      !!telegramUrl;
-
-
-    /*
-     * 当前语言的资料字段
-     */
-
-    const displayCity =
-      getWomanText(
-        woman,
-        "city"
-      );
-
-
-    const displayOccupation =
-      getWomanText(
-        woman,
-        "occupation"
-      );
-
-
-    const displayDescription =
-      getWomanText(
-        woman,
-        "description"
-      );
-
-
-    const displayName =
-      getWomanName(woman);
-
-
-    const displayAge =
-      woman.age
-        ? getWomanAgeText(
-            woman.age
-          )
-        : "";
-
-
-    card.innerHTML = `
-
-      <div class="woman-image">
-
-        <img
-          src="${escapeHtml(cover)}"
-          alt="${escapeHtml(
-            displayName
-          )}"
-          loading="lazy"
-        >
-
-      </div>
-
-
-      <div class="woman-info">
-
-        <h2>
-
-          ${escapeHtml(
-            displayName
-          )}
-
-          ${
-            displayAge
-              ? " · " +
-                displayAge
-              : ""
-          }
-
-        </h2>
-
-
-        ${
-          displayCity
-            ? `
-
-              <p class="city">
-                ${escapeHtml(
-                  displayCity
-                )}
-              </p>
-
-            `
-            : ""
-        }
-
-
-        ${
-          displayOccupation
-            ? `
-
-              <p>
-                ${escapeHtml(
-                  displayOccupation
-                )}
-              </p>
-
-            `
-            : ""
-        }
-
-
-        ${
-          displayDescription
-            ? `
-
-              <p class="description">
-                ${escapeHtml(
-                  displayDescription
-                )}
-              </p>
-
-            `
-            : ""
-        }
-
-      </div>
-
-
-      ${
-        hasContact
-
-          ? `
-
-            <button
-              type="button"
-              class="woman-contact-button"
-            >
-              ${escapeHtml(
-                T.contact
-              )}
-            </button>
-
-          `
-
-          : ""
-
-      }
-
-    `;
-
-
-    /*
-     * 整张卡片打开完整资料
-     */
-
-    card.addEventListener(
-      "click",
-      () =>
-        openWomanProfile(woman)
-    );
-
-
-    /*
-     * 联系按钮
-     */
-
-    const contactButton =
-      card.querySelector(
-        ".woman-contact-button"
-      );
-
-
-    if(contactButton){
-
-      contactButton.addEventListener(
-        "click",
-        function(event){
-
-          event.preventDefault();
-
-          event.stopPropagation();
-
-          openWomanContact(
-            woman
-          );
-
-        }
-      );
-
-    }
-
-
-    grid.appendChild(
-      card
-    );
-
-  });
-
-
-  /* =====================================================
-     MORE CARD
-  ===================================================== */
-
-  const moreCard =
-    document.createElement(
-      "article"
-    );
-
-
-  moreCard.className =
-    "more-card";
-
-
-  moreCard.innerHTML = `
-
-    <div class="more-card-bg"></div>
-
-    <div class="more-card-content">
-
-      <h2>
-        ${escapeHtml(
-          T.moreTitle
-        )}
-      </h2>
-
-      <p>
-        ${escapeHtml(
-          T.moreDescription
-        )}
-      </p>
-
-      <div class="join-button">
-        ${escapeHtml(
-          T.join
-        )}
-      </div>
-
-    </div>
-
-  `;
-
-
-  moreCard.addEventListener(
-    "click",
-    openJoinModal
-  );
-
-
-  grid.appendChild(
-    moreCard
-  );
-
-}
-
-
-/* =========================================================
-   WOMAN CONTACT MODAL
-========================================================= */
-
-function openWomanContact(woman){
-
-  const modal =
-    document.getElementById(
-      "contactModal"
-    );
-
-
-  const name =
-    document.getElementById(
-      "contactName"
-    );
-
-
-  const buttons =
-    document.getElementById(
-      "contactButtons"
-    );
-
-
-  name.textContent =
-    woman.name
-      ? woman.name + " · " +
-        T.contact
-      : T.contactWoman;
-
-
-  buttons.innerHTML = "";
-
-
-  const whatsappUrl =
-    makeWhatsAppUrl(
-      getWomanWhatsApp(woman)
-    );
-
-
-  const telegramUrl =
-    makeTelegramUrl(
-      getWomanTelegram(woman)
-    );
-
-
-  if(whatsappUrl){
-
-    const a =
-      document.createElement(
-        "a"
-      );
-
-
-    a.href =
-      whatsappUrl;
-
-    a.target =
-      "_blank";
-
-    a.rel =
-      "noopener noreferrer";
-
-    a.className =
-      "contact-whatsapp";
-
-    a.textContent =
-      T.whatsapp;
-
-
-    buttons.appendChild(a);
-
-  }
-
-
-  if(telegramUrl){
-
-    const a =
-      document.createElement(
-        "a"
-      );
-
-
-    a.href =
-      telegramUrl;
-
-    a.target =
-      "_blank";
-
-    a.rel =
-      "noopener noreferrer";
-
-    a.className =
-      "contact-telegram";
-
-    a.textContent =
-      T.telegram;
-
-
-    buttons.appendChild(a);
-
-  }
-
-
-  if(
-    !whatsappUrl &&
-    !telegramUrl
-  ){
-
-    buttons.innerHTML = `
-
-      <div class="no-contact">
-        ${escapeHtml(
-          T.noContact
-        )}
-      </div>
-
-    `;
-
-  }
-
-
-  modal.classList.add(
-    "show"
-  );
-
-
-  document.body.style.overflow =
-    "hidden";
-
-}
-
-
-/* =========================================================
-   CLOSE WOMAN CONTACT
-========================================================= */
-
-function closeWomanContact(){
-
-  document
-    .getElementById(
-      "contactModal"
-    )
-    .classList.remove(
-      "show"
-    );
-
-
-  if(
-    !document
-      .getElementById(
-        "galleryModal"
-      )
-      .classList
-      .contains("show")
-  ){
-
-    document.body.style.overflow =
-      "";
-
-  }
-
-}
-
-
-document
-  .getElementById(
-    "contactClose"
-  )
-  .addEventListener(
-    "click",
-    closeWomanContact
-  );
-
-
-document
-  .getElementById(
-    "contactModal"
-  )
-  .addEventListener(
-    "click",
-    function(event){
-
-      if(
-        event.target === this
-      ){
-
-        closeWomanContact();
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-let galleryMedia = [];
-
-let galleryIndex = 0;
-
-
-function openGallery(woman){
-
-  const photos =
-    getPhotos(woman);
-
-  const videos =
-    getVideos(woman);
-
-
-  galleryMedia = [];
-
-
-  photos.forEach(url => {
-
-    galleryMedia.push({
-
-      type:"image",
-
-      url
-
-    });
-
-  });
-
-
-  videos.forEach(url => {
-
-    galleryMedia.push({
-
-      type:"video",
-
-      url
-
-    });
-
-  });
-
-
-  if(!galleryMedia.length){
-    return;
-  }
-
-
-  galleryIndex = 0;
-
-
-  document
-    .getElementById("galleryTitle")
-    .textContent =
-    woman.name ||
-    T.galleryTitle;
-
-
-  renderGallery();
-
-
-  document
-    .getElementById("galleryModal")
-    .classList.add("show");
-
-
-  document.body.style.overflow =
-    "hidden";
-
-}
-
-
-/* =========================================================
-   RENDER GALLERY
-========================================================= */
-
-function renderGallery(){
-
-  const track =
-    document.getElementById(
-      "galleryTrack"
-    );
-
-
-  track.innerHTML = "";
-
-
-  galleryMedia.forEach(media => {
-
-    const slide =
-      document.createElement(
-        "div"
-      );
-
-
-    slide.className =
-      "gallery-slide";
-
-
-    if(media.type === "image"){
-
-      slide.innerHTML = `
-
-        <img
-          src="${escapeHtml(media.url)}"
-          draggable="false"
-        >
-
-      `;
-
-    }else{
-
-      slide.innerHTML = `
-
-        <video
-          controls
-          playsinline
-          preload="metadata"
-        >
-
-          <source
-            src="${escapeHtml(media.url)}"
-          >
-
-        </video>
-
-      `;
-
-    }
-
-
-    track.appendChild(
-      slide
-    );
-
-  });
-
-
-  updateGalleryCounter();
-
-
-  requestAnimationFrame(() => {
-
-    track.scrollLeft =
-      track.clientWidth *
-      galleryIndex;
-
-  });
-
-}
-
-
-/* =========================================================
-   GALLERY COUNTER
-========================================================= */
-
-function updateGalleryCounter(){
-
-  const counter =
-    document.getElementById(
-      "galleryCounter"
-    );
-
-
-  if(galleryMedia.length){
-
-    counter.textContent =
-
-      `${galleryIndex + 1} / ${galleryMedia.length} · ${T.gallerySwipe}`;
-
-  }
-
-}
-
-
-/* =========================================================
-   GALLERY GO TO
-========================================================= */
-
-function galleryGoTo(index){
-
-  if(!galleryMedia.length){
-    return;
-  }
-
-
-  if(index < 0){
-
-    index =
-      galleryMedia.length - 1;
-
-  }
-
-
-  if(index >= galleryMedia.length){
-
-    index = 0;
-
-  }
-
-
-  galleryIndex =
-    index;
-
-
-  const track =
-    document.getElementById(
-      "galleryTrack"
-    );
-
-
-  track.scrollTo({
-
-    left:
-      track.clientWidth *
-      galleryIndex,
-
-    behavior:"smooth"
-
-  });
-
-
-  updateGalleryCounter();
-
-}
-
-
-/* =========================================================
-   GALLERY SCROLL
-========================================================= */
-
-document
-  .getElementById("galleryTrack")
-  .addEventListener(
-    "scroll",
-    function(){
-
-      const width =
-        this.clientWidth;
-
-
-      if(!width){
-        return;
-      }
-
-
-      const index =
-        Math.round(
-          this.scrollLeft /
-          width
-        );
-
-
-      if(index !== galleryIndex){
-
-        galleryIndex =
-          index;
-
-        updateGalleryCounter();
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   GALLERY BUTTONS
-========================================================= */
-
-document
-  .getElementById("galleryPrev")
-  .addEventListener(
-    "click",
-    () =>
-      galleryGoTo(
-        galleryIndex - 1
-      )
-  );
-
-
-document
-  .getElementById("galleryNext")
-  .addEventListener(
-    "click",
-    () =>
-      galleryGoTo(
-        galleryIndex + 1
-      )
-  );
-
-
-document
-  .getElementById("galleryClose")
-  .addEventListener(
-    "click",
-    closeGallery
-  );
-
-
-function closeGallery(){
-
-  document
-    .getElementById("galleryModal")
-    .classList.remove("show");
-
-
-  document.body.style.overflow =
-    "";
-
-
-  document
-    .querySelectorAll(
-      "#galleryTrack video"
-    )
-    .forEach(
-      video => video.pause()
-    );
-
-}
-
-
-/* =========================================================
-   JOIN CONTACT
-========================================================= */
-
-async function loadJoinContact(){
-
-  try{
-
-    const url =
-
-      SUPABASE_URL +
-
-      "/rest/v1/site_settings" +
-
-      "?select=whatsapp,telegram" +
-
-      "&setting_key=eq.join_contact" +
-
-      "&limit=1";
-
-
-    const response =
-      await fetch(
-        url,
-        {
-          headers:{
-
-            apikey:
-              SUPABASE_KEY,
-
-            Authorization:
-              "Bearer " +
-              SUPABASE_KEY
-
-          }
-        }
-      );
-
-
-    if(!response.ok){
-
-      throw new Error(
-        await response.text()
-      );
-
-    }
-
-
-    const data =
-      await response.json();
-
-
-    if(data.length){
-
-      joinContact =
-        data[0];
-
-    }
-
-
-  }catch(error){
-
-    console.error(
-      "申请加入联系方式加载失败:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   JOIN MODAL
-========================================================= */
-
-function openJoinModal(){
-
-  const box =
-    document.getElementById(
-      "joinContacts"
-    );
-
-
-  box.innerHTML = "";
-
-
-  const whatsappUrl =
-    makeWhatsAppUrl(
-      joinContact.whatsapp
-    );
-
-
-  const telegramUrl =
-    makeTelegramUrl(
-      joinContact.telegram
-    );
-
-
-  if(whatsappUrl){
-
-    const a =
-      document.createElement(
-        "a"
-      );
-
-
-    a.href =
-      whatsappUrl;
-
-    a.target =
-      "_blank";
-
-    a.rel =
-      "noopener noreferrer";
-
-    a.className =
-      "join-whatsapp";
-
-    a.textContent =
-      T.whatsappContact;
-
-
-    box.appendChild(a);
-
-  }
-
-
-  if(telegramUrl){
-
-    const a =
-      document.createElement(
-        "a"
-      );
-
-
-    a.href =
-      telegramUrl;
-
-    a.target =
-      "_blank";
-
-    a.rel =
-      "noopener noreferrer";
-
-    a.className =
-      "join-telegram";
-
-    a.textContent =
-      T.telegramContact;
-
-
-    box.appendChild(a);
-
-  }
-
-
-  if(
-    !whatsappUrl &&
-    !telegramUrl
-  ){
-
-    box.innerHTML = `
-
-      <div class="no-contact">
-        ${escapeHtml(
-          T.noJoinContact
-        )}
-      </div>
-
-    `;
-
-  }
-
-
-  document
-    .getElementById("joinModal")
-    .classList.add("show");
-
-}
-
-
-function closeJoinModal(){
-
-  document
-    .getElementById("joinModal")
-    .classList.remove("show");
-
-}
-
-
-document
-  .getElementById("joinClose")
-  .addEventListener(
-    "click",
-    closeJoinModal
-  );
-
-
-document
-  .getElementById("joinModal")
-  .addEventListener(
-    "click",
-    function(event){
-
-      if(event.target === this){
-
-        closeJoinModal();
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   ESC
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if(event.key === "Escape"){
-
-      closeGallery();
-
-      closeJoinModal();
-
-      closeWomanContact();
-
-    }
-
-
-    if(
+    const email =
       document
-        .getElementById("galleryModal")
-        .classList
-        .contains("show")
-    ){
+        .getElementById(
+          "loginEmail"
+        )
+        .value
+        .trim();
 
-      if(event.key === "ArrowLeft"){
+    const password =
+      document
+        .getElementById(
+          "loginPassword"
+        )
+        .value;
 
-        galleryGoTo(
-          galleryIndex - 1
-        );
 
+    try{
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth
+          .signInWithPassword({
+            email,
+            password
+          });
+
+
+      if(error){
+        throw error;
       }
 
 
-      if(event.key === "ArrowRight"){
+      currentUser =
+        data.user;
 
-        galleryGoTo(
-          galleryIndex + 1
-        );
 
-      }
+      showAdmin();
+
+    }catch(error){
+
+      loginError.textContent =
+        "登录失败：" +
+        error.message;
+
+      loginError.classList.remove(
+        "hidden"
+      );
 
     }
 
@@ -5678,131 +2037,1906 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   FILTER
-========================================================= */
+/* ==================================================
+   Session
+================================================== */
 
-function filterWomen(){
+async function checkSession(){
 
-  const city =
-    document
-      .getElementById("cityFilter")
-      .value;
-
-
-  const age =
-    document
-      .getElementById("ageFilter")
-      .value;
+  const {
+    data
+  } =
+    await supabaseClient.auth
+      .getSession();
 
 
-  const filtered =
-    shuffledWomen.filter(
-      woman => {
+  if(
+    data?.session?.user
+  ){
 
-        /*
-         * 城市筛选永远使用数据库原始 city。
-         */
+    currentUser =
+      data.session.user;
 
-        if(
-          city &&
-          woman.city !== city
-        ){
+    showAdmin();
 
-          return false;
+  }else{
 
-        }
+    showLogin();
 
+  }
 
-        const womanAge =
-          Number(woman.age);
+}
 
 
-        if(age === "18-25"){
+function showLogin(){
 
-          return (
-            womanAge >= 18 &&
-            womanAge <= 25
-          );
+  loginPage.classList.remove(
+    "hidden"
+  );
 
-        }
-
-
-        if(age === "26-35"){
-
-          return (
-            womanAge >= 26 &&
-            womanAge <= 35
-          );
-
-        }
-
-
-        if(age === "36-45"){
-
-          return (
-            womanAge >= 36 &&
-            womanAge <= 45
-          );
-
-        }
-
-
-        if(age === "46+"){
-
-          return womanAge >= 46;
-
-        }
-
-
-        return true;
-
-      }
-    );
-
-
-  renderWomen(
-    filtered
+  adminPage.classList.add(
+    "hidden"
   );
 
 }
 
 
-/* =========================================================
-   FILTER EVENTS
-========================================================= */
+function showAdmin(){
+
+  loginPage.classList.add(
+    "hidden"
+  );
+
+  adminPage.classList.remove(
+    "hidden"
+  );
+
+
+  document
+    .getElementById(
+      "userEmail"
+    )
+    .textContent =
+    currentUser?.email || "";
+
+
+  loadWomen();
+
+  loadSettings();
+
+}
+
+
+/* ==================================================
+   Logout
+================================================== */
 
 document
-  .getElementById("cityFilter")
+  .getElementById(
+    "logoutButton"
+  )
   .addEventListener(
-    "change",
-    filterWomen
+    "click",
+    async function(){
+
+      await supabaseClient.auth
+        .signOut();
+
+      currentUser =
+        null;
+
+      showLogin();
+
+    }
+  );
+
+
+/* ==================================================
+   Load women
+================================================== */
+
+async function loadWomen(){
+
+  womenList.innerHTML = `
+
+    <div class="loading-page">
+      正在加载资料……
+    </div>
+
+  `;
+
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("women")
+        .select("*")
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        );
+
+
+    if(error){
+      throw error;
+    }
+
+
+    women =
+      data || [];
+
+
+    renderWomenList();
+
+  }catch(error){
+
+    womenList.innerHTML = `
+
+      <div class="loading-page">
+
+        加载失败：
+
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* ==================================================
+   Render women
+================================================== */
+
+function renderWomenList(){
+
+  if(!women.length){
+
+    womenList.innerHTML = `
+
+      <div class="loading-page">
+
+        暂时没有女士资料。
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  womenList.innerHTML = "";
+
+
+  women.forEach(
+    woman => {
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+      card.className =
+        "woman-admin-card";
+
+
+      const photos =
+        normalizeArray(
+          woman.photos
+        );
+
+      const videos =
+        normalizeArray(
+          woman.videos
+        );
+
+
+      let cover = "";
+
+
+      if(woman.image_url){
+
+        cover =
+          getStorageUrl(
+            woman.image_url
+          );
+
+      }else if(photos.length){
+
+        cover =
+          getStorageUrl(
+            photos[0]
+          );
+
+      }
+
+
+      card.innerHTML = `
+
+        <div class="card-photo">
+
+          ${
+            cover
+            ?
+            `
+              <img
+                src="${escapeHtml(
+                  cover
+                )}"
+                alt="${escapeHtml(
+                  woman.name
+                )}"
+              >
+            `
+            :
+            `
+              <div class="card-no-photo">
+                暂无照片
+              </div>
+            `
+          }
+
+        </div>
+
+
+        <div class="card-content">
+
+          <h2>
+
+            ${escapeHtml(
+              woman.name ||
+              "未填写姓名"
+            )}
+
+            ${
+              woman.age
+              ?
+              " · " +
+              escapeHtml(
+                woman.age
+              ) +
+              "岁"
+              :
+              ""
+            }
+
+          </h2>
+
+
+          <div class="card-meta">
+
+            ${
+              woman.city
+              ?
+              escapeHtml(
+                woman.city
+              )
+              :
+              "未填写城市"
+            }
+
+            ${
+              woman.occupation
+              ?
+              " · " +
+              escapeHtml(
+                woman.occupation
+              )
+              :
+              ""
+            }
+
+          </div>
+
+
+          <div class="card-description">
+
+            ${escapeHtml(
+              woman.description ||
+              "暂无个人介绍"
+            )}
+
+          </div>
+
+
+          <div class="card-media-count">
+
+            📷 ${photos.length} 张照片
+
+            &nbsp;&nbsp;
+
+            🎬 ${videos.length} 个视频
+
+          </div>
+
+
+          <span
+            class="card-status ${
+              woman.is_published
+              ?
+              "status-on"
+              :
+              "status-off"
+            }"
+          >
+
+            ${
+              woman.is_published
+              ?
+              "已发布"
+              :
+              "未发布"
+            }
+
+          </span>
+
+
+          <div class="card-actions">
+
+            <button
+              class="edit-btn"
+              type="button"
+            >
+              编辑
+            </button>
+
+            <button
+              class="delete-btn"
+              type="button"
+            >
+              删除
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      card
+        .querySelector(
+          ".edit-btn"
+        )
+        .addEventListener(
+          "click",
+          () => openEditWoman(woman)
+        );
+
+
+      card
+        .querySelector(
+          ".delete-btn"
+        )
+        .addEventListener(
+          "click",
+          () => deleteWoman(woman)
+        );
+
+
+      womenList.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   Add
+================================================== */
+
+document
+  .getElementById(
+    "addWomanButton"
+  )
+  .addEventListener(
+    "click",
+    openAddWoman
+  );
+
+
+async function openAddWoman(){
+
+  editingWoman =
+    null;
+
+  currentPhotos =
+    [];
+
+  currentVideos =
+    [];
+
+  pendingPhotos =
+    [];
+
+  pendingVideos =
+    [];
+
+
+  womanForm.reset();
+
+
+  /*
+    新增资料卡时自动带入当前全局联系方式。
+    如果读取失败，则保持为空，不影响继续添加资料。
+  */
+  try{
+
+    const {
+      data: globalContact,
+      error: globalContactError
+    } =
+      await supabaseClient
+        .from("site_settings")
+        .select("whatsapp,telegram")
+        .eq("setting_key","profile_contact")
+        .maybeSingle();
+
+    if(!globalContactError){
+
+      document
+        .getElementById("womanWhatsapp")
+        .value =
+        globalContact?.whatsapp || "";
+
+      document
+        .getElementById("womanTelegram")
+        .value =
+        globalContact?.telegram || "";
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "读取资料卡全局联系方式失败：",
+      error
+    );
+
+  }
+
+
+  document
+    .getElementById(
+      "modalTitle"
+    )
+    .textContent =
+    "添加女士";
+
+
+  document
+    .getElementById(
+      "womanPublished"
+    )
+    .value =
+    "true";
+
+
+  document
+    .getElementById(
+      "womanId"
+    )
+    .value =
+    "";
+
+
+  renderExistingMedia();
+
+  modal.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* ==================================================
+   Edit
+================================================== */
+
+function openEditWoman(woman){
+
+  editingWoman =
+    woman;
+
+  currentPhotos =
+    normalizeArray(
+      woman.photos
+    );
+
+  currentVideos =
+    normalizeArray(
+      woman.videos
+    );
+
+  pendingPhotos =
+    [];
+
+  pendingVideos =
+    [];
+
+
+  document
+    .getElementById(
+      "modalTitle"
+    )
+    .textContent =
+    "编辑女士";
+
+
+  document
+    .getElementById(
+      "womanId"
+    )
+    .value =
+    woman.id || "";
+
+
+  document
+    .getElementById(
+      "womanName"
+    )
+    .value =
+    woman.name || "";
+
+
+  document
+    .getElementById(
+      "womanAge"
+    )
+    .value =
+    woman.age || "";
+
+
+  document.getElementById("womanCountry").value = woman.country || "";
+  document.getElementById("womanHeight").value = woman.height_cm ?? woman.height ?? "";
+  document.getElementById("womanWeight").value = woman.weight_kg ?? woman.weight ?? "";
+  document.getElementById("womanMarital").value = woman.marital_status || woman.maritalStatus || woman.marital || "";
+
+  document
+    .getElementById(
+      "womanCity"
+    )
+    .value =
+    woman.city || "";
+
+
+  document
+    .getElementById(
+      "womanOccupation"
+    )
+    .value =
+    woman.occupation || "";
+
+
+  document
+    .getElementById(
+      "womanDescription"
+    )
+    .value =
+    woman.description || "";
+
+  const languageFields = {
+    En: "description_en",
+    ZhCn: "description_zh_cn",
+    ZhTw: "description_zh_tw",
+    Ja: "description_ja",
+    Ru: "description_ru"
+  };
+
+  for(const [suffix,field] of Object.entries(languageFields)){
+    const el = document.getElementById("womanDescription" + suffix);
+    if(el){
+      el.value = woman[field] || "";
+    }
+  }
+
+
+  document
+    .getElementById(
+      "womanWhatsapp"
+    )
+    .value =
+    woman.whatsapp || "";
+
+
+  document
+    .getElementById(
+      "womanTelegram"
+    )
+    .value =
+    woman.telegram || "";
+
+
+  document
+    .getElementById(
+      "womanPublished"
+    )
+    .value =
+    woman.is_published
+    ?
+    "true"
+    :
+    "false";
+
+
+  document
+    .getElementById(
+      "photoInput"
+    )
+    .value =
+    "";
+
+
+  document
+    .getElementById(
+      "videoInput"
+    )
+    .value =
+    "";
+
+
+  renderExistingMedia();
+
+  modal.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* ==================================================
+   Close
+================================================== */
+
+function closeModal(){
+
+  modal.classList.add(
+    "hidden"
+  );
+
+}
+
+
+document
+  .getElementById(
+    "closeModalButton"
+  )
+  .addEventListener(
+    "click",
+    closeModal
   );
 
 
 document
-  .getElementById("ageFilter")
+  .getElementById(
+    "cancelButton"
+  )
   .addEventListener(
-    "change",
-    filterWomen
+    "click",
+    closeModal
   );
 
 
-/* =========================================================
-   START
-========================================================= */
+/* ==================================================
+   File selection
+================================================== */
 
-initializeLanguage();
+document
+  .getElementById(
+    "photoInput"
+  )
+  .addEventListener(
+    "change",
+    function(){
+
+      pendingPhotos =
+        Array.from(
+          this.files || []
+        );
+
+    }
+  );
 
 
-Promise.all([
+document
+  .getElementById(
+    "videoInput"
+  )
+  .addEventListener(
+    "change",
+    function(){
 
-  loadWomen(),
+      pendingVideos =
+        Array.from(
+          this.files || []
+        );
 
-  loadJoinContact()
+    }
+  );
 
-]);
 
+/* ==================================================
+   Existing media
+================================================== */
+
+function renderExistingMedia(){
+
+  const photoBox =
+    document.getElementById(
+      "existingPhotos"
+    );
+
+  const videoBox =
+    document.getElementById(
+      "existingVideos"
+    );
+
+
+  photoBox.innerHTML =
+    "";
+
+  videoBox.innerHTML =
+    "";
+
+
+  if(!currentPhotos.length){
+
+    photoBox.innerHTML = `
+
+      <div style="color:#999;font-size:13px">
+        暂无照片
+      </div>
+
+    `;
+
+  }else{
+
+    currentPhotos.forEach(
+      (path,index) => {
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+        item.className =
+          "media-item";
+
+
+        item.innerHTML = `
+
+          <img
+            src="${escapeHtml(
+              getStorageUrl(path)
+            )}"
+            alt="照片"
+          >
+
+          <button
+            class="remove-media"
+            type="button"
+          >
+            ×
+          </button>
+
+        `;
+
+
+        item
+          .querySelector(
+            ".remove-media"
+          )
+          .addEventListener(
+            "click",
+            () => {
+
+              currentPhotos.splice(
+                index,
+                1
+              );
+
+              renderExistingMedia();
+
+            }
+          );
+
+
+        photoBox.appendChild(
+          item
+        );
+
+      }
+    );
+
+  }
+
+
+  if(!currentVideos.length){
+
+    videoBox.innerHTML = `
+
+      <div style="color:#999;font-size:13px">
+        暂无视频
+      </div>
+
+    `;
+
+  }else{
+
+    currentVideos.forEach(
+      (path,index) => {
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+        item.className =
+          "media-item";
+
+
+        item.innerHTML = `
+
+          <video
+            controls
+            preload="metadata"
+          >
+
+            <source
+              src="${escapeHtml(
+                getStorageUrl(path)
+              )}"
+            >
+
+          </video>
+
+          <button
+            class="remove-media"
+            type="button"
+          >
+            ×
+          </button>
+
+        `;
+
+
+        item
+          .querySelector(
+            ".remove-media"
+          )
+          .addEventListener(
+            "click",
+            () => {
+
+              currentVideos.splice(
+                index,
+                1
+              );
+
+              renderExistingMedia();
+
+            }
+          );
+
+
+        videoBox.appendChild(
+          item
+        );
+
+      }
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   Upload
+================================================== */
+
+async function uploadFile(
+  file,
+  folder
+){
+
+  if(!file){
+
+    throw new Error(
+      "没有选择文件"
+    );
+
+  }
+
+
+  const extension =
+    file.name.includes(".")
+    ?
+    "." +
+    file.name
+      .split(".")
+      .pop()
+      .toLowerCase()
+    :
+    "";
+
+
+  const uniqueName =
+    Date.now() +
+    "_" +
+    Math.random()
+      .toString(36)
+      .substring(2,10) +
+    extension;
+
+
+  const path =
+    folder +
+    "/" +
+    uniqueName;
+
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .storage
+      .from(
+        STORAGE_BUCKET
+      )
+      .upload(
+        path,
+        file,
+        {
+          cacheControl:"3600",
+          upsert:false,
+          contentType:
+            file.type ||
+            undefined
+        }
+      );
+
+
+  if(error){
+
+    throw error;
+
+  }
+
+
+  return data.path;
+
+}
+
+
+async function uploadPhotos(){
+
+  const uploaded = [];
+
+
+  for(
+    const file of pendingPhotos
+  ){
+
+    if(
+      !file.type.startsWith(
+        "image/"
+      )
+    ){
+
+      throw new Error(
+        "不是图片文件：" +
+        file.name
+      );
+
+    }
+
+
+    uploaded.push(
+      await uploadFile(
+        file,
+        "photos"
+      )
+    );
+
+  }
+
+
+  return uploaded;
+
+}
+
+
+async function uploadVideos(){
+
+  const uploaded = [];
+
+
+  for(
+    const file of pendingVideos
+  ){
+
+    if(
+      !file.type.startsWith(
+        "video/"
+      )
+    ){
+
+      throw new Error(
+        "不是视频文件：" +
+        file.name
+      );
+
+    }
+
+
+    uploaded.push(
+      await uploadFile(
+        file,
+        "videos"
+      )
+    );
+
+  }
+
+
+  return uploaded;
+
+}
+
+
+/* ==================================================
+   Save woman
+================================================== */
+
+womanForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+
+    const saveButton =
+      document.getElementById(
+        "saveButton"
+      );
+
+
+    saveButton.disabled =
+      true;
+
+    saveButton.textContent =
+      "正在保存……";
+
+
+    try{
+
+      const newPhotos =
+        await uploadPhotos();
+
+
+      const newVideos =
+        await uploadVideos();
+
+
+      const finalPhotos =
+        [
+          ...currentPhotos,
+          ...newPhotos
+        ];
+
+
+      const finalVideos =
+        [
+          ...currentVideos,
+          ...newVideos
+        ];
+
+
+      const name =
+        document
+          .getElementById(
+            "womanName"
+          )
+          .value
+          .trim();
+
+
+      const age =
+        Number(
+          document
+            .getElementById(
+              "womanAge"
+            )
+            .value
+        );
+
+
+      const city =
+        document
+          .getElementById(
+            "womanCity"
+          )
+          .value
+          .trim();
+
+
+      const country = document.getElementById("womanCountry").value.trim();
+      const height_cm = document.getElementById("womanHeight").value ? Number(document.getElementById("womanHeight").value) : null;
+      const weight_kg = document.getElementById("womanWeight").value ? Number(document.getElementById("womanWeight").value) : null;
+      const marital_status = document.getElementById("womanMarital").value.trim();
+
+      const occupation =
+        document
+          .getElementById(
+            "womanOccupation"
+          )
+          .value
+          .trim();
+
+
+      const description =
+        document
+          .getElementById(
+            "womanDescription"
+          )
+          .value
+          .trim();
+
+
+      const whatsapp =
+        document
+          .getElementById(
+            "womanWhatsapp"
+          )
+          .value
+          .trim();
+
+
+      const telegram =
+        document
+          .getElementById(
+            "womanTelegram"
+          )
+          .value
+          .trim();
+
+
+      const isPublished =
+        document
+          .getElementById(
+            "womanPublished"
+          )
+          .value ===
+          "true";
+
+
+      const firstPhoto =
+        finalPhotos[0] || "";
+
+
+      const multilingualRecord = {};
+      const languageSuffixes = ["En","ZhCn","ZhTw","Ja","Ru"];
+      const dbSuffixes = {En:"en",ZhCn:"zh_cn",ZhTw:"zh_tw",Ja:"ja",Ru:"ru"};
+      for(const suffix of languageSuffixes){
+        const db=dbSuffixes[suffix];
+        const description =
+          document.getElementById("womanDescription"+suffix)?.value.trim() || "";
+        multilingualRecord["description_"+db] = description || null;
+      }
+
+      const record = {
+
+        name,
+        age,
+        country,
+        city,
+        occupation,
+        height_cm,
+        weight_kg,
+        marital_status,
+        description,
+        ...multilingualRecord,
+
+        image_url:
+          firstPhoto,
+
+        whatsapp,
+        telegram,
+
+        is_published:
+          isPublished,
+
+        photos:
+          finalPhotos,
+
+        videos:
+          finalVideos
+
+      };
+
+
+      if(!editingWoman){
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("women")
+            .insert(record);
+
+
+        if(error){
+          throw error;
+        }
+
+
+        showMessage(
+          "女士资料添加成功。",
+          "success"
+        );
+
+      }else{
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("women")
+            .update(record)
+            .eq(
+              "id",
+              editingWoman.id
+            );
+
+
+        if(error){
+          throw error;
+        }
+
+
+        showMessage(
+          "女士资料修改成功。",
+          "success"
+        );
+
+      }
+
+
+      closeModal();
+
+      await loadWomen();
+
+
+      pendingPhotos = [];
+      pendingVideos = [];
+
+
+    }catch(error){
+
+      console.error(error);
+
+      showMessage(
+        "保存失败：" +
+        error.message,
+        "error"
+      );
+
+    }finally{
+
+      saveButton.disabled =
+        false;
+
+      saveButton.textContent =
+        "保存资料";
+
+    }
+
+  }
+);
+
+
+/* ==================================================
+   Delete woman
+================================================== */
+
+async function deleteWoman(woman){
+
+  const confirmed =
+    confirm(
+      "确定删除「" +
+      (
+        woman.name ||
+        "这位女士"
+      ) +
+      "」吗？\n\n数据库资料和 Storage 中的照片/视频都会尝试删除。"
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  try{
+
+    /*
+      收集所有 Storage 文件
+    */
+
+    const paths = [
+      ...normalizeArray(
+        woman.photos
+      ),
+      ...normalizeArray(
+        woman.videos
+      )
+    ];
+
+
+    if(woman.image_url){
+
+      paths.push(
+        woman.image_url
+      );
+
+    }
+
+
+    const uniquePaths =
+      [
+        ...new Set(
+          paths
+            .filter(Boolean)
+            .map(path => {
+
+              const value =
+                String(path);
+
+              if(
+                value.includes(
+                  "/storage/v1/object/public/"
+                )
+              ){
+
+                return value
+                  .split(
+                    "/storage/v1/object/public/" +
+                    STORAGE_BUCKET +
+                    "/"
+                  )[1];
+
+              }
+
+              return value
+                .replace(
+                  new RegExp(
+                    "^" +
+                    STORAGE_BUCKET +
+                    "/"
+                  ),
+                  ""
+                );
+
+            })
+        )
+      ];
+
+
+    /*
+      先删除数据库
+    */
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from("women")
+        .delete()
+        .eq(
+          "id",
+          woman.id
+        );
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    /*
+      再删除 Storage
+    */
+
+    if(uniquePaths.length){
+
+      const {
+        error:
+          storageError
+      } =
+        await supabaseClient
+          .storage
+          .from(
+            STORAGE_BUCKET
+          )
+          .remove(
+            uniquePaths
+          );
+
+
+      if(storageError){
+
+        console.warn(
+          "Storage 删除部分失败:",
+          storageError
+        );
+
+      }
+
+    }
+
+
+    showMessage(
+      "女士资料已删除。",
+      "success"
+    );
+
+
+    await loadWomen();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "删除失败：" +
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   Settings
+================================================== */
+
+async function loadSettings(){
+
+  try{
+
+    /* ------------------------------------------
+       申请加入联系方式
+    ------------------------------------------ */
+
+    const {
+      data: joinData,
+      error: joinError
+    } =
+      await supabaseClient
+        .from("site_settings")
+        .select("whatsapp,telegram")
+        .eq("setting_key","join_contact")
+        .maybeSingle();
+
+
+    if(joinError){
+      throw joinError;
+    }
+
+
+    document
+      .getElementById(
+        "joinWhatsapp"
+      )
+      .value =
+      joinData?.whatsapp || "";
+
+
+    document
+      .getElementById(
+        "joinTelegram"
+      )
+      .value =
+      joinData?.telegram || "";
+
+
+    /* ------------------------------------------
+       资料卡全局联系方式
+    ------------------------------------------ */
+
+    const {
+      data: profileData,
+      error: profileError
+    } =
+      await supabaseClient
+        .from("site_settings")
+        .select("whatsapp,telegram")
+        .eq("setting_key","profile_contact")
+        .maybeSingle();
+
+
+    if(profileError){
+      throw profileError;
+    }
+
+
+    document
+      .getElementById(
+        "profileWhatsapp"
+      )
+      .value =
+      profileData?.whatsapp || "";
+
+
+    document
+      .getElementById(
+        "profileTelegram"
+      )
+      .value =
+      profileData?.telegram || "";
+
+
+  }catch(error){
+
+    console.error(
+      "加载联系方式失败:",
+      error
+    );
+
+  }
+
+}
+
+
+document
+  .getElementById(
+    "saveSettingsButton"
+  )
+  .addEventListener(
+    "click",
+    saveSettings
+  );
+
+
+async function saveSettings(){
+
+  const button =
+    document.getElementById(
+      "saveSettingsButton"
+    );
+
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "正在保存……";
+
+
+  try{
+
+    const whatsapp =
+      document
+        .getElementById(
+          "joinWhatsapp"
+        )
+        .value
+        .trim();
+
+
+    const telegram =
+      document
+        .getElementById(
+          "joinTelegram"
+        )
+        .value
+        .trim();
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .from(
+          "site_settings"
+        )
+        .update({
+
+          whatsapp,
+          telegram,
+
+          updated_at:
+            new Date()
+              .toISOString()
+
+        })
+        .eq(
+          "setting_key",
+          "join_contact"
+        );
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    showMessage(
+      "申请加入联系方式保存成功。",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "联系方式保存失败：" +
+      error.message,
+      "error"
+    );
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "保存联系方式";
+
+  }
+
+}
+
+
+/* ==================================================
+   资料卡全局联系方式
+   保存后覆盖所有现有资料卡
+================================================== */
+
+document
+  .getElementById(
+    "saveProfileSettingsButton"
+  )
+  .addEventListener(
+    "click",
+    saveProfileSettings
+  );
+
+
+async function saveProfileSettings(){
+
+  const button =
+    document.getElementById(
+      "saveProfileSettingsButton"
+    );
+
+
+  const whatsapp =
+    document
+      .getElementById(
+        "profileWhatsapp"
+      )
+      .value
+      .trim();
+
+
+  const telegram =
+    document
+      .getElementById(
+        "profileTelegram"
+      )
+      .value
+      .trim();
+
+
+  const confirmed =
+    confirm(
+      "确定要覆盖所有资料卡的联系方式吗？\n\n" +
+      "新的 WhatsApp 和 Telegram 将替换所有女士资料卡中的旧联系方式。\n\n" +
+      "此操作不会修改女士姓名、照片、视频、介绍或发布状态。"
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  button.disabled = true;
+  button.textContent =
+    "正在覆盖全部资料卡……";
+
+
+  try{
+
+    /* ------------------------------------------
+       第一步：保存 profile_contact 全局设置
+    ------------------------------------------ */
+
+    const {
+      data: existingSetting,
+      error: findError
+    } =
+      await supabaseClient
+        .from("site_settings")
+        .select("id")
+        .eq("setting_key","profile_contact")
+        .maybeSingle();
+
+
+    if(findError){
+      throw findError;
+    }
+
+
+    if(existingSetting?.id){
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("site_settings")
+          .update({
+            whatsapp,
+            telegram,
+            updated_at:
+              new Date().toISOString()
+          })
+          .eq(
+            "id",
+            existingSetting.id
+          );
+
+
+      if(error){
+        throw error;
+      }
+
+    }else{
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("site_settings")
+          .insert({
+            setting_key:
+              "profile_contact",
+            whatsapp,
+            telegram,
+            updated_at:
+              new Date().toISOString()
+          });
+
+
+      if(error){
+        throw error;
+      }
+
+    }
+
+
+    /* ------------------------------------------
+       第二步：覆盖 women 表所有资料卡
+    ------------------------------------------ */
+
+    const {
+      error: womenError
+    } =
+      await supabaseClient
+        .from("women")
+        .update({
+          whatsapp,
+          telegram,
+          updated_at:
+            new Date().toISOString()
+        })
+        .not(
+          "id",
+          "is",
+          null
+        );
+
+
+    if(womenError){
+      throw womenError;
+    }
+
+
+    /* ------------------------------------------
+       第三步：刷新后台资料卡列表
+    ------------------------------------------ */
+
+    await loadWomen();
+
+
+    showMessage(
+      "全局联系方式保存成功，所有资料卡的 WhatsApp 和 Telegram 已全部覆盖。",
+      "success"
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "覆盖资料卡联系方式失败:",
+      error
+    );
+
+    showMessage(
+      "全局联系方式保存失败：" +
+      error.message,
+      "error"
+    );
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent =
+      "保存并覆盖全部资料卡";
+
+  }
+
+}
+
+
+/* ==================================================
+   Auth listener
+================================================== */
+
+supabaseClient
+  .auth
+  .onAuthStateChange(
+    (event,session) => {
+
+      if(
+        event ===
+        "SIGNED_OUT"
+      ){
+
+        currentUser =
+          null;
+
+        showLogin();
+
+      }
+
+    }
+  );
+
+
+/* ==================================================
+   Start
+================================================== */
+
+checkSession();
 
 </script>
 
