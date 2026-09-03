@@ -1584,57 +1584,32 @@ textarea{
 
             <h3>多语言个人介绍（完全免费）</h3>
             <p class="upload-help">
-              国家、城市、职业、婚姻状态、兴趣爱好使用通用资料；只有个人介绍需要分别填写多语言版本。未填写当前语言时自动使用 English；English 也为空时使用原始个人介绍。
+              国家、城市、职业、婚姻状态使用通用资料；多语言区域仅填写个人介绍。未填写当前语言时自动使用 English；English 也为空时使用原始个人介绍。
             </p>
 
             <div class="language-panel">
               <h4>English（建议必填，作为备用语言）</h4>
-              <input id="womanCountryEn" type="text" placeholder="Country in English">
-              <input id="womanCityEn" type="text" placeholder="City in English">
-              <input id="womanOccupationEn" type="text" placeholder="Occupation in English">
-              <input id="womanMaritalEn" type="text" placeholder="Marital status in English">
-              <input id="womanInterestsEn" type="text" placeholder="Interests in English">
-              <textarea id="womanDescriptionEn" placeholder="Personal introduction in English"></textarea>
+<textarea id="womanDescriptionEn" placeholder="Personal introduction in English"></textarea>
             </div>
 
             <div class="language-panel">
               <h4>简体中文</h4>
-              <input id="womanCountryZhCn" type="text" placeholder="国家">
-              <input id="womanCityZhCn" type="text" placeholder="城市">
-              <input id="womanOccupationZhCn" type="text" placeholder="职业">
-              <input id="womanMaritalZhCn" type="text" placeholder="婚姻状态">
-              <input id="womanInterestsZhCn" type="text" placeholder="兴趣爱好">
-              <textarea id="womanDescriptionZhCn" placeholder="个人介绍"></textarea>
+<textarea id="womanDescriptionZhCn" placeholder="个人介绍"></textarea>
             </div>
 
             <div class="language-panel">
               <h4>繁體中文</h4>
-              <input id="womanCountryZhTw" type="text" placeholder="國家">
-              <input id="womanCityZhTw" type="text" placeholder="城市">
-              <input id="womanOccupationZhTw" type="text" placeholder="職業">
-              <input id="womanMaritalZhTw" type="text" placeholder="婚姻狀態">
-              <input id="womanInterestsZhTw" type="text" placeholder="興趣愛好">
-              <textarea id="womanDescriptionZhTw" placeholder="個人介紹"></textarea>
+<textarea id="womanDescriptionZhTw" placeholder="個人介紹"></textarea>
             </div>
 
             <div class="language-panel">
               <h4>日本語</h4>
-              <input id="womanCountryJa" type="text" placeholder="国">
-              <input id="womanCityJa" type="text" placeholder="都市">
-              <input id="womanOccupationJa" type="text" placeholder="職業">
-              <input id="womanMaritalJa" type="text" placeholder="婚姻状況">
-              <input id="womanInterestsJa" type="text" placeholder="趣味・興味">
-              <textarea id="womanDescriptionJa" placeholder="自己紹介"></textarea>
+<textarea id="womanDescriptionJa" placeholder="自己紹介"></textarea>
             </div>
 
             <div class="language-panel">
               <h4>Русский</h4>
-              <input id="womanCountryRu" type="text" placeholder="Страна">
-              <input id="womanCityRu" type="text" placeholder="Город">
-              <input id="womanOccupationRu" type="text" placeholder="Профессия">
-              <input id="womanMaritalRu" type="text" placeholder="Семейное положение">
-              <input id="womanInterestsRu" type="text" placeholder="Интересы">
-              <textarea id="womanDescriptionRu" placeholder="О себе"></textarea>
+<textarea id="womanDescriptionRu" placeholder="О себе"></textarea>
             </div>
 
           </div>
@@ -2657,17 +2632,18 @@ function openEditWoman(woman){
     woman.description || "";
 
   const languageFields = {
-    En: ["country_en","city_en","occupation_en","marital_status_en","interests_en","description_en"],
-    ZhCn: ["country_zh_cn","city_zh_cn","occupation_zh_cn","marital_status_zh_cn","interests_zh_cn","description_zh_cn"],
-    ZhTw: ["country_zh_tw","city_zh_tw","occupation_zh_tw","marital_status_zh_tw","interests_zh_tw","description_zh_tw"],
-    Ja: ["country_ja","city_ja","occupation_ja","marital_status_ja","interests_ja","description_ja"],
-    Ru: ["country_ru","city_ru","occupation_ru","marital_status_ru","interests_ru","description_ru"]
+    En: "description_en",
+    ZhCn: "description_zh_cn",
+    ZhTw: "description_zh_tw",
+    Ja: "description_ja",
+    Ru: "description_ru"
   };
-  for(const [suffix,fields] of Object.entries(languageFields)){
-    ["Country","City","Occupation","Marital","Interests","Description"].forEach((name,i)=>{
-      const el=document.getElementById("woman"+name+suffix);
-      if(el) el.value=woman[fields[i]] || "";
-    });
+
+  for(const [suffix,field] of Object.entries(languageFields)){
+    const el = document.getElementById("womanDescription" + suffix);
+    if(el){
+      el.value = woman[field] || "";
+    }
   }
 
 
