@@ -1492,7 +1492,7 @@ footer span{
 .contact-modal{
   position:fixed;
   inset:0;
-  z-index:1300;
+  z-index:1200;
 
   background:
     rgba(15,8,12,.70);
@@ -2272,7 +2272,6 @@ footer span{
 <div
   id="contactModal"
   class="contact-modal"
-  data-layer="contact"
 >
 
   <div class="contact-box">
@@ -2578,7 +2577,6 @@ const LANGUAGES = {
     profileCity:"城市",
     profileOccupation:"职业",
     profileHeight:"身高",
-    profileWeight:"体重",
     profileMarital:"婚姻状态",
     profilePhotos:"查看照片",
     profileContact:"联系方式",
@@ -2710,7 +2708,6 @@ const LANGUAGES = {
     profileCity:"城市",
     profileOccupation:"職業",
     profileHeight:"身高",
-    profileWeight:"體重",
     profileMarital:"婚姻狀態",
     profilePhotos:"查看照片",
     profileContact:"聯絡方式",
@@ -2842,7 +2839,6 @@ const LANGUAGES = {
     profileCity:"都市",
     profileOccupation:"職業",
     profileHeight:"身長",
-    profileWeight:"体重",
     profileMarital:"婚姻状況",
     profilePhotos:"写真を見る",
     profileContact:"連絡先",
@@ -2974,7 +2970,6 @@ const LANGUAGES = {
     profileCity:"City",
     profileOccupation:"Occupation",
     profileHeight:"Height",
-    profileWeight:"Weight",
     profileMarital:"Marital status",
     profilePhotos:"View photos",
     profileContact:"Contact",
@@ -3106,7 +3101,6 @@ const LANGUAGES = {
     profileCity:"Город",
     profileOccupation:"Профессия",
     profileHeight:"Рост",
-    profileWeight:"Вес",
     profileMarital:"Семейное положение",
     profilePhotos:"Смотреть фото",
     profileContact:"Контакты",
@@ -3702,69 +3696,98 @@ function escapeHtml(value){
 
 
 /* =========================================================
-   MULTILINGUAL WOMAN DATA — FREE MANUAL TRANSLATION
+   MULTILINGUAL WOMAN DATA
 ========================================================= */
 
 /*
- * 免费方案：不调用任何翻译 API。
- * 后台分别填写各语言内容，首页按当前语言读取。
- * 优先级：当前语言 → English → 原始字段。
+ * 这是这次修改的核心。
+ *
+ * 中文 / 繁体 / 俄文：
+ * 使用原始字段。
+ *
+ * English：
+ * field_en
+ *
+ * 日本語：
+ * field_ja
+ *
+ * 如果对应翻译不存在：
+ * 自动退回原始中文。
  */
-
-function hasText(value){
-  return value !== undefined && value !== null && String(value).trim() !== "";
-}
 
 function getWomanText(woman, field){
   if(!woman) return "";
-
-  const langMap = {
-    "en": "en",
-    "zh-CN": "zh_cn",
-    "zh-TW": "zh_tw",
-    "ja": "ja",
-    "ru": "ru"
-  };
-
+  if(field !== "description"){
+    return hasText(woman[field]) ? String(woman[field]).trim() : "";
+  }
+  const langMap = {"en":"en","zh-CN":"zh_cn","zh-TW":"zh_tw","ja":"ja","ru":"ru"};
   const suffix = langMap[currentLanguage] || "en";
-
-  const candidates = [];
-
-  /* 当前语言 */
-  if(suffix){
-    candidates.push(woman[field + "_" + suffix]);
-  }
-
-  /* English 永远作为第一备用语言 */
-  if(suffix !== "en"){
-    candidates.push(woman[field + "_en"]);
-  }
-
-  /* 最后才使用原始字段，兼容旧资料 */
-  candidates.push(woman[field]);
-
-  for(const value of candidates){
-    if(hasText(value)) return String(value).trim();
-  }
-
-  return "";
+  const current = woman["description_" + suffix];
+  if(hasText(current)) return String(current).trim();
+  const english = woman.description_en;
+  if(hasText(english)) return String(english).trim();
+  return hasText(woman.description) ? String(woman.description).trim() : "";
 }
+
+
+/*
+ * 姓名不翻译
+ */
 
 function getWomanName(woman){
-  return woman?.name || T.contactWoman || "—";
+
+  return (
+    woman.name ||
+    T.contactWoman ||
+    "—"
+  );
+
 }
+
+
+/*
+ * 年龄根据语言显示
+ */
 
 function getWomanAgeText(age){
-  if(age === null || age === undefined || age === "") return "";
 
-  const value = escapeHtml(age);
+  if(
+    age === null ||
+    age === undefined ||
+    age === ""
+  ){
 
-  if(currentLanguage === "ja") return value + "歳";
-  if(currentLanguage === "en") return value + " years old";
-  if(currentLanguage === "ru") return value + " лет";
+    return "";
+
+  }
+
+
+  const value =
+    escapeHtml(age);
+
+
+  if(
+    currentLanguage === "ja"
+  ){
+
+    return value + "歳";
+
+  }
+
+
+  if(
+    currentLanguage === "en"
+  ){
+
+    return value + " years old";
+
+  }
+
 
   return value + "岁";
+
 }
+
 
 /* =========================================================
    RANDOM SHUFFLE
@@ -4380,27 +4403,18 @@ function getWomanMarital(woman){
 }
 
 function getWomanInterests(woman){
-  const value =
-    getWomanText(woman,"interests") ||
-    getWomanText(woman,"hobbies");
-
-  return getWomanList({value},["value"]);
-}
-
-function getWomanCountry(woman){
-  return getWomanText(woman,"country");
+  const fields = currentLanguage === "en"
+    ? ["hobbies_en","interests_en","hobbies","interests"]
+    : currentLanguage === "ja"
+      ? ["hobbies_ja","interests_ja","hobbies","interests"]
+      : ["hobbies","interests"];
+  return getWomanList(woman, fields);
 }
 
 function getWomanHeight(woman){
   const value=getWomanValue(woman,["height_cm","height","heightCm"]);
   if(!value) return "";
   return String(value).match(/cm/i) ? String(value) : String(value)+" cm";
-}
-
-function getWomanWeight(woman){
-  const value=getWomanValue(woman,["weight_kg","weight","weightKg"]);
-  if(!value) return "";
-  return String(value).match(/kg/i) ? String(value) : String(value)+" kg";
 }
 
 let profileMediaIndex = 0;
@@ -4479,7 +4493,6 @@ function openWomanProfile(woman){
   const occupation=getWomanText(woman,"occupation");
   const description=getWomanText(woman,"description") || getWomanText(woman,"bio");
   const height=getWomanHeight(woman);
-  const weight=getWomanWeight(woman);
   const marital=getWomanMarital(woman);
   const interests=getWomanInterests(woman);
   const photos=getPhotos(woman);
@@ -4496,7 +4509,6 @@ function openWomanProfile(woman){
     [T.profileCity,city],
     [T.profileOccupation,occupation],
     [T.profileHeight,height],
-    [T.profileWeight,weight],
     [T.profileMarital,marital]
   ];
   rows.forEach(([label,value])=>{
@@ -4535,7 +4547,7 @@ function openWomanProfile(woman){
 
   const contactButton=document.getElementById("profileContactButton");
   contactButton.textContent=T.profileContact;
-  contactButton.onclick=()=>{ openWomanContact(woman); };
+  contactButton.onclick=()=>{ closeWomanProfile(); openWomanContact(woman); };
 
   modal.classList.add("show");
   document.body.style.overflow="hidden";
@@ -4551,22 +4563,6 @@ function closeWomanProfile(){
   if(!document.getElementById("galleryModal").classList.contains("show") && !document.getElementById("contactModal").classList.contains("show")){
     document.body.style.overflow="";
   }
-}
-
-
-/* =========================================================
-   CARD COUNTRY HELPER
-========================================================= */
-
-function getWomanCountry(woman){
-  const value = getWomanValue(woman,[
-    "country",
-    "country_name",
-    "countryName",
-    "country_code"
-  ]);
-
-  return value ? String(value).trim() : "";
 }
 
 
@@ -4657,6 +4653,27 @@ function renderWomen(list){
      * 当前语言的资料字段
      */
 
+    const displayCity =
+      getWomanText(
+        woman,
+        "city"
+      );
+
+
+    const displayOccupation =
+      getWomanText(
+        woman,
+        "occupation"
+      );
+
+
+    const displayDescription =
+      getWomanText(
+        woman,
+        "description"
+      );
+
+
     const displayName =
       getWomanName(woman);
 
@@ -4687,16 +4704,61 @@ function renderWomen(list){
       <div class="woman-info">
 
         <h2>
-          ${escapeHtml(displayName)}
-          ${displayAge ? " · " + displayAge : ""}
+
+          ${escapeHtml(
+            displayName
+          )}
+
+          ${
+            displayAge
+              ? " · " +
+                displayAge
+              : ""
+          }
+
         </h2>
 
+
         ${
-          getWomanCountry(woman)
+          displayCity
             ? `
+
               <p class="city">
-                ${escapeHtml(getWomanCountry(woman))}
+                ${escapeHtml(
+                  displayCity
+                )}
               </p>
+
+            `
+            : ""
+        }
+
+
+        ${
+          displayOccupation
+            ? `
+
+              <p>
+                ${escapeHtml(
+                  displayOccupation
+                )}
+              </p>
+
+            `
+            : ""
+        }
+
+
+        ${
+          displayDescription
+            ? `
+
+              <p class="description">
+                ${escapeHtml(
+                  displayDescription
+                )}
+              </p>
+
             `
             : ""
         }
@@ -4979,31 +5041,18 @@ function closeWomanContact(){
     );
 
 
-  const galleryOpen =
-    document
-      .getElementById("galleryModal")
+  if(
+    !document
+      .getElementById(
+        "galleryModal"
+      )
       .classList
-      .contains("show");
+      .contains("show")
+  ){
 
-  const profileOpen =
-    document
-      .getElementById("profileModal")
-      .classList
-      .contains("show");
+    document.body.style.overflow =
+      "";
 
-  const joinOpen =
-    document
-      .getElementById("joinModal")
-      .classList
-      .contains("show");
-
-  /*
-   * 如果联系方式弹窗是从资料卡打开的，
-   * 关闭联系方式后必须回到资料卡，
-   * 不能解除资料卡的锁屏状态。
-   */
-  if(!galleryOpen && !profileOpen && !joinOpen){
-    document.body.style.overflow = "";
   }
 
 }
