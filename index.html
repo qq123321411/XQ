@@ -2578,6 +2578,7 @@ const LANGUAGES = {
     profileCity:"城市",
     profileOccupation:"职业",
     profileHeight:"身高",
+    profileWeight:"体重",
     profileMarital:"婚姻状态",
     profilePhotos:"查看照片",
     profileContact:"联系方式",
@@ -2709,6 +2710,7 @@ const LANGUAGES = {
     profileCity:"城市",
     profileOccupation:"職業",
     profileHeight:"身高",
+    profileWeight:"體重",
     profileMarital:"婚姻狀態",
     profilePhotos:"查看照片",
     profileContact:"聯絡方式",
@@ -2840,6 +2842,7 @@ const LANGUAGES = {
     profileCity:"都市",
     profileOccupation:"職業",
     profileHeight:"身長",
+    profileWeight:"体重",
     profileMarital:"婚姻状況",
     profilePhotos:"写真を見る",
     profileContact:"連絡先",
@@ -2971,6 +2974,7 @@ const LANGUAGES = {
     profileCity:"City",
     profileOccupation:"Occupation",
     profileHeight:"Height",
+    profileWeight:"Weight",
     profileMarital:"Marital status",
     profilePhotos:"View photos",
     profileContact:"Contact",
@@ -3102,6 +3106,7 @@ const LANGUAGES = {
     profileCity:"Город",
     profileOccupation:"Профессия",
     profileHeight:"Рост",
+    profileWeight:"Вес",
     profileMarital:"Семейное положение",
     profilePhotos:"Смотреть фото",
     profileContact:"Контакты",
@@ -4444,6 +4449,12 @@ function getWomanHeight(woman){
   return String(value).match(/cm/i) ? String(value) : String(value)+" cm";
 }
 
+function getWomanWeight(woman){
+  const value=getWomanValue(woman,["weight_kg","weight","weightKg"]);
+  if(!value) return "";
+  return String(value).match(/kg/i) ? String(value) : String(value)+" kg";
+}
+
 let profileMediaIndex = 0;
 
 function renderProfileMedia(woman){
@@ -4520,6 +4531,7 @@ function openWomanProfile(woman){
   const occupation=getWomanText(woman,"occupation");
   const description=getWomanText(woman,"description") || getWomanText(woman,"bio");
   const height=getWomanHeight(woman);
+  const weight=getWomanWeight(woman);
   const marital=getWomanMarital(woman);
   const interests=getWomanInterests(woman);
   const photos=getPhotos(woman);
@@ -4536,6 +4548,7 @@ function openWomanProfile(woman){
     [T.profileCity,city],
     [T.profileOccupation,occupation],
     [T.profileHeight,height],
+    [T.profileWeight,weight],
     [T.profileMarital,marital]
   ];
   rows.forEach(([label,value])=>{
@@ -4590,6 +4603,22 @@ function closeWomanProfile(){
   if(!document.getElementById("galleryModal").classList.contains("show") && !document.getElementById("contactModal").classList.contains("show")){
     document.body.style.overflow="";
   }
+}
+
+
+/* =========================================================
+   CARD COUNTRY HELPER
+========================================================= */
+
+function getWomanCountry(woman){
+  const value = getWomanValue(woman,[
+    "country",
+    "country_name",
+    "countryName",
+    "country_code"
+  ]);
+
+  return value ? String(value).trim() : "";
 }
 
 
@@ -4680,27 +4709,6 @@ function renderWomen(list){
      * 当前语言的资料字段
      */
 
-    const displayCity =
-      getWomanText(
-        woman,
-        "city"
-      );
-
-
-    const displayOccupation =
-      getWomanText(
-        woman,
-        "occupation"
-      );
-
-
-    const displayDescription =
-      getWomanText(
-        woman,
-        "description"
-      );
-
-
     const displayName =
       getWomanName(woman);
 
@@ -4731,61 +4739,16 @@ function renderWomen(list){
       <div class="woman-info">
 
         <h2>
-
-          ${escapeHtml(
-            displayName
-          )}
-
-          ${
-            displayAge
-              ? " · " +
-                displayAge
-              : ""
-          }
-
+          ${escapeHtml(displayName)}
+          ${displayAge ? " · " + displayAge : ""}
         </h2>
 
-
         ${
-          displayCity
+          getWomanCountry(woman)
             ? `
-
               <p class="city">
-                ${escapeHtml(
-                  displayCity
-                )}
+                ${escapeHtml(getWomanCountry(woman))}
               </p>
-
-            `
-            : ""
-        }
-
-
-        ${
-          displayOccupation
-            ? `
-
-              <p>
-                ${escapeHtml(
-                  displayOccupation
-                )}
-              </p>
-
-            `
-            : ""
-        }
-
-
-        ${
-          displayDescription
-            ? `
-
-              <p class="description">
-                ${escapeHtml(
-                  displayDescription
-                )}
-              </p>
-
             `
             : ""
         }
