@@ -3702,124 +3702,69 @@ function escapeHtml(value){
 
 
 /* =========================================================
-   MULTILINGUAL WOMAN DATA
+   MULTILINGUAL WOMAN DATA — FREE MANUAL TRANSLATION
 ========================================================= */
 
 /*
- * 这是这次修改的核心。
- *
- * 中文 / 繁体 / 俄文：
- * 使用原始字段。
- *
- * English：
- * field_en
- *
- * 日本語：
- * field_ja
- *
- * 如果对应翻译不存在：
- * 自动退回原始中文。
+ * 免费方案：不调用任何翻译 API。
+ * 后台分别填写各语言内容，首页按当前语言读取。
+ * 优先级：当前语言 → English → 原始字段。
  */
+
+function hasText(value){
+  return value !== undefined && value !== null && String(value).trim() !== "";
+}
 
 function getWomanText(woman, field){
+  if(!woman) return "";
 
-  if(!woman){
-    return "";
+  const langMap = {
+    "en": "en",
+    "zh-CN": "zh_cn",
+    "zh-TW": "zh_tw",
+    "ja": "ja",
+    "ru": "ru"
+  };
+
+  const suffix = langMap[currentLanguage] || "en";
+
+  const candidates = [];
+
+  /* 当前语言 */
+  if(suffix){
+    candidates.push(woman[field + "_" + suffix]);
   }
 
-
-  if(
-    currentLanguage === "en"
-  ){
-
-    return (
-      woman[field + "_en"] ||
-      woman[field] ||
-      ""
-    );
-
+  /* English 永远作为第一备用语言 */
+  if(suffix !== "en"){
+    candidates.push(woman[field + "_en"]);
   }
 
+  /* 最后才使用原始字段，兼容旧资料 */
+  candidates.push(woman[field]);
 
-  if(
-    currentLanguage === "ja"
-  ){
-
-    return (
-      woman[field + "_ja"] ||
-      woman[field] ||
-      ""
-    );
-
+  for(const value of candidates){
+    if(hasText(value)) return String(value).trim();
   }
 
-
-  return (
-    woman[field] ||
-    ""
-  );
-
+  return "";
 }
-
-
-/*
- * 姓名不翻译
- */
 
 function getWomanName(woman){
-
-  return (
-    woman.name ||
-    T.contactWoman ||
-    "—"
-  );
-
+  return woman?.name || T.contactWoman || "—";
 }
-
-
-/*
- * 年龄根据语言显示
- */
 
 function getWomanAgeText(age){
+  if(age === null || age === undefined || age === "") return "";
 
-  if(
-    age === null ||
-    age === undefined ||
-    age === ""
-  ){
+  const value = escapeHtml(age);
 
-    return "";
-
-  }
-
-
-  const value =
-    escapeHtml(age);
-
-
-  if(
-    currentLanguage === "ja"
-  ){
-
-    return value + "歳";
-
-  }
-
-
-  if(
-    currentLanguage === "en"
-  ){
-
-    return value + " years old";
-
-  }
-
+  if(currentLanguage === "ja") return value + "歳";
+  if(currentLanguage === "en") return value + " years old";
+  if(currentLanguage === "ru") return value + " лет";
 
   return value + "岁";
-
 }
-
 
 /* =========================================================
    RANDOM SHUFFLE
@@ -4435,12 +4380,15 @@ function getWomanMarital(woman){
 }
 
 function getWomanInterests(woman){
-  const fields = currentLanguage === "en"
-    ? ["hobbies_en","interests_en","hobbies","interests"]
-    : currentLanguage === "ja"
-      ? ["hobbies_ja","interests_ja","hobbies","interests"]
-      : ["hobbies","interests"];
-  return getWomanList(woman, fields);
+  const value =
+    getWomanText(woman,"interests") ||
+    getWomanText(woman,"hobbies");
+
+  return getWomanList({value},["value"]);
+}
+
+function getWomanCountry(woman){
+  return getWomanText(woman,"country");
 }
 
 function getWomanHeight(woman){
